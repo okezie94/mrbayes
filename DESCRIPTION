@@ -1,0 +1,37 @@
+Package: mrbayes
+Type: Package
+Title: Fitting causal estimates in Mendelian Randomization through Bayesian MCMC
+Version: 0.1.0
+Authors@R: c(person("Okezie", "Uche-Ikonne", 
+  email = "o.uche-ikonne@lancaster.ac.uk",
+  role = c("aut", "cre"),
+  comment = c(ORCID = "0000-0002-8461-8099")),
+  person("Frank", "Dondelinger",
+  email = "f.dondelinger@lancaster.ac.uk", role = c("aut"),
+  comment = c(ORCID = "0000-0003-1816-6300")),
+  person("Tom", "Palmer", 
+    email = "tom.palmer@lancaster.ac.uk", role = c("aut"),
+    comment = c(ORCID = "0000-0003-4655-4511")))
+Description: Bayesian estimation of inverse variance weighted (IVW) and MR-Egger summary data models for Mendelian randomization analyses.
+Depends: R (>= 3.5.0)
+Imports: methods
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Suggests: testthat,
+  rjags,
+  tidyverse,
+  knitr,
+  ggplot2,
+  ggmcmc,
+  foreign,
+  DescTools,
+  bayesmeta,
+  utils,
+  kableExtra,
+  roxygen2,
+  bookdown
+VignetteBuilder: knitr  
+RoxygenNote: 6.1.1
+Roxygen: list(markdown = TRUE)
+SystemRequirements: JAGS 4.x.y
