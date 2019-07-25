@@ -25,10 +25,11 @@
 #' @author Okezie Uche-Ikonne; Tom Palmer
 #' @references Bowden, J., et al., Improving the visualization, interpretation and analysis of two-sample summary data Mendelian randomization via the Radial plot and Radial regression. International Journal of Epidemiology, 2018. 47(4): p. 1264-1278.
 #' @examples
-#'
+#' \donttest{
 #' fit <- mr_radialegger_rjags(bmi_insulin, n.chains = 3)
 #' summary(fit)
 #' plot(fit$samples)
+#' }
 #'
 mr_radialegger_rjags <- function(object,
                                  methods = "default",

@@ -25,10 +25,11 @@
 #' @author Okezie Uche-Ikonne; Tom Palmer
 #' @references Bowden et. al. , Mendelian randomization with invalid instruments: effect estimation and bias detection through Egger regression. International Journal of Epidemiology 2015. 44(2): p. 512-525.
 #' @examples
-#'
+#' \donttest{
 #' fit <- mr_egger_rjags(bmi_insulin, n.chains = 3)
 #' summary(fit)
 #' plot(fit$samples)
+#' }
 #'
 mr_egger_rjags <- function(object,
                            methods = "default",

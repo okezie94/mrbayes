@@ -21,11 +21,12 @@
 #'
 #' @author Okezie Uche-Ikonne; Tom Palmer
 #' @examples
-#'
+#' \donttest{
 #' fit <- mr_ivw_rjags(bmi_insulin, n.chains = 3)
 #' print(fit)
 #' summary(fit)
 #' plot(fit$samples)
+#' }
 #'
 mr_ivw_rjags <- function(object,
                          methods = "default",

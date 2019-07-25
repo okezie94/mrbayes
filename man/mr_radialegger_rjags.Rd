@@ -43,10 +43,11 @@ The result object of class radialeggerjags contains the following components:
 Fitting Bayesian MR-radialegger models using various priors from the jags software.
 }
 \examples{
-
+\donttest{
 fit <- mr_radialegger_rjags(bmi_insulin, n.chains = 3)
 summary(fit)
 plot(fit$samples)
+}
 
 }
 \references{
