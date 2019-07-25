@@ -1,6 +1,6 @@
 Package: mrbayes
 Type: Package
-Title: Fitting causal estimates in Mendelian Randomization through Bayesian MCMC
+Title: Bayesian Estimation of Summary Level Data Estimators for Mendelian Randomization Studies 
 Version: 0.1.0
 Authors@R: c(person("Okezie", "Uche-Ikonne", 
   email = "o.uche-ikonne@lancaster.ac.uk",
@@ -31,7 +31,6 @@ Suggests: testthat,
   kableExtra,
   roxygen2,
   bookdown
-VignetteBuilder: knitr  
 RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)
 SystemRequirements: JAGS 4.x.y
