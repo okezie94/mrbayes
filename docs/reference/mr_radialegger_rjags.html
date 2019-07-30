@@ -165,11 +165,12 @@
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Bowden, J., et al., Improving the visualization, interpretation and analysis of two-sample summary data Mendelian randomization via the Radial plot and Radial regression. International Journal of Epidemiology, 2018. 47(4): p. 1264-1278.</p>
+    <p>Bowden, J., et al., Improving the visualization, interpretation and analysis of two-sample summary data Mendelian randomization via the Radial plot and Radial regression. International Journal of Epidemiology, 2018. 47(4): p. 1264-1278. <a href='https://doi.org/10.1093/ije/dyy101'>https://doi.org/10.1093/ije/dyy101</a></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>fit</span> <span class='kw'>&lt;-</span> <span class='fu'>mr_radialegger_rjags</span>(<span class='no'>bmi_insulin</span>, <span class='kw'>n.chains</span> <span class='kw'>=</span> <span class='fl'>3</span>)</div><div class='output co'>#&gt; Compiling model graph
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>bmi_insulin</span>)
+<span class='no'>fit</span> <span class='kw'>&lt;-</span> <span class='fu'>mr_radialegger_rjags</span>(<span class='no'>bmi_insulin</span>, <span class='kw'>n.chains</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; Compiling model graph
 #&gt;    Resolving undeclared variables
 #&gt;    Allocating nodes
 #&gt; Graph information:
@@ -189,14 +190,14 @@
 #&gt;  MCMC iterations = 6000 
 #&gt;  Burn in = 1000 
 #&gt;  Sample size by chain = 5000 
-#&gt;  Number of Chains = 3 
+#&gt;  Number of Chains = 1 
 #&gt;  Number of SNPs = 14 
 #&gt;  
-#&gt; Inflating Parameter: 0.02660534 
+#&gt; Inflating Parameter: 0.02717276 
 #&gt; 
-#&gt;                 Estimate        SD        2.5%       50%     97.5%
-#&gt; Avg Pleio     -26.643319 12.302801 -50.3368505 -26.76185 -2.089341
-#&gt; Causal Effect   5.624551  2.352456   0.8833684   5.62582 10.183420</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>fit</span>$<span class='no'>samples</span>)</div><div class='img'><img src='mr_radialegger_rjags-1.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt;                 Estimate        SD       2.5%        50%     97.5%
+#&gt; Avg Pleio     -28.767449 11.341817 -49.634188 -28.996547 -6.159646
+#&gt; Causal Effect   6.028901  2.171713   1.649934   6.055854 10.044002</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>fit</span>$<span class='no'>samples</span>)</div><div class='img'><img src='mr_radialegger_rjags-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -211,8 +212,6 @@
       <li><a href="#examples">Examples</a></li>
     </ul>
 
-    <h2>Author</h2>
-    <p>Okezie Uche-Ikonne; Tom Palmer</p>
   </div>
 </div>
 
