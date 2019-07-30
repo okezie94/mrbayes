@@ -19,14 +19,12 @@
 #' \item{method}{The specified prior}
 #' }
 #'
-#' @author Okezie Uche-Ikonne; Tom Palmer
 #' @examples
-#' \donttest{
-#' fit <- mr_ivw_rjags(bmi_insulin, n.chains = 3)
+#' data(bmi_insulin)
+#' fit <- mr_ivw_rjags(bmi_insulin, n.chains = 1)
 #' print(fit)
 #' summary(fit)
 #' plot(fit$samples)
-#' }
 #'
 mr_ivw_rjags <- function(object,
                          methods = "default",
@@ -181,7 +179,7 @@ print.ivwjags <- function(x, ...) {
     matrix(c(x$CausalEffect, x$StandardError, x$CredibleInterval),
            nrow = 1,
            ncol = 5,
-           byrow = T,
+           byrow = TRUE,
            dimnames = list("Causal Effect", c("Estimate", "SD", "2.5%", "50%", "97.5%"))
     )
   print(outt, ...)
@@ -197,7 +195,7 @@ summary.ivwjags <- function(object, ...) {
       c(out$CausalEffect, out$StandardError, out$CredibleInterval),
       nrow = 1,
       ncol = 5,
-      byrow = T,
+      byrow = TRUE,
       dimnames = list("Causal Effect", c("Estimate", "SD", "2.5%", "50%", "97.5%"))
     )
 

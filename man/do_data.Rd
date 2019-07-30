@@ -20,11 +20,14 @@
 do_data
 }
 \description{
-A summary-level dataset containing 185 single nucleiodtide polymorphisms which have genotype-exposure associations and standard errors for
+A summary-level dataset, from Do et al. (2013) \url{https://dx.doi.org/10.1038/ng.2795}, containing 185 single nucleiodtide polymorphisms which have genotype-exposure associations and standard errors for
 low-density lipoprotein cholestrol, high-density lipoprotein cholestrol and triglyceride exposures. The dataset also contains genotype-outcome (coronary heart disease) associations
 and standard errors.
 }
 \details{
 do_data.
+}
+\references{
+Do, R. et al., Common variants associated with plasma triglycerides and risk for coronary artery disease. Nature Genetics, 2013, 45, 1345-1352, \url{https://dx.doi.org/10.1038/ng.2795}.
 }
 \keyword{datasets}

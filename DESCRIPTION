@@ -1,6 +1,6 @@
 Package: mrbayes
 Type: Package
-Title: Bayesian Estimation of Summary Level Data Estimators for Mendelian Randomization Studies 
+Title: Bayesian Summary Data Models for Mendelian Randomization Studies
 Version: 0.1.0
 Authors@R: c(person("Okezie", "Uche-Ikonne", 
   email = "o.uche-ikonne@lancaster.ac.uk",
@@ -12,7 +12,10 @@ Authors@R: c(person("Okezie", "Uche-Ikonne",
   person("Tom", "Palmer", 
     email = "tom.palmer@lancaster.ac.uk", role = c("aut"),
     comment = c(ORCID = "0000-0003-4655-4511")))
-Description: Bayesian estimation of inverse variance weighted (IVW) and MR-Egger summary data models for Mendelian randomization analyses.
+Description: Bayesian estimation of inverse variance weighted (IVW), Burgess 
+    and Butterworth (2013) <doi:10.1002/gepi.21758>, and MR-Egger, Bowden et 
+    al. (2015) <doi:10.1093/ije/dyv080>, summary data models for Mendelian 
+    randomization analyses.
 Depends: R (>= 3.5.0)
 Imports: methods
 License: GPL-3

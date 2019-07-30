@@ -38,14 +38,10 @@ The result object of class ivwjags contains the following components:
 Fitting Bayesian inverse variance weighted estimates using established priors using the JAGS software.
 }
 \examples{
-\donttest{
-fit <- mr_ivw_rjags(bmi_insulin, n.chains = 3)
+data(bmi_insulin)
+fit <- mr_ivw_rjags(bmi_insulin, n.chains = 1)
 print(fit)
 summary(fit)
 plot(fit$samples)
-}
 
-}
-\author{
-Okezie Uche-Ikonne; Tom Palmer
 }

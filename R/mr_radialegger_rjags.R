@@ -22,14 +22,12 @@
 #' \item{method}{The specified prior}
 #' }
 #'
-#' @author Okezie Uche-Ikonne; Tom Palmer
-#' @references Bowden, J., et al., Improving the visualization, interpretation and analysis of two-sample summary data Mendelian randomization via the Radial plot and Radial regression. International Journal of Epidemiology, 2018. 47(4): p. 1264-1278.
+#' @references Bowden, J., et al., Improving the visualization, interpretation and analysis of two-sample summary data Mendelian randomization via the Radial plot and Radial regression. International Journal of Epidemiology, 2018. 47(4): p. 1264-1278. <https://doi.org/10.1093/ije/dyy101>
 #' @examples
-#' \donttest{
-#' fit <- mr_radialegger_rjags(bmi_insulin, n.chains = 3)
+#' data(bmi_insulin)
+#' fit <- mr_radialegger_rjags(bmi_insulin, n.chains = 1)
 #' summary(fit)
 #' plot(fit$samples)
-#' }
 #'
 mr_radialegger_rjags <- function(object,
                                  methods = "default",
@@ -247,7 +245,7 @@ print.radialeggerjags <- function(x, ...) {
       ),
       nrow = 2,
       ncol = 5,
-      byrow = T,
+      byrow = TRUE,
       dimnames = list(
         c("Avg Pleio", "Causal Effect"),
         c("Estimate", "SD", "2.5%", "50%", "97.5%")
@@ -273,7 +271,7 @@ summary.radialeggerjags <- function(object, ...) {
       ),
       nrow = 2,
       ncol = 5,
-      byrow = T,
+      byrow = TRUE,
       dimnames = list(
         c("Avg Pleio", "Causal Effect"),
         c("Estimate", "SD", "2.5%", "50%", "97.5%")

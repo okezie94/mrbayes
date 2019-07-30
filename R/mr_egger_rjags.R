@@ -22,14 +22,12 @@
 #' \item{method}{The specified prior}
 #' }
 #'
-#' @author Okezie Uche-Ikonne; Tom Palmer
-#' @references Bowden et. al. , Mendelian randomization with invalid instruments: effect estimation and bias detection through Egger regression. International Journal of Epidemiology 2015. 44(2): p. 512-525.
+#' @references Bowden et. al., Mendelian randomization with invalid instruments: effect estimation and bias detection through Egger regression. International Journal of Epidemiology 2015. 44(2): p. 512-525. <https://doi.org/10.1093/ije/dyv080>
 #' @examples
-#' \donttest{
-#' fit <- mr_egger_rjags(bmi_insulin, n.chains = 3)
+#' data(bmi_insulin)
+#' fit <- mr_egger_rjags(bmi_insulin, n.chains = 1)
 #' summary(fit)
 #' plot(fit$samples)
-#' }
 #'
 mr_egger_rjags <- function(object,
                            methods = "default",
@@ -239,7 +237,7 @@ print.eggerjags <- function(x, ...) {
       ),
       nrow = 2,
       ncol = 5,
-      byrow = T,
+      byrow = TRUE,
       dimnames = list(
         c("Avg Pleio", "Causal Effect"),
         c("Estimate", "SD", "2.5%", "50%", "97.5%")
@@ -265,7 +263,7 @@ summary.eggerjags <- function(object, ...) {
       ),
       nrow = 2,
       ncol = 5,
-      byrow = T,
+      byrow = TRUE,
       dimnames = list(
         c("Avg Pleio", "Causal Effect"),
         c("Estimate", "SD", "2.5%", "50%", "97.5%")

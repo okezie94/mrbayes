@@ -1,6 +1,6 @@
 #' Dataset from Do et al., Nat Gen, 2013 containing summary level data on associations of genotypes with lipid traits and the risk of coronary heart diseases
 #'
-#' A summary-level dataset containing 185 single nucleiodtide polymorphisms which have genotype-exposure associations and standard errors for
+#' A summary-level dataset, from Do et al. (2013) <https://dx.doi.org/10.1038/ng.2795>, containing 185 single nucleiodtide polymorphisms which have genotype-exposure associations and standard errors for
 #' low-density lipoprotein cholestrol, high-density lipoprotein cholestrol and triglyceride exposures. The dataset also contains genotype-outcome (coronary heart disease) associations
 #' and standard errors.
 #'
@@ -18,5 +18,6 @@
 #'       \item{tgse}{The standard error for the exposure triglycerides}
 #'       \item{chdse}{The standard error for the outcome coronary heart disease}
 #'  }
+#' @references Do, R. et al., Common variants associated with plasma triglycerides and risk for coronary artery disease. Nature Genetics, 2013, 45, 1345-1352, <https://dx.doi.org/10.1038/ng.2795>.
 #'
 "do_data"

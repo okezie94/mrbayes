@@ -16,9 +16,12 @@
 bmi_insulin
 }
 \description{
-A two-sample summary level dataset containing 14 single nucleiodtide polymorphisms which have phenotype-exposure associations (BMI) and phenotype-outcome (insulin) with their respective standard errors.
+A two-sample summary level dataset, Richmond et al. (2017) \url{https://dx.doi.org/10.1101/155739}, containing 14 single nucleiodtide polymorphisms which have genotype-exposure associations (BMI) and genotype-outcome associations (insulin) with their respective standard errors.
 }
 \details{
 bmi_insulin.
+}
+\references{
+Richmond, R. et al., Investigating the role of insulin in increased adiposity: Bi-directional Mendelian randomization study. bioRxiv, 2017, \url{https://dx.doi.org/10.1101/155739}.
 }
 \keyword{datasets}

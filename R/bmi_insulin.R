@@ -1,6 +1,6 @@
 #' Dataset from Richmond et. al 2017 investigating the association of BMI on insulin resistance
 #'
-#' A two-sample summary level dataset containing 14 single nucleiodtide polymorphisms which have phenotype-exposure associations (BMI) and phenotype-outcome (insulin) with their respective standard errors.
+#' A two-sample summary level dataset, Richmond et al. (2017) <https://dx.doi.org/10.1101/155739>, containing 14 single nucleiodtide polymorphisms which have genotype-exposure associations (BMI) and genotype-outcome associations (insulin) with their respective standard errors.
 #'
 #' bmi_insulin.
 #'
@@ -12,5 +12,6 @@
 #'     \item{se.exposure}{The value for the standard error of the phenotype-exposure association}
 #'     \item{se.outcome}{The value for the standard error of the phenotype-outcome association}
 #' }
+#' @references Richmond, R. et al., Investigating the role of insulin in increased adiposity: Bi-directional Mendelian randomization study. bioRxiv, 2017, <https://dx.doi.org/10.1101/155739>.
 #'
 "bmi_insulin"

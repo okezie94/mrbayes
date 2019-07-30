@@ -43,16 +43,12 @@ The result object of class radialeggerjags contains the following components:
 Fitting Bayesian MR-radialegger models using various priors from the jags software.
 }
 \examples{
-\donttest{
-fit <- mr_radialegger_rjags(bmi_insulin, n.chains = 3)
+data(bmi_insulin)
+fit <- mr_radialegger_rjags(bmi_insulin, n.chains = 1)
 summary(fit)
 plot(fit$samples)
-}
 
 }
 \references{
 Bowden, J., et al., Improving the visualization, interpretation and analysis of two-sample summary data Mendelian randomization via the Radial plot and Radial regression. International Journal of Epidemiology, 2018. 47(4): p. 1264-1278.
-}
-\author{
-Okezie Uche-Ikonne; Tom Palmer
 }

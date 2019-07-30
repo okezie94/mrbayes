@@ -43,16 +43,12 @@ The result object of class eggerjags contains the following components:
 Bayesian implementation of the MR-Egger model with choice of prior distributions using JAGS.
 }
 \examples{
-\donttest{
-fit <- mr_egger_rjags(bmi_insulin, n.chains = 3)
+data(bmi_insulin)
+fit <- mr_egger_rjags(bmi_insulin, n.chains = 1)
 summary(fit)
 plot(fit$samples)
-}
 
 }
 \references{
 Bowden et. al. , Mendelian randomization with invalid instruments: effect estimation and bias detection through Egger regression. International Journal of Epidemiology 2015. 44(2): p. 512-525.
-}
-\author{
-Okezie Uche-Ikonne; Tom Palmer
 }
