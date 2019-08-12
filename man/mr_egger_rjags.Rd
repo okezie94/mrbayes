@@ -4,14 +4,14 @@
 \alias{mr_egger_rjags}
 \title{Bayesian implementation of the MR-Egger model with choice of prior distributions using JAGS.}
 \usage{
-mr_egger_rjags(object, methods = "default", betaprior = "",
+mr_egger_rjags(object, prior = "default", betaprior = "",
   sigmaprior = "", n.chains = 1, n.burn = 1000, n.iter = 5000,
-  seed = NULL, ...)
+  seed = NULL, rho = 0.5, ...)
 }
 \arguments{
 \item{object}{The data frame converted into the format_mr format}
 
-\item{methods}{The values are used to identify the proposed priors default indicates non-informative prior weak indicates weakly informative prior pseudo indicates pseudo-horseshoe prior.}
+\item{prior}{The option for selecting the proposed priors; "default" indicates non-informative prior; "weak" indicates weakly informative prior; "pseudo" indicates pseudo-horseshoe prior; "joint" indicates joint probability prior.}
 
 \item{betaprior}{This is an option for setting a prior for the causal estimate.}
 
@@ -25,6 +25,8 @@ mr_egger_rjags(object, methods = "default", betaprior = "",
 
 \item{seed}{This is an option for setting seeds for reproducible results. The default is NULL}
 
+\item{rho}{The correlation coefficient factor used to analyze the joint prior method}
+
 \item{...}{Passing options through to rjags::jags.model()}
 }
 \value{
@@ -36,7 +38,7 @@ The result object of class eggerjags contains the following components:
 \item{psi}{The value of the inflating parameter based on the priors}
 \item{CredibleInterval}{The credible interval for the causal effect, which indicates the lower(2.5\%), median (50\%) and upper intervals (97.5\%)}
 \item{samples}{Output of the bayesian MCMC samples with the different chains}
-\item{method}{The specified prior}
+\item{Priors}{The specified priors}
 }
 }
 \description{

@@ -33,7 +33,7 @@ test_that("IVW using default prior method",
 test_that("IVW using weak prior method",
           {
             skip_on_cran()
-            ivwfit1 <- mr_ivw_rjags(mrdat, methods = "weak", seed = 123)
+            ivwfit1 <- mr_ivw_rjags(mrdat, prior = "weak", seed = 123)
 
             expect_equal(class(ivwfit1), "ivwjags")
             expect_equal(unname(ivwfit1$CausalEffect), 0.5, tol = 1e-2)
@@ -48,7 +48,7 @@ test_that("IVW using weak prior method",
 test_that("IVW using pseudo prior method",
           {
             skip_on_cran()
-            ivwfit2 <- mr_ivw_rjags(mrdat, methods = "pseudo", seed = 123)
+            ivwfit2 <- mr_ivw_rjags(mrdat, prior = "pseudo", seed = 123)
 
             expect_equal(class(ivwfit2), "ivwjags")
             expect_equal(unname(ivwfit2$CausalEffect), 0.5, tol = 1e-2)

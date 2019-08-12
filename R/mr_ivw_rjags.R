@@ -1,7 +1,7 @@
 #' Fitting Bayesian inverse variance weighted estimates using established priors using the JAGS software.
 #'
 #' @param object The data frame converted into the format_mr format
-#' @param methods The values are used to identify the proposed priors default indicates non-informative prior weak indicates weakly informative prior pseudo indicates pseudo-horseshoe prior.
+#' @param prior The option for selecting the proposed priors; "default" indicates non-informative prior; "weak" indicates weakly informative prior; "pseudo" indicates pseudo-horseshoe prior.
 #' @param betaprior This is an option for setting a prior for the causal estimate.
 #' @param n.chains This is an option for choosing the number of chains for MCMC simulation, default number is 3 chains.
 #' @param n.burn This is the option for the burn in period of the bayesian MCMC runs. The default option is 1000 samples
@@ -16,7 +16,6 @@
 #' \item{StandardError}{Standard deviation of the mean causal effect}
 #' \item{CredibleInterval}{The credible interval for the causal effect, which indicates the lower(2.5\%), median (50\%) and upper intervals (97.5\%)}
 #' \item{samples}{Output of the bayesian MCMC samples with the different chains}
-#' \item{method}{The specified prior}
 #' }
 #'
 #' @references Burgess, S., Butterworth, A., Thompson S.G. Mendelian randomization analysis with multiple genetic variants using summarized data. Genetic Epidemiology, 2013, 37, 7, 658-665 <https://dx.doi.org/10.1002/gepi.21758>.
@@ -29,7 +28,7 @@
 #' plot(fit$samples)
 #'
 mr_ivw_rjags <- function(object,
-                         methods = "default",
+                         prior = "default",
                          betaprior = "",
                          n.chains = 1,
                          n.burn = 1000,
@@ -40,7 +39,7 @@ mr_ivw_rjags <- function(object,
   # check class of object
   if (!("mr_format" %in% class(object))) {
     stop('The class of the data object must be "mr_format", please resave the object with the output of e.g. object <- mr_format(object).')
-  }
+    }
 
   Likelihood <-
     "for (i in 1:N){
@@ -50,20 +49,20 @@ mr_ivw_rjags <- function(object,
     }"
 
 
-  if (methods == "default" & betaprior == "") {
+  if (prior == "default" & betaprior == "") {
     #Setting up the model string
 
     Priors <- "Estimate ~ dnorm(0, 1E-3)"
     ivw_model_string <- paste0("model {", Likelihood, "\n\n", Priors, "\n\n}")
 
 
-} else if (methods == "weak" & betaprior == "") {
+} else if (prior == "weak" & betaprior == "") {
     #Setting up the model string
     Priors<- "Estimate ~ dnorm(0, 1E-6)"
 
     ivw_model_string <- paste0("model {", Likelihood, "\n\n", Priors, "\n\n}")
 
-} else if (methods == "pseudo" & betaprior == "") {
+} else if (prior == "pseudo" & betaprior == "") {
 
     #Setting up the model string
   Priors<- "Estimate ~ dt(0, 1, 1)"
@@ -119,7 +118,7 @@ g <- ivw_samp
 
 p <- summary(ivw_samp)
 
-methods <- methods
+prior <- prior
 
 niter <- n.iter
 
@@ -159,7 +158,7 @@ out$CausalEffect <- causal.est
 out$StandardError <- standard.dev
 out$CredibleInterval <- credible_interval
 out$samples <- g
-out$priormethod <- methods
+out$priormethod <- prior
 out$betaprior <- betaprior
 out$samplesize<- niter
 out$burnin<- nburn

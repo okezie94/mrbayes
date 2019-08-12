@@ -4,13 +4,13 @@
 \alias{mr_ivw_rjags}
 \title{Fitting Bayesian inverse variance weighted estimates using established priors using the JAGS software.}
 \usage{
-mr_ivw_rjags(object, methods = "default", betaprior = "",
-  n.chains = 1, n.burn = 1000, n.iter = 5000, seed = NULL, ...)
+mr_ivw_rjags(object, prior = "default", betaprior = "", n.chains = 1,
+  n.burn = 1000, n.iter = 5000, seed = NULL, ...)
 }
 \arguments{
 \item{object}{The data frame converted into the format_mr format}
 
-\item{methods}{The values are used to identify the proposed priors default indicates non-informative prior weak indicates weakly informative prior pseudo indicates pseudo-horseshoe prior.}
+\item{prior}{The option for selecting the proposed priors; "default" indicates non-informative prior; "weak" indicates weakly informative prior; "pseudo" indicates pseudo-horseshoe prior.}
 
 \item{betaprior}{This is an option for setting a prior for the causal estimate.}
 
@@ -31,7 +31,6 @@ The result object of class ivwjags contains the following components:
 \item{StandardError}{Standard deviation of the mean causal effect}
 \item{CredibleInterval}{The credible interval for the causal effect, which indicates the lower(2.5\%), median (50\%) and upper intervals (97.5\%)}
 \item{samples}{Output of the bayesian MCMC samples with the different chains}
-\item{method}{The specified prior}
 }
 }
 \description{

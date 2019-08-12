@@ -1,13 +1,14 @@
 #' Bayesian implementation of the MR-Egger model with choice of prior distributions using JAGS.
 #'
 #' @param object The data frame converted into the format_mr format
-#' @param methods The values are used to identify the proposed priors default indicates non-informative prior weak indicates weakly informative prior pseudo indicates pseudo-horseshoe prior.
+#' @param prior The option for selecting the proposed priors; "default" indicates non-informative prior; "weak" indicates weakly informative prior; "pseudo" indicates pseudo-horseshoe prior; "joint" indicates joint probability prior.
 #' @param betaprior This is an option for setting a prior for the causal estimate.
 #' @param sigmaprior This is an option for setting a prior for the inflating parameter in the MR-Egger model.
 #' @param n.chains This is an option for choosing the number of chains for MCMC simulation, default number is 3 chains.
 #' @param n.burn This is the option for the burn in period of the bayesian MCMC runs. The default option is 1000 samples
 #' @param n.iter This is the option for the number of bayesian MCMC runs. The default is 5000 iterations
 #' @param seed This is an option for setting seeds for reproducible results. The default is NULL
+#' @param rho The correlation coefficient factor used to analyze the joint prior method
 #' @param ... Passing options through to rjags::jags.model()
 #'
 #' @export
@@ -19,7 +20,7 @@
 #' \item{psi}{The value of the inflating parameter based on the priors}
 #' \item{CredibleInterval}{The credible interval for the causal effect, which indicates the lower(2.5\%), median (50\%) and upper intervals (97.5\%)}
 #' \item{samples}{Output of the bayesian MCMC samples with the different chains}
-#' \item{method}{The specified prior}
+#' \item{Priors}{The specified priors}
 #' }
 #'
 #' @references Bowden et. al., Mendelian randomization with invalid instruments: effect estimation and bias detection through Egger regression. International Journal of Epidemiology 2015. 44(2): p. 512-525. <https://doi.org/10.1093/ije/dyv080>
@@ -30,13 +31,14 @@
 #' plot(fit$samples)
 #'
 mr_egger_rjags <- function(object,
-                           methods = "default",
+                           prior = "default",
                            betaprior = "",
                            sigmaprior = "",
                            n.chains = 1,
                            n.burn = 1000,
                            n.iter = 5000,
                            seed = NULL,
+                           rho = 0.5,
                            ...) {
 
   # check class of object
@@ -44,7 +46,14 @@ mr_egger_rjags <- function(object,
     stop('The class of the data object must be "mr_format", please resave the object with the output of e.g. object <- mr_format(object).')
   }
 
-  # Strings for likelihood
+  # String for likelihood
+
+  # Likeli1 <-
+  #   "for (i in 1:N){
+  #   by[i] ~ dnorm(by.hat[i], tau[i])
+  #   by.hat[i] <- beta[1] + beta[2] * bx[i]
+  #   tau[i] <- pow(byse[i] * psi, -2)
+  #   }"
 
   Likelihood <-
     "for (i in 1:N){
@@ -53,7 +62,13 @@ mr_egger_rjags <- function(object,
     tau[i] <- pow(byse[i] * psi, -2)
     }"
 
-  if (methods == "default" & betaprior == "") {
+
+  #Likelihood<-if (prior != "joint" & betaprior == ""){Likeli2} else {Likeli1}
+
+
+  # non-informative prior
+
+  if (prior == "default" & betaprior == "") {
 
     #Setting up the model string
     Priors <-"Pleiotropy ~ dnorm(0, 1E-3) \n Estimate ~ dnorm(0, 1E-3) \n psi ~ dunif(.0001, 10)"
@@ -61,17 +76,53 @@ mr_egger_rjags <- function(object,
     egger_model_string <-
       paste0("model {", Likelihood, "\n\n", Priors, "\n\n}")
 
-  } else if (methods == "weak" & betaprior == "") {
+    # weakly informative prior
 
-    #Setting up the model string
+  } else if (prior == "weak" & betaprior == "") {
+
+    # Setting up the model string
     Priors <- "Pleiotropy ~ dnorm(0, 1E-6) \n Estimate ~ dnorm(0, 1E-6) \n psi ~ dunif(.0001, 10)"
     egger_model_string <- paste0("model {", Likelihood, "\n\n", Priors, "\n\n}")
 
-  } else if (methods == "pseudo" & betaprior == "") {
+
+    # pseudo-shrinkage prior
+  } else if (prior == "pseudo" & betaprior == "") {
     #Setting up the model string
     Priors <-"Pleiotropy ~ dnorm(0,1E-3) \n Estimate ~ dt(0, 1, 1) \n invpsi ~ dgamma(1E-3, 1E-3)\n psi <- 1/invpsi"
     egger_model_string <- paste0("model {", Likelihood, "\n\n", Priors, "\n\n}")
-  } else if (betaprior != ""  & sigmaprior != "") {
+
+    # joint prior
+  }
+  else if (prior == "joint" & betaprior == ""){
+    #setting up model string
+
+    # covariance matrix
+    vcov_mat<- "
+    beta[1:2] ~ dmnorm.vcov(mu[], prec[ , ])\n
+    Pleiotropy <- beta[1]
+    Estimate <- beta[2]
+    prec[1,1] <- var1
+    prec[1,2] <- sd1*sd2*rho
+    prec[2,1] <- sd1*sd2*rho
+    prec[2,2] <- var2
+    mu[1] <- 0
+    mu[2] <- 0
+    var1 <- 1e4
+    sd1 <- sqrt(var1)
+    var2 <- 1e4
+    sd2<- sqrt(var2)
+    psi ~ dunif(.0001, 10)
+    rho <- "
+
+    Priors<- paste0(vcov_mat,rho)
+
+    #Priors <- "Pleiotropy ~ dnorm(0, 1E-6) \n Estimate ~ dnorm(0, 1E-6) \n psi ~ dunif(.0001, 10)"
+
+    egger_model_string <-
+      paste0("model {", Likelihood,"\n\n",Priors,"\n\n}")
+
+  }
+    else if (betaprior != ""  & sigmaprior != "") {
     part1 <-"Pleiotropy ~ dnorm(0, 1E-3) \n Estimate ~ "
     part2 <- "\n psi ~ "
     Priors <- paste0(part1,betaprior,part2,sigmaprior)
@@ -126,17 +177,26 @@ mr_egger_rjags <- function(object,
   update.jags(egger_model, n.iter = n.burn)
 
   # Collect samples
+
   egger_samp <- rjags::coda.samples(
     egger_model,
     variable.names = c("Pleiotropy", "Estimate", "psi"),
     n.iter = n.iter
   )
 
+  # eggersamp2 <- rjags::coda.samples(
+  #   egger_model,
+  #   variable.names = c("beta", "psi"),
+  #   n.iter = n.iter
+  # )
+
+  #egger_samp <- if (prior != "joint" & betaprior == ""){eggersamp1} else {eggersamp2}
+
   g <- egger_samp
 
   p <- summary(egger_samp)
 
-  methods <- methods
+  prior <- prior
 
   niter <- n.iter
 
@@ -206,7 +266,7 @@ mr_egger_rjags <- function(object,
   out$AvgPleioCI <- CI_avgpleio
   out$psi <- psi
   out$samples <- g
-  out$priormethod <- methods
+  out$priormethod <- prior
   out$betaprior <- betaprior
   out$sigmaprior <- sigmaprior
   out$samplesize <- niter

@@ -4,18 +4,18 @@
 \alias{mr_radialegger_rjags}
 \title{Fitting Bayesian MR-radialegger models using various priors from the jags software.}
 \usage{
-mr_radialegger_rjags(object, methods = "default", betaprior = "",
+mr_radialegger_rjags(object, prior = "default", betaprior = "",
   sigmaprior = "", n.chains = 1, n.burn = 1000, n.iter = 5000,
-  seed = NULL, ...)
+  seed = NULL, rho = 0.5, ...)
 }
 \arguments{
 \item{object}{The data frame converted into the format_mr format}
 
-\item{methods}{The values are used to identify the proposed priors default indicates non-informative prior weak indicates weakly informative prior pseudo indicates pseudo-horseshoe prior.}
+\item{prior}{The option for selecting the proposed priors; "default" indicates non-informative prior; "weak" indicates weakly informative prior; "pseudo" indicates pseudo-horseshoe prior; "joint" indicates joint probability prior.}
 
 \item{betaprior}{This is an option for setting a prior for the causal estimate.}
 
-\item{sigmaprior}{This is an option for setting a prior for the inflating parameter in the MR-Egger model.}
+\item{sigmaprior}{This is an option for setting a prior for the inflating parameter in the Radial formulation of MR-Egger model.}
 
 \item{n.chains}{This is an option for choosing the number of chains for MCMC simulation, default number is 3 chains.}
 
@@ -24,6 +24,8 @@ mr_radialegger_rjags(object, methods = "default", betaprior = "",
 \item{n.iter}{This is the option for the number of bayesian MCMC runs. The default is 5000 iterations}
 
 \item{seed}{This is an option for setting seeds for reproducible results. The default is NULL}
+
+\item{rho}{The correlation coefficient factor used to analyze the joint prior method}
 
 \item{...}{Passing options through to rjags::jags.model()}
 }
@@ -36,7 +38,7 @@ The result object of class radialeggerjags contains the following components:
 \item{psi}{The value of the inflating parameter based on the priors}
 \item{CredibleInterval}{The credible interval for the causal effect, which indicates the lower(2.5\%), median (50\%) and upper intervals (97.5\%)}
 \item{samples}{Output of the bayesian MCMC samples with the different chains}
-\item{method}{The specified prior}
+\item{Priors}{The specified priors}
 }
 }
 \description{

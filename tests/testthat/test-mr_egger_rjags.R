@@ -32,7 +32,7 @@ test_that("MR-Egger using weak prior method",
           {
             skip_on_cran()
             eggerfit1 <-
-              mr_egger_rjags(mrdat, methods = "weak", seed = 123)
+              mr_egger_rjags(mrdat, prior = "weak", seed = 123)
 
             expect_equal(class(eggerfit1), "eggerjags")
             expect_equal(unname(eggerfit1$CausalEffect), 0.51, tol = 1e-2)
@@ -51,7 +51,7 @@ test_that("MR-Egger using pseudo prior method",
           {
             skip_on_cran()
             eggerfit2 <-
-              mr_egger_rjags(mrdat, methods = "pseudo", seed = 123)
+              mr_egger_rjags(mrdat, prior = "pseudo", seed = 123)
 
             expect_equal(class(eggerfit2), "eggerjags")
             expect_equal(unname(eggerfit2$CausalEffect), 0.5, tol = 1e-2)
@@ -64,6 +64,26 @@ test_that("MR-Egger using pseudo prior method",
             expect_equal(class(eggerfit2$samples), "mcmc.list")
             expect_equal(eggerfit2$priormethod, "pseudo")
           })
+
+
+test_that("MR-Egger using joint prior method",
+          {
+            skip_on_cran()
+            eggerfit2 <-
+              mr_egger_rjags(mrdat, prior = "joint", seed = 123)
+
+            expect_equal(class(eggerfit2), "eggerjags")
+            expect_equal(unname(eggerfit2$CausalEffect), 0.5, tol = 1e-2)
+            expect_equal(unname(eggerfit2$StandardError), 0.06, tol = 1e-2)
+            expect_equal(unname(eggerfit2$CredibleInterval[1]), 0.39, tol = 1e-2)
+            expect_equal(unname(eggerfit2$CredibleInterval[2]), 0.51, tol = 1e-2)
+            expect_equal(unname(eggerfit2$CredibleInterval[3]), 0.62, tol = 1e-2)
+            expect_equal(unname(eggerfit2$AvgPleio), -0.002, tol = 1e-2)
+            expect_equal(unname(eggerfit2$psi), 1.59, tol = 1e-2)
+            expect_equal(class(eggerfit2$samples), "mcmc.list")
+            expect_equal(eggerfit2$priormethod, "joint")
+          })
+
 
 test_that("MR-Egger using betaprior and sigmaprior method",
           {

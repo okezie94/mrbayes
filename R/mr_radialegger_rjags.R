@@ -1,13 +1,14 @@
 #' Fitting Bayesian MR-radialegger models using various priors from the jags software.
 #'
 #' @param object The data frame converted into the format_mr format
-#' @param methods The values are used to identify the proposed priors default indicates non-informative prior weak indicates weakly informative prior pseudo indicates pseudo-horseshoe prior.
+#' @param prior The option for selecting the proposed priors; "default" indicates non-informative prior; "weak" indicates weakly informative prior; "pseudo" indicates pseudo-horseshoe prior; "joint" indicates joint probability prior.
 #' @param betaprior This is an option for setting a prior for the causal estimate.
-#' @param sigmaprior This is an option for setting a prior for the inflating parameter in the MR-Egger model.
+#' @param sigmaprior This is an option for setting a prior for the inflating parameter in the Radial formulation of MR-Egger model.
 #' @param n.chains This is an option for choosing the number of chains for MCMC simulation, default number is 3 chains.
 #' @param n.burn This is the option for the burn in period of the bayesian MCMC runs. The default option is 1000 samples
 #' @param n.iter This is the option for the number of bayesian MCMC runs. The default is 5000 iterations
 #' @param seed This is an option for setting seeds for reproducible results. The default is NULL
+#' @param rho The correlation coefficient factor used to analyze the joint prior method
 #' @param ... Passing options through to rjags::jags.model()
 #'
 #' @export
@@ -19,7 +20,7 @@
 #' \item{psi}{The value of the inflating parameter based on the priors}
 #' \item{CredibleInterval}{The credible interval for the causal effect, which indicates the lower(2.5\%), median (50\%) and upper intervals (97.5\%)}
 #' \item{samples}{Output of the bayesian MCMC samples with the different chains}
-#' \item{method}{The specified prior}
+#' \item{Priors}{The specified priors}
 #' }
 #'
 #' @references Bowden, J., et al., Improving the visualization, interpretation and analysis of two-sample summary data Mendelian randomization via the Radial plot and Radial regression. International Journal of Epidemiology, 2018. 47(4): p. 1264-1278. <https://doi.org/10.1093/ije/dyy101>
@@ -30,18 +31,19 @@
 #' plot(fit$samples)
 #'
 mr_radialegger_rjags <- function(object,
-                                 methods = "default",
+                                 prior = "default",
                                  betaprior = "",
                                  sigmaprior = "",
                                  n.chains = 1,
                                  n.burn = 1000,
                                  n.iter = 5000,
                                  seed = NULL,
+                                 rho = 0.5,
                                  ...) {
 
   # check class of object
   if (!("mr_format" %in% class(object))) {
-    stop('The class of the data object must be "mr_format", please resave the object with the output of e.g. object <- mr_format(object).')
+    stop(warning('The class of the data object must be "mr_format", please resave the object with the output of e.g. object <- mr_format(object).'))
   }
 
   # Strings for likelihood
@@ -54,14 +56,14 @@ mr_radialegger_rjags <- function(object,
 
   # Conditional statements for the prior statements
 
-  if (methods == "default" & betaprior == "") {
+  if (prior == "default" & betaprior == "") {
     #Setting up the model string
     Priors <-"Pleiotropy ~ dnorm(0, 1E-3) \n Estimate ~ dnorm(0, 1E-3) \n psi ~ dunif(.0001, 10)"
 
     radialegger_model_string <-
       paste0("model {", Likelihood, "\n\n", Priors, "\n\n}")
 
-  } else if (methods == "weak" & betaprior == "") {
+  } else if (prior == "weak" & betaprior == "") {
     #Setting up the model string
 
     Priors <- "Pleiotropy ~ dnorm(0, 1E-6) \n Estimate ~ dnorm(0, 1E-6) \n psi ~ dunif(.0001, 10)"
@@ -70,13 +72,45 @@ mr_radialegger_rjags <- function(object,
     radialegger_model_string <-
       paste0("model {", Likelihood, "\n\n", Priors, "\n\n}")
 
-  } else if (methods == "pseudo" & betaprior == "") {
+  } else if (prior == "pseudo" & betaprior == "") {
     #Setting up the model string
     Priors <-"Pleiotropy ~ dnorm(0,1E-3) \n Estimate ~ dt(0, 1, 1) \n invpsi ~ dgamma(1E-3, 1E-3) \n psi <- 1/invpsi"
 
     radialegger_model_string <-
       paste0("model {", Likelihood, "\n\n", Priors, "\n\n}")
-  } else if (betaprior != ""  & sigmaprior != "") {
+  }
+
+  else if (prior == "joint" & betaprior == ""){
+    #setting up model string
+
+    # covariance matrix
+    vcov_mat<- "
+    beta[1:2] ~ dmnorm.vcov(mu[], prec[ , ])
+    Pleiotropy <- beta[1]
+    Estimate <- beta[2]
+    prec[1,1] <- var1
+    prec[1,2] <- sd1*sd2*rho
+    prec[2,1] <- sd1*sd2*rho
+    prec[2,2] <- var2
+    mu[1] <- 0
+    mu[2] <- 0
+    var1 <- 1e4
+    sd1 <- sqrt(var1)
+    var2 <- 1e4
+    sd2<- sqrt(var2)
+    psi ~ dunif(.0001, 10)
+    rho <- "
+
+    Priors<- paste0(vcov_mat,rho)
+
+    #Priors <- "Pleiotropy ~ dnorm(0, 1E-6) \n Estimate ~ dnorm(0, 1E-6) \n psi ~ dunif(.0001, 10)"
+
+    radialegger_model_string <-
+      paste0("model {", Likelihood,"\n\n",Priors,"\n\n}")
+
+  }
+
+  else if (betaprior != ""  & sigmaprior != "") {
     part1 <-"Pleiotropy ~ dnorm(0, 1E-3) \n Estimate ~ "
     part2 <- "\n psi ~ "
     Priors <- paste0(part1,betaprior,part2,sigmaprior)
@@ -88,14 +122,14 @@ mr_radialegger_rjags <- function(object,
     part2 <- "\n psi ~ dunif(.0001,10)"
     Priors <- paste0(part1,betaprior,part2)
 
-    egger_model_string <-
+    radialegger_model_string <-
       paste0("model {",Likelihood,"\n\n", Priors,"\n\n }")
 
   } else if (betaprior == ""  & sigmaprior != "") {
     part1 <-"Pleiotropy ~ dnorm(0, 1E-3) \n Estimate ~ dnorm(0, 1E-6) \n psi ~"
     Priors <- paste0(part1,sigmaprior)
 
-    egger_model_string <-
+    radialegger_model_string <-
       paste0("model {",Likelihood,"\n\n", Priors,"\n\n }")
   }
 
@@ -145,7 +179,7 @@ mr_radialegger_rjags <- function(object,
 
   p <- summary(radialegger_samp)
 
-  methods <- methods
+  prior <- prior
 
   niter <- n.iter
 
@@ -214,7 +248,7 @@ mr_radialegger_rjags <- function(object,
   out$AvgPleioCI <- CI_avgpleio
   out$psi <- psi
   out$samples <- g
-  out$priormethod <- methods
+  out$priormethod <- prior
   out$betaprior <- betaprior
   out$sigmaprior <- sigmaprior
   out$samplesize <- niter
