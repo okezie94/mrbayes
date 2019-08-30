@@ -17,7 +17,7 @@
 #' \item{AvgPleio}{The mean of the generated pleiotropic effect}
 #' \item{CausalEffect}{The mean of the generated causal effects}
 #' \item{StandardError}{Standard deviation of the mean causal effect}
-#' \item{psi}{The value of the inflating parameter based on the priors}
+#' \item{sigma}{The value of the inflating parameter based on the priors}
 #' \item{CredibleInterval}{The credible interval for the causal effect, which indicates the lower(2.5\%), median (50\%) and upper intervals (97.5\%)}
 #' \item{samples}{Output of the bayesian MCMC samples with the different chains}
 #' \item{Priors}{The specified priors}
@@ -52,14 +52,14 @@ mr_egger_rjags <- function(object,
   #   "for (i in 1:N){
   #   by[i] ~ dnorm(by.hat[i], tau[i])
   #   by.hat[i] <- beta[1] + beta[2] * bx[i]
-  #   tau[i] <- pow(byse[i] * psi, -2)
+  #   tau[i] <- pow(byse[i] * sigma, -2)
   #   }"
 
   Likelihood <-
     "for (i in 1:N){
     by[i] ~ dnorm(by.hat[i], tau[i])
     by.hat[i] <- Pleiotropy + Estimate * bx[i]
-    tau[i] <- pow(byse[i] * psi, -2)
+    tau[i] <- pow(byse[i] * sigma, -2)
     }"
 
 
@@ -71,7 +71,7 @@ mr_egger_rjags <- function(object,
   if (prior == "default" & betaprior == "") {
 
     #Setting up the model string
-    Priors <-"Pleiotropy ~ dnorm(0, 1E-3) \n Estimate ~ dnorm(0, 1E-3) \n psi ~ dunif(.0001, 10)"
+    Priors <-"Pleiotropy ~ dnorm(0, 1E-3) \n Estimate ~ dnorm(0, 1E-3) \n sigma ~ dunif(.0001, 10)"
 
     egger_model_string <-
       paste0("model {", Likelihood, "\n\n", Priors, "\n\n}")
@@ -81,14 +81,14 @@ mr_egger_rjags <- function(object,
   } else if (prior == "weak" & betaprior == "") {
 
     # Setting up the model string
-    Priors <- "Pleiotropy ~ dnorm(0, 1E-6) \n Estimate ~ dnorm(0, 1E-6) \n psi ~ dunif(.0001, 10)"
+    Priors <- "Pleiotropy ~ dnorm(0, 1E-6) \n Estimate ~ dnorm(0, 1E-6) \n sigma ~ dunif(.0001, 10)"
     egger_model_string <- paste0("model {", Likelihood, "\n\n", Priors, "\n\n}")
 
 
     # pseudo-shrinkage prior
   } else if (prior == "pseudo" & betaprior == "") {
     #Setting up the model string
-    Priors <-"Pleiotropy ~ dnorm(0,1E-3) \n Estimate ~ dt(0, 1, 1) \n invpsi ~ dgamma(1E-3, 1E-3)\n psi <- 1/invpsi"
+    Priors <-"Pleiotropy ~ dnorm(0,1E-3) \n Estimate ~ dt(0, 1, 1) \n invpsi ~ dgamma(1E-3, 1E-3)\n sigma <- 1/invpsi"
     egger_model_string <- paste0("model {", Likelihood, "\n\n", Priors, "\n\n}")
 
     # joint prior
@@ -111,12 +111,12 @@ mr_egger_rjags <- function(object,
     sd1 <- sqrt(var1)
     var2 <- 1e4
     sd2<- sqrt(var2)
-    psi ~ dunif(.0001, 10)
+    sigma ~ dunif(.0001, 10)
     rho <- "
 
     Priors<- paste0(vcov_mat,rho)
 
-    #Priors <- "Pleiotropy ~ dnorm(0, 1E-6) \n Estimate ~ dnorm(0, 1E-6) \n psi ~ dunif(.0001, 10)"
+    #Priors <- "Pleiotropy ~ dnorm(0, 1E-6) \n Estimate ~ dnorm(0, 1E-6) \n sigma ~ dunif(.0001, 10)"
 
     egger_model_string <-
       paste0("model {", Likelihood,"\n\n",Priors,"\n\n}")
@@ -124,7 +124,7 @@ mr_egger_rjags <- function(object,
   }
     else if (betaprior != ""  & sigmaprior != "") {
     part1 <-"Pleiotropy ~ dnorm(0, 1E-3) \n Estimate ~ "
-    part2 <- "\n psi ~ "
+    part2 <- "\n sigma ~ "
     Priors <- paste0(part1,betaprior,part2,sigmaprior)
 
     egger_model_string <-
@@ -132,14 +132,14 @@ mr_egger_rjags <- function(object,
 
   } else if (betaprior != ""  & sigmaprior == "") {
     part1 <-"Pleiotropy ~ dnorm(0, 1E-3) \n Estimate ~ "
-    part2 <- "\n psi ~ dunif(.0001,10)"
+    part2 <- "\n sigma ~ dunif(.0001,10)"
     Priors <- paste0(part1,betaprior,part2)
 
     egger_model_string <-
       paste0("model {",Likelihood,"\n\n", Priors,"\n\n }")
 
   } else if (betaprior == ""  & sigmaprior != "") {
-    part1 <-"Pleiotropy ~ dnorm(0, 1E-3) \n Estimate ~ dnorm(0, 1E-6) \n psi ~"
+    part1 <-"Pleiotropy ~ dnorm(0, 1E-3) \n Estimate ~ dnorm(0, 1E-6) \n sigma ~"
     Priors <- paste0(part1,sigmaprior)
 
     egger_model_string <-
@@ -170,6 +170,7 @@ mr_egger_rjags <- function(object,
     ),
     n.chains = n.chains,
     inits = initsopt,
+    quiet = TRUE,
     ...
   )
   # Burn-in
@@ -180,13 +181,13 @@ mr_egger_rjags <- function(object,
 
   egger_samp <- rjags::coda.samples(
     egger_model,
-    variable.names = c("Pleiotropy", "Estimate", "psi"),
+    variable.names = c("Pleiotropy", "Estimate", "sigma"),
     n.iter = n.iter
   )
 
   # eggersamp2 <- rjags::coda.samples(
   #   egger_model,
-  #   variable.names = c("beta", "psi"),
+  #   variable.names = c("beta", "sigma"),
   #   n.iter = n.iter
   # )
 
@@ -228,7 +229,7 @@ mr_egger_rjags <- function(object,
   CI_avgpleio <- c(avg.pleioLI, avg.pleioM, avg.pleioUI)
 
   #Inflating Parameter
-  psi <- p$statistics[3, 1]
+  sigma <- p$statistics[3, 1]
   #Causal Estimate
   causal.est <- p$statistics[1, 1]
 
@@ -251,9 +252,9 @@ mr_egger_rjags <- function(object,
 
   # warning for residual error less than 1
 
-  if (psi < 1) {
-    warning("The mean of the psi parameter, the residual standard deviation, we recommend refitting the model with psi constrained to be >= 1.")
-    # psi ~ #### T(1,) # ;T(1,)
+  if (sigma < 1) {
+    warning("The mean of the sigma parameter, the residual standard deviation, we recommend refitting the model with sigma constrained to be >= 1.")
+    # sigma ~ #### T(1,) # ;T(1,)
   }
 
   #Class for the output
@@ -264,7 +265,7 @@ mr_egger_rjags <- function(object,
   out$AvgPleio <- avg.pleio
   out$AvgPleioSD <- avg.pleiostd
   out$AvgPleioCI <- CI_avgpleio
-  out$psi <- psi
+  out$sigma <- sigma
   out$samples <- g
   out$priormethod <- prior
   out$betaprior <- betaprior
@@ -350,7 +351,7 @@ summary.eggerjags <- function(object, ...) {
       "\n")
 
 
-  cat("Inflating Parameter:", out$psi, "\n\n")
+  cat("Inflating Parameter:", out$sigma, "\n\n")
 
 
   print(out1, ...)

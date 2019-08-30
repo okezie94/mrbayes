@@ -99,6 +99,7 @@ ivw_model <- rjags::jags.model(
   ),
   n.chains = n.chains,
   inits = initsopt,
+  quiet = TRUE,
   ...
 )
 # Burn-in

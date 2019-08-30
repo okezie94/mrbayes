@@ -35,7 +35,7 @@ The result object of class eggerjags contains the following components:
 \item{AvgPleio}{The mean of the generated pleiotropic effect}
 \item{CausalEffect}{The mean of the generated causal effects}
 \item{StandardError}{Standard deviation of the mean causal effect}
-\item{psi}{The value of the inflating parameter based on the priors}
+\item{sigma}{The value of the inflating parameter based on the priors}
 \item{CredibleInterval}{The credible interval for the causal effect, which indicates the lower(2.5\%), median (50\%) and upper intervals (97.5\%)}
 \item{samples}{Output of the bayesian MCMC samples with the different chains}
 \item{Priors}{The specified priors}
