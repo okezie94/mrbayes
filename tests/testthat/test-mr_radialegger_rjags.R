@@ -65,7 +65,7 @@ test_that("Radial-Egger using pseudo prior method",
 
 test_that("Radial-Egger using joint prior method",
           {
-            # skip_on_cran()
+            skip_on_cran()
             radialeggerfit2 <- mr_radialegger_rjags(mrdat, prior = "joint", seed = 123, rho = 0.5)
 
             expect_equal(class(radialeggerfit2), "radialeggerjags")

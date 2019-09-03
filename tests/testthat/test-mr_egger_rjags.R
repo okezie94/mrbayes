@@ -68,7 +68,7 @@ test_that("MR-Egger using pseudo prior method",
 
 test_that("MR-Egger using joint prior method",
           {
-            # skip_on_cran()
+            skip_on_cran()
             eggerfit2 <-
               mr_egger_rjags(mrdat, prior = "joint", seed = 123)
 
