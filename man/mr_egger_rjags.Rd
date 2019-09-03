@@ -2,53 +2,57 @@
 % Please edit documentation in R/mr_egger_rjags.R
 \name{mr_egger_rjags}
 \alias{mr_egger_rjags}
-\title{Bayesian implementation of the MR-Egger model with choice of prior distributions using JAGS.}
+\title{Bayesian implementation of the MR-Egger model with choice of prior distributions fitted using JAGS.}
 \usage{
 mr_egger_rjags(object, prior = "default", betaprior = "",
   sigmaprior = "", n.chains = 1, n.burn = 1000, n.iter = 5000,
   seed = NULL, rho = 0.5, ...)
 }
 \arguments{
-\item{object}{The data frame converted into the format_mr format}
+\item{object}{A data object of class \code{mr_format}}
 
-\item{prior}{The option for selecting the proposed priors; "default" indicates non-informative prior; "weak" indicates weakly informative prior; "pseudo" indicates pseudo-horseshoe prior; "joint" indicates joint probability prior.}
+\item{prior}{A character string for selecting the prior distributions; "default" selects a non-informative set of priors; "weak" selects weakly informative priors; "pseudo" selects a pseudo-horseshoe prior on the causal effect, "joint" selects a joint prior on the intercept and slope}
 
-\item{betaprior}{This is an option for setting a prior for the causal estimate.}
+\item{betaprior}{A character string in JAGS syntax to allow a user defined prior for the causal effect.}
 
-\item{sigmaprior}{This is an option for setting a prior for the inflating parameter in the MR-Egger model.}
+\item{sigmaprior}{A character string in JAGS syntax to allow a user defined prior for the residual standard deviation}
 
-\item{n.chains}{This is an option for choosing the number of chains for MCMC simulation, default number is 3 chains.}
+\item{n.chains}{Numeric indicating the number of chains used in the MCMC estimation, the default is 1 chain.}
 
-\item{n.burn}{This is the option for the burn in period of the bayesian MCMC runs. The default option is 1000 samples}
+\item{n.burn}{Numeric indicating the burn-in period of the Bayesian MCMC estimation. The default is 1000 samples.}
 
-\item{n.iter}{This is the option for the number of bayesian MCMC runs. The default is 5000 iterations}
+\item{n.iter}{Numeric indicating the number of iterations in the Bayesian MCMC estimation. The default is 5000 iterations.}
 
-\item{seed}{This is an option for setting seeds for reproducible results. The default is NULL}
+\item{seed}{Numeric indicating the random number seed. The default is the rjags default.}
 
-\item{rho}{The correlation coefficient factor used to analyze the joint prior method}
+\item{rho}{Numeric indicating the correlation coefficient input into the joint prior distribution. The default value is 0.5}
 
-\item{...}{Passing options through to rjags::jags.model()}
+\item{...}{Additional arguments passed through to \code{rjags::jags.model()}}
 }
 \value{
 The result object of class eggerjags contains the following components:
 \describe{
-\item{AvgPleio}{The mean of the generated pleiotropic effect}
-\item{CausalEffect}{The mean of the generated causal effects}
-\item{StandardError}{Standard deviation of the mean causal effect}
-\item{sigma}{The value of the inflating parameter based on the priors}
-\item{CredibleInterval}{The credible interval for the causal effect, which indicates the lower(2.5\%), median (50\%) and upper intervals (97.5\%)}
-\item{samples}{Output of the bayesian MCMC samples with the different chains}
+\item{AvgPleio}{The mean of the simulated pleiotropic effect}
+\item{CausalEffect}{The mean of the simulated causal effect}
+\item{StandardError}{Standard deviation of the simulated causal effect}
+\item{sigma}{The value of the residual standard deviation}
+\item{CredibleInterval}{The credible interval for the causal effect, which includes the lower (2.5\%), median (50\%) and upper intervals (97.5\%)}
+\item{samples}{Output of the Bayesian MCMC samples}
 \item{Priors}{The specified priors}
 }
 }
 \description{
-Bayesian implementation of the MR-Egger model with choice of prior distributions using JAGS.
+Bayesian implementation of the MR-Egger model with choice of prior distributions fitted using JAGS.
 }
 \examples{
 data(bmi_insulin)
 fit <- mr_egger_rjags(bmi_insulin, n.chains = 1)
 summary(fit)
 plot(fit$samples)
+# 90\% credible interval
+fitdf <- do.call(rbind.data.frame, fit$samples)
+cri90 <- quantile(fitdf$Estimate, probs = c(0.05,0.95))
+print(cri90)
 
 }
 \references{

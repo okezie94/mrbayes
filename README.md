@@ -1,7 +1,7 @@
 # mrbayes
 Bayesian implementation of IVW and MR-Egger models.
 
- ## Installation instructions
+## Installation instructions
  
  ``` r
  # install.packages("remotes") # uncomment on first run

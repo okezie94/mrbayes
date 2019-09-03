@@ -81,7 +81,12 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/okezie94/mrbayes">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -95,7 +100,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Organises the summary level data for use in the Bayesian MR functions</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/okezie94/mrbayes/blob/master/R/mr_format.R'><code>R/mr_format.R</code></a></small>
     <div class="hidden name"><code>mr_format.Rd</code></div>
     </div>
 
@@ -112,29 +117,29 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>rsid</th>
-      <td><p>A vector of number of genetic variants used for analysis, if none is given a vector would automatically generate.</p></td>
+      <td><p>A vector of genetic variants used for analysis, if unspecified a vector is automatically generated.</p></td>
     </tr>
     <tr>
       <th>xbeta</th>
-      <td><p>A numeric vector of the coefficients of the genotype-exposure associations.</p></td>
+      <td><p>A numeric vector of the instrument-phenotype associations.</p></td>
     </tr>
     <tr>
       <th>ybeta</th>
-      <td><p>A numeric vector of the coefficients of the genotype-outcome associations.</p></td>
+      <td><p>A numeric vector of the instrument-outcome associations.</p></td>
     </tr>
     <tr>
       <th>xse</th>
-      <td><p>The standard errors correspondent to the genotype-exposure associations <code>xbeta</code>.</p></td>
+      <td><p>The standard errors of the instrument-phenotype associations <code>xbeta</code>.</p></td>
     </tr>
     <tr>
       <th>yse</th>
-      <td><p>The standard errors correspondent to the genotype-outcome associations <code>ybeta</code>.</p></td>
+      <td><p>The standard errors of the instrument-outcome associations <code>ybeta</code>.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A formatted data frame for analysis.</p>
+    <p>A formatted data frame for analysis of class <code>mr_format</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>

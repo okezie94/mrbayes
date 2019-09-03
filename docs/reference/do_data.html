@@ -32,9 +32,9 @@
 
 <meta property="og:title" content="Dataset from Do et al., Nat Gen, 2013 containing summary level data on associations of genotypes with lipid traits and the risk of coronary heart diseases — do_data" />
 
-<meta property="og:description" content="A summary-level dataset, from Do et al. (2013) https://dx.doi.org/10.1038/ng.2795, containing 185 single nucleiodtide polymorphisms which have genotype-exposure associations and standard errors for
-low-density lipoprotein cholestrol, high-density lipoprotein cholestrol and triglyceride exposures. The dataset also contains genotype-outcome (coronary heart disease) associations
-and standard errors." />
+<meta property="og:description" content="A summary-level dataset, from Do et al. (2013) https://dx.doi.org/10.1038/ng.2795, containing 185 single nucleiodtide polymorphisms (SNPs) which have genotype-phenotype associations and standard errors for
+low-density lipoprotein cholestrol, high-density lipoprotein cholestrol and triglycerides, and genotype-outcome associations for (coronary heart disease)
+with their respective standard errors." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -83,7 +83,12 @@ and standard errors." />
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/okezie94/mrbayes">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -97,15 +102,15 @@ and standard errors." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Dataset from Do et al., Nat Gen, 2013 containing summary level data on associations of genotypes with lipid traits and the risk of coronary heart diseases</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/okezie94/mrbayes/blob/master/R/do_data.R'><code>R/do_data.R</code></a></small>
     <div class="hidden name"><code>do_data.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>A summary-level dataset, from Do et al. (2013) <a href='https://dx.doi.org/10.1038/ng.2795'>https://dx.doi.org/10.1038/ng.2795</a>, containing 185 single nucleiodtide polymorphisms which have genotype-exposure associations and standard errors for
-low-density lipoprotein cholestrol, high-density lipoprotein cholestrol and triglyceride exposures. The dataset also contains genotype-outcome (coronary heart disease) associations
-and standard errors.</p>
+    <p>A summary-level dataset, from Do et al. (2013) <a href='https://dx.doi.org/10.1038/ng.2795'>https://dx.doi.org/10.1038/ng.2795</a>, containing 185 single nucleiodtide polymorphisms (SNPs) which have genotype-phenotype associations and standard errors for
+low-density lipoprotein cholestrol, high-density lipoprotein cholestrol and triglycerides, and genotype-outcome associations for (coronary heart disease)
+with their respective standard errors.</p>
     
     </div>
 
@@ -114,15 +119,15 @@ and standard errors.</p>
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
     <p>A data frame with 185 rows and 9 columns:</p><dl class='dl-horizontal'>
-<dt>rsid</dt><dd><p>Identifiers of the genetic variants</p></dd>
-<dt>ldlcbeta</dt><dd><p>The phenotype-exposure association for low-density lipoprotein cholestrol</p></dd>
-<dt>hdlcbeta</dt><dd><p>The phenotype-exposure association for high-density lipoprotein cholestrol</p></dd>
-<dt>tgbeta</dt><dd><p>The phenotype-exposure association for triglycerides</p></dd>
-<dt>chdbeta</dt><dd><p>The phenotype-outcome association in this case is coronary heart disease</p></dd>
-<dt>ldlcse</dt><dd><p>The standard error for the exposure low-density lipoprotein cholestrol</p></dd>
-<dt>hdlcse</dt><dd><p>The standard error for the exposure high-density lipoprotein cholestrol</p></dd>
-<dt>tgse</dt><dd><p>The standard error for the exposure triglycerides</p></dd>
-<dt>chdse</dt><dd><p>The standard error for the outcome coronary heart disease</p></dd>
+<dt>rsid</dt><dd><p>SNPs RSID number</p></dd>
+<dt>ldlcbeta</dt><dd><p>The genotype-phenotype associations for low-density lipoprotein cholestrol</p></dd>
+<dt>hdlcbeta</dt><dd><p>The genotype-phenotype associations for high-density lipoprotein cholestrol</p></dd>
+<dt>tgbeta</dt><dd><p>The genotype-phenotype associations for triglycerides</p></dd>
+<dt>chdbeta</dt><dd><p>The genotype-outcome associations in this case the outcome is coronary heart disease</p></dd>
+<dt>ldlcse</dt><dd><p>The standard errors of the genotype-low-density lipoprotein cholestrol associations</p></dd>
+<dt>hdlcse</dt><dd><p>The standard errors of the genotype-high-density lipoprotein cholestrol associations</p></dd>
+<dt>tgse</dt><dd><p>The standard errors of the genotype-triglyceride associations</p></dd>
+<dt>chdse</dt><dd><p>The standard errors of the genotype-outcome coronary heart disease associations</p></dd>
 </dl>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>

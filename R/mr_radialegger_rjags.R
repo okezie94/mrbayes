@@ -1,26 +1,26 @@
-#' Fitting Bayesian MR-radialegger models using various priors from the jags software.
+#' Bayesian radial MR-Egger model with a choice of prior distributions fitted using JAGS.
 #'
-#' @param object The data frame converted into the format_mr format
-#' @param prior The option for selecting the proposed priors; "default" indicates non-informative prior; "weak" indicates weakly informative prior; "pseudo" indicates pseudo-horseshoe prior; "joint" indicates joint probability prior.
-#' @param betaprior This is an option for setting a prior for the causal estimate.
-#' @param sigmaprior This is an option for setting a prior for the inflating parameter in the Radial formulation of MR-Egger model.
-#' @param n.chains This is an option for choosing the number of chains for MCMC simulation, default number is 3 chains.
-#' @param n.burn This is the option for the burn in period of the bayesian MCMC runs. The default option is 1000 samples
-#' @param n.iter This is the option for the number of bayesian MCMC runs. The default is 5000 iterations
-#' @param seed This is an option for setting seeds for reproducible results. The default is NULL
-#' @param rho The correlation coefficient factor used to analyze the joint prior method
-#' @param ... Passing options through to rjags::jags.model()
+#' @param object A data object of class mr_format
+#' @param prior A character string for selecting the prior distributions; "default" selects a non-informative set of priors; "weak" selects weakly informative priors; "pseudo" selects a pseudo-horseshoe prior on the causal effect, "joint" selects a joint prior on the intercept and slope.
+#' @param betaprior A character string in JAGS syntax to allow a user defined prior for the causal effect.
+#' @param sigmaprior A character string in JAGS syntax to allow a user defined prior for the residual standard deviation.
+#' @param n.chains Numeric indicating the number of chains used in the MCMC estimation, the default is 1 chain.
+#' @param n.burn Numeric indicating the burn-in period of the Bayesian MCMC estimation. The default is 1000 samples.
+#' @param n.iter Numeric indicating the number of iterations in the Bayesian MCMC estimation. The default is 5000 iterations.
+#' @param seed Numeric indicating the random number seed. The default is the rjags default.
+#' @param rho Numeric indicating the correlation coefficient input into the joint prior distribution. The default is 0.5.
+#' @param ... Additional arguments passed through to `rjags::jags.model()`
 #'
 #' @export
-#' @return The result object of class radialeggerjags contains the following components:
+#' @return An object of class radialeggerjags containing the following components:
 #' \describe{
-#' \item{AvgPleio}{The mean of the generated pleiotropic effect}
-#' \item{CausalEffect}{The mean of the generated causal effects}
-#' \item{StandardError}{Standard deviation of the mean causal effect}
-#' \item{sigma}{The value of the inflating parameter based on the priors}
-#' \item{CredibleInterval}{The credible interval for the causal effect, which indicates the lower(2.5\%), median (50\%) and upper intervals (97.5\%)}
-#' \item{samples}{Output of the bayesian MCMC samples with the different chains}
-#' \item{Priors}{The specified priors}
+#' \item{AvgPleio}{The mean of the simulated pleiotropic effect}
+#' \item{CausalEffect}{The mean of the simulated causal effect}
+#' \item{StandardError}{Standard deviation of the simulated causal effect}
+#' \item{sigma}{The mean of the simaulted residual standard deviation}
+#' \item{CredibleInterval}{The credible interval for the causal effect, which includes the lower (2.5\%), median (50\%) and upper intervals (97.5\%)}
+#' \item{samples}{Output of the Bayesian MCMC samples}
+#' \item{Prior}{The specified priors}
 #' }
 #'
 #' @references Bowden, J., et al., Improving the visualization, interpretation and analysis of two-sample summary data Mendelian randomization via the Radial plot and Radial regression. International Journal of Epidemiology, 2018. 47(4): p. 1264-1278. <https://doi.org/10.1093/ije/dyy101>
@@ -29,6 +29,10 @@
 #' fit <- mr_radialegger_rjags(bmi_insulin, n.chains = 1)
 #' summary(fit)
 #' plot(fit$samples)
+#' # 90% credible interval
+#' fitdf <- do.call(rbind.data.frame, fit$samples)
+#' cri90 <- quantile(fitdf$Estimate, probs = c(0.05,0.95))
+#' print(cri90)
 #'
 mr_radialegger_rjags <- function(object,
                                  prior = "default",
@@ -43,7 +47,7 @@ mr_radialegger_rjags <- function(object,
 
   # check class of object
   if (!("mr_format" %in% class(object))) {
-    stop(warning('The class of the data object must be "mr_format", please resave the object with the output of e.g. object <- mr_format(object).'))
+    stop('The class of the data object must be "mr_format", please resave the object with the output of e.g. object <- mr_format(object).')
   }
 
   # Strings for likelihood

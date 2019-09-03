@@ -6,17 +6,17 @@
 \title{Dataset from Richmond et. al 2017 investigating the association of BMI on insulin resistance}
 \format{A data frame with 14 rows and 44 columns:
 \describe{
-\item{rsid}{The genetic variant used as instruments}
-\item{beta.exposure}{The value for the phenotype-exposure association}
-\item{beta.outcome}{The value for the phenotype-outcome association}
-\item{se.exposure}{The value for the standard error of the phenotype-exposure association}
-\item{se.outcome}{The value for the standard error of the phenotype-outcome association}
+\item{rsid}{SNP RSID number}
+\item{beta.exposure}{The genotype-BMI associations}
+\item{beta.outcome}{The genotype-outcome associations}
+\item{se.exposure}{The standard errors of the genotype-phenotype associations}
+\item{se.outcome}{The standard errors of the genotype-outcome associations}
 }}
 \usage{
 bmi_insulin
 }
 \description{
-A two-sample summary level dataset, Richmond et al. (2017) \url{https://dx.doi.org/10.1101/155739}, containing 14 single nucleiodtide polymorphisms which have genotype-exposure associations (BMI) and genotype-outcome associations (insulin) with their respective standard errors.
+A two-sample summary level dataset, Richmond et al. (2017) \url{https://dx.doi.org/10.1101/155739}, containing 14 single nucleiodtide polymorphisms (SNPs) which have genotype-phenotype associations (BMI) and genotype-outcome associations (insulin) with their respective standard errors.
 }
 \details{
 bmi_insulin.

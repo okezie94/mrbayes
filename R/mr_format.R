@@ -1,16 +1,15 @@
 #' Organises the summary level data for use in the Bayesian MR functions
 #'
-#' @param rsid A vector of number of genetic variants used for analysis, if none is given a vector would automatically generate.
-#' @param xbeta A numeric vector of the coefficients of the genotype-exposure associations.
-#' @param ybeta A numeric vector of the coefficients of the genotype-outcome associations.
-#' @param xse The standard errors correspondent to the genotype-exposure associations `xbeta`.
-#' @param yse The standard errors correspondent to the genotype-outcome associations `ybeta`.
+#' @param rsid A vector of genetic variants used for analysis, if unspecified a vector is automatically generated.
+#' @param xbeta A numeric vector of the instrument-phenotype associations.
+#' @param ybeta A numeric vector of the instrument-outcome associations.
+#' @param xse The standard errors of the instrument-phenotype associations `xbeta`.
+#' @param yse The standard errors of the instrument-outcome associations `ybeta`.
 #'
 #' @export
-#' @return A formatted data frame for analysis.
+#' @return A formatted data frame for analysis of class `mr_format`.
 #'
 #' @examples
-#' \donttest{
 #' data(bmi_insulin)
 #' dat <- mr_format(rsid = bmi_insulin[,"rsid"],
 #'           xbeta = bmi_insulin[,"beta.exposure"],
@@ -18,9 +17,7 @@
 #'           xse = bmi_insulin[,"se.exposure"],
 #'           yse = bmi_insulin[,"se.outcome"])
 #' class(dat)
-#' }
 #'
-#Function for formatting
 mr_format <- function(rsid, xbeta, ybeta, xse, yse) {
   if (missing(rsid)) {
     rsid <- 1:length(ybeta)

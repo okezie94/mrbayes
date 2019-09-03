@@ -32,7 +32,7 @@
 
 <meta property="og:title" content="Dataset from Richmond et. al 2017 investigating the association of BMI on insulin resistance — bmi_insulin" />
 
-<meta property="og:description" content="A two-sample summary level dataset, Richmond et al. (2017) https://dx.doi.org/10.1101/155739, containing 14 single nucleiodtide polymorphisms which have genotype-exposure associations (BMI) and genotype-outcome associations (insulin) with their respective standard errors." />
+<meta property="og:description" content="A two-sample summary level dataset, Richmond et al. (2017) https://dx.doi.org/10.1101/155739, containing 14 single nucleiodtide polymorphisms (SNPs) which have genotype-phenotype associations (BMI) and genotype-outcome associations (insulin) with their respective standard errors." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -81,7 +81,12 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/okezie94/mrbayes">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -95,13 +100,13 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Dataset from Richmond et. al 2017 investigating the association of BMI on insulin resistance</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/okezie94/mrbayes/blob/master/R/bmi_insulin.R'><code>R/bmi_insulin.R</code></a></small>
     <div class="hidden name"><code>bmi_insulin.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>A two-sample summary level dataset, Richmond et al. (2017) <a href='https://dx.doi.org/10.1101/155739'>https://dx.doi.org/10.1101/155739</a>, containing 14 single nucleiodtide polymorphisms which have genotype-exposure associations (BMI) and genotype-outcome associations (insulin) with their respective standard errors.</p>
+    <p>A two-sample summary level dataset, Richmond et al. (2017) <a href='https://dx.doi.org/10.1101/155739'>https://dx.doi.org/10.1101/155739</a>, containing 14 single nucleiodtide polymorphisms (SNPs) which have genotype-phenotype associations (BMI) and genotype-outcome associations (insulin) with their respective standard errors.</p>
     
     </div>
 
@@ -110,11 +115,11 @@
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
     <p>A data frame with 14 rows and 44 columns:</p><dl class='dl-horizontal'>
-<dt>rsid</dt><dd><p>The genetic variant used as instruments</p></dd>
-<dt>beta.exposure</dt><dd><p>The value for the phenotype-exposure association</p></dd>
-<dt>beta.outcome</dt><dd><p>The value for the phenotype-outcome association</p></dd>
-<dt>se.exposure</dt><dd><p>The value for the standard error of the phenotype-exposure association</p></dd>
-<dt>se.outcome</dt><dd><p>The value for the standard error of the phenotype-outcome association</p></dd>
+<dt>rsid</dt><dd><p>SNP RSID number</p></dd>
+<dt>beta.exposure</dt><dd><p>The genotype-BMI associations</p></dd>
+<dt>beta.outcome</dt><dd><p>The genotype-outcome associations</p></dd>
+<dt>se.exposure</dt><dd><p>The standard errors of the genotype-phenotype associations</p></dd>
+<dt>se.outcome</dt><dd><p>The standard errors of the genotype-outcome associations</p></dd>
 </dl>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>

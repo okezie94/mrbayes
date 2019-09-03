@@ -1,31 +1,36 @@
-#' Fitting Bayesian inverse variance weighted estimates using established priors using the JAGS software.
+#' Bayesian inverse variance weighted model with a choice of prior distributions fitted using JAGS.
 #'
-#' @param object The data frame converted into the format_mr format
-#' @param prior The option for selecting the proposed priors; "default" indicates non-informative prior; "weak" indicates weakly informative prior; "pseudo" indicates pseudo-horseshoe prior.
-#' @param betaprior This is an option for setting a prior for the causal estimate.
-#' @param n.chains This is an option for choosing the number of chains for MCMC simulation, default number is 3 chains.
-#' @param n.burn This is the option for the burn in period of the bayesian MCMC runs. The default option is 1000 samples
-#' @param n.iter This is the option for the number of bayesian MCMC runs. The default is 5000 iterations
-#' @param seed This is an option for setting seeds for reproducible results. The default is to use the rjags default of using the current system time.
-#' @param ... Passing options through to rjags::jags.model()
+#' @param object A data object of class mr_format
+#' @param prior A character string for selecting the prior distributions; "default" selects a non-informative set of priors; "weak" selects weakly informative priors; "pseudo" selects a pseudo-horseshoe prior on the causal effect.
+#' @param betaprior A character string in JAGS syntax to allow a user defined prior for the causal effect.
+#' @param n.chains Numeric indicating the number of chains used in the MCMC estimation, the default is 1 chain.
+#' @param n.burn Numeric indicating the burn-in period of the Bayesian MCMC estimation. The default is 1000 samples.
+#' @param n.iter Numeric indicating the number of iterations in the Bayesian MCMC estimation. The default is 5000 iterations.
+#' @param seed Numeric indicating the random number seed. The default is the rjags default.
+#' @param ... Additional arguments passed through to `rjags::jags.model()`
 #'
 #' @export
-#' @return The result object of class ivwjags contains the following components:
+#' @return An object of class ivwjags containing the following components:
 #' \describe{
-#' \item{CausalEffect}{The mean of the generated causal effects}
-#' \item{StandardError}{Standard deviation of the mean causal effect}
+#' \item{CausalEffect}{The mean of the simulated causal effects}
+#' \item{StandardError}{Standard deviation of the simulated causal effects}
 #' \item{CredibleInterval}{The credible interval for the causal effect, which indicates the lower(2.5\%), median (50\%) and upper intervals (97.5\%)}
-#' \item{samples}{Output of the bayesian MCMC samples with the different chains}
+#' \item{samples}{Output of the Bayesian MCMC samples with the different chains}
+#' \item{Priors}{The specified priors}
 #' }
 #'
 #' @references Burgess, S., Butterworth, A., Thompson S.G. Mendelian randomization analysis with multiple genetic variants using summarized data. Genetic Epidemiology, 2013, 37, 7, 658-665 <https://dx.doi.org/10.1002/gepi.21758>.
 #'
 #' @examples
 #' data(bmi_insulin)
-#' fit <- mr_ivw_rjags(bmi_insulin, n.chains = 1)
+#' fit <- mr_ivw_rjags(bmi_insulin)
 #' print(fit)
 #' summary(fit)
 #' plot(fit$samples)
+#' # 90% credible interval
+#' fitdf <- do.call(rbind.data.frame, fit$samples)
+#' cri90 <- quantile(fitdf$Estimate, probs = c(0.05,0.95))
+#' print(cri90)
 #'
 mr_ivw_rjags <- function(object,
                          prior = "default",

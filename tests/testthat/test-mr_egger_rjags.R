@@ -12,7 +12,7 @@ mrdat <-
 
 test_that("MR-Egger using default prior method",
           {
-            skip_on_cran()
+            # skip_on_cran()
             eggerfit <- mr_egger_rjags(mrdat, seed = 123)
 
             expect_equal(class(eggerfit), "eggerjags")
@@ -30,7 +30,7 @@ test_that("MR-Egger using default prior method",
 
 test_that("MR-Egger using weak prior method",
           {
-            skip_on_cran()
+            # skip_on_cran()
             eggerfit1 <-
               mr_egger_rjags(mrdat, prior = "weak", seed = 123)
 
@@ -49,7 +49,7 @@ test_that("MR-Egger using weak prior method",
 
 test_that("MR-Egger using pseudo prior method",
           {
-            skip_on_cran()
+            # skip_on_cran()
             eggerfit2 <-
               mr_egger_rjags(mrdat, prior = "pseudo", seed = 123)
 
@@ -68,7 +68,7 @@ test_that("MR-Egger using pseudo prior method",
 
 test_that("MR-Egger using joint prior method",
           {
-            skip_on_cran()
+            # skip_on_cran()
             eggerfit2 <-
               mr_egger_rjags(mrdat, prior = "joint", seed = 123)
 
@@ -87,7 +87,7 @@ test_that("MR-Egger using joint prior method",
 
 test_that("MR-Egger using betaprior and sigmaprior method",
           {
-            skip_on_cran()
+            # skip_on_cran()
             eggerfit1 <-
               mr_egger_rjags(mrdat,
                              betaprior = "dnorm(0, 1E-6)",

@@ -7,24 +7,23 @@
 mr_format(rsid, xbeta, ybeta, xse, yse)
 }
 \arguments{
-\item{rsid}{A vector of number of genetic variants used for analysis, if none is given a vector would automatically generate.}
+\item{rsid}{A vector of genetic variants used for analysis, if unspecified a vector is automatically generated.}
 
-\item{xbeta}{A numeric vector of the coefficients of the genotype-exposure associations.}
+\item{xbeta}{A numeric vector of the instrument-phenotype associations.}
 
-\item{ybeta}{A numeric vector of the coefficients of the genotype-outcome associations.}
+\item{ybeta}{A numeric vector of the instrument-outcome associations.}
 
-\item{xse}{The standard errors correspondent to the genotype-exposure associations \code{xbeta}.}
+\item{xse}{The standard errors of the instrument-phenotype associations \code{xbeta}.}
 
-\item{yse}{The standard errors correspondent to the genotype-outcome associations \code{ybeta}.}
+\item{yse}{The standard errors of the instrument-outcome associations \code{ybeta}.}
 }
 \value{
-A formatted data frame for analysis.
+A formatted data frame for analysis of class \code{mr_format}.
 }
 \description{
 Organises the summary level data for use in the Bayesian MR functions
 }
 \examples{
-\donttest{
 data(bmi_insulin)
 dat <- mr_format(rsid = bmi_insulin[,"rsid"],
           xbeta = bmi_insulin[,"beta.exposure"],
@@ -32,6 +31,5 @@ dat <- mr_format(rsid = bmi_insulin[,"rsid"],
           xse = bmi_insulin[,"se.exposure"],
           yse = bmi_insulin[,"se.outcome"])
 class(dat)
-}
 
 }

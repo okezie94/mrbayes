@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Fitting Bayesian MR-radialegger models using various priors from the jags software. — mr_radialegger_rjags • mrbayes</title>
+<title>Bayesian radial MR-Egger model with a choice of prior distributions fitted using JAGS. — mr_radialegger_rjags • mrbayes</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Fitting Bayesian MR-radialegger models using various priors from the jags software. — mr_radialegger_rjags" />
+<meta property="og:title" content="Bayesian radial MR-Egger model with a choice of prior distributions fitted using JAGS. — mr_radialegger_rjags" />
 
-<meta property="og:description" content="Fitting Bayesian MR-radialegger models using various priors from the jags software." />
+<meta property="og:description" content="Bayesian radial MR-Egger model with a choice of prior distributions fitted using JAGS." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -81,7 +81,12 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/okezie94/mrbayes">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -94,72 +99,76 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Fitting Bayesian MR-radialegger models using various priors from the jags software.</h1>
-    
+    <h1>Bayesian radial MR-Egger model with a choice of prior distributions fitted using JAGS.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/okezie94/mrbayes/blob/master/R/mr_radialegger_rjags.R'><code>R/mr_radialegger_rjags.R</code></a></small>
     <div class="hidden name"><code>mr_radialegger_rjags.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Fitting Bayesian MR-radialegger models using various priors from the jags software.</p>
+    <p>Bayesian radial MR-Egger model with a choice of prior distributions fitted using JAGS.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>mr_radialegger_rjags</span>(<span class='no'>object</span>, <span class='kw'>methods</span> <span class='kw'>=</span> <span class='st'>"default"</span>, <span class='kw'>betaprior</span> <span class='kw'>=</span> <span class='st'>""</span>,
+    <pre class="usage"><span class='fu'>mr_radialegger_rjags</span>(<span class='no'>object</span>, <span class='kw'>prior</span> <span class='kw'>=</span> <span class='st'>"default"</span>, <span class='kw'>betaprior</span> <span class='kw'>=</span> <span class='st'>""</span>,
   <span class='kw'>sigmaprior</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>n.chains</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>n.burn</span> <span class='kw'>=</span> <span class='fl'>1000</span>, <span class='kw'>n.iter</span> <span class='kw'>=</span> <span class='fl'>5000</span>,
-  <span class='kw'>seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>rho</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>object</th>
-      <td><p>The data frame converted into the format_mr format</p></td>
+      <td><p>A data object of class mr_format</p></td>
     </tr>
     <tr>
-      <th>methods</th>
-      <td><p>The values are used to identify the proposed priors default indicates non-informative prior weak indicates weakly informative prior pseudo indicates pseudo-horseshoe prior.</p></td>
+      <th>prior</th>
+      <td><p>A character string for selecting the prior distributions; "default" selects a non-informative set of priors; "weak" selects weakly informative priors; "pseudo" selects a pseudo-horseshoe prior on the causal effect, "joint" selects a joint prior on the intercept and slope.</p></td>
     </tr>
     <tr>
       <th>betaprior</th>
-      <td><p>This is an option for setting a prior for the causal estimate.</p></td>
+      <td><p>A character string in JAGS syntax to allow a user defined prior for the causal effect.</p></td>
     </tr>
     <tr>
       <th>sigmaprior</th>
-      <td><p>This is an option for setting a prior for the inflating parameter in the MR-Egger model.</p></td>
+      <td><p>A character string in JAGS syntax to allow a user defined prior for the residual standard deviation.</p></td>
     </tr>
     <tr>
       <th>n.chains</th>
-      <td><p>This is an option for choosing the number of chains for MCMC simulation, default number is 3 chains.</p></td>
+      <td><p>Numeric indicating the number of chains used in the MCMC estimation, the default is 1 chain.</p></td>
     </tr>
     <tr>
       <th>n.burn</th>
-      <td><p>This is the option for the burn in period of the bayesian MCMC runs. The default option is 1000 samples</p></td>
+      <td><p>Numeric indicating the burn-in period of the Bayesian MCMC estimation. The default is 1000 samples.</p></td>
     </tr>
     <tr>
       <th>n.iter</th>
-      <td><p>This is the option for the number of bayesian MCMC runs. The default is 5000 iterations</p></td>
+      <td><p>Numeric indicating the number of iterations in the Bayesian MCMC estimation. The default is 5000 iterations.</p></td>
     </tr>
     <tr>
       <th>seed</th>
-      <td><p>This is an option for setting seeds for reproducible results. The default is NULL</p></td>
+      <td><p>Numeric indicating the random number seed. The default is the rjags default.</p></td>
+    </tr>
+    <tr>
+      <th>rho</th>
+      <td><p>Numeric indicating the correlation coefficient input into the joint prior distribution. The default is 0.5.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Passing options through to rjags::jags.model()</p></td>
+      <td><p>Additional arguments passed through to <code><a href='https://www.rdocumentation.org/packages/rjags/topics/jags.model'>rjags::jags.model()</a></code></p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The result object of class radialeggerjags contains the following components:</p><dl class='dl-horizontal'>
-<dt>AvgPleio</dt><dd><p>The mean of the generated pleiotropic effect</p></dd>
-<dt>CausalEffect</dt><dd><p>The mean of the generated causal effects</p></dd>
-<dt>StandardError</dt><dd><p>Standard deviation of the mean causal effect</p></dd>
-<dt>psi</dt><dd><p>The value of the inflating parameter based on the priors</p></dd>
-<dt>CredibleInterval</dt><dd><p>The credible interval for the causal effect, which indicates the lower(2.5%), median (50%) and upper intervals (97.5%)</p></dd>
-<dt>samples</dt><dd><p>Output of the bayesian MCMC samples with the different chains</p></dd>
-<dt>method</dt><dd><p>The specified prior</p></dd>
+    <p>An object of class radialeggerjags containing the following components:</p><dl class='dl-horizontal'>
+<dt>AvgPleio</dt><dd><p>The mean of the simulated pleiotropic effect</p></dd>
+<dt>CausalEffect</dt><dd><p>The mean of the simulated causal effect</p></dd>
+<dt>StandardError</dt><dd><p>Standard deviation of the simulated causal effect</p></dd>
+<dt>sigma</dt><dd><p>The mean of the simaulted residual standard deviation</p></dd>
+<dt>CredibleInterval</dt><dd><p>The credible interval for the causal effect, which includes the lower (2.5%), median (50%) and upper intervals (97.5%)</p></dd>
+<dt>samples</dt><dd><p>Output of the Bayesian MCMC samples</p></dd>
+<dt>Prior</dt><dd><p>The specified priors</p></dd>
 </dl>
 
     
@@ -170,20 +179,11 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>bmi_insulin</span>)
-<span class='no'>fit</span> <span class='kw'>&lt;-</span> <span class='fu'>mr_radialegger_rjags</span>(<span class='no'>bmi_insulin</span>, <span class='kw'>n.chains</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; Compiling model graph
-#&gt;    Resolving undeclared variables
-#&gt;    Allocating nodes
-#&gt; Graph information:
-#&gt;    Observed stochastic nodes: 14
-#&gt;    Unobserved stochastic nodes: 3
-#&gt;    Total graph size: 64
-#&gt; 
-#&gt; Initializing model
-#&gt; </div><div class='output co'>#&gt; <span class='warning'>Warning: The mean of the psi parameter, the residual standard deviation, is less than 1, we recommend refitting the model with psi constrained to be &gt;= 1.</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>fit</span>)</div><div class='output co'>#&gt; Prior : 
+<span class='no'>fit</span> <span class='kw'>&lt;-</span> <span class='fu'>mr_radialegger_rjags</span>(<span class='no'>bmi_insulin</span>, <span class='kw'>n.chains</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: The mean of the sigma parameter, the residual standard deviation, is less than 1, we recommend refitting the model with sigma constrained to be &gt;= 1.</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>fit</span>)</div><div class='output co'>#&gt; Prior : 
 #&gt; 
 #&gt;  Pleiotropy ~ dnorm(0, 1E-3) 
 #&gt;  Estimate ~ dnorm(0, 1E-3) 
-#&gt;  psi ~ dunif(.0001, 10) 
+#&gt;  sigma ~ dunif(.0001, 10) 
 #&gt; 
 #&gt; Estimation results: 
 #&gt;  
@@ -193,11 +193,15 @@
 #&gt;  Number of Chains = 1 
 #&gt;  Number of SNPs = 14 
 #&gt;  
-#&gt; Inflating Parameter: 0.02717276 
+#&gt; Inflating Parameter: 0.02674785 
 #&gt; 
-#&gt;                 Estimate        SD       2.5%        50%     97.5%
-#&gt; Avg Pleio     -28.767449 11.341817 -49.634188 -28.996547 -6.159646
-#&gt; Causal Effect   6.028901  2.171713   1.649934   6.055854 10.044002</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>fit</span>$<span class='no'>samples</span>)</div><div class='img'><img src='mr_radialegger_rjags-1.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt;                 Estimate        SD        2.5%        50%     97.5%
+#&gt; Avg Pleio     -27.742227 12.993554 -50.9428538 -28.904197 -1.239286
+#&gt; Causal Effect   5.831336  2.489813   0.6841164   6.045874 10.284917</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>fit</span>$<span class='no'>samples</span>)</div><div class='img'><img src='mr_radialegger_rjags-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># 90% credible interval</span>
+<span class='no'>fitdf</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/do.call'>do.call</a></span>(<span class='no'>rbind.data.frame</span>, <span class='no'>fit</span>$<span class='no'>samples</span>)
+<span class='no'>cri90</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/quantile'>quantile</a></span>(<span class='no'>fitdf</span>$<span class='no'>Estimate</span>, <span class='kw'>probs</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0.05</span>,<span class='fl'>0.95</span>))
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>cri90</span>)</div><div class='output co'>#&gt;       5%      95% 
+#&gt; 1.493668 9.641018 </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

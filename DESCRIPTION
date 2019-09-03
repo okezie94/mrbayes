@@ -22,7 +22,7 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Suggests: testthat,
-  rjags,
+  rjags (>= 4-9),
   tidyverse,
   knitr,
   ggplot2,
@@ -34,6 +34,8 @@ Suggests: testthat,
   kableExtra,
   roxygen2,
   bookdown
+URL: https://github.com/okezie94/mrbayes
+BugReports: https://github.com/okezie94/mrbayes/issues
 RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)
 SystemRequirements: JAGS 4.x.y
