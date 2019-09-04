@@ -10,8 +10,21 @@ Bayesian implementation of IVW and MR-Egger models.
 
 ## Installation instructions
  
- ``` r
- # install.packages("remotes") # uncomment on first run
- remotes::install_github("okezie94/mrbayes", build_opts = c("--no-resave-data", "--no-manual"), build_vignettes = TRUE)
- ```
+Install the CRAN version with following code:
+``` r
+install.packages("mrbayes")
+``` 
+
+Or install the development version from GitHub with:
  
+``` r
+# install.packages("remotes") # uncomment on first run
+remotes::install_github("okezie94/mrbayes", build_opts = c("--no-resave-data", "--no-manual"), build_vignettes = TRUE)
+```
+
+## Package website
+
+The helpfiles are shown on the package website at: <https://okezie94.github.io/mrbayes/>.
+
+## Authors
+Okezie Uche-Ikonne (maintainer, o.uche-ikonne@lancaster.ac.uk), Frank Dondelinger, and Tom Palmer

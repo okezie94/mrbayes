@@ -194,15 +194,15 @@
 #&gt;  Number of Chains = 1 
 #&gt;  Number of SNPs = 14 
 #&gt;  
-#&gt; Inflating Parameter: 7.742295 
+#&gt; Inflating Parameter: 7.697748 
 #&gt; 
 #&gt;                  Estimate         SD       2.5%         50%      97.5%
-#&gt; Avg Pleio     -0.06112325 0.04586348 -0.1595321 -0.05798468 0.01961953
-#&gt; Causal Effect  4.15346398 2.72049837 -0.6847813  3.96333374 9.94089229</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>fit</span>$<span class='no'>samples</span>)</div><div class='img'><img src='mr_egger_rjags-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># 90% credible interval</span>
+#&gt; Avg Pleio     -0.05962632 0.03822554 -0.1394400 -0.05948197 0.01220287
+#&gt; Causal Effect  4.06314546 2.27063666 -0.2414974  4.05191839 8.79676651</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>fit</span>$<span class='no'>samples</span>)</div><div class='img'><img src='mr_egger_rjags-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># 90% credible interval</span>
 <span class='no'>fitdf</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/do.call'>do.call</a></span>(<span class='no'>rbind.data.frame</span>, <span class='no'>fit</span>$<span class='no'>samples</span>)
 <span class='no'>cri90</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/quantile'>quantile</a></span>(<span class='no'>fitdf</span>$<span class='no'>Estimate</span>, <span class='kw'>probs</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0.05</span>,<span class='fl'>0.95</span>))
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>cri90</span>)</div><div class='output co'>#&gt;         5%        95% 
-#&gt; -0.0158116  9.0190836 </div><div class='input'>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>cri90</span>)</div><div class='output co'>#&gt;        5%       95% 
+#&gt; 0.3678985 7.7809719 </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
