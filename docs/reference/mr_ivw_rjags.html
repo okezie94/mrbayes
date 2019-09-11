@@ -170,7 +170,7 @@
     <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>bmi_insulin</span>)
 <span class='no'>fit</span> <span class='kw'>&lt;-</span> <span class='fu'>mr_ivw_rjags</span>(<span class='no'>bmi_insulin</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>fit</span>)</div><div class='output co'>#&gt;                Estimate         SD      2.5%       50%     97.5%
-#&gt; Causal Effect 0.5804587 0.05206514 0.4793654 0.5807429 0.6828022</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>fit</span>)</div><div class='output co'>#&gt; Prior : 
+#&gt; Causal Effect 0.5782292 0.05087571 0.4770535 0.5783821 0.6774438</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>fit</span>)</div><div class='output co'>#&gt; Prior : 
 #&gt; 
 #&gt;  Estimate ~ dnorm(0, 1E-3) 
 #&gt; 
@@ -183,11 +183,11 @@
 #&gt;  Number of SNPs = 14 
 #&gt;  
 #&gt;                Estimate         SD      2.5%       50%     97.5%
-#&gt; Causal Effect 0.5804587 0.05206514 0.4793654 0.5807429 0.6828022</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>fit</span>$<span class='no'>samples</span>)</div><div class='img'><img src='mr_ivw_rjags-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># 90% credible interval</span>
+#&gt; Causal Effect 0.5782292 0.05087571 0.4770535 0.5783821 0.6774438</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>fit</span>$<span class='no'>samples</span>)</div><div class='img'><img src='mr_ivw_rjags-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># 90% credible interval</span>
 <span class='no'>fitdf</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/do.call'>do.call</a></span>(<span class='no'>rbind.data.frame</span>, <span class='no'>fit</span>$<span class='no'>samples</span>)
 <span class='no'>cri90</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/quantile'>quantile</a></span>(<span class='no'>fitdf</span>$<span class='no'>Estimate</span>, <span class='kw'>probs</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0.05</span>,<span class='fl'>0.95</span>))
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>cri90</span>)</div><div class='output co'>#&gt;        5%       95% 
-#&gt; 0.4939956 0.6657863 </div><div class='input'>
+#&gt; 0.4940653 0.6620172 </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
