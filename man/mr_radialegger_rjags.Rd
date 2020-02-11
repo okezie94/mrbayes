@@ -4,9 +4,18 @@
 \alias{mr_radialegger_rjags}
 \title{Bayesian radial MR-Egger model with a choice of prior distributions fitted using JAGS.}
 \usage{
-mr_radialegger_rjags(object, prior = "default", betaprior = "",
-  sigmaprior = "", n.chains = 1, n.burn = 1000, n.iter = 5000,
-  seed = NULL, rho = 0.5, ...)
+mr_radialegger_rjags(
+  object,
+  prior = "default",
+  betaprior = "",
+  sigmaprior = "",
+  n.chains = 1,
+  n.burn = 1000,
+  n.iter = 5000,
+  seed = NULL,
+  rho = 0.5,
+  ...
+)
 }
 \arguments{
 \item{object}{A data object of class mr_format}
@@ -36,7 +45,7 @@ An object of class radialeggerjags containing the following components:
 \item{CausalEffect}{The mean of the simulated causal effect}
 \item{StandardError}{Standard deviation of the simulated causal effect}
 \item{sigma}{The mean of the simaulted residual standard deviation}
-\item{CredibleInterval}{The credible interval for the causal effect, which includes the lower (2.5\%), median (50\%) and upper intervals (97.5\%)}
+\item{CredibleInterval}{The credible interval for the causal effect, which includes the lower (2.5\\\%), median (50\\\%) and upper intervals (97.5\\\%)}
 \item{samples}{Output of the Bayesian MCMC samples}
 \item{Prior}{The specified priors}
 }

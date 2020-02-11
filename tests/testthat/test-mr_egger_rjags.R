@@ -38,7 +38,7 @@ test_that("MR-Egger using weak prior method",
             expect_equal(unname(eggerfit1$CausalEffect), 0.51, tol = 1e-2)
             expect_equal(unname(eggerfit1$StandardError), 0.06, tol = 1e-2)
             expect_equal(unname(eggerfit1$CredibleInterval[1]), 0.39 , tol = 1e-2)
-            expect_equal(unname(eggerfit1$CredibleInterval[2]), 0.5, tol = 1e-2)
+            expect_equal(unname(eggerfit1$CredibleInterval[2]), 0.51, tol = 1e-2)
             expect_equal(unname(eggerfit1$CredibleInterval[3]), 0.62, tol = 1e-2)
             expect_equal(unname(eggerfit1$AvgPleio), -0.002, tol = 1e-2)
             expect_equal(unname(eggerfit1$sigma), 1.58, tol = 1e-2)

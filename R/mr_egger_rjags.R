@@ -18,7 +18,7 @@
 #' \item{CausalEffect}{The mean of the simulated causal effect}
 #' \item{StandardError}{Standard deviation of the simulated causal effect}
 #' \item{sigma}{The value of the residual standard deviation}
-#' \item{CredibleInterval}{The credible interval for the causal effect, which includes the lower (2.5\%), median (50\%) and upper intervals (97.5\%)}
+#' \item{CredibleInterval}{The credible interval for the causal effect, which includes the lower (2.5\\%), median (50\\%) and upper intervals (97.5\\%)}
 #' \item{samples}{Output of the Bayesian MCMC samples}
 #' \item{Priors}{The specified priors}
 #' }
@@ -101,11 +101,12 @@ mr_egger_rjags <- function(object,
     prec[2,2] <- var2
     mu[1] <- 0
     mu[2] <- 0
-    var1 <- 1e4
+    var1 <- 10
     sd1 <- sqrt(var1)
-    var2 <- 1e4
+    var2 <- 10
     sd2<- sqrt(var2)
-    sigma ~ dunif(.0001, 10)
+    invpsi ~ dgamma(1E-3, 1E-3)
+    sigma <- 1/invpsi
     rho <- "
 
     Priors<- paste0(vcov_mat,rho)

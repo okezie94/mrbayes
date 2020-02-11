@@ -4,9 +4,18 @@
 \alias{mr_egger_rjags}
 \title{Bayesian implementation of the MR-Egger model with choice of prior distributions fitted using JAGS.}
 \usage{
-mr_egger_rjags(object, prior = "default", betaprior = "",
-  sigmaprior = "", n.chains = 1, n.burn = 1000, n.iter = 5000,
-  seed = NULL, rho = 0.5, ...)
+mr_egger_rjags(
+  object,
+  prior = "default",
+  betaprior = "",
+  sigmaprior = "",
+  n.chains = 1,
+  n.burn = 1000,
+  n.iter = 5000,
+  seed = NULL,
+  rho = 0.5,
+  ...
+)
 }
 \arguments{
 \item{object}{A data object of class \code{mr_format}}
@@ -36,7 +45,7 @@ The result object of class eggerjags contains the following components:
 \item{CausalEffect}{The mean of the simulated causal effect}
 \item{StandardError}{Standard deviation of the simulated causal effect}
 \item{sigma}{The value of the residual standard deviation}
-\item{CredibleInterval}{The credible interval for the causal effect, which includes the lower (2.5\%), median (50\%) and upper intervals (97.5\%)}
+\item{CredibleInterval}{The credible interval for the causal effect, which includes the lower (2.5\\\%), median (50\\\%) and upper intervals (97.5\\\%)}
 \item{samples}{Output of the Bayesian MCMC samples}
 \item{Priors}{The specified priors}
 }
