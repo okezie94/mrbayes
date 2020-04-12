@@ -5,5 +5,5 @@
 \alias{mrbayes-package}
 \title{mrbayes: Bayesian implementation of the IVW and MR-Egger models for two-sample Mendelian randomization analyses}
 \description{
-mrbayes: Bayesian implementation of the IVW and MR-Egger models for two-sample Mendelian randomization analyses
+Bayesian implementation of the IVW and MR-Egger models for two-sample Mendelian randomization analyses.
 }

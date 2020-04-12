@@ -4,8 +4,16 @@
 \alias{mr_ivw_rjags}
 \title{Bayesian inverse variance weighted model with a choice of prior distributions fitted using JAGS.}
 \usage{
-mr_ivw_rjags(object, prior = "default", betaprior = "", n.chains = 1,
-  n.burn = 1000, n.iter = 5000, seed = NULL, ...)
+mr_ivw_rjags(
+  object,
+  prior = "default",
+  betaprior = "",
+  n.chains = 1,
+  n.burn = 1000,
+  n.iter = 5000,
+  seed = NULL,
+  ...
+)
 }
 \arguments{
 \item{object}{A data object of class mr_format}
