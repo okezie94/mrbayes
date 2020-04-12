@@ -10,3 +10,9 @@ export(mr_egger_rjags)
 export(mr_format)
 export(mr_ivw_rjags)
 export(mr_radialegger_rjags)
+
+# additions recommended by: `rstantools::use_rstan()`
+import(Rcpp)
+import(methods)
+importFrom(rstan, sampling)
+useDynLib(mrbayes, .registration = TRUE)
