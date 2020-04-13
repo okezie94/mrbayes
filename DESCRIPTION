@@ -1,7 +1,7 @@
 Package: mrbayes
 Type: Package
 Title: Bayesian Summary Data Models for Mendelian Randomization Studies
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: c(person("Okezie", "Uche-Ikonne", 
   email = "o.uche-ikonne@lancaster.ac.uk",
   role = c("aut", "cre"),
@@ -17,7 +17,11 @@ Description: Bayesian estimation of inverse variance weighted (IVW), Burgess
     al. (2015) <doi:10.1093/ije/dyv080>, summary data models for Mendelian 
     randomization analyses.
 Depends: R (>= 3.5.0)
-Imports: methods
+Imports: 
+    methods,
+    Rcpp (>= 0.12.0),
+    rstan (>= 2.18.1),
+    rstantools (>= 2.0.0)
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
@@ -36,6 +40,13 @@ Suggests: testthat,
   bookdown
 URL: https://github.com/okezie94/mrbayes
 BugReports: https://github.com/okezie94/mrbayes/issues
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.0
 Roxygen: list(markdown = TRUE)
-SystemRequirements: JAGS 4.x.y
+SystemRequirements: GNU make
+Biarch: true
+LinkingTo: 
+    BH (>= 1.66.0),
+    Rcpp (>= 0.12.0),
+    RcppEigen (>= 0.3.3.3.0),
+    rstan (>= 2.18.1),
+    StanHeaders (>= 2.18.0)

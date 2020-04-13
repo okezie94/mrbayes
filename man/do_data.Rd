@@ -4,7 +4,8 @@
 \name{do_data}
 \alias{do_data}
 \title{Dataset from Do et al., Nat Gen, 2013 containing summary level data on associations of genotypes with lipid traits and the risk of coronary heart diseases}
-\format{A data frame with 185 rows and 9 columns:
+\format{
+A data frame with 185 rows and 9 columns:
 \describe{
 \item{rsid}{SNPs RSID number}
 \item{ldlcbeta}{The genotype-phenotype associations for low-density lipoprotein cholestrol}
@@ -15,7 +16,8 @@
 \item{hdlcse}{The standard errors of the genotype-high-density lipoprotein cholestrol associations}
 \item{tgse}{The standard errors of the genotype-triglyceride associations}
 \item{chdse}{The standard errors of the genotype-outcome coronary heart disease associations}
-}}
+}
+}
 \usage{
 do_data
 }

@@ -1,5 +1,7 @@
 #' Bayesian radial MR-Egger model with a choice of prior distributions fitted using JAGS.
 #'
+#' Bayesian radial MR-Egger model with a choice of prior distributions fitted using JAGS.
+#'
 #' @param object A data object of class mr_format
 #' @param prior A character string for selecting the prior distributions; "default" selects a non-informative set of priors; "weak" selects weakly informative priors; "pseudo" selects a pseudo-horseshoe prior on the causal effect, "joint" selects a joint prior on the intercept and slope.
 #' @param betaprior A character string in JAGS syntax to allow a user defined prior for the causal effect.
@@ -18,7 +20,7 @@
 #' \item{CausalEffect}{The mean of the simulated causal effect}
 #' \item{StandardError}{Standard deviation of the simulated causal effect}
 #' \item{sigma}{The mean of the simaulted residual standard deviation}
-#' \item{CredibleInterval}{The credible interval for the causal effect, which includes the lower (2.5\%), median (50\%) and upper intervals (97.5\%)}
+#' \item{CredibleInterval}{The credible interval for the causal effect, which includes the lower (2.5%), median (50%) and upper intervals (97.5%)}
 #' \item{samples}{Output of the Bayesian MCMC samples}
 #' \item{Prior}{The specified priors}
 #' }

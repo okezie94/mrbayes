@@ -4,14 +4,16 @@
 \name{bmi_insulin}
 \alias{bmi_insulin}
 \title{Dataset from Richmond et. al 2017 investigating the association of BMI on insulin resistance}
-\format{A data frame with 14 rows and 44 columns:
+\format{
+A data frame with 14 rows and 44 columns:
 \describe{
 \item{rsid}{SNP RSID number}
 \item{beta.exposure}{The genotype-BMI associations}
 \item{beta.outcome}{The genotype-outcome associations}
 \item{se.exposure}{The standard errors of the genotype-phenotype associations}
 \item{se.outcome}{The standard errors of the genotype-outcome associations}
-}}
+}
+}
 \usage{
 bmi_insulin
 }

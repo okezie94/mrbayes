@@ -4,9 +4,18 @@
 \alias{mr_egger_rjags}
 \title{Bayesian implementation of the MR-Egger model with choice of prior distributions fitted using JAGS.}
 \usage{
-mr_egger_rjags(object, prior = "default", betaprior = "",
-  sigmaprior = "", n.chains = 1, n.burn = 1000, n.iter = 5000,
-  seed = NULL, rho = 0.5, ...)
+mr_egger_rjags(
+  object,
+  prior = "default",
+  betaprior = "",
+  sigmaprior = "",
+  n.chains = 1,
+  n.burn = 1000,
+  n.iter = 5000,
+  seed = NULL,
+  rho = 0.5,
+  ...
+)
 }
 \arguments{
 \item{object}{A data object of class \code{mr_format}}
