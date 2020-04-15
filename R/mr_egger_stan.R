@@ -14,7 +14,6 @@
 #' @export
 #'
 #' @examples
-#' data(bmi_insulin)
 #' egger_fit <- mr_egger_stan(bmi_insulin)
 #' print(egger_fit)
 
