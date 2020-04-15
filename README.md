@@ -18,12 +18,9 @@ install.packages("mrbayes")
 Or install the development version from GitHub with:
  
 ``` r
-# install.packages("remotes") # uncomment on first run
-remotes::install_github("okezie94/mrbayes", 
-                        build_opts = c("--no-resave-data", "--no-manual"), 
-                        build_vignettes = TRUE)
+# install.packages("remotes") # uncomment if remotes not installed
+remotes::install_github("okezie94/mrbayes")
 ```
-
 ## Package website
 
 The helpfiles are shown on the package website at: <https://okezie94.github.io/mrbayes/>.
