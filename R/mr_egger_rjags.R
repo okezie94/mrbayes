@@ -1,5 +1,7 @@
 #' Bayesian implementation of the MR-Egger model with choice of prior distributions fitted using JAGS.
 #'
+#' Bayesian implementation of the MR-Egger model with choice of prior distributions fitted using JAGS.
+#'
 #' @param object A data object of class `mr_format`
 #' @param prior A character string for selecting the prior distributions; "default" selects a non-informative set of priors; "weak" selects weakly informative priors; "pseudo" selects a pseudo-horseshoe prior on the causal effect, "joint" selects a joint prior on the intercept and slope
 #' @param betaprior A character string in JAGS syntax to allow a user defined prior for the causal effect.
