@@ -7,9 +7,11 @@
 using namespace Rcpp;
 
 
+RcppExport SEXP _rcpp_module_boot_stan_fit4mregger_mod();
 RcppExport SEXP _rcpp_module_boot_stan_fit4mrivw_mod();
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_rcpp_module_boot_stan_fit4mregger_mod", (DL_FUNC) &_rcpp_module_boot_stan_fit4mregger_mod, 0},
     {"_rcpp_module_boot_stan_fit4mrivw_mod", (DL_FUNC) &_rcpp_module_boot_stan_fit4mrivw_mod, 0},
     {NULL, NULL, 0}
 };
