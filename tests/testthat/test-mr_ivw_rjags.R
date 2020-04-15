@@ -8,17 +8,12 @@ context("Tests for mrbayes package")
 test_that("Check the class of the data object",
           {
             mrdat <- with(do_data, mr_format(rsid, ldlcbeta, chdbeta, ldlcse, chdse))
-            expect_equal(class(mrdat), c("data.frame","mr_format"))
+            expect_equal(class(mrdat), c("data.frame", "mr_format"))
           })
-
-mrdat <- with(do_data, mr_format(rsid,ldlcbeta,chdbeta,ldlcse,chdse))
 
 test_that("IVW using default prior method",
           {
-            # skip_on_cran()
-
             ivwfit <- mr_ivw_rjags(mrdat, seed = 123)
-
             expect_equal(class(ivwfit), "ivwjags")
             expect_equal(unname(ivwfit$CausalEffect), 0.5, tol = 1e-2)
             expect_equal(unname(ivwfit$StandardError), 0.04, tol = 1e-2)
@@ -32,9 +27,7 @@ test_that("IVW using default prior method",
 
 test_that("IVW using weak prior method",
           {
-            # skip_on_cran()
             ivwfit1 <- mr_ivw_rjags(mrdat, prior = "weak", seed = 123)
-
             expect_equal(class(ivwfit1), "ivwjags")
             expect_equal(unname(ivwfit1$CausalEffect), 0.5, tol = 1e-2)
             expect_equal(unname(ivwfit1$StandardError), 0.04, tol = 1e-2)
@@ -47,9 +40,7 @@ test_that("IVW using weak prior method",
 
 test_that("IVW using pseudo prior method",
           {
-            # skip_on_cran()
             ivwfit2 <- mr_ivw_rjags(mrdat, prior = "pseudo", seed = 123)
-
             expect_equal(class(ivwfit2), "ivwjags")
             expect_equal(unname(ivwfit2$CausalEffect), 0.5, tol = 1e-2)
             expect_equal(unname(ivwfit2$StandardError), 0.03, tol = 1e-2)
@@ -63,7 +54,6 @@ test_that("IVW using pseudo prior method",
 
 test_that("IVW using beta prior method",
           {
-            # skip_on_cran()
             ivwfit1 <- mr_ivw_rjags(mrdat, betaprior = "dnorm(0, 1E-6)", seed = 123)
             expect_equal(class(ivwfit1), "ivwjags")
             expect_equal(unname(ivwfit1$CausalEffect), 0.5, tol = 1e-2)
