@@ -7,18 +7,13 @@
 #' @param n.iter Numeric indicating the number of iterations in the Bayesian HMC estimation. The default is 1000 iterations.
 #' @param seed Numeric indicating the random number seed. The default is 234.
 #'
-#'
+#' @export
 #' @references Burgess, S., Butterworth, A., Thompson S.G. Mendelian randomization analysis with multiple genetic variants using summarized data. Genetic Epidemiology, 2013, 37, 7, 658-665 <https://dx.doi.org/10.1002/gepi.21758>.
 #'
 #' @examples
 #' data(bmi_insulin)
-#' dat <- mr_format(rsid = bmi_insulin[,"rsid"],
-#'           xbeta = bmi_insulin[,"beta.exposure"],
-#'           ybeta = bmi_insulin[,"beta.outcome"],
-#'           xse = bmi_insulin[,"se.exposure"],
-#'           yse = bmi_insulin[,"se.outcome"])
-#' radegger_trial<- mr_radialegger_stan(dat)
-#' print(radegger_trial)
+#' radegger_fit <- mr_radialegger_stan(bmi_insulin)
+#' print(radegger_fit)
 
 
 mr_radialegger_stan <- function(data,
@@ -28,18 +23,18 @@ mr_radialegger_stan <- function(data,
                           n.iter = 1000,
                           rho = 0.5,
                           seed = 234) {
-  
+
   # check class of object
   if (!("mr_format" %in% class(data))) {
     stop(
       'The class of the data object must be "mr_format", please resave the object with the output of e.g. object <- mr_format(object).'
     )
   }
-  
+
   if (prior == 4){
     pars <- c("eta","sigma")
   } else {pars <- c("intercept","estimate","sigma")}
-  
+
   # converting dataset to a list
   datam <- list(
     n = nrow(data),
@@ -48,7 +43,7 @@ mr_radialegger_stan <- function(data,
     prior = prior,
     rho = rho
   )
-  
+
   radialeggerfit <- rstan::sampling(
     object = stanmodels$mrradialegger,
     data = datam,
@@ -59,9 +54,9 @@ mr_radialegger_stan <- function(data,
     seed = seed,
     control = list(adapt_delta = 0.999, max_treedepth = 15)
   )
-  
+
   return(radialeggerfit)
-  
+
 }
 
 
