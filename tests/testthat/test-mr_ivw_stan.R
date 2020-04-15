@@ -8,7 +8,6 @@ context("Tests for mr_ivw_stan() function")
 test_that("IVW using default prior method",
           {
             ivwfit <- mr_ivw_stan(do_data, seed = 123)
-
             expect_equal(class(ivwfit), "ivwjags")
             expect_equal(unname(ivwfit$CausalEffect), 0.5, tol = 1e-2)
             expect_equal(unname(ivwfit$StandardError), 0.04, tol = 1e-2)
@@ -23,7 +22,6 @@ test_that("IVW using default prior method",
 test_that("IVW using weak prior method",
           {
             ivwfit1 <- mr_ivw_stan(mrdat, prior = "weak", seed = 123)
-
             expect_equal(class(ivwfit1), "ivwjags")
             expect_equal(unname(ivwfit1$CausalEffect), 0.5, tol = 1e-2)
             expect_equal(unname(ivwfit1$StandardError), 0.04, tol = 1e-2)
@@ -37,7 +35,6 @@ test_that("IVW using weak prior method",
 test_that("IVW using pseudo prior method",
           {
             ivwfit2 <- mr_ivw_stan(mrdat, prior = "pseudo", seed = 123)
-
             expect_equal(class(ivwfit2), "ivwjags")
             expect_equal(unname(ivwfit2$CausalEffect), 0.5, tol = 1e-2)
             expect_equal(unname(ivwfit2$StandardError), 0.03, tol = 1e-2)
@@ -52,7 +49,6 @@ test_that("IVW using pseudo prior method",
 test_that("IVW using beta prior method",
           {
             ivwfit3 <- mr_ivw_stan(mrdat, betaprior = "dnorm(0, 1E-6)", seed = 123)
-			
             expect_equal(class(ivwfit3), "ivwjags")
             expect_equal(unname(ivwfit3$CausalEffect), 0.5, tol = 1e-2)
             expect_equal(unname(ivwfit3$StandardError), 0.04, tol = 1e-2)
