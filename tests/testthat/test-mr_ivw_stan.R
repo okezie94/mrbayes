@@ -5,15 +5,9 @@ context("Tests for mr_ivw_stan() function")
 # Analysis
 ## IVW stan
 
-test_that("Check the class of the data object",
-          {
-            mrdat <- with(do_data, mr_format(rsid, ldlcbeta, chdbeta, ldlcse, chdse))
-            expect_equal(class(mrdat), c("data.frame","mr_format"))
-          })
-
 test_that("IVW using default prior method",
           {
-            ivwfit <- mr_ivw_stan(mrdat, seed = 123)
+            ivwfit <- mr_ivw_stan(do_data, seed = 123)
 
             expect_equal(class(ivwfit), "ivwjags")
             expect_equal(unname(ivwfit$CausalEffect), 0.5, tol = 1e-2)
