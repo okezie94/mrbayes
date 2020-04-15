@@ -32,12 +32,7 @@ Bayesian inverse variance weighted model with a choice of prior distributions fi
 }
 \examples{
 data(bmi_insulin)
-dat <- mr_format(rsid = bmi_insulin[,"rsid"],
-          xbeta = bmi_insulin[,"beta.exposure"],
-          ybeta = bmi_insulin[,"beta.outcome"],
-          xse = bmi_insulin[,"se.exposure"],
-          yse = bmi_insulin[,"se.outcome"])
-egger_fit <- mr_egger_stan(dat)
+egger_fit <- mr_egger_stan(bmi_insulin)
 print(egger_fit)
 }
 \references{
