@@ -2,6 +2,7 @@
 
 * IVW implemented using rstan.
 * MR-Egger implemented using rstan.
+* Radial MR-Egger implemented using rstan.
 
 # mrbayes 0.1.0
 
