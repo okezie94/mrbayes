@@ -5,6 +5,7 @@
 #' @param n.chains Numeric indicating the number of chains used in the HMC estimation in rstan, the default is 1 chain.
 #' @param n.burn Numeric indicating the burn-in period of the Bayesian HMC estimation. The default is 200 samples.
 #' @param n.iter Numeric indicating the number of iterations in the Bayesian HMC estimation. The default is 1000 iterations.
+#' @param rho Numeric indicating the correlation coefficient input into the joint prior distribution. The default is 0.5.
 #' @param seed Numeric indicating the random number seed. The default is 234.
 #'
 #' @export
