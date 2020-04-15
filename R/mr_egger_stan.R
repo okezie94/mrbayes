@@ -9,7 +9,6 @@
 #' @param n.iter Numeric indicating the number of iterations in the Bayesian HMC estimation. The default is 1000 iterations.
 #' @param seed Numeric indicating the random number seed. The default is 234.
 #'
-#'
 #' @references Burgess, S., Butterworth, A., Thompson S.G. Mendelian randomization analysis with multiple genetic variants using summarized data. Genetic Epidemiology, 2013, 37, 7, 658-665 <https://dx.doi.org/10.1002/gepi.21758>.
 #'
 #' @export
@@ -21,8 +20,8 @@
 #'           ybeta = bmi_insulin[,"beta.outcome"],
 #'           xse = bmi_insulin[,"se.exposure"],
 #'           yse = bmi_insulin[,"se.outcome"])
-#' egger_trial<- mr_egger_stan(dat)
-#' print(egger_trial)
+#' egger_fit <- mr_egger_stan(dat)
+#' print(egger_fit)
 
 
 mr_egger_stan <- function(data,
