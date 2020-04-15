@@ -54,7 +54,6 @@ An object of class radialeggerjags containing the following components:
 Bayesian radial MR-Egger model with a choice of prior distributions fitted using JAGS.
 }
 \examples{
-data(bmi_insulin)
 fit <- mr_radialegger_rjags(bmi_insulin, n.chains = 1)
 summary(fit)
 plot(fit$samples)

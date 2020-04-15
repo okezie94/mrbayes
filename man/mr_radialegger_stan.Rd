@@ -25,13 +25,14 @@ mr_radialegger_stan(
 
 \item{n.iter}{Numeric indicating the number of iterations in the Bayesian HMC estimation. The default is 1000 iterations.}
 
+\item{rho}{Numeric indicating the correlation coefficient input into the joint prior distribution. The default is 0.5.}
+
 \item{seed}{Numeric indicating the random number seed. The default is 234.}
 }
 \description{
 Bayesian inverse variance weighted model with a choice of prior distributions fitted using RSTAN.
 }
 \examples{
-data(bmi_insulin)
 radegger_fit <- mr_radialegger_stan(bmi_insulin)
 print(radegger_fit)
 }

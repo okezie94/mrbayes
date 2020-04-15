@@ -30,7 +30,6 @@ mr_ivw_stan(
 Bayesian inverse variance weighted model with a choice of prior distributions fitted using RSTAN.
 }
 \examples{
-data(bmi_insulin)
 ivw_fit <- mr_ivw_stan(bmi_insulin)
 print(ivw_fit)
 }

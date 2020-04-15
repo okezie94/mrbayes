@@ -46,7 +46,6 @@ An object of class ivwjags containing the following components:
 Bayesian inverse variance weighted model with a choice of prior distributions fitted using JAGS.
 }
 \examples{
-data(bmi_insulin)
 fit <- mr_ivw_rjags(bmi_insulin)
 print(fit)
 summary(fit)

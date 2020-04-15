@@ -54,7 +54,6 @@ The result object of class eggerjags contains the following components:
 Bayesian implementation of the MR-Egger model with choice of prior distributions fitted using JAGS.
 }
 \examples{
-data(bmi_insulin)
 fit <- mr_egger_rjags(bmi_insulin, n.chains = 1)
 summary(fit)
 plot(fit$samples)
