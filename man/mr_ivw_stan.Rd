@@ -31,6 +31,9 @@ mr_ivw_stan(
 
 \item{seed}{Numeric indicating the random number seed. The default is \code{12345}.}
 }
+\value{
+An object of class \code{\link{stanfit}}.
+}
 \description{
 Bayesian inverse variance weighted model with a choice of prior distributions fitted using RSTAN.
 }

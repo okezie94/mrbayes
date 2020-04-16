@@ -29,6 +29,9 @@ mr_egger_stan(
 
 \item{rho}{Numeric indicating the correlation coefficient input into the joint prior distribution. The default is 0.5.}
 }
+\value{
+An object of class \code{\link{stanfit}}.
+}
 \description{
 Bayesian inverse variance weighted model with a choice of prior distributions fitted using RSTAN.
 }
