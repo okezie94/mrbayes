@@ -33,7 +33,7 @@ static int current_statement_begin__;
 stan::io::program_reader prog_reader__() {
     stan::io::program_reader reader;
     reader.add_event(0, 0, "start", "model_mrivw");
-    reader.add_event(50, 48, "end", "model_mrivw");
+    reader.add_event(46, 44, "end", "model_mrivw");
     return reader;
 }
 #include <stan_meta_header.hpp>
@@ -116,8 +116,6 @@ public:
             param_ranges_i__.clear();
             current_statement_begin__ = 25;
             num_params_r__ += 1;
-            current_statement_begin__ = 26;
-            num_params_r__ += 1;
         } catch (const std::exception& e) {
             stan::lang::rethrow_located(e, current_statement_begin__, prog_reader__());
             // Next line prevents compiler griping about no return
@@ -136,19 +134,6 @@ public:
         std::vector<double> vals_r__;
         std::vector<int> vals_i__;
         current_statement_begin__ = 25;
-        if (!(context__.contains_r("sigma")))
-            stan::lang::rethrow_located(std::runtime_error(std::string("Variable sigma missing")), current_statement_begin__, prog_reader__());
-        vals_r__ = context__.vals_r("sigma");
-        pos__ = 0U;
-        context__.validate_dims("parameter initialization", "sigma", "double", context__.to_vec());
-        double sigma(0);
-        sigma = vals_r__[pos__++];
-        try {
-            writer__.scalar_unconstrain(sigma);
-        } catch (const std::exception& e) {
-            stan::lang::rethrow_located(std::runtime_error(std::string("Error transforming variable sigma: ") + e.what()), current_statement_begin__, prog_reader__());
-        }
-        current_statement_begin__ = 26;
         if (!(context__.contains_r("estimate")))
             stan::lang::rethrow_located(std::runtime_error(std::string("Variable estimate missing")), current_statement_begin__, prog_reader__());
         vals_r__ = context__.vals_r("estimate");
@@ -187,13 +172,6 @@ public:
             stan::io::reader<local_scalar_t__> in__(params_r__, params_i__);
             // model parameters
             current_statement_begin__ = 25;
-            local_scalar_t__ sigma;
-            (void) sigma;  // dummy to suppress unused var warning
-            if (jacobian__)
-                sigma = in__.scalar_constrain(lp__);
-            else
-                sigma = in__.scalar_constrain();
-            current_statement_begin__ = 26;
             local_scalar_t__ estimate;
             (void) estimate;  // dummy to suppress unused var warning
             if (jacobian__)
@@ -201,24 +179,18 @@ public:
             else
                 estimate = in__.scalar_constrain();
             // model body
-            current_statement_begin__ = 31;
-            lp_accum__.add(normal_log<propto__>(ybeta, multiply(xbeta, estimate), sigma));
-            current_statement_begin__ = 34;
+            current_statement_begin__ = 30;
+            lp_accum__.add(normal_log<propto__>(ybeta, multiply(xbeta, estimate), 1));
+            current_statement_begin__ = 33;
             if (as_bool(logical_eq(prior, 1))) {
-                current_statement_begin__ = 35;
+                current_statement_begin__ = 34;
                 lp_accum__.add(normal_log<propto__>(estimate, 0, 100));
-                current_statement_begin__ = 36;
-                lp_accum__.add(uniform_log<propto__>(sigma, 1, 10));
             } else if (as_bool(logical_eq(prior, 2))) {
-                current_statement_begin__ = 40;
+                current_statement_begin__ = 38;
                 lp_accum__.add(normal_log<propto__>(estimate, 0, 10));
-                current_statement_begin__ = 41;
-                lp_accum__.add(uniform_log<propto__>(sigma, 1, 10));
             } else {
-                current_statement_begin__ = 45;
+                current_statement_begin__ = 42;
                 lp_accum__.add(cauchy_log<propto__>(estimate, 0, 1));
-                current_statement_begin__ = 46;
-                lp_accum__.add(inv_gamma_log<propto__>(sigma, 0.5, 0.5));
             }
         } catch (const std::exception& e) {
             stan::lang::rethrow_located(e, current_statement_begin__, prog_reader__());
@@ -240,14 +212,11 @@ public:
     }
     void get_param_names(std::vector<std::string>& names__) const {
         names__.resize(0);
-        names__.push_back("sigma");
         names__.push_back("estimate");
     }
     void get_dims(std::vector<std::vector<size_t> >& dimss__) const {
         dimss__.resize(0);
         std::vector<size_t> dims__;
-        dims__.resize(0);
-        dimss__.push_back(dims__);
         dims__.resize(0);
         dimss__.push_back(dims__);
     }
@@ -265,8 +234,6 @@ public:
         static const char* function__ = "model_mrivw_namespace::write_array";
         (void) function__;  // dummy to suppress unused var warning
         // read-transform, write parameters
-        double sigma = in__.scalar_constrain();
-        vars__.push_back(sigma);
         double estimate = in__.scalar_constrain();
         vars__.push_back(estimate);
         double lp__ = 0.0;
@@ -309,9 +276,6 @@ public:
                                  bool include_gqs__ = true) const {
         std::stringstream param_name_stream__;
         param_name_stream__.str(std::string());
-        param_name_stream__ << "sigma";
-        param_names__.push_back(param_name_stream__.str());
-        param_name_stream__.str(std::string());
         param_name_stream__ << "estimate";
         param_names__.push_back(param_name_stream__.str());
         if (!include_gqs__ && !include_tparams__) return;
@@ -323,9 +287,6 @@ public:
                                    bool include_tparams__ = true,
                                    bool include_gqs__ = true) const {
         std::stringstream param_name_stream__;
-        param_name_stream__.str(std::string());
-        param_name_stream__ << "sigma";
-        param_names__.push_back(param_name_stream__.str());
         param_name_stream__.str(std::string());
         param_name_stream__ << "estimate";
         param_names__.push_back(param_name_stream__.str());

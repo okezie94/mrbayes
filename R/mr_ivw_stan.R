@@ -44,7 +44,7 @@ mr_ivw_stan <- function(data,
   ivwfit <- rstan::sampling(
     object = stanmodels$mrivw,
     data = datam,
-    pars = c("estimate", "sigma"),
+    pars = c("estimate"),
     chains = n.chains,
     warmup = n.burn,
     iter = n.iter,
