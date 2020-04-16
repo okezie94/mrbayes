@@ -2,19 +2,24 @@
 #'
 #' Bayesian radial MR-Egger model with a choice of prior distributions fitted using JAGS.
 #'
-#' @param object A data object of class mr_format
-#' @param prior A character string for selecting the prior distributions; "default" selects a non-informative set of priors; "weak" selects weakly informative priors; "pseudo" selects a pseudo-horseshoe prior on the causal effect, "joint" selects a joint prior on the intercept and slope.
+#' @param object A data object of class [`mr_format`].
+#' @param prior A character string for selecting the prior distributions;
+#'
+#' * `"default"` selects a non-informative set of priors;
+#' * `"weak"` selects weakly informative priors;
+#' * `"pseudo"` selects a pseudo-horseshoe prior on the causal effect;
+#' * `"joint"` selects a joint prior on the intercept and slope.
 #' @param betaprior A character string in JAGS syntax to allow a user defined prior for the causal effect.
 #' @param sigmaprior A character string in JAGS syntax to allow a user defined prior for the residual standard deviation.
-#' @param n.chains Numeric indicating the number of chains used in the MCMC estimation, the default is 1 chain.
-#' @param n.burn Numeric indicating the burn-in period of the Bayesian MCMC estimation. The default is 1000 samples.
-#' @param n.iter Numeric indicating the number of iterations in the Bayesian MCMC estimation. The default is 5000 iterations.
+#' @param n.chains Numeric indicating the number of chains used in the MCMC estimation, the default is `3` chains.
+#' @param n.burn Numeric indicating the burn-in period of the Bayesian MCMC estimation. The default is `1000` samples.
+#' @param n.iter Numeric indicating the number of iterations in the Bayesian MCMC estimation. The default is `5000` iterations.
 #' @param seed Numeric indicating the random number seed. The default is the rjags default.
-#' @param rho Numeric indicating the correlation coefficient input into the joint prior distribution. The default is 0.5.
-#' @param ... Additional arguments passed through to `rjags::jags.model()`
+#' @param rho Numeric indicating the correlation coefficient input into the joint prior distribution. The default is `0.5`.
+#' @param ... Additional arguments passed through to [`rjags::jags.model()`].
 #'
 #' @export
-#' @return An object of class radialeggerjags containing the following components:
+#' @return An object of class `radialeggerjags` containing the following components:
 #' \describe{
 #' \item{AvgPleio}{The mean of the simulated pleiotropic effect}
 #' \item{CausalEffect}{The mean of the simulated causal effect}
@@ -27,7 +32,7 @@
 #'
 #' @references Bowden, J., et al., Improving the visualization, interpretation and analysis of two-sample summary data Mendelian randomization via the Radial plot and Radial regression. International Journal of Epidemiology, 2018. 47(4): p. 1264-1278. <https://doi.org/10.1093/ije/dyy101>
 #' @examples
-#' fit <- mr_radialegger_rjags(bmi_insulin, n.chains = 1)
+#' fit <- mr_radialegger_rjags(bmi_insulin)
 #' summary(fit)
 #' plot(fit$samples)
 #' # 90% credible interval
