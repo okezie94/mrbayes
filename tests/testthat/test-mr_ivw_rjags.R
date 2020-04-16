@@ -43,14 +43,14 @@ test_that("IVW using pseudo prior method",
 
 test_that("IVW using beta prior method",
           {
-            ivwfit1 <- mr_ivw_rjags(do_data,
+            ivwfit3 <- mr_ivw_rjags(do_data,
                                     betaprior = "dnorm(0, 1E-6)",
                                     seed = c(123, 456, 789))
-            expect_equal(class(ivwfit1), "ivwjags")
-            expect_equal(unname(ivwfit1$CausalEffect), 0.5, tol = 1e-2)
-            expect_equal(unname(ivwfit1$StandardError), 0.04, tol = 1e-2)
-            expect_equal(unname(ivwfit1$CredibleInterval[1]), 0.44, tol = 1e-2)
-            expect_equal(unname(ivwfit1$CredibleInterval[2]), 0.5, tol = 1e-2)
-            expect_equal(unname(ivwfit1$CredibleInterval[3]), 0.58, tol = 1e-2)
-            expect_equal(class(ivwfit1$samples), "mcmc.list")
+            expect_equal(class(ivwfit3), "ivwjags")
+            expect_equal(unname(ivwfit3$CausalEffect), 0.5, tol = 1e-2)
+            expect_equal(unname(ivwfit3$StandardError), 0.04, tol = 1e-2)
+            expect_equal(unname(ivwfit3$CredibleInterval[1]), 0.44, tol = 1e-2)
+            expect_equal(unname(ivwfit3$CredibleInterval[2]), 0.5, tol = 1e-2)
+            expect_equal(unname(ivwfit3$CredibleInterval[3]), 0.58, tol = 1e-2)
+            expect_equal(class(ivwfit3$samples), "mcmc.list")
           })
