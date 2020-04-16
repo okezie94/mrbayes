@@ -16,7 +16,7 @@ mr_ivw_rjags(
 )
 }
 \arguments{
-\item{object}{A data object of class \code{mr_format}}
+\item{object}{A data object of class \code{\link{mr_format}}.}
 
 \item{prior}{A character string for selecting the prior distributions;
 \itemize{

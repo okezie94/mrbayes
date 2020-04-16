@@ -18,28 +18,34 @@ mr_radialegger_rjags(
 )
 }
 \arguments{
-\item{object}{A data object of class mr_format}
+\item{object}{A data object of class \code{\link{mr_format}}.}
 
-\item{prior}{A character string for selecting the prior distributions; "default" selects a non-informative set of priors; "weak" selects weakly informative priors; "pseudo" selects a pseudo-horseshoe prior on the causal effect, "joint" selects a joint prior on the intercept and slope.}
+\item{prior}{A character string for selecting the prior distributions;
+\itemize{
+\item \code{"default"} selects a non-informative set of priors;
+\item \code{"weak"} selects weakly informative priors;
+\item \code{"pseudo"} selects a pseudo-horseshoe prior on the causal effect;
+\item \code{"joint"} selects a joint prior on the intercept and slope.
+}}
 
 \item{betaprior}{A character string in JAGS syntax to allow a user defined prior for the causal effect.}
 
 \item{sigmaprior}{A character string in JAGS syntax to allow a user defined prior for the residual standard deviation.}
 
-\item{n.chains}{Numeric indicating the number of chains used in the MCMC estimation, the default is 1 chain.}
+\item{n.chains}{Numeric indicating the number of chains used in the MCMC estimation, the default is \code{3} chains.}
 
-\item{n.burn}{Numeric indicating the burn-in period of the Bayesian MCMC estimation. The default is 1000 samples.}
+\item{n.burn}{Numeric indicating the burn-in period of the Bayesian MCMC estimation. The default is \code{1000} samples.}
 
-\item{n.iter}{Numeric indicating the number of iterations in the Bayesian MCMC estimation. The default is 5000 iterations.}
+\item{n.iter}{Numeric indicating the number of iterations in the Bayesian MCMC estimation. The default is \code{5000} iterations.}
 
 \item{seed}{Numeric indicating the random number seed. The default is the rjags default.}
 
-\item{rho}{Numeric indicating the correlation coefficient input into the joint prior distribution. The default is 0.5.}
+\item{rho}{Numeric indicating the correlation coefficient input into the joint prior distribution. The default is \code{0.5}.}
 
-\item{...}{Additional arguments passed through to \code{rjags::jags.model()}}
+\item{...}{Additional arguments passed through to \code{\link[rjags:jags.model]{rjags::jags.model()}}.}
 }
 \value{
-An object of class radialeggerjags containing the following components:
+An object of class \code{radialeggerjags} containing the following components:
 \describe{
 \item{AvgPleio}{The mean of the simulated pleiotropic effect}
 \item{CausalEffect}{The mean of the simulated causal effect}
@@ -54,7 +60,7 @@ An object of class radialeggerjags containing the following components:
 Bayesian radial MR-Egger model with a choice of prior distributions fitted using JAGS.
 }
 \examples{
-fit <- mr_radialegger_rjags(bmi_insulin, n.chains = 1)
+fit <- mr_radialegger_rjags(bmi_insulin)
 summary(fit)
 plot(fit$samples)
 # 90\% credible interval
