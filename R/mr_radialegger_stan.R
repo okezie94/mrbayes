@@ -1,6 +1,6 @@
 #' Bayesian inverse variance weighted model with a choice of prior distributions fitted using Stan.
 #'
-#' Bayesian inverse variance weighted model with a choice of prior distributions fitted using RSTAN.
+#' Bayesian inverse variance weighted model with a choice of prior distributions fitted using Stan
 #'
 #' @param data A data of class [`mr_format`].
 #' @param prior An integer for selecting the prior distributions;
