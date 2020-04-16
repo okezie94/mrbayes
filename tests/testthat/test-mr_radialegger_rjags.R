@@ -1,5 +1,7 @@
 # Radial-Egger Rjags
 
+context("Tests for Radial MR-Egger function using JAGS")
+
 test_that("Check the class of the data object",
           {
             mrdat <- with(do_data, mr_format(rsid, ldlcbeta, chdbeta, ldlcse, chdse))

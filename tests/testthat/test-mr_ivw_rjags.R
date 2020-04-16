@@ -1,6 +1,6 @@
 # Tests for the mrbayes package
 
-context("Tests for mrbayes package")
+context("Tests for IVW function using JAGS")
 
 # Analysis
 ## IVW rjags
