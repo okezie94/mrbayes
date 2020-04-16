@@ -3,18 +3,23 @@
 #' Bayesian implementation of the MR-Egger model with choice of prior distributions fitted using JAGS.
 #'
 #' @param object A data object of class `mr_format`
-#' @param prior A character string for selecting the prior distributions; "default" selects a non-informative set of priors; "weak" selects weakly informative priors; "pseudo" selects a pseudo-horseshoe prior on the causal effect, "joint" selects a joint prior on the intercept and slope
+#' @param prior A character string for selecting the prior distributions;
+#'
+#' * `"default"` selects a non-informative set of priors;
+#' * `"weak"` selects weakly informative priors;
+#' * `"pseudo"` selects a pseudo-horseshoe prior on the causal effect;
+#' * `"joint"` selects a joint prior on the intercept and slope.
 #' @param betaprior A character string in JAGS syntax to allow a user defined prior for the causal effect.
-#' @param sigmaprior A character string in JAGS syntax to allow a user defined prior for the residual standard deviation
-#' @param n.chains Numeric indicating the number of chains used in the MCMC estimation, the default is 1 chain.
-#' @param n.burn Numeric indicating the burn-in period of the Bayesian MCMC estimation. The default is 1000 samples.
-#' @param n.iter Numeric indicating the number of iterations in the Bayesian MCMC estimation. The default is 5000 iterations.
+#' @param sigmaprior A character string in JAGS syntax to allow a user defined prior for the residual standard deviation.
+#' @param n.chains Numeric indicating the number of chains used in the MCMC estimation, the default is `3` chains.
+#' @param n.burn Numeric indicating the burn-in period of the Bayesian MCMC estimation. The default is `1000` samples.
+#' @param n.iter Numeric indicating the number of iterations in the Bayesian MCMC estimation. The default is `5000` iterations.
 #' @param seed Numeric indicating the random number seed. The default is the rjags default.
-#' @param rho Numeric indicating the correlation coefficient input into the joint prior distribution. The default value is 0.5
-#' @param ... Additional arguments passed through to `rjags::jags.model()`
+#' @param rho Numeric indicating the correlation coefficient input into the joint prior distribution. The default value is `0.5`.
+#' @param ... Additional arguments passed through to [`rjags::jags.model()`].
 #'
 #' @export
-#' @return The result object of class eggerjags contains the following components:
+#' @return An object of class `eggerjags` containing the following components:
 #' \describe{
 #' \item{AvgPleio}{The mean of the simulated pleiotropic effect}
 #' \item{CausalEffect}{The mean of the simulated causal effect}
@@ -27,7 +32,7 @@
 #'
 #' @references Bowden et. al., Mendelian randomization with invalid instruments: effect estimation and bias detection through Egger regression. International Journal of Epidemiology 2015. 44(2): p. 512-525. <https://doi.org/10.1093/ije/dyv080>
 #' @examples
-#' fit <- mr_egger_rjags(bmi_insulin, n.chains = 1)
+#' fit <- mr_egger_rjags(bmi_insulin)
 #' summary(fit)
 #' plot(fit$samples)
 #' # 90% credible interval
@@ -39,7 +44,7 @@ mr_egger_rjags <- function(object,
                            prior = "default",
                            betaprior = "",
                            sigmaprior = "",
-                           n.chains = 1,
+                           n.chains = 3,
                            n.burn = 1000,
                            n.iter = 5000,
                            seed = NULL,
