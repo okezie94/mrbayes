@@ -29,7 +29,7 @@ mr_radialegger_stan <- function(data,
                           n.burn = 1000,
                           n.iter = 5000,
                           rho = 0.5,
-                          seed = 234) {
+                          seed = 12345) {
 
   # check class of object
   if (!("mr_format" %in% class(data))) {
