@@ -7,24 +7,29 @@
 mr_ivw_stan(
   data,
   prior = 1,
-  n.chains = 1,
-  n.burn = 200,
-  n.iter = 1000,
-  seed = 234
+  n.chains = 3,
+  n.burn = 1000,
+  n.iter = 5000,
+  seed = 12345
 )
 }
 \arguments{
-\item{data}{A data of class mr_format}
+\item{data}{A data of class \code{\link{mr_format}}.}
 
-\item{prior}{An integer for selecting the prior distributions; "1" selects a non-informative set of priors; "2" selects weakly informative priors; "3" selects a pseudo-horseshoe prior on the causal effect.}
+\item{prior}{An integer for selecting the prior distributions;
+\itemize{
+\item \code{1} selects a non-informative set of priors;
+\item \code{2} selects weakly informative priors;
+\item \code{3} selects a pseudo-horseshoe prior on the causal effect.
+}}
 
-\item{n.chains}{Numeric indicating the number of chains used in the HMC estimation in rstan, the default is 1 chain.}
+\item{n.chains}{Numeric indicating the number of chains used in the HMC estimation in rstan, the default is \code{3} chains.}
 
-\item{n.burn}{Numeric indicating the burn-in period of the Bayesian HMC estimation. The default is 200 samples.}
+\item{n.burn}{Numeric indicating the burn-in period of the Bayesian HMC estimation. The default is \code{1000} samples.}
 
-\item{n.iter}{Numeric indicating the number of iterations in the Bayesian MCMC estimation. The default is 1000 iterations.}
+\item{n.iter}{Numeric indicating the number of iterations in the Bayesian MCMC estimation. The default is \code{5000} iterations.}
 
-\item{seed}{Numeric indicating the random number seed. The default is 234.}
+\item{seed}{Numeric indicating the random number seed. The default is \code{12345}.}
 }
 \description{
 Bayesian inverse variance weighted model with a choice of prior distributions fitted using RSTAN.
