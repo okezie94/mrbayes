@@ -2,7 +2,7 @@
 % Please edit documentation in R/mr_ivw_stan.R
 \name{mr_ivw_stan}
 \alias{mr_ivw_stan}
-\title{Bayesian inverse variance weighted model with a choice of prior distributions fitted using RSTAN.}
+\title{Bayesian inverse variance weighted model with a choice of prior distributions fitted using Stan.}
 \usage{
 mr_ivw_stan(
   data,
@@ -35,7 +35,7 @@ mr_ivw_stan(
 An object of class \code{\link{stanfit}}.
 }
 \description{
-Bayesian inverse variance weighted model with a choice of prior distributions fitted using RSTAN.
+Bayesian inverse variance weighted model with a choice of prior distributions fitted using Stan.
 }
 \examples{
 ivw_fit <- mr_ivw_stan(bmi_insulin)
