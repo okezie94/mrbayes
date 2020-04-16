@@ -9,7 +9,7 @@ mr_radialegger_rjags(
   prior = "default",
   betaprior = "",
   sigmaprior = "",
-  n.chains = 1,
+  n.chains = 3,
   n.burn = 1000,
   n.iter = 5000,
   seed = NULL,
