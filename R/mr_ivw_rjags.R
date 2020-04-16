@@ -3,7 +3,11 @@
 #' Bayesian inverse variance weighted model with a choice of prior distributions fitted using JAGS.
 #'
 #' @param object A data object of class `mr_format`
-#' @param prior A character string for selecting the prior distributions; `"default"` selects a non-informative set of priors; `"weak"` selects weakly informative priors; `"pseudo"` selects a pseudo-horseshoe prior on the causal effect.
+#' @param prior A character string for selecting the prior distributions;
+#'
+#' * `"default"` selects a non-informative set of priors;
+#' * `"weak"` selects weakly informative priors;
+#' * `"pseudo"` selects a pseudo-horseshoe prior on the causal effect.
 #' @param betaprior A character string in JAGS syntax to allow a user defined prior for the causal effect.
 #' @param n.chains Numeric indicating the number of chains used in the MCMC estimation, the default is `3` chains.
 #' @param n.burn Numeric indicating the burn-in period of the Bayesian MCMC estimation. The default is `1000` samples.

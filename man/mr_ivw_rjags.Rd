@@ -18,7 +18,12 @@ mr_ivw_rjags(
 \arguments{
 \item{object}{A data object of class \code{mr_format}}
 
-\item{prior}{A character string for selecting the prior distributions; \code{"default"} selects a non-informative set of priors; \code{"weak"} selects weakly informative priors; \code{"pseudo"} selects a pseudo-horseshoe prior on the causal effect.}
+\item{prior}{A character string for selecting the prior distributions;
+\itemize{
+\item \code{"default"} selects a non-informative set of priors;
+\item \code{"weak"} selects weakly informative priors;
+\item \code{"pseudo"} selects a pseudo-horseshoe prior on the causal effect.
+}}
 
 \item{betaprior}{A character string in JAGS syntax to allow a user defined prior for the causal effect.}
 
