@@ -15,8 +15,6 @@
 #' ivw_fit <- mr_ivw_stan(bmi_insulin)
 #' print(ivw_fit)
 #' @export
-
-
 mr_ivw_stan <- function(data,
                         prior = 1,
                         n.chains = 1,
