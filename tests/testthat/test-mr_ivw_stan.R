@@ -8,14 +8,13 @@ context("Tests for mr_ivw_stan() function")
 test_that("IVW using default prior method",
           {
             ivwfit <- mr_ivw_stan(do_data, seed = 123)
-            expect_equal(class(ivwfit), "ivwjags")
-            expect_equal(unname(ivwfit$CausalEffect), 0.5, tol = 1e-2)
-            expect_equal(unname(ivwfit$StandardError), 0.04, tol = 1e-2)
-            expect_equal(unname(ivwfit$CredibleInterval)[1], 0.44, tol = 1e-2)
-            expect_equal(unname(ivwfit$CredibleInterval)[2], 0.50, tol = 1e-2)
-            expect_equal(unname(ivwfit$CredibleInterval)[3], 0.58, tol = 1e-2)
-            expect_equal(class(ivwfit$samples), "mcmc.list")
-            expect_equal(ivwfit$priormethod, "default")
+            summfit <- rstan::summary(ivwfit)
+            expect_equal(class(ivwfit)[1], "stanfit")
+            expect_equal(summfit$summary["estimate","mean"], 0.5, tol = 1e-2)
+            expect_equal(summfit$summary["estimate","sd"], 0.05, tol = 1e-2) # 0.04 ??
+            expect_equal(summfit$summary["estimate","2.5%"], 0.38, tol = 1e-2) # .44 ??
+            expect_equal(summfit$summary["estimate","50%"], 0.50, tol = 1e-2)
+            expect_equal(summfit$summary["estimate","97.5%"], 0.61, tol = 1e-2) # .58
           })
 #
 
