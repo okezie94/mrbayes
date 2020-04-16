@@ -10,6 +10,8 @@
 #' @param rho Numeric indicating the correlation coefficient input into the joint prior distribution. The default is 0.5.
 #' @param seed Numeric indicating the random number seed. The default is 234.
 #'
+#' @return An object of class [`stanfit`].
+#'
 #' @references Burgess, S., Butterworth, A., Thompson S.G. Mendelian randomization analysis with multiple genetic variants using summarized data. Genetic Epidemiology, 2013, 37, 7, 658-665 <https://dx.doi.org/10.1002/gepi.21758>.
 #'
 #' @export

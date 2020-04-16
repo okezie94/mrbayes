@@ -13,6 +13,8 @@
 #' @param n.iter Numeric indicating the number of iterations in the Bayesian MCMC estimation. The default is `5000` iterations.
 #' @param seed Numeric indicating the random number seed. The default is `12345`.
 #'
+#' @return An object of class [`stanfit`].
+#'
 #' @references Burgess, S., Butterworth, A., Thompson S.G. Mendelian randomization analysis with multiple genetic variants using summarized data. Genetic Epidemiology, 2013, 37, 7, 658-665 <https://dx.doi.org/10.1002/gepi.21758>.
 #'
 #' @examples
