@@ -50,4 +50,6 @@ print(egger_fit)
 }
 \references{
 Bowden J, Davey Smith G, Burgess S. Mendelian randomization with invalid instruments: effect estimation and bias detection through Egger regression. International Journal of Epidemiology, 2015, 44, 2, 512-525. \url{http://dx.doi.org/10.1093/ije/dyv080}.
+
+Stan Development Team (2020). “RStan: the R interface to Stan.” R package version 2.19.3, \url{http://mc-stan.org/.}.
 }

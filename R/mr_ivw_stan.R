@@ -1,6 +1,6 @@
-#' Bayesian inverse variance weighted model with a choice of prior distributions fitted using Stan.
+#' Bayesian inverse variance weighted model with a choice of prior distributions fitted using RStan.
 #'
-#' Bayesian inverse variance weighted model with a choice of prior distributions fitted using Stan.
+#' Bayesian inverse variance weighted model with a choice of prior distributions fitted using RStan.
 #'
 #' @param data A data of class [`mr_format`].
 #' @param prior An integer for selecting the prior distributions;
@@ -17,6 +17,7 @@
 #' @return An object of class [`stanfit`].
 #'
 #' @references Burgess, S., Butterworth, A., Thompson S.G. Mendelian randomization analysis with multiple genetic variants using summarized data. Genetic Epidemiology, 2013, 37, 7, 658-665 <https://dx.doi.org/10.1002/gepi.21758>.
+#' @references Stan Development Team (2020). “RStan: the R interface to Stan.” R package version 2.19.3, <http://mc-stan.org/.>.
 #'
 #' @examples
 #' ivw_fit <- mr_ivw_stan(bmi_insulin)

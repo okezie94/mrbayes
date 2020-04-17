@@ -2,7 +2,7 @@
 % Please edit documentation in R/mr_radialegger_stan.R
 \name{mr_radialegger_stan}
 \alias{mr_radialegger_stan}
-\title{Bayesian inverse variance weighted model with a choice of prior distributions fitted using Stan.}
+\title{Bayesian inverse variance weighted model with a choice of prior distributions fitted using RStan.}
 \usage{
 mr_radialegger_stan(
   data,
@@ -42,7 +42,7 @@ mr_radialegger_stan(
 An object of class \code{\link{stanfit}}.
 }
 \description{
-Bayesian inverse variance weighted model with a choice of prior distributions fitted using Stan
+Bayesian inverse variance weighted model with a choice of prior distributions fitted using RStan
 }
 \examples{
 radegger_fit <- mr_radialegger_stan(bmi_insulin)
@@ -50,4 +50,6 @@ print(radegger_fit)
 }
 \references{
 Bowden, J., et al., Improving the visualization, interpretation and analysis of two-sample summary data Mendelian randomization via the Radial plot and Radial regression. International Journal of Epidemiology, 2018. 47(4): p. 1264-1278. \url{https://doi.org/10.1093/ije/dyy101}.
+
+Stan Development Team (2020). “RStan: the R interface to Stan.” R package version 2.19.3, \url{http://mc-stan.org/.}.
 }

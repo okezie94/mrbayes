@@ -2,7 +2,7 @@
 % Please edit documentation in R/mr_ivw_stan.R
 \name{mr_ivw_stan}
 \alias{mr_ivw_stan}
-\title{Bayesian inverse variance weighted model with a choice of prior distributions fitted using Stan.}
+\title{Bayesian inverse variance weighted model with a choice of prior distributions fitted using RStan.}
 \usage{
 mr_ivw_stan(
   data,
@@ -38,7 +38,7 @@ mr_ivw_stan(
 An object of class \code{\link{stanfit}}.
 }
 \description{
-Bayesian inverse variance weighted model with a choice of prior distributions fitted using Stan.
+Bayesian inverse variance weighted model with a choice of prior distributions fitted using RStan.
 }
 \examples{
 ivw_fit <- mr_ivw_stan(bmi_insulin)
@@ -47,4 +47,6 @@ rstan::traceplot(ivw_fit)
 }
 \references{
 Burgess, S., Butterworth, A., Thompson S.G. Mendelian randomization analysis with multiple genetic variants using summarized data. Genetic Epidemiology, 2013, 37, 7, 658-665 \url{https://dx.doi.org/10.1002/gepi.21758}.
+
+Stan Development Team (2020). “RStan: the R interface to Stan.” R package version 2.19.3, \url{http://mc-stan.org/.}.
 }
