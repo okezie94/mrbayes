@@ -9,14 +9,10 @@
 #' @format A data frame with 185 rows and 9 columns:
 #' \describe{
 #'       \item{rsid}{SNPs RSID number}
-#'       \item{ldlcbeta}{The genotype-phenotype associations for low-density lipoprotein cholestrol}
-#'       \item{hdlcbeta}{The genotype-phenotype associations for high-density lipoprotein cholestrol}
-#'       \item{tgbeta}{The genotype-phenotype associations for triglycerides}
-#'       \item{chdbeta}{The genotype-outcome associations in this case the outcome is coronary heart disease}
-#'       \item{ldlcse}{The standard errors of the genotype-low-density lipoprotein cholestrol associations}
-#'       \item{hdlcse}{The standard errors of the genotype-high-density lipoprotein cholestrol associations}
-#'       \item{tgse}{The standard errors of the genotype-triglyceride associations}
-#'       \item{chdse}{The standard errors of the genotype-outcome coronary heart disease associations}
+#'       \item{beta.exposure}{The genotype-phenotype associations for low-density lipoprotein cholestrol}
+#'       \item{beta.outcome}{The genotype-outcome associations in this case the outcome is coronary heart disease}
+#'       \item{se.exposure}{The standard errors of the genotype-low-density lipoprotein cholestrol associations}
+#'       \item{se.outcome}{The standard errors of the genotype-outcome coronary heart disease associations}
 #'  }
 #' @references Do, R. et al., Common variants associated with plasma triglycerides and risk for coronary artery disease. Nature Genetics, 2013, 45, 1345-1352, <https://dx.doi.org/10.1038/ng.2795>.
 #'
