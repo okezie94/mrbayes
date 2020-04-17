@@ -2,15 +2,18 @@ Package: mrbayes
 Type: Package
 Title: Bayesian Summary Data Models for Mendelian Randomization Studies
 Version: 0.2.0
-Authors@R: c(person("Okezie", "Uche-Ikonne", 
-  email = "o.uche-ikonne@lancaster.ac.uk",
-  role = c("aut", "cre"),
-  comment = c(ORCID = "0000-0002-8461-8099")),
+Authors@R: c(
+  person("Okezie", "Uche-Ikonne",
+    email = "o.uche-ikonne@lancaster.ac.uk",
+    role = c("aut", "cre"),
+    comment = c(ORCID = "0000-0002-8461-8099")),
   person("Frank", "Dondelinger",
-  email = "f.dondelinger@lancaster.ac.uk", role = c("aut"),
-  comment = c(ORCID = "0000-0003-1816-6300")),
+    email = "f.dondelinger@lancaster.ac.uk", 
+    role = c("aut"),
+    comment = c(ORCID = "0000-0003-1816-6300")),
   person("Tom", "Palmer", 
-    email = "tom.palmer@lancaster.ac.uk", role = c("aut"),
+    email = "tom.palmer@lancaster.ac.uk", 
+    role = c("aut"),
     comment = c(ORCID = "0000-0003-4655-4511")))
 Description: Bayesian estimation of inverse variance weighted (IVW), Burgess 
     et al. (2013) <doi:10.1002/gepi.21758>, and MR-Egger, Bowden et 

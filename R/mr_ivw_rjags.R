@@ -1,16 +1,22 @@
 #' Bayesian inverse variance weighted model with a choice of prior distributions fitted using JAGS.
 #'
-#' @param object A data object of class mr_format
-#' @param prior A character string for selecting the prior distributions; "default" selects a non-informative set of priors; "weak" selects weakly informative priors; "pseudo" selects a pseudo-horseshoe prior on the causal effect.
+#' Bayesian inverse variance weighted model with a choice of prior distributions fitted using JAGS.
+#'
+#' @param object A data object of class [`mr_format`].
+#' @param prior A character string for selecting the prior distributions;
+#'
+#' * `"default"` selects a non-informative set of priors;
+#' * `"weak"` selects weakly informative priors;
+#' * `"pseudo"` selects a pseudo-horseshoe prior on the causal effect.
 #' @param betaprior A character string in JAGS syntax to allow a user defined prior for the causal effect.
-#' @param n.chains Numeric indicating the number of chains used in the MCMC estimation, the default is 1 chain.
-#' @param n.burn Numeric indicating the burn-in period of the Bayesian MCMC estimation. The default is 1000 samples.
-#' @param n.iter Numeric indicating the number of iterations in the Bayesian MCMC estimation. The default is 5000 iterations.
+#' @param n.chains Numeric indicating the number of chains used in the MCMC estimation, the default is `3` chains.
+#' @param n.burn Numeric indicating the burn-in period of the Bayesian MCMC estimation. The default is `1000` samples.
+#' @param n.iter Numeric indicating the number of iterations in the Bayesian MCMC estimation. The default is `5000` iterations.
 #' @param seed Numeric indicating the random number seed. The default is the rjags default.
-#' @param ... Additional arguments passed through to `rjags::jags.model()`
+#' @param ... Additional arguments passed through to [`rjags::jags.model()`].
 #'
 #' @export
-#' @return An object of class ivwjags containing the following components:
+#' @return An object of class `ivwjags` containing the following components:
 #' \describe{
 #' \item{CausalEffect}{The mean of the simulated causal effects}
 #' \item{StandardError}{Standard deviation of the simulated causal effects}
@@ -22,7 +28,6 @@
 #' @references Burgess, S., Butterworth, A., Thompson S.G. Mendelian randomization analysis with multiple genetic variants using summarized data. Genetic Epidemiology, 2013, 37, 7, 658-665 <https://dx.doi.org/10.1002/gepi.21758>.
 #'
 #' @examples
-#' data(bmi_insulin)
 #' fit <- mr_ivw_rjags(bmi_insulin)
 #' print(fit)
 #' summary(fit)
@@ -35,7 +40,7 @@
 mr_ivw_rjags <- function(object,
                          prior = "default",
                          betaprior = "",
-                         n.chains = 1,
+                         n.chains = 3,
                          n.burn = 1000,
                          n.iter = 5000,
                          seed = NULL,

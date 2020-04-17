@@ -13,36 +13,32 @@
 // The input data is a vector 'y' of length 'N'.
 
 data {
-    int<lower=0> n; // number of instruments 
-    vector[n] ybeta; // instrument outcome associations
-    vector[n] xbeta; // instrument exposure associations
+    int<lower=0> n; // number of instruments
+    vector[n] ybeta; // weighted instrument-outcome associations
+    vector[n] xbeta; // weighted instrument-exposure associations
     int<lower=1, upper=3> prior;  // prior options
 }
 
 parameters {
     // intercept and noise sd
-    //real intercept;
-    real sigma;
+    // real intercept;
     real estimate;
 }
 
 model {
-    
-    ybeta ~ normal(xbeta*estimate, sigma);
+
+    ybeta ~ normal(xbeta*estimate, 1);
     // priors
     // Non-informative prior
     if (prior == 1){
       estimate ~ normal(0,100);
-      sigma ~ uniform(1,10);
     }
     // Weakly informative prior
     else if (prior == 2){
       estimate ~ normal(0,10);
-      sigma ~ uniform(1,10);
     }
     // Pseudo-horseshoe prior
     else {
       estimate ~ cauchy(0,1);
-      sigma ~ inv_gamma(0.5,0.5);
     }
 }
