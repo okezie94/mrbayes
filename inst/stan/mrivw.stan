@@ -14,14 +14,14 @@
 
 data {
     int<lower=0> n; // number of instruments
-    vector[n] ybeta; // instrument-outcome associations
-    vector[n] xbeta; // instrument-exposure associations
+    vector[n] ybeta; // weighted instrument-outcome associations
+    vector[n] xbeta; // weighted instrument-exposure associations
     int<lower=1, upper=3> prior;  // prior options
 }
 
 parameters {
     // intercept and noise sd
-    //real intercept;
+    // real intercept;
     real estimate;
 }
 
