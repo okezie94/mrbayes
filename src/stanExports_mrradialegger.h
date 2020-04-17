@@ -33,7 +33,7 @@ static int current_statement_begin__;
 stan::io::program_reader prog_reader__() {
     stan::io::program_reader reader;
     reader.add_event(0, 0, "start", "model_mrradialegger");
-    reader.add_event(90, 88, "end", "model_mrradialegger");
+    reader.add_event(97, 95, "end", "model_mrradialegger");
     return reader;
 }
 #include <stan_meta_header.hpp>
@@ -152,9 +152,6 @@ public:
             num_params_r__ += 1;
             current_statement_begin__ = 37;
             num_params_r__ += 1;
-            current_statement_begin__ = 38;
-            validate_non_negative_index("eta", "2", 2);
-            num_params_r__ += 2;
         } catch (const std::exception& e) {
             stan::lang::rethrow_located(e, current_statement_begin__, prog_reader__());
             // Next line prevents compiler griping about no return
@@ -211,23 +208,6 @@ public:
         } catch (const std::exception& e) {
             stan::lang::rethrow_located(std::runtime_error(std::string("Error transforming variable estimate: ") + e.what()), current_statement_begin__, prog_reader__());
         }
-        current_statement_begin__ = 38;
-        if (!(context__.contains_r("eta")))
-            stan::lang::rethrow_located(std::runtime_error(std::string("Variable eta missing")), current_statement_begin__, prog_reader__());
-        vals_r__ = context__.vals_r("eta");
-        pos__ = 0U;
-        validate_non_negative_index("eta", "2", 2);
-        context__.validate_dims("parameter initialization", "eta", "vector_d", context__.to_vec(2));
-        Eigen::Matrix<double, Eigen::Dynamic, 1> eta(2);
-        size_t eta_j_1_max__ = 2;
-        for (size_t j_1__ = 0; j_1__ < eta_j_1_max__; ++j_1__) {
-            eta(j_1__) = vals_r__[pos__++];
-        }
-        try {
-            writer__.vector_unconstrain(eta);
-        } catch (const std::exception& e) {
-            stan::lang::rethrow_located(std::runtime_error(std::string("Error transforming variable eta: ") + e.what()), current_statement_begin__, prog_reader__());
-        }
         params_r__ = writer__.data_r();
         params_i__ = writer__.data_i();
     }
@@ -274,37 +254,45 @@ public:
                 estimate = in__.scalar_constrain(lp__);
             else
                 estimate = in__.scalar_constrain();
-            current_statement_begin__ = 38;
-            Eigen::Matrix<local_scalar_t__, Eigen::Dynamic, 1> eta;
-            (void) eta;  // dummy to suppress unused var warning
-            if (jacobian__)
-                eta = in__.vector_constrain(2, lp__);
-            else
-                eta = in__.vector_constrain(2);
             // transformed parameters
             current_statement_begin__ = 42;
+            validate_non_negative_index("eta", "2", 2);
+            Eigen::Matrix<local_scalar_t__, Eigen::Dynamic, 1> eta(2);
+            stan::math::initialize(eta, DUMMY_VAR__);
+            stan::math::fill(eta, DUMMY_VAR__);
+            current_statement_begin__ = 43;
             validate_non_negative_index("Sigma", "2", 2);
             validate_non_negative_index("Sigma", "2", 2);
             Eigen::Matrix<local_scalar_t__, Eigen::Dynamic, Eigen::Dynamic> Sigma(2, 2);
             stan::math::initialize(Sigma, DUMMY_VAR__);
             stan::math::fill(Sigma, DUMMY_VAR__);
             // transformed parameters block statements
-            current_statement_begin__ = 43;
+            current_statement_begin__ = 45;
+            stan::model::assign(eta, 
+                        stan::model::cons_list(stan::model::index_uni(1), stan::model::nil_index_list()), 
+                        intercept, 
+                        "assigning variable eta");
+            current_statement_begin__ = 46;
+            stan::model::assign(eta, 
+                        stan::model::cons_list(stan::model::index_uni(2), stan::model::nil_index_list()), 
+                        estimate, 
+                        "assigning variable eta");
+            current_statement_begin__ = 48;
             stan::model::assign(Sigma, 
                         stan::model::cons_list(stan::model::index_uni(1), stan::model::cons_list(stan::model::index_uni(1), stan::model::nil_index_list())), 
                         square(get_base1(tau, 1, "tau", 1)), 
                         "assigning variable Sigma");
-            current_statement_begin__ = 44;
+            current_statement_begin__ = 49;
             stan::model::assign(Sigma, 
                         stan::model::cons_list(stan::model::index_uni(2), stan::model::cons_list(stan::model::index_uni(2), stan::model::nil_index_list())), 
                         square(get_base1(tau, 2, "tau", 1)), 
                         "assigning variable Sigma");
-            current_statement_begin__ = 45;
+            current_statement_begin__ = 50;
             stan::model::assign(Sigma, 
                         stan::model::cons_list(stan::model::index_uni(1), stan::model::cons_list(stan::model::index_uni(2), stan::model::nil_index_list())), 
                         ((rho * get_base1(tau, 1, "tau", 1)) * get_base1(tau, 2, "tau", 1)), 
                         "assigning variable Sigma");
-            current_statement_begin__ = 46;
+            current_statement_begin__ = 51;
             stan::model::assign(Sigma, 
                         stan::model::cons_list(stan::model::index_uni(2), stan::model::cons_list(stan::model::index_uni(1), stan::model::nil_index_list())), 
                         get_base1(Sigma, 1, 2, "Sigma", 1), 
@@ -313,6 +301,15 @@ public:
             const char* function__ = "validate transformed params";
             (void) function__;  // dummy to suppress unused var warning
             current_statement_begin__ = 42;
+            size_t eta_j_1_max__ = 2;
+            for (size_t j_1__ = 0; j_1__ < eta_j_1_max__; ++j_1__) {
+                if (stan::math::is_uninitialized(eta(j_1__))) {
+                    std::stringstream msg__;
+                    msg__ << "Undefined transformed parameter: eta" << "(" << j_1__ << ")";
+                    stan::lang::rethrow_located(std::runtime_error(std::string("Error initializing variable eta: ") + msg__.str()), current_statement_begin__, prog_reader__());
+                }
+            }
+            current_statement_begin__ = 43;
             size_t Sigma_j_1_max__ = 2;
             size_t Sigma_j_2_max__ = 2;
             for (size_t j_1__ = 0; j_1__ < Sigma_j_1_max__; ++j_1__) {
@@ -326,41 +323,41 @@ public:
             }
             stan::math::check_cov_matrix(function__, "Sigma", Sigma);
             // model body
-            current_statement_begin__ = 53;
+            current_statement_begin__ = 58;
             if (as_bool(logical_eq(prior, 1))) {
-                current_statement_begin__ = 54;
-                lp_accum__.add(normal_log<propto__>(intercept, 0, 100));
-                current_statement_begin__ = 55;
-                lp_accum__.add(normal_log<propto__>(estimate, 0, 100));
-                current_statement_begin__ = 56;
-                lp_accum__.add(uniform_log<propto__>(sigma, 1, 10));
                 current_statement_begin__ = 59;
+                lp_accum__.add(normal_log<propto__>(intercept, 0, 100));
+                current_statement_begin__ = 60;
+                lp_accum__.add(normal_log<propto__>(estimate, 0, 100));
+                current_statement_begin__ = 61;
+                lp_accum__.add(uniform_log<propto__>(sigma, 1, 10));
+                current_statement_begin__ = 64;
                 lp_accum__.add(normal_log<propto__>(ybeta, add(intercept, multiply(xbeta, estimate)), sigma));
             } else if (as_bool(logical_eq(prior, 2))) {
-                current_statement_begin__ = 63;
-                lp_accum__.add(normal_log<propto__>(intercept, 0, 10));
-                current_statement_begin__ = 64;
-                lp_accum__.add(normal_log<propto__>(estimate, 0, 10));
-                current_statement_begin__ = 65;
-                lp_accum__.add(uniform_log<propto__>(sigma, 1, 10));
                 current_statement_begin__ = 68;
+                lp_accum__.add(normal_log<propto__>(intercept, 0, 10));
+                current_statement_begin__ = 69;
+                lp_accum__.add(normal_log<propto__>(estimate, 0, 10));
+                current_statement_begin__ = 70;
+                lp_accum__.add(uniform_log<propto__>(sigma, 1, 10));
+                current_statement_begin__ = 73;
                 lp_accum__.add(normal_log<propto__>(ybeta, add(intercept, multiply(xbeta, estimate)), sigma));
             } else if (as_bool(logical_eq(prior, 3))) {
-                current_statement_begin__ = 72;
-                lp_accum__.add(normal_log<propto__>(intercept, 0, 10));
-                current_statement_begin__ = 73;
-                lp_accum__.add(cauchy_log<propto__>(estimate, 0, 1));
-                current_statement_begin__ = 74;
-                lp_accum__.add(inv_gamma_log<propto__>(sigma, 0.5, 0.5));
                 current_statement_begin__ = 77;
+                lp_accum__.add(normal_log<propto__>(intercept, 0, 10));
+                current_statement_begin__ = 78;
+                lp_accum__.add(cauchy_log<propto__>(estimate, 0, 1));
+                current_statement_begin__ = 79;
+                lp_accum__.add(inv_gamma_log<propto__>(sigma, 0.5, 0.5));
+                current_statement_begin__ = 82;
                 lp_accum__.add(normal_log<propto__>(ybeta, add(intercept, multiply(xbeta, estimate)), sigma));
             } else {
-                current_statement_begin__ = 82;
-                lp_accum__.add(multi_normal_log<propto__>(eta, mu, Sigma));
-                current_statement_begin__ = 83;
+                current_statement_begin__ = 88;
+                lp_accum__.add(multi_normal_log(eta, mu, Sigma));
+                current_statement_begin__ = 89;
                 lp_accum__.add(uniform_log<propto__>(sigma, 1, 10));
-                current_statement_begin__ = 86;
-                lp_accum__.add(normal_log<propto__>(ybeta, add(get_base1(eta, 1, "eta", 1), multiply(xbeta, get_base1(eta, 2, "eta", 1))), sigma));
+                current_statement_begin__ = 93;
+                lp_accum__.add(normal_log<propto__>(ybeta, add(intercept, multiply(xbeta, estimate)), sigma));
             }
         } catch (const std::exception& e) {
             stan::lang::rethrow_located(e, current_statement_begin__, prog_reader__());
@@ -425,11 +422,6 @@ public:
         vars__.push_back(sigma);
         double estimate = in__.scalar_constrain();
         vars__.push_back(estimate);
-        Eigen::Matrix<double, Eigen::Dynamic, 1> eta = in__.vector_constrain(2);
-        size_t eta_j_1_max__ = 2;
-        for (size_t j_1__ = 0; j_1__ < eta_j_1_max__; ++j_1__) {
-            vars__.push_back(eta(j_1__));
-        }
         double lp__ = 0.0;
         (void) lp__;  // dummy to suppress unused var warning
         stan::math::accumulator<double> lp_accum__;
@@ -439,28 +431,43 @@ public:
         try {
             // declare and define transformed parameters
             current_statement_begin__ = 42;
+            validate_non_negative_index("eta", "2", 2);
+            Eigen::Matrix<double, Eigen::Dynamic, 1> eta(2);
+            stan::math::initialize(eta, DUMMY_VAR__);
+            stan::math::fill(eta, DUMMY_VAR__);
+            current_statement_begin__ = 43;
             validate_non_negative_index("Sigma", "2", 2);
             validate_non_negative_index("Sigma", "2", 2);
             Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> Sigma(2, 2);
             stan::math::initialize(Sigma, DUMMY_VAR__);
             stan::math::fill(Sigma, DUMMY_VAR__);
             // do transformed parameters statements
-            current_statement_begin__ = 43;
+            current_statement_begin__ = 45;
+            stan::model::assign(eta, 
+                        stan::model::cons_list(stan::model::index_uni(1), stan::model::nil_index_list()), 
+                        intercept, 
+                        "assigning variable eta");
+            current_statement_begin__ = 46;
+            stan::model::assign(eta, 
+                        stan::model::cons_list(stan::model::index_uni(2), stan::model::nil_index_list()), 
+                        estimate, 
+                        "assigning variable eta");
+            current_statement_begin__ = 48;
             stan::model::assign(Sigma, 
                         stan::model::cons_list(stan::model::index_uni(1), stan::model::cons_list(stan::model::index_uni(1), stan::model::nil_index_list())), 
                         square(get_base1(tau, 1, "tau", 1)), 
                         "assigning variable Sigma");
-            current_statement_begin__ = 44;
+            current_statement_begin__ = 49;
             stan::model::assign(Sigma, 
                         stan::model::cons_list(stan::model::index_uni(2), stan::model::cons_list(stan::model::index_uni(2), stan::model::nil_index_list())), 
                         square(get_base1(tau, 2, "tau", 1)), 
                         "assigning variable Sigma");
-            current_statement_begin__ = 45;
+            current_statement_begin__ = 50;
             stan::model::assign(Sigma, 
                         stan::model::cons_list(stan::model::index_uni(1), stan::model::cons_list(stan::model::index_uni(2), stan::model::nil_index_list())), 
                         ((rho * get_base1(tau, 1, "tau", 1)) * get_base1(tau, 2, "tau", 1)), 
                         "assigning variable Sigma");
-            current_statement_begin__ = 46;
+            current_statement_begin__ = 51;
             stan::model::assign(Sigma, 
                         stan::model::cons_list(stan::model::index_uni(2), stan::model::cons_list(stan::model::index_uni(1), stan::model::nil_index_list())), 
                         get_base1(Sigma, 1, 2, "Sigma", 1), 
@@ -469,10 +476,14 @@ public:
             // validate transformed parameters
             const char* function__ = "validate transformed params";
             (void) function__;  // dummy to suppress unused var warning
-            current_statement_begin__ = 42;
+            current_statement_begin__ = 43;
             stan::math::check_cov_matrix(function__, "Sigma", Sigma);
             // write transformed parameters
             if (include_tparams__) {
+                size_t eta_j_1_max__ = 2;
+                for (size_t j_1__ = 0; j_1__ < eta_j_1_max__; ++j_1__) {
+                    vars__.push_back(eta(j_1__));
+                }
                 size_t Sigma_j_2_max__ = 2;
                 size_t Sigma_j_1_max__ = 2;
                 for (size_t j_2__ = 0; j_2__ < Sigma_j_2_max__; ++j_2__) {
@@ -521,14 +532,14 @@ public:
         param_name_stream__.str(std::string());
         param_name_stream__ << "estimate";
         param_names__.push_back(param_name_stream__.str());
-        size_t eta_j_1_max__ = 2;
-        for (size_t j_1__ = 0; j_1__ < eta_j_1_max__; ++j_1__) {
-            param_name_stream__.str(std::string());
-            param_name_stream__ << "eta" << '.' << j_1__ + 1;
-            param_names__.push_back(param_name_stream__.str());
-        }
         if (!include_gqs__ && !include_tparams__) return;
         if (include_tparams__) {
+            size_t eta_j_1_max__ = 2;
+            for (size_t j_1__ = 0; j_1__ < eta_j_1_max__; ++j_1__) {
+                param_name_stream__.str(std::string());
+                param_name_stream__ << "eta" << '.' << j_1__ + 1;
+                param_names__.push_back(param_name_stream__.str());
+            }
             size_t Sigma_j_2_max__ = 2;
             size_t Sigma_j_1_max__ = 2;
             for (size_t j_2__ = 0; j_2__ < Sigma_j_2_max__; ++j_2__) {
@@ -554,14 +565,14 @@ public:
         param_name_stream__.str(std::string());
         param_name_stream__ << "estimate";
         param_names__.push_back(param_name_stream__.str());
-        size_t eta_j_1_max__ = 2;
-        for (size_t j_1__ = 0; j_1__ < eta_j_1_max__; ++j_1__) {
-            param_name_stream__.str(std::string());
-            param_name_stream__ << "eta" << '.' << j_1__ + 1;
-            param_names__.push_back(param_name_stream__.str());
-        }
         if (!include_gqs__ && !include_tparams__) return;
         if (include_tparams__) {
+            size_t eta_j_1_max__ = 2;
+            for (size_t j_1__ = 0; j_1__ < eta_j_1_max__; ++j_1__) {
+                param_name_stream__.str(std::string());
+                param_name_stream__ << "eta" << '.' << j_1__ + 1;
+                param_names__.push_back(param_name_stream__.str());
+            }
             size_t Sigma_j_1_max__ = (2 + ((2 * (2 - 1)) / 2));
             for (size_t j_1__ = 0; j_1__ < Sigma_j_1_max__; ++j_1__) {
                 param_name_stream__.str(std::string());
