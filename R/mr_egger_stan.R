@@ -14,10 +14,11 @@
 #' @param n.iter Numeric indicating the number of iterations in the Bayesian HMC estimation. The default is `5000` iterations.
 #' @param rho Numeric indicating the correlation coefficient input into the joint prior distribution. The default is `0.5`.
 #' @param seed Numeric indicating the random number seed. The default is `12345`.
+#' @param ... Additional arguments passed through to [`rstan::sampling()`].
 #'
 #' @return An object of class [`stanfit`].
 #'
-#' @references Burgess, S., Butterworth, A., Thompson S.G. Mendelian randomization analysis with multiple genetic variants using summarized data. Genetic Epidemiology, 2013, 37, 7, 658-665 <https://dx.doi.org/10.1002/gepi.21758>.
+#' @references Bowden J, Davey Smith G, Burgess S. Mendelian randomization with invalid instruments: effect estimation and bias detection through Egger regression. International Journal of Epidemiology, 2015, 44, 2, 512-525. <http://dx.doi.org/10.1093/ije/dyv080>.
 #'
 #' @export
 #'
@@ -31,7 +32,8 @@ mr_egger_stan <- function(data,
                         n.burn = 1000,
                         n.iter = 5000,
                         seed = 12345,
-                        rho = 0.5) {
+                        rho = 0.5,
+                        ...) {
 
   # check class of object
   if (!("mr_format" %in% class(data))) {
@@ -40,10 +42,7 @@ mr_egger_stan <- function(data,
     )
   }
 
-  if (prior == 4){
-    pars <- c("eta","sigma")
-  } else {pars <- c("intercept","estimate","sigma")}
-
+  pars <- c("intercept","estimate","sigma")
 
   # converting dataset to a list
   datam <- list(
@@ -63,7 +62,8 @@ mr_egger_stan <- function(data,
     warmup = n.burn,
     iter = n.iter,
     seed = seed,
-    control = list(adapt_delta = 0.999, max_treedepth = 15)
+    control = list(adapt_delta = 0.999, max_treedepth = 15),
+    ...
   )
 
   return(eggerfit)
