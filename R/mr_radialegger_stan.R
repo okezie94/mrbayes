@@ -67,11 +67,3 @@ mr_radialegger_stan <- function(data,
   return(radialeggerfit)
 
 }
-
-
-data(bmi_insulin)
-dat <- mr_format(rsid = bmi_insulin[,"rsid"],
-           xbeta = bmi_insulin[,"beta.exposure"],
-           ybeta = bmi_insulin[,"beta.outcome"],
-           xse = bmi_insulin[,"se.exposure"],
-           yse = bmi_insulin[,"se.outcome"])
