@@ -13,7 +13,7 @@
 #' @param n.burn Numeric indicating the burn-in period of the Bayesian MCMC estimation. The default is `1000` samples.
 #' @param n.iter Numeric indicating the number of iterations in the Bayesian MCMC estimation. The default is `5000` iterations.
 #' @param seed Numeric indicating the random number seed. The default is the rjags default.
-#' @param ... Additional arguments passed through to [`rjags::jags.model()`]
+#' @param ... Additional arguments passed through to [`rjags::jags.model()`].
 #'
 #' @export
 #' @return An object of class `ivwjags` containing the following components:
