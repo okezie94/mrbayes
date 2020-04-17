@@ -12,6 +12,7 @@
 #' @param n.burn Numeric indicating the burn-in period of the Bayesian HMC estimation. The default is `1000` samples.
 #' @param n.iter Numeric indicating the number of iterations in the Bayesian MCMC estimation. The default is `5000` iterations.
 #' @param seed Numeric indicating the random number seed. The default is `12345`.
+#' @param ... Additional arguments passed through to [`rstan::sampling()`].
 #'
 #' @return An object of class [`stanfit`].
 #'
@@ -20,13 +21,15 @@
 #' @examples
 #' ivw_fit <- mr_ivw_stan(bmi_insulin)
 #' print(ivw_fit)
+#' rstan::traceplot(ivw_fit)
 #' @export
 mr_ivw_stan <- function(data,
                         prior = 1,
                         n.chains = 3,
                         n.burn = 1000,
                         n.iter = 5000,
-                        seed = 12345) {
+                        seed = 12345,
+                        ...) {
 
   # check class of object
   if (!("mr_format" %in% class(data))) {
@@ -51,7 +54,8 @@ mr_ivw_stan <- function(data,
     warmup = n.burn,
     iter = n.iter,
     seed = seed,
-    control = list(adapt_delta = 0.999, max_treedepth = 15)
+    control = list(adapt_delta = 0.999, max_treedepth = 15),
+    ...
   )
 
 
