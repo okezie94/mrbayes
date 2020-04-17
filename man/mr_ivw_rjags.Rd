@@ -35,7 +35,7 @@ mr_ivw_rjags(
 
 \item{seed}{Numeric indicating the random number seed. The default is the rjags default.}
 
-\item{...}{Additional arguments passed through to \code{\link[rjags:jags.model]{rjags::jags.model()}}}
+\item{...}{Additional arguments passed through to \code{\link[rjags:jags.model]{rjags::jags.model()}}.}
 }
 \value{
 An object of class \code{ivwjags} containing the following components:

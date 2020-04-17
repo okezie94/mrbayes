@@ -11,7 +11,8 @@ mr_radialegger_stan(
   n.burn = 1000,
   n.iter = 5000,
   rho = 0.5,
-  seed = 12345
+  seed = 12345,
+  ...
 )
 }
 \arguments{
@@ -34,6 +35,8 @@ mr_radialegger_stan(
 \item{rho}{Numeric indicating the correlation coefficient input into the joint prior distribution. The default is \code{0.5}.}
 
 \item{seed}{Numeric indicating the random number seed. The default is \code{12345}.}
+
+\item{...}{Additional arguments passed through to \code{\link[rstan:sampling]{rstan::sampling()}}.}
 }
 \value{
 An object of class \code{\link{stanfit}}.
@@ -46,5 +49,5 @@ radegger_fit <- mr_radialegger_stan(bmi_insulin)
 print(radegger_fit)
 }
 \references{
-Burgess, S., Butterworth, A., Thompson S.G. Mendelian randomization analysis with multiple genetic variants using summarized data. Genetic Epidemiology, 2013, 37, 7, 658-665 \url{https://dx.doi.org/10.1002/gepi.21758}.
+Bowden, J., et al., Improving the visualization, interpretation and analysis of two-sample summary data Mendelian randomization via the Radial plot and Radial regression. International Journal of Epidemiology, 2018. 47(4): p. 1264-1278. \url{https://doi.org/10.1093/ije/dyy101}.
 }

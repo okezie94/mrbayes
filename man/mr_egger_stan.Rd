@@ -11,7 +11,8 @@ mr_egger_stan(
   n.burn = 1000,
   n.iter = 5000,
   seed = 12345,
-  rho = 0.5
+  rho = 0.5,
+  ...
 )
 }
 \arguments{
@@ -34,6 +35,8 @@ mr_egger_stan(
 \item{seed}{Numeric indicating the random number seed. The default is \code{12345}.}
 
 \item{rho}{Numeric indicating the correlation coefficient input into the joint prior distribution. The default is \code{0.5}.}
+
+\item{...}{Additional arguments passed through to \code{\link[rstan:sampling]{rstan::sampling()}}.}
 }
 \value{
 An object of class \code{\link{stanfit}}.
@@ -46,5 +49,5 @@ egger_fit <- mr_egger_stan(bmi_insulin)
 print(egger_fit)
 }
 \references{
-Burgess, S., Butterworth, A., Thompson S.G. Mendelian randomization analysis with multiple genetic variants using summarized data. Genetic Epidemiology, 2013, 37, 7, 658-665 \url{https://dx.doi.org/10.1002/gepi.21758}.
+Bowden J, Davey Smith G, Burgess S. Mendelian randomization with invalid instruments: effect estimation and bias detection through Egger regression. International Journal of Epidemiology, 2015, 44, 2, 512-525. \url{http://dx.doi.org/10.1093/ije/dyv080}.
 }

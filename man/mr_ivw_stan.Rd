@@ -10,7 +10,8 @@ mr_ivw_stan(
   n.chains = 3,
   n.burn = 1000,
   n.iter = 5000,
-  seed = 12345
+  seed = 12345,
+  ...
 )
 }
 \arguments{
@@ -30,6 +31,8 @@ mr_ivw_stan(
 \item{n.iter}{Numeric indicating the number of iterations in the Bayesian MCMC estimation. The default is \code{5000} iterations.}
 
 \item{seed}{Numeric indicating the random number seed. The default is \code{12345}.}
+
+\item{...}{Additional arguments passed through to \code{\link[rstan:sampling]{rstan::sampling()}}.}
 }
 \value{
 An object of class \code{\link{stanfit}}.
@@ -40,6 +43,7 @@ Bayesian inverse variance weighted model with a choice of prior distributions fi
 \examples{
 ivw_fit <- mr_ivw_stan(bmi_insulin)
 print(ivw_fit)
+rstan::traceplot(ivw_fit)
 }
 \references{
 Burgess, S., Butterworth, A., Thompson S.G. Mendelian randomization analysis with multiple genetic variants using summarized data. Genetic Epidemiology, 2013, 37, 7, 658-665 \url{https://dx.doi.org/10.1002/gepi.21758}.
