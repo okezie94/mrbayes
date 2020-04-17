@@ -16,7 +16,6 @@ test_that("MR-Radialegger using default prior method",
             expect_equal(summfit$summary["estimate","50%"], 0.50, tol = 1e-2)
             expect_equal(summfit$summary["estimate","97.5%"], 0.62, tol = 1e-2)
           })
-#
 
 test_that("MR-Radialegger using weak prior method",
           {

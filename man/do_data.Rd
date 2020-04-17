@@ -8,22 +8,19 @@
 A data frame with 185 rows and 9 columns:
 \describe{
 \item{rsid}{SNPs RSID number}
-\item{ldlcbeta}{The genotype-phenotype associations for low-density lipoprotein cholestrol}
-\item{hdlcbeta}{The genotype-phenotype associations for high-density lipoprotein cholestrol}
-\item{tgbeta}{The genotype-phenotype associations for triglycerides}
-\item{chdbeta}{The genotype-outcome associations in this case the outcome is coronary heart disease}
-\item{ldlcse}{The standard errors of the genotype-low-density lipoprotein cholestrol associations}
-\item{hdlcse}{The standard errors of the genotype-high-density lipoprotein cholestrol associations}
-\item{tgse}{The standard errors of the genotype-triglyceride associations}
-\item{chdse}{The standard errors of the genotype-outcome coronary heart disease associations}
+\item{beta.exposure}{The genotype-phenotype associations for low-density lipoprotein cholestrol}
+\item{beta.outcome}{The genotype-outcome associations in this case the outcome is coronary heart disease}
+\item{se.exposure}{The standard errors of the genotype-low-density lipoprotein cholestrol associations}
+\item{se.outcome}{The standard errors of the genotype-outcome coronary heart disease associations}
 }
 }
 \usage{
 do_data
 }
 \description{
-A summary-level dataset, from Do et al. (2013) \url{https://dx.doi.org/10.1038/ng.2795}, containing 185 single nucleiodtide polymorphisms (SNPs) which have genotype-phenotype associations and standard errors for
-low-density lipoprotein cholestrol, high-density lipoprotein cholestrol and triglycerides, and genotype-outcome associations for (coronary heart disease)
+A summary-level dataset, from Do et al. (2013) \url{https://dx.doi.org/10.1038/ng.2795},
+containing 185 single nucleodtide polymorphisms (SNPs) which have genotype-phenotype associations and standard errors for
+low-density lipoprotein cholestrol, and genotype-outcome associations for coronary heart disease
 with their respective standard errors.
 }
 \details{
