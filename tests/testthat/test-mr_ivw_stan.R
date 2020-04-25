@@ -16,7 +16,6 @@ test_that("IVW using default prior method",
             expect_equal(summfit$summary["estimate","50%"], 0.50, tol = 1e-2)
             expect_equal(summfit$summary["estimate","97.5%"], 0.57, tol = 1e-2)
           })
-#
 
 test_that("IVW using weak prior method",
           {
