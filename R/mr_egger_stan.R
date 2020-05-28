@@ -24,8 +24,10 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' egger_fit <- mr_egger_stan(bmi_insulin)
 #' print(egger_fit)
+#' }
 
 mr_egger_stan <- function(data,
                         prior = 1,
