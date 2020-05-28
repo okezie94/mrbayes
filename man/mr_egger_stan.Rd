@@ -45,10 +45,8 @@ An object of class \code{\link{stanfit}}.
 Bayesian inverse variance weighted model with a choice of prior distributions fitted using Stan.
 }
 \examples{
-\donttest{
-egger_fit <- mr_egger_stan(bmi_insulin, n.burn = 500, n.iter = 1000)
+egger_fit <- mr_egger_stan(bmi_insulin)
 print(egger_fit)
-}
 }
 \references{
 Bowden J, Davey Smith G, Burgess S. Mendelian randomization with invalid instruments: effect estimation and bias detection through Egger regression. International Journal of Epidemiology, 2015, 44, 2, 512-525. \url{http://dx.doi.org/10.1093/ije/dyv080}.

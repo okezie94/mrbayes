@@ -45,10 +45,8 @@ An object of class \code{\link{stanfit}}.
 Bayesian inverse variance weighted model with a choice of prior distributions fitted using RStan
 }
 \examples{
-\donttest{
-radegger_fit <- mr_radialegger_stan(bmi_insulin, n.burn = 500, n.iter = 1000)
+radegger_fit <- mr_radialegger_stan(bmi_insulin)
 print(radegger_fit)
-}
 }
 \references{
 Bowden, J., et al., Improving the visualization, interpretation and analysis of two-sample summary data Mendelian randomization via the Radial plot and Radial regression. International Journal of Epidemiology, 2018. 47(4): p. 1264-1278. \url{https://doi.org/10.1093/ije/dyy101}.
