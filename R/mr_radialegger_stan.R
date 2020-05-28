@@ -24,6 +24,7 @@
 #'
 #' @examples
 #' \donttest{
+#' # Note we recommend setting n.burn and n.iter to larger values
 #' radegger_fit <- mr_radialegger_stan(bmi_insulin, n.burn = 500, n.iter = 1000)
 #' print(radegger_fit)
 #' }
