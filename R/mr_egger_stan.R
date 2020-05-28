@@ -25,7 +25,7 @@
 #'
 #' @examples
 #' \donttest{
-#' egger_fit <- mr_egger_stan(bmi_insulin)
+#' egger_fit <- mr_egger_stan(bmi_insulin, n.burn = 500, n.iter = 1000)
 #' print(egger_fit)
 #' }
 
