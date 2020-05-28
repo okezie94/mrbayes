@@ -23,8 +23,11 @@
 #' @references Stan Development Team (2020). "RStan: the R interface to Stan." R package version 2.19.3, <http://mc-stan.org/>.
 #'
 #' @examples
-#' radegger_fit <- mr_radialegger_stan(bmi_insulin)
+#' \donttest{
+#' # Note we recommend setting n.burn and n.iter to larger values
+#' radegger_fit <- mr_radialegger_stan(bmi_insulin, n.burn = 500, n.iter = 1000)
 #' print(radegger_fit)
+#' }
 mr_radialegger_stan <- function(data,
                           prior = 1,
                           n.chains = 3,

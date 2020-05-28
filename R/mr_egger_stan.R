@@ -24,8 +24,11 @@
 #' @export
 #'
 #' @examples
-#' egger_fit <- mr_egger_stan(bmi_insulin)
+#' \donttest{
+#' # Note we recommend setting n.burn and n.iter to larger values
+#' egger_fit <- mr_egger_stan(bmi_insulin, n.burn = 500, n.iter = 1000)
 #' print(egger_fit)
+#' }
 
 mr_egger_stan <- function(data,
                         prior = 1,
