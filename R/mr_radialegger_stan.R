@@ -23,7 +23,7 @@
 #' @references Stan Development Team (2020). "RStan: the R interface to Stan." R package version 2.19.3, <http://mc-stan.org/>.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' radegger_fit <- mr_radialegger_stan(bmi_insulin)
 #' print(radegger_fit)
 #' }

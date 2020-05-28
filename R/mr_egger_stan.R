@@ -24,7 +24,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' egger_fit <- mr_egger_stan(bmi_insulin)
 #' print(egger_fit)
 #' }
