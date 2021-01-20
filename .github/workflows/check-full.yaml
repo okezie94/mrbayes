@@ -1,7 +1,4 @@
 on:
-  push:
-    branches:
-      - master
   pull_request:
     branches:
       - master
@@ -18,7 +15,7 @@ jobs:
       fail-fast: false
       matrix:
         config:
-        - { os: ubuntu-16.04,   r: '3.5', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}        
+        - { os: ubuntu-16.04,   r: '3.5', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
         - { os: ubuntu-16.04,   r: 'oldrel', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
         - { os: windows-latest, r: 'release'}
         - { os: windows-latest, r: 'devel'}
