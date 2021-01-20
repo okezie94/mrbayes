@@ -36,7 +36,7 @@ mr_egger_stan(
 
 \item{rho}{Numeric indicating the correlation coefficient input into the joint prior distribution. The default is \code{0.5}.}
 
-\item{...}{Additional arguments passed through to \code{\link[rstan:sampling]{rstan::sampling()}}.}
+\item{...}{Additional arguments passed through to \code{\link[rstan:stanmodel-method-sampling]{rstan::sampling()}}.}
 }
 \value{
 An object of class \code{\link{stanfit}}.

@@ -32,7 +32,7 @@ mr_ivw_stan(
 
 \item{seed}{Numeric indicating the random number seed. The default is \code{12345}.}
 
-\item{...}{Additional arguments passed through to \code{\link[rstan:sampling]{rstan::sampling()}}.}
+\item{...}{Additional arguments passed through to \code{\link[rstan:stanmodel-method-sampling]{rstan::sampling()}}.}
 }
 \value{
 An object of class \code{\link{stanfit}}.

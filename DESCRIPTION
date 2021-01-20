@@ -43,7 +43,7 @@ Suggests: testthat,
   bookdown
 URL: https://github.com/okezie94/mrbayes
 BugReports: https://github.com/okezie94/mrbayes/issues
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
 SystemRequirements: GNU make
 Biarch: true
