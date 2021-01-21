@@ -52,6 +52,9 @@ jobs:
           Rscript -e "remotes::install_github('r-hub/sysreqs')"
           sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
           sudo -s eval "$sysreqs"
+          sudo add-apt-repository ppa:marutter/rrutter -y
+          sudo apt-get update
+          sudo apt-get install r-cran-rjags
       - name: Install dependencies
         run: Rscript -e "library(remotes)" -e "update(readRDS('depends.Rds'))" -e "remotes::install_cran('rcmdcheck')"
 
