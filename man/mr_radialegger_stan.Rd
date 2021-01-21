@@ -52,7 +52,7 @@ print(radegger_fit)
 }
 }
 \references{
-Bowden, J., et al., Improving the visualization, interpretation and analysis of two-sample summary data Mendelian randomization via the Radial plot and Radial regression. International Journal of Epidemiology, 2018. 47(4): p. 1264-1278. \url{https://doi.org/10.1093/ije/dyy101}.
+Bowden, J., et al., Improving the visualization, interpretation and analysis of two-sample summary data Mendelian randomization via the Radial plot and Radial regression. International Journal of Epidemiology, 2018. 47(4): p. 1264-1278. \doi{10.1093/ije/dyy101}.
 
 Stan Development Team (2020). "RStan: the R interface to Stan." R package version 2.19.3, \url{http://mc-stan.org/}.
 }
