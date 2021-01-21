@@ -32,7 +32,7 @@ mr_ivw_stan(
 
 \item{seed}{Numeric indicating the random number seed. The default is \code{12345}.}
 
-\item{...}{Additional arguments passed through to \code{\link[rstan:sampling]{rstan::sampling()}}.}
+\item{...}{Additional arguments passed through to \code{\link[rstan:stanmodel-method-sampling]{rstan::sampling()}}.}
 }
 \value{
 An object of class \code{\link{stanfit}}.
@@ -46,7 +46,7 @@ print(ivw_fit)
 rstan::traceplot(ivw_fit)
 }
 \references{
-Burgess, S., Butterworth, A., Thompson S.G. Mendelian randomization analysis with multiple genetic variants using summarized data. Genetic Epidemiology, 2013, 37, 7, 658-665 \url{https://dx.doi.org/10.1002/gepi.21758}.
+Burgess, S., Butterworth, A., Thompson S.G. Mendelian randomization analysis with multiple genetic variants using summarized data. Genetic Epidemiology, 2013, 37, 7, 658-665 \doi{10.1002/gepi.21758}.
 
-Stan Development Team (2020). "RStan: the R interface to Stan." R package version 2.19.3, \url{http://mc-stan.org/}.
+Stan Development Team (2020). "RStan: the R interface to Stan." R package version 2.19.3, \url{https://mc-stan.org/}.
 }

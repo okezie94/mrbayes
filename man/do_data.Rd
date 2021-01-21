@@ -18,7 +18,7 @@ A data frame with 185 rows and 9 columns:
 do_data
 }
 \description{
-A summary-level dataset, from Do et al. (2013) \url{https://dx.doi.org/10.1038/ng.2795},
+A summary-level dataset, from Do et al. (2013) \doi{10.1038/ng.2795},
 containing 185 single nucleodtide polymorphisms (SNPs) which have genotype-phenotype associations and standard errors for
 low-density lipoprotein cholestrol, and genotype-outcome associations for coronary heart disease
 with their respective standard errors.
@@ -27,6 +27,6 @@ with their respective standard errors.
 do_data.
 }
 \references{
-Do, R. et al., Common variants associated with plasma triglycerides and risk for coronary artery disease. Nature Genetics, 2013, 45, 1345-1352, \url{https://dx.doi.org/10.1038/ng.2795}.
+Do, R. et al., Common variants associated with plasma triglycerides and risk for coronary artery disease. Nature Genetics, 2013, 45, 1345-1352, \doi{10.1038/ng.2795}.
 }
 \keyword{datasets}

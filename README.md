@@ -1,6 +1,6 @@
 # mrbayes
 
-[![Build Status](https://travis-ci.org/okezie94/mrbayes.svg?branch=master)](https://travis-ci.org/okezie94/mrbayes)
+[![Build Status](https://github.com/okezie94/mrbayes/workflows/R-CMD-check/badge.svg)](https://github.com/okezie94/mrbayes/actions?workflow=R-CMD-check)
 [![Coverage status](https://codecov.io/gh/okezie94/mrbayes/branch/master/graph/badge.svg)](https://codecov.io/github/okezie94/mrbayes?branch=master)
 [![CRAN status](https://www.r-pkg.org/badges/version/mrbayes)](https://cran.r-project.org/package=mrbayes)
 [![RStudio_CRAN_mirror_downloads_badge](http://cranlogs.r-pkg.org/badges/grand-total/mrbayes?color=blue)](https://CRAN.R-project.org/package=mrbayes)
