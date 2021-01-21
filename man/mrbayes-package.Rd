@@ -9,5 +9,5 @@
 Bayesian implementation of the IVW and MR-Egger models for two-sample Mendelian randomization analyses.
 }
 \references{
-Stan Development Team (2019). RStan: the R interface to Stan. R package version 2.19.2. https://mc-stan.org
+Stan Development Team (2019). RStan: the R interface to Stan. R package version 2.19.2. \url{https://mc-stan.org}
 }
