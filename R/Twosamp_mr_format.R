@@ -7,8 +7,9 @@ Twosamp_mr_format <- function(dat)
     message(" - exposure: ", x$exposure[1])
     message(" - outcome: ", x$outcome[1])
     d <- subset(x, mr_keep=TRUE)
-    d <- mrbayes::mr_format(d$beta.exposure, d$beta.outcome, d$se.exposure, d$se.outcome, RSID=d$SNP)
+    d <- mr_format(d$SNP,d$beta.exposure, d$beta.outcome, d$se.exposure, d$se.outcome)
     return(d)
   })
+  out <- out[[1]]
   return(out)
 }
