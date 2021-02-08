@@ -1,0 +1,12 @@
+CC=/usr/bin/ccache clang
+
+# Use clang++
+CXX=/usr/bin/ccache clang++ -Qunused-arguments
+
+# Optimize building with clang
+CXXFLAGS=-g -O3 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security -D_FORTIFY_SOURCE=2 -g -pedantic -g0
+
+# Stan stuff
+CXXFLAGS+=-O3 -mtune=native -march=native -Wno-unused-variable -Wno-unused-function -Wno-macro-redefined
+CXX14FLAGS=-O3 -march=native -mtune=native -fPIC
+CXX14=/usr/bin/ccache clang++
