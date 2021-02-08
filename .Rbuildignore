@@ -9,3 +9,13 @@
 ^\.Rproj\.user$
 ^data-raw$
 ^.github$
+Dockerfile
+dockerbuild.sh
+dockerrun.sh
+^.ccache$
+^.R$
+.Rprofile
+.Renviron
+^.config$
+^[.].*$
+^.*/[.].*$
