@@ -36,10 +36,12 @@ bash dockerrun.sh
 * Then in a brower go to `http://localhost:8787/`
   * username: rstudio
   * password: pass
+* Once in RStudio in the Files pane navigate to the mrbayes folder and click the `.Rproj` file to open the repo as a project
 * To compile the binary files run
 ```r
 pkgbuild::compile_dll(force = TRUE)
 ```
+* Edit the files and recompile the binary files as needed
 * To stop the container get its id with
 ```
 docker ps
