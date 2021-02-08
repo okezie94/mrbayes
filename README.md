@@ -40,6 +40,14 @@ bash dockerrun.sh
 ```r
 pkgbuild::compile_dll(force = TRUE)
 ```
+* To stop the container get its id with
+```
+docker ps
+```
+* And then run
+```
+docker stop ####
+```
 
 ## Package website
 
