@@ -52,6 +52,11 @@ mr_radialegger_rjags <- function(object,
                                  rho = 0.5,
                                  ...) {
 
+  # convert MRInput object to mr_format
+  if ("MRInput" %in% class(object)) {
+    object <- mrinput_mr_format(object)
+  }
+
   # check class of object
   if (!("mr_format" %in% class(object))) {
     stop('The class of the data object must be "mr_format", please resave the object with the output of e.g. object <- mr_format(object).')
