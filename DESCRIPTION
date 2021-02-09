@@ -40,7 +40,8 @@ Suggests: testthat,
   utils,
   kableExtra,
   roxygen2,
-  bookdown
+  bookdown,
+  MendelianRandomization
 URL: https://github.com/okezie94/mrbayes
 BugReports: https://github.com/okezie94/mrbayes/issues
 RoxygenNote: 7.1.1
