@@ -24,6 +24,14 @@ mr_format <- function(rsid, xbeta, ybeta, xse, yse) {
     message("SNP id variable generated equal to row number in data frame")
   }
 
+  if (("MRInput" %in% class(dat))) {
+    datm <- mrinput_mrformat(dat)
+  }
+
+  if (("mr_keep" %in% class(dat))) {
+    datm <- tsmr_mrformat(dat)
+  }
+
   datm <- data.frame(rsid, xbeta, ybeta, xse, yse)
 
   names(datm) <-
