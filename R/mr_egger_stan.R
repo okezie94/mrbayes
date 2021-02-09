@@ -39,6 +39,11 @@ mr_egger_stan <- function(data,
                         rho = 0.5,
                         ...) {
 
+  # convert MRInput object to mr_format
+  if ("MRInput" %in% class(data)) {
+    data <- mrinput_mr_format(data)
+  }
+
   # check class of object
   if (!("mr_format" %in% class(data))) {
     stop(

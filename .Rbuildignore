@@ -19,3 +19,4 @@ dockerrun.sh
 ^.config$
 ^[.].*$
 ^.*/[.].*$
+^\.DS_Store$
