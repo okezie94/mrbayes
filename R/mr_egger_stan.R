@@ -53,6 +53,8 @@ mr_egger_stan <- function(data,
 
   pars <- c("intercept","estimate","sigma")
 
+  ## setting directional change
+
   ybet <- sign(data[,2]) * data[,3]
   xbet <- abs(data[,2])
 

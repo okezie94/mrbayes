@@ -52,11 +52,16 @@ mr_radialegger_stan <- function(data,
 
   pars <- c("intercept","estimate","sigma")
 
+  ## setting directional change
+
+  ybet <- sign(data[,2]) * data[,3]
+  xbet <- abs(data[,2])
+
   # converting dataset to a list
   datam <- list(
     n = nrow(data),
-    xbeta = data[, 2] / data[, 5],
-    ybeta = data[, 3] / data[, 5],
+    xbeta = xbet / data[, 5],
+    ybeta = ybet / data[, 5],
     prior = prior,
     rho = rho
   )
