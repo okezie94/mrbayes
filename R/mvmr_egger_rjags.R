@@ -126,6 +126,21 @@ mvmr_egger_rjags <- function(object,
 
     # covariance matrix
 
+    # beta[1:ncol(object$beta.exposure)] ~ dmnorm.vcov(mu[], prec[ , ])\n
+    # mu <- var <- sd <- numeric(length = ncol(object$beta.exposure) + 1)
+    # mu <- rep(0, ncol(object$beta.exposure) + 1)
+    # var <- rep(1e4, ncol(object$beta.exposure) + 1)
+    # sd <- sqrt(var)
+    # Pleiotropy <- beta[1]
+    # for (i in 1:ncol(object$beta.exposure)){
+    #   Estimate[i] <- beta[i + 1]
+    # }
+    #
+    # for (i in 1:ncol(object$beta.exposure)+1){
+    #   prec[i,i] <- var[i]
+    # }
+
+
     vcov_mat<- "
     beta[1:2] ~ dmnorm.vcov(mu[], prec[ , ])\n
     Pleiotropy <- beta[1]
