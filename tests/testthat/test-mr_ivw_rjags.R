@@ -1,8 +1,25 @@
 context("Tests for IVW function using JAGS")
 
+test_that("Dataset is formatted",
+          {
+            dat <- mr_format(rsid = dodata$rsid,
+                             xbeta = dodata$ldlcbeta,
+                             ybeta = dodata$chdbeta,
+                             xse = dodata$ldlcse,
+                             yse = dodata$chdse)
+            expect_s3_class(dat, "mr_format")
+          })
+
+
 test_that("IVW using default prior method",
           {
-            ivwfit <- mr_ivw_rjags(do_data, seed = c(123, 456, 789))
+            dat <- mr_format(rsid = dodata$rsid,
+                             xbeta = dodata$ldlcbeta,
+                             ybeta = dodata$chdbeta,
+                             xse = dodata$ldlcse,
+                             yse = dodata$chdse)
+
+            ivwfit <- mr_ivw_rjags(dat, seed = c(123, 456, 789))
             expect_equal(class(ivwfit), "ivwjags")
             expect_equal(unname(ivwfit$CausalEffect), 0.5, tol = 1e-2)
             expect_equal(unname(ivwfit$StandardError), 0.04, tol = 1e-2)
@@ -15,7 +32,13 @@ test_that("IVW using default prior method",
 
 test_that("IVW using weak prior method",
           {
-            ivwfit1 <- mr_ivw_rjags(do_data, prior = "weak",
+            dat <- mr_format(rsid = dodata$rsid,
+                             xbeta = dodata$ldlcbeta,
+                             ybeta = dodata$chdbeta,
+                             xse = dodata$ldlcse,
+                             yse = dodata$chdse)
+
+            ivwfit1 <- mr_ivw_rjags(dat, prior = "weak",
                                     seed = c(123, 456, 789))
             expect_equal(class(ivwfit1), "ivwjags")
             expect_equal(unname(ivwfit1$CausalEffect), 0.5, tol = 1e-2)
@@ -29,7 +52,13 @@ test_that("IVW using weak prior method",
 
 test_that("IVW using pseudo prior method",
           {
-            ivwfit2 <- mr_ivw_rjags(do_data, prior = "pseudo",
+            dat <- mr_format(rsid = dodata$rsid,
+                             xbeta = dodata$ldlcbeta,
+                             ybeta = dodata$chdbeta,
+                             xse = dodata$ldlcse,
+                             yse = dodata$chdse)
+
+            ivwfit2 <- mr_ivw_rjags(dat, prior = "pseudo",
                                     seed = c(123, 456, 789))
             expect_equal(class(ivwfit2), "ivwjags")
             expect_equal(unname(ivwfit2$CausalEffect), 0.5, tol = 1e-2)
@@ -43,7 +72,13 @@ test_that("IVW using pseudo prior method",
 
 test_that("IVW using beta prior method",
           {
-            ivwfit3 <- mr_ivw_rjags(do_data,
+            dat <- mr_format(rsid = dodata$rsid,
+                             xbeta = dodata$ldlcbeta,
+                             ybeta = dodata$chdbeta,
+                             xse = dodata$ldlcse,
+                             yse = dodata$chdse)
+
+            ivwfit3 <- mr_ivw_rjags(dat,
                                     betaprior = "dnorm(0, 1E-6)",
                                     seed = c(123, 456, 789))
             expect_equal(class(ivwfit3), "ivwjags")
@@ -54,3 +89,4 @@ test_that("IVW using beta prior method",
             expect_equal(unname(ivwfit3$CredibleInterval[3]), 0.58, tol = 1e-2)
             expect_equal(class(ivwfit3$samples), "mcmc.list")
           })
+

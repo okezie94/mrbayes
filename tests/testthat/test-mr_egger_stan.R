@@ -5,9 +5,25 @@ context("Tests for mr_egger_stan() function")
 # Analysis
 ## MR-Egger stan
 
+test_that("Dataset is formatted",
+          {
+            dat <- mr_format(rsid = dodata$rsid,
+                             xbeta = dodata$ldlcbeta,
+                             ybeta = dodata$chdbeta,
+                             xse = dodata$ldlcse,
+                             yse = dodata$chdse)
+            expect_s3_class(dat, "mr_format")
+          })
+
 test_that("MR-Egger using default prior method",
           {
-            mreggerfit <- mr_egger_stan(do_data)
+            dat <- mr_format(rsid = dodata$rsid,
+                             xbeta = dodata$ldlcbeta,
+                             ybeta = dodata$chdbeta,
+                             xse = dodata$ldlcse,
+                             yse = dodata$chdse)
+
+            mreggerfit <- mr_egger_stan(dat)
             summfit <- rstan::summary(mreggerfit)
             expect_equal(class(mreggerfit)[1], "stanfit")
             expect_equal(summfit$summary["estimate","mean"], 0.568, tol = 1e-2)
@@ -19,7 +35,13 @@ test_that("MR-Egger using default prior method",
 
 test_that("MR-Egger using weak prior method",
           {
-            mreggerfit1 <- mr_egger_stan(do_data, prior = 2)
+            dat <- mr_format(rsid = dodata$rsid,
+                             xbeta = dodata$ldlcbeta,
+                             ybeta = dodata$chdbeta,
+                             xse = dodata$ldlcse,
+                             yse = dodata$chdse)
+
+            mreggerfit1 <- mr_egger_stan(dat, prior = 2)
             summfit1 <- rstan::summary(mreggerfit1)
             expect_equal(class(mreggerfit1)[1], "stanfit")
             expect_equal(summfit1$summary["estimate","mean"], 0.57, tol = 1e-2)
@@ -31,7 +53,13 @@ test_that("MR-Egger using weak prior method",
 
 test_that("MR-Egger using pseudo prior method",
           {
-            mreggerfit2 <- mr_egger_stan(do_data, prior = 3)
+            dat <- mr_format(rsid = dodata$rsid,
+                             xbeta = dodata$ldlcbeta,
+                             ybeta = dodata$chdbeta,
+                             xse = dodata$ldlcse,
+                             yse = dodata$chdse)
+
+            mreggerfit2 <- mr_egger_stan(dat, prior = 3)
             summfit2 <- rstan::summary(mreggerfit2)
             expect_equal(class(mreggerfit2)[1], "stanfit")
             expect_equal(summfit2$summary["estimate","mean"], 0.566, tol = 1e-2)
@@ -43,7 +71,13 @@ test_that("MR-Egger using pseudo prior method",
 
 test_that("MR-Egger using joint prior method",
           {
-            mreggerfit3 <- mr_egger_stan(do_data, prior = 4)
+            dat <- mr_format(rsid = dodata$rsid,
+                             xbeta = dodata$ldlcbeta,
+                             ybeta = dodata$chdbeta,
+                             xse = dodata$ldlcse,
+                             yse = dodata$chdse)
+
+            mreggerfit3 <- mr_egger_stan(dat, prior = 4)
             summfit3 <- rstan::summary(mreggerfit3)
             expect_equal(class(mreggerfit3)[1], "stanfit")
             expect_equal(summfit3$summary["estimate","mean"], 0.568, tol = 1e-2)

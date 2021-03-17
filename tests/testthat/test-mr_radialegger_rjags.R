@@ -2,9 +2,25 @@
 
 context("Tests for Radial MR-Egger function using JAGS")
 
+test_that("Dataset is formatted",
+          {
+            dat <- mr_format(rsid = dodata$rsid,
+                             xbeta = dodata$ldlcbeta,
+                             ybeta = dodata$chdbeta,
+                             xse = dodata$ldlcse,
+                             yse = dodata$chdse)
+            expect_s3_class(dat, "mr_format")
+          })
+
 test_that("Radial-Egger using default prior method",
           {
-            radialeggerfit <- mr_radialegger_rjags(do_data,
+            dat <- mr_format(rsid = dodata$rsid,
+                             xbeta = dodata$ldlcbeta,
+                             ybeta = dodata$chdbeta,
+                             xse = dodata$ldlcse,
+                             yse = dodata$chdse)
+
+            radialeggerfit <- mr_radialegger_rjags(dat,
                                                    seed = c(123, 456, 789))
             expect_equal(class(radialeggerfit), "radialeggerjags")
             expect_equal(unname(radialeggerfit$CausalEffect), 0.591, tol = 1e-2)
@@ -20,7 +36,13 @@ test_that("Radial-Egger using default prior method",
 
 test_that("Radial-Egger using weak prior method",
           {
-            radialeggerfit1 <- mr_radialegger_rjags(do_data,
+            dat <- mr_format(rsid = dodata$rsid,
+                             xbeta = dodata$ldlcbeta,
+                             ybeta = dodata$chdbeta,
+                             xse = dodata$ldlcse,
+                             yse = dodata$chdse)
+
+            radialeggerfit1 <- mr_radialegger_rjags(dat,
                                                     prior = "weak",
                                                     seed = c(123, 456, 789))
             expect_equal(class(radialeggerfit1), "radialeggerjags")
@@ -37,7 +59,13 @@ test_that("Radial-Egger using weak prior method",
 
 test_that("Radial-Egger using pseudo prior method",
           {
-            radialeggerfit2 <- mr_radialegger_rjags(do_data,
+            dat <- mr_format(rsid = dodata$rsid,
+                             xbeta = dodata$ldlcbeta,
+                             ybeta = dodata$chdbeta,
+                             xse = dodata$ldlcse,
+                             yse = dodata$chdse)
+
+            radialeggerfit2 <- mr_radialegger_rjags(dat,
                                                     prior = "pseudo",
                                                     seed = c(123, 456, 789))
             expect_equal(class(radialeggerfit2), "radialeggerjags")
@@ -55,7 +83,13 @@ test_that("Radial-Egger using pseudo prior method",
 test_that("Radial-Egger using joint prior method",
           {
             skip_on_cran()
-            radialeggerfit3 <- mr_radialegger_rjags(do_data,
+            dat <- mr_format(rsid = dodata$rsid,
+                             xbeta = dodata$ldlcbeta,
+                             ybeta = dodata$chdbeta,
+                             xse = dodata$ldlcse,
+                             yse = dodata$chdse)
+
+            radialeggerfit3 <- mr_radialegger_rjags(dat,
                                                     prior = "joint",
                                                     seed = c(123, 456, 789),
                                                     rho = 0.5)
@@ -73,7 +107,13 @@ test_that("Radial-Egger using joint prior method",
 
 test_that("Radial-Egger using betaprior and sigmaprior method",
           {
-            radialeggerfit4 <- mr_radialegger_rjags(do_data,
+            dat <- mr_format(rsid = dodata$rsid,
+                             xbeta = dodata$ldlcbeta,
+                             ybeta = dodata$chdbeta,
+                             xse = dodata$ldlcse,
+                             yse = dodata$chdse)
+
+            radialeggerfit4 <- mr_radialegger_rjags(dat,
                                                     betaprior = "dnorm(0, 1E-6)",
                                                     sigmaprior = "dunif(.0001, 10)",
                                                     seed = c(123, 456, 789))

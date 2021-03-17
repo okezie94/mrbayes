@@ -1,6 +1,6 @@
-#' Bayesian implementation of the MR-Egger model with choice of prior distributions fitted using JAGS.
+#' Bayesian implementation of the MR-Egger multivariate model with choice of prior distributions fitted using JAGS.
 #'
-#' Bayesian implementation of the MR-Egger model with choice of prior distributions fitted using JAGS.
+#' Bayesian implementation of the MR-Egger multivariate model with choice of prior distributions fitted using JAGS.
 #'
 #' @param object A data object of class [`mr_format`].
 #' @param prior A character string for selecting the prior distributions;

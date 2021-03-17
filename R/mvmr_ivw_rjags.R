@@ -1,6 +1,6 @@
-#' Bayesian inverse variance weighted model with a choice of prior distributions fitted using JAGS.
+#' Bayesian inverse variance weighted multivariate model with a choice of prior distributions fitted using JAGS.
 #'
-#' Bayesian inverse variance weighted model with a choice of prior distributions fitted using JAGS.
+#' Bayesian inverse variance weighted multivariate model with a choice of prior distributions fitted using JAGS.
 #'
 #' @param object A data object of class [`mvmr_format`].
 #' @param prior A character string for selecting the prior distributions;
@@ -28,7 +28,14 @@
 #' @references Burgess, S., Butterworth, A., Thompson S.G. Mendelian randomization analysis with multiple genetic variants using summarized data. Genetic Epidemiology, 2013, 37, 7, 658-665 \doi{10.1002/gepi.21758}.
 #'
 #' @examples
-#' fit <- mvmr_ivw_rjags(bmi_insulin)
+#'
+#' dat <- mvmr_format(rsid = dodata$rsid,
+#'          xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
+#'          ybeta = dodata$chdbeta,
+#'          xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
+#'          yse = dodata$chdse)
+#'
+#' fit <- mvmr_ivw_rjags(dat)
 #' print(fit)
 #' summary(fit)
 #' plot(fit$samples)
@@ -47,9 +54,9 @@ mvmr_ivw_rjags <- function(object,
                          ...) {
 
   # convert MRInput object to mvmr_format
-  if ("MRInput" %in% class(object)) {
-    object <- mrinput_mvmr_format(object)
-  }
+  # if ("MRInput" %in% class(object)) {
+  #   object <- mrinput_mvmr_format(object)
+  # }
 
   # check class of object
   if (!("mvmr_format" %in% class(object))) {

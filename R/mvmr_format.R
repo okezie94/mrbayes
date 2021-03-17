@@ -9,7 +9,15 @@
 #' @export
 #' @return A formatted data frame for analysis of class `mvmr_format`.
 #'
-
+#' @examples
+#' data(dodata)
+#' dat <- mvmr_format(rsid = dodata$rsid,
+#'           xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
+#'           ybeta = dodata$chdbeta,
+#'           xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
+#'           yse = dodata$chdse)
+#' class(dat)
+#'
 
 mvmr_format <- function(rsid, xbeta, ybeta, xse, yse) {
   if (missing(rsid)) {

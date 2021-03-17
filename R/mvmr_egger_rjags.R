@@ -16,6 +16,7 @@
 #' @param n.iter Numeric indicating the number of iterations in the Bayesian MCMC estimation. The default is `5000` iterations.
 #' @param seed Numeric indicating the random number seed. The default is the rjags default.
 #' @param rho Numeric indicating the correlation coefficient input into the joint prior distribution. The default value is `0.5`.
+#' @param orientate Numeric value to indicate the oriented exposure
 #' @param ... Additional arguments passed through to [`rjags::jags.model()`].
 #'
 #' @export
@@ -32,7 +33,14 @@
 #'
 #' @references Bowden et. al., Mendelian randomization with invalid instruments: effect estimation and bias detection through Egger regression. International Journal of Epidemiology 2015. 44(2): p. 512-525. \doi{10.1093/ije/dyv080}
 #' @examples
-#' fit <- mvmr_egger_rjags(bmi_insulin)
+#'
+#' dat <- mvmr_format(rsid = dodata$rsid,
+#'          xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
+#'          ybeta = dodata$chdbeta,
+#'          xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
+#'          yse = dodata$chdse)
+#'
+#' fit <- mvmr_egger_rjags(dat)
 #' summary(fit)
 #' plot(fit$samples)
 #' # 90% credible interval
@@ -53,9 +61,9 @@ mvmr_egger_rjags <- function(object,
                            ...) {
 
   # convert MRInput object to mvmr_format
-  if ("MVMRInput" %in% class(object)) {
-    object <- mrinput_mvmr_format(object)
-  }
+  # if ("MVMRInput" %in% class(object)) {
+  #   object <- mrinput_mvmr_format(object)
+  # }
 
   # check class of object
   if (!("mvmr_format" %in% class(object))) {
@@ -71,7 +79,10 @@ mvmr_egger_rjags <- function(object,
   }
 
 
-  orient = sign(object$beta.exposure)[,orientAte]
+  ybeta_orient = sign(object$beta.exposure)[,orientAte] * object$beta.outcome
+  xbeta_orient = cbind(object$beta.exposure[,-orientAte],abs(object$beta.exposure[,orientAte]))
+  object$beta.exposure[,orientAte]<- abs(object$beta.exposure[,orientAte])
+  orient <- sign(object$beta.exposure)[,orientAte]
 
   # String for likelihood
 
@@ -125,40 +136,47 @@ mvmr_egger_rjags <- function(object,
     #setting up model string
 
     # covariance matrix
-
-    # beta[1:ncol(object$beta.exposure)] ~ dmnorm.vcov(mu[], prec[ , ])\n
-    # mu <- var <- sd <- numeric(length = ncol(object$beta.exposure) + 1)
-    # mu <- rep(0, ncol(object$beta.exposure) + 1)
-    # var <- rep(1e4, ncol(object$beta.exposure) + 1)
-    # sd <- sqrt(var)
-    # Pleiotropy <- beta[1]
-    # for (i in 1:ncol(object$beta.exposure)){
-    #   Estimate[i] <- beta[i + 1]
-    # }
-    #
-    # for (i in 1:ncol(object$beta.exposure)+1){
-    #   prec[i,i] <- var[i]
-    # }
-
-
-    vcov_mat<- "
-    beta[1:2] ~ dmnorm.vcov(mu[], prec[ , ])\n
+    vcov_mat<-"
+    beta[1:K+1] ~ dmnorm.vcov(mu[], prec[ , ])\n
+    mu <- rep(0, K + 1)
+    var <- rep(1e4, K + 1)
+    sd <- sqrt(var)
     Pleiotropy <- beta[1]
-    for (j in 1:K) {
-    Estimate[j] ~ dnorm(0,1E-3)
+    for (i in 1:K){
+      Estimate[i] <- beta[i+1]
     }
-    prec[1,1] <- var1
-    prec[1,2] <- sd1*sd2*rho
-    prec[2,1] <- sd1*sd2*rho
-    prec[2,2] <- var2
-    mu[1] <- 0
-    mu[2] <- 0
-    var1 <- 1e4
-    sd1 <- sqrt(var1)
-    var2 <- 1e4
-    sd2<- sqrt(var2)
-    sigma ~ dunif(.0001, 10)
-    rho <- "
+
+    for (i in 1:K+1){
+     for (j in 2:K+1){
+      prec[i,i] <- var[i]
+      prec[i,j] <- sd[i] * sd[j] * rho
+      prec[j,i] <- sd[j] * sd[i] * rho
+     }
+    }
+     sigma ~ dunif(.0001, 10)
+     rho <-"
+
+
+
+
+    # vcov_mat<- "
+    # beta[1:2] ~ dmnorm.vcov(mu[], prec[ , ])\n
+    # Pleiotropy <- beta[1]
+    # for (j in 1:K) {
+    # Estimate[j] ~ dnorm(0,1E-3)
+    # }
+    # prec[1,1] <- var1
+    # prec[1,2] <- sd1*sd2*rho
+    # prec[2,1] <- sd1*sd2*rho
+    # prec[2,2] <- var2
+    # mu[1] <- 0
+    # mu[2] <- 0
+    # var1 <- 1e4
+    # sd1 <- sqrt(var1)
+    # var2 <- 1e4
+    # sd2<- sqrt(var2)
+    # sigma ~ dunif(.0001, 10)
+    # rho <- "
 
     Priors<- paste0(vcov_mat,rho)
 
@@ -169,17 +187,17 @@ mvmr_egger_rjags <- function(object,
 
   }
     else if (betaprior != ""  & sigmaprior != "") {
-    part1 <-"Pleiotropy ~ dnorm(0, 1E-3) \n Estimate[j] ~ "
+    part1 <-"Pleiotropy ~ dnorm(0, 1E-3) \n for (j in 1:K) {Estimate[j] ~ "
     part2 <- "\n sigma ~ "
-    Priors <- paste0(part1,betaprior,part2,sigmaprior)
+    Priors <- paste0(part1,betaprior,"}",part2,sigmaprior)
 
     egger_model_string <-
       paste0("model {",Likelihood,"\n\n", Priors,"\n\n }")
 
   } else if (betaprior != ""  & sigmaprior == "") {
-    part1 <-"Pleiotropy ~ dnorm(0, 1E-3) \n Estimate[j] ~ "
+    part1 <-"Pleiotropy ~ dnorm(0, 1E-3) \n for (j in 1:K) {Estimate[j] ~ "
     part2 <- "\n sigma ~ dunif(.0001,10)"
-    Priors <- paste0(part1,betaprior,part2)
+    Priors <- paste0(part1,betaprior,"}",part2)
 
     egger_model_string <-
       paste0("model {",Likelihood,"\n\n", Priors,"\n\n }")
@@ -212,10 +230,9 @@ mvmr_egger_rjags <- function(object,
     data = list(
       N = length(object$beta.outcome),
       K = ncol(object$beta.exposure),
-      by = object$beta.outcome,
-      bx = as.matrix(object$beta.exposure),
+      by = orient * object$beta.outcome,
+      bx = object$beta.exposure,
       byse = object$se.outcome
-      #orientate = orientate
     ),
     n.chains = n.chains,
     inits = initsopt,

@@ -2,9 +2,24 @@
 
 context("Tests for MR-Egger function using JAGS")
 
+test_that("Dataset is formatted",
+          {
+            dat <- mr_format(rsid = dodata$rsid,
+                             xbeta = dodata$ldlcbeta,
+                             ybeta = dodata$chdbeta,
+                             xse = dodata$ldlcse,
+                             yse = dodata$chdse)
+            expect_s3_class(dat, "mr_format")
+          })
+
 test_that("MR-Egger using default prior method",
           {
-            eggerfit <- mr_egger_rjags(do_data,
+            dat <- mr_format(rsid = dodata$rsid,
+                             xbeta = dodata$ldlcbeta,
+                             ybeta = dodata$chdbeta,
+                             xse = dodata$ldlcse,
+                             yse = dodata$chdse)
+            eggerfit <- mr_egger_rjags(dat,
                                        seed = c(123, 456, 789))
             expect_equal(class(eggerfit), "eggerjags")
             expect_equal(unname(eggerfit$CausalEffect), 0.57, tol = 1e-2)
@@ -20,8 +35,13 @@ test_that("MR-Egger using default prior method",
 
 test_that("MR-Egger using weak prior method",
           {
+            dat <- mr_format(rsid = dodata$rsid,
+                             xbeta = dodata$ldlcbeta,
+                             ybeta = dodata$chdbeta,
+                             xse = dodata$ldlcse,
+                             yse = dodata$chdse)
             eggerfit1 <-
-              mr_egger_rjags(do_data,
+              mr_egger_rjags(dat,
                              prior = "weak",
                              seed = c(123, 456, 789))
             expect_equal(class(eggerfit1), "eggerjags")
@@ -38,8 +58,13 @@ test_that("MR-Egger using weak prior method",
 
 test_that("MR-Egger using pseudo prior method",
           {
+            dat <- mr_format(rsid = dodata$rsid,
+                             xbeta = dodata$ldlcbeta,
+                             ybeta = dodata$chdbeta,
+                             xse = dodata$ldlcse,
+                             yse = dodata$chdse)
             eggerfit2 <-
-              mr_egger_rjags(do_data,
+              mr_egger_rjags(dat,
                              prior = "pseudo",
                              seed = c(123, 456, 789))
             expect_equal(class(eggerfit2), "eggerjags")
@@ -57,8 +82,13 @@ test_that("MR-Egger using pseudo prior method",
 test_that("MR-Egger using joint prior method",
           {
             skip_on_cran()
+            dat <- mr_format(rsid = dodata$rsid,
+                             xbeta = dodata$ldlcbeta,
+                             ybeta = dodata$chdbeta,
+                             xse = dodata$ldlcse,
+                             yse = dodata$chdse)
             eggerfit3 <-
-              mr_egger_rjags(do_data,
+              mr_egger_rjags(dat,
                              prior = "joint",
                              seed = c(123, 456, 789))
             expect_equal(class(eggerfit3), "eggerjags")
@@ -75,8 +105,13 @@ test_that("MR-Egger using joint prior method",
 
 test_that("MR-Egger using betaprior and sigmaprior method",
           {
+            dat <- mr_format(rsid = dodata$rsid,
+                             xbeta = dodata$ldlcbeta,
+                             ybeta = dodata$chdbeta,
+                             xse = dodata$ldlcse,
+                             yse = dodata$chdse)
             eggerfit4 <-
-              mr_egger_rjags(do_data,
+              mr_egger_rjags(dat,
                              betaprior = "dnorm(0, 1E-6)",
                              sigmaprior = "dunif(.0001, 10)",
                              seed = c(123, 456, 789))
