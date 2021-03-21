@@ -79,9 +79,6 @@ mvmr_egger_rjags <- function(object,
   }
 
 
-  ybeta_orient = sign(object$beta.exposure)[,orientAte] * object$beta.outcome
-  xbeta_orient = cbind(object$beta.exposure[,-orientAte],abs(object$beta.exposure[,orientAte]))
-  object$beta.exposure[,orientAte]<- abs(object$beta.exposure[,orientAte])
   orient <- sign(object$beta.exposure)[,orientAte]
 
   # String for likelihood
@@ -145,12 +142,10 @@ mvmr_egger_rjags <- function(object,
     for (i in 1:K){
       Estimate[i] <- beta[i+1]
     }
-
-    for (i in 1:K+1){
-     for (j in 2:K+1){
-      prec[i,i] <- var[i]
-      prec[i,j] <- sd[i] * sd[j] * rho
-      prec[j,i] <- sd[j] * sd[i] * rho
+    l <- K+1
+    for (i in 1:l){
+     for (j in 1:l){
+     if (i ==j){prec[i,j] <- var[i]}else {prec[i,j] <- sd[i] * sd[j] * rho}
      }
     }
      sigma ~ dunif(.0001, 10)
@@ -229,9 +224,9 @@ mvmr_egger_rjags <- function(object,
     textConnection(egger_model_string),
     data = list(
       N = length(object$beta.outcome),
-      K = ncol(object$beta.exposure),
+      K =  ncol(object$beta.exposure),
       by = orient * object$beta.outcome,
-      bx = object$beta.exposure,
+      bx = orient * object$beta.exposure,
       byse = object$se.outcome
     ),
     n.chains = n.chains,

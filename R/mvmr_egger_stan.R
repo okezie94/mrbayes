@@ -71,15 +71,16 @@ mvmr_egger_stan <- function(data,
 
   ## setting directional change
 
-  ybet <- sign(data$beta.exposure)[,orientAte] * data$beta.outcome
-  data$beta.exposure[,orientAte]<- abs(data$beta.exposure[,orientAte])
+  orient <- sign(data$beta.exposure)[,orientAte]
+  ybet <- orient * data$beta.outcome
+  xbet <- orient * data$beta.exposure
 
 
   # converting dataset to a list
   datam <- list(
     n = nrow(data$beta.exposure),
     d = ncol(data$beta.exposure),
-    xbeta = data$beta.exposure/data$se.outcome,
+    xbeta = xbet/data$se.outcome,
     ybeta = ybet/data$se.outcome,
     weights = 1/data$se.outcome,
     prior = prior, rho = rho
