@@ -8,7 +8,6 @@
 #' * `1` selects a non-informative set of priors;
 #' * `2` selects weakly informative priors;
 #' * `3` selects a pseudo-horseshoe prior on the causal effect;
-#' * `4` selects joint prior of the intercept and causal effect estimate.
 #' @param n.chains Numeric indicating the number of chains used in the HMC estimation in rstan, the default is `3` chains.
 #' @param n.burn Numeric indicating the burn-in period of the Bayesian HMC estimation. The default is `1000` samples.
 #' @param n.iter Numeric indicating the number of iterations in the Bayesian HMC estimation. The default is `5000` iterations.

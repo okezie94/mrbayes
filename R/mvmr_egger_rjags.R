@@ -8,7 +8,6 @@
 #' * `"default"` selects a non-informative set of priors;
 #' * `"weak"` selects weakly informative priors;
 #' * `"pseudo"` selects a pseudo-horseshoe prior on the causal effect;
-#' * `"joint"` selects a joint prior on the intercept and slope.
 #' @param betaprior A character string in JAGS syntax to allow a user defined prior for the causal effect.
 #' @param sigmaprior A character string in JAGS syntax to allow a user defined prior for the residual standard deviation.
 #' @param n.chains Numeric indicating the number of chains used in the MCMC estimation, the default is `3` chains.
@@ -134,22 +133,23 @@ mvmr_egger_rjags <- function(object,
 
     # covariance matrix
     vcov_mat<-"
-    beta[1:K+1] ~ dmnorm.vcov(mu[], prec[ , ])\n
-    mu <- rep(0, K + 1)
-    var <- rep(1e4, K + 1)
-    sd <- sqrt(var)
+    beta[1:l] ~ dmnorm.vcov(mu[], prec[ , ])\n
     Pleiotropy <- beta[1]
-    for (i in 1:K){
-      Estimate[i] <- beta[i+1]
+    for (i in 2:K){
+      Estimate[i] <- beta[i]
     }
-    l <- K+1
     for (i in 1:l){
      for (j in 1:l){
-     if (i ==j){prec[i,j] <- var[i]}else {prec[i,j] <- sd[i] * sd[j] * rho}
+     mu[i] <- 0
+     var[i] <- 1e4
+     sd <- sqrt(var)
+     prec[i,j] <- sd[i] * sd[j] * rho
+     prec[j,i] <- sd[j] * sd[i] * rho
+     prec[i,i] <- var[i]
      }
     }
-     sigma ~ dunif(.0001, 10)
-     rho <-"
+    sigma ~ dunif(.0001, 10)
+    rho <-"
 
 
 
