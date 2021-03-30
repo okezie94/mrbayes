@@ -2,7 +2,7 @@
 % Please edit documentation in R/mvmr_ivw_stan.R
 \name{mvmr_ivw_stan}
 \alias{mvmr_ivw_stan}
-\title{Bayesian inverse variance weighted model with a choice of prior distributions fitted using RStan.}
+\title{Bayesian multivariate inverse variance weighted model with a choice of prior distributions fitted using RStan.}
 \usage{
 mvmr_ivw_stan(
   data,
@@ -38,7 +38,7 @@ mvmr_ivw_stan(
 An object of class \code{\link{stanfit}}.
 }
 \description{
-Bayesian inverse variance weighted model with a choice of prior distributions fitted using RStan.
+Bayesian multivariate inverse variance weighted model with a choice of prior distributions fitted using RStan.
 }
 \examples{
 dat <- mvmr_format(rsid = dodata$rsid,

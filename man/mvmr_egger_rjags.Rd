@@ -2,7 +2,7 @@
 % Please edit documentation in R/mvmr_egger_rjags.R
 \name{mvmr_egger_rjags}
 \alias{mvmr_egger_rjags}
-\title{Bayesian implementation of the MR-Egger model with choice of prior distributions fitted using JAGS.}
+\title{Bayesian implementation of the MVMR-Egger model with choice of prior distributions fitted using JAGS.}
 \usage{
 mvmr_egger_rjags(
   object,
@@ -26,7 +26,6 @@ mvmr_egger_rjags(
 \item \code{"default"} selects a non-informative set of priors;
 \item \code{"weak"} selects weakly informative priors;
 \item \code{"pseudo"} selects a pseudo-horseshoe prior on the causal effect;
-\item \code{"joint"} selects a joint prior on the intercept and slope.
 }}
 
 \item{betaprior}{A character string in JAGS syntax to allow a user defined prior for the causal effect.}
@@ -60,7 +59,7 @@ An object of class \code{mveggerjags} containing the following components:
 }
 }
 \description{
-Bayesian implementation of the MR-Egger model with choice of prior distributions fitted using JAGS.
+Bayesian implementation of the MVMR-Egger model with choice of prior distributions fitted using JAGS.
 }
 \examples{
 

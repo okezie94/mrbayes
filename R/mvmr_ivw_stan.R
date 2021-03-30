@@ -1,6 +1,6 @@
-#' Bayesian inverse variance weighted model with a choice of prior distributions fitted using RStan.
+#' Bayesian multivariate inverse variance weighted model with a choice of prior distributions fitted using RStan.
 #'
-#' Bayesian inverse variance weighted model with a choice of prior distributions fitted using RStan.
+#' Bayesian multivariate inverse variance weighted model with a choice of prior distributions fitted using RStan.
 #'
 #' @param data A data of class [`mvmr_format`].
 #' @param prior An integer for selecting the prior distributions;

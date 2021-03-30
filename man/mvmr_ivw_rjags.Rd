@@ -2,7 +2,7 @@
 % Please edit documentation in R/mvmr_ivw_rjags.R
 \name{mvmr_ivw_rjags}
 \alias{mvmr_ivw_rjags}
-\title{Bayesian inverse variance weighted multivariate model with a choice of prior distributions fitted using JAGS.}
+\title{Bayesian multivariate inverse variance weighted model with a choice of prior distributions fitted using JAGS.}
 \usage{
 mvmr_ivw_rjags(
   object,
@@ -48,7 +48,7 @@ An object of class \code{mvivwjags} containing the following components:
 }
 }
 \description{
-Bayesian inverse variance weighted multivariate model with a choice of prior distributions fitted using JAGS.
+Bayesian multivariate inverse variance weighted model with a choice of prior distributions fitted using JAGS.
 }
 \examples{
 

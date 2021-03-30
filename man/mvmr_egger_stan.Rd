@@ -2,7 +2,7 @@
 % Please edit documentation in R/mvmr_egger_stan.R
 \name{mvmr_egger_stan}
 \alias{mvmr_egger_stan}
-\title{Bayesian inverse variance weighted model with a choice of prior distributions fitted using Stan}
+\title{Bayesian implementation of the MVMR-Egger model with choice of prior distributions fitted using RStan.}
 \usage{
 mvmr_egger_stan(
   data,
@@ -24,7 +24,6 @@ mvmr_egger_stan(
 \item \code{1} selects a non-informative set of priors;
 \item \code{2} selects weakly informative priors;
 \item \code{3} selects a pseudo-horseshoe prior on the causal effect;
-\item \code{4} selects joint prior of the intercept and causal effect estimate.
 }}
 
 \item{n.chains}{Numeric indicating the number of chains used in the HMC estimation in rstan, the default is \code{3} chains.}
@@ -45,7 +44,7 @@ mvmr_egger_stan(
 An object of class \code{\link{stanfit}}.
 }
 \description{
-Bayesian inverse variance weighted model with a choice of prior distributions fitted using Stan.
+Bayesian implementation of the MVMR-Egger model with choice of prior distributions fitted using RStan.
 }
 \examples{
 \donttest{

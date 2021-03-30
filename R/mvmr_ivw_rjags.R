@@ -1,6 +1,6 @@
-#' Bayesian inverse variance weighted multivariate model with a choice of prior distributions fitted using JAGS.
+#' Bayesian multivariate inverse variance weighted model with a choice of prior distributions fitted using JAGS.
 #'
-#' Bayesian inverse variance weighted multivariate model with a choice of prior distributions fitted using JAGS.
+#' Bayesian multivariate inverse variance weighted model with a choice of prior distributions fitted using JAGS.
 #'
 #' @param object A data object of class [`mvmr_format`].
 #' @param prior A character string for selecting the prior distributions;
