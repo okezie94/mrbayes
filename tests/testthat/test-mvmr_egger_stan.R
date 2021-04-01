@@ -14,6 +14,7 @@ test_that("Dataset is formatted",
 
 test_that("MVMR-Egger using default prior method",
           {
+            skip_on_cran()
             dat <- mvmr_format(rsid = dodata$rsid,
                                xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
                                ybeta = dodata$chdbeta,
@@ -42,6 +43,7 @@ test_that("MVMR-Egger using default prior method",
 
 test_that("MVMR-Egger using weak prior method",
             {
+              skip_on_cran()
               dat <- mvmr_format(rsid = dodata$rsid,
                                  xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
                                  ybeta = dodata$chdbeta,
@@ -70,6 +72,7 @@ test_that("MVMR-Egger using weak prior method",
 
 test_that("MVMR-Egger using pseudo prior method",
           {
+            skip_on_cran()
             dat <- mvmr_format(rsid = dodata$rsid,
                                xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
                                ybeta = dodata$chdbeta,
