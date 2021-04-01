@@ -1,6 +1,7 @@
 #' mrbayes: Bayesian implementation of the IVW and MR-Egger models for two-sample Mendelian randomization analyses
 #'
-#' Bayesian implementation of the IVW and MR-Egger models for two-sample Mendelian randomization analyses.
+#' Bayesian implementation of the IVW and MR-Egger models and their multivariate
+#' versions for two-sample Mendelian randomization analyses.
 #'
 #' @name mrbayes-package
 #' @docType package
