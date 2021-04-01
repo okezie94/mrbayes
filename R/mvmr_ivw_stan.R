@@ -1,8 +1,8 @@
-#' Bayesian inverse variance weighted model with a choice of prior distributions fitted using RStan.
+#' Bayesian multivariate inverse variance weighted model with a choice of prior distributions fitted using RStan.
 #'
-#' Bayesian inverse variance weighted model with a choice of prior distributions fitted using RStan.
+#' Bayesian multivariate inverse variance weighted model with a choice of prior distributions fitted using RStan.
 #'
-#' @param data A data of class [`mr_format`].
+#' @param data A data of class [`mvmr_format`].
 #' @param prior An integer for selecting the prior distributions;
 #'
 #' * `1` selects a non-informative set of priors;
@@ -20,11 +20,16 @@
 #' @references Stan Development Team (2020). "RStan: the R interface to Stan." R package version 2.19.3, <https://mc-stan.org/>.
 #'
 #' @examples
-#' ivw_fit <- mr_ivw_stan(bmi_insulin)
-#' print(ivw_fit)
-#' rstan::traceplot(ivw_fit)
+#' dat <- mvmr_format(rsid = dodata$rsid,
+#'           xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
+#'           ybeta = dodata$chdbeta,
+#'           xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
+#'           yse = dodata$chdse)
+#' mvivw_fit <- mvmr_ivw_stan(dat)
+#' print(mvivw_fit)
+#' rstan::traceplot(mvivw_fit)
 #' @export
-mr_ivw_stan <- function(data,
+mvmr_ivw_stan <- function(data,
                         prior = 1,
                         n.chains = 3,
                         n.burn = 1000,
@@ -33,27 +38,28 @@ mr_ivw_stan <- function(data,
                         ...) {
 
   # convert MRInput object to mr_format
-  if ("MRInput" %in% class(data)) {
-    data <- mrinput_mr_format(data)
-  }
+  # if ("MRInput" %in% class(data)) {
+  #   data <- mrinput_mr_format(data)
+  # }
 
   # check class of object
-  if (!("mr_format" %in% class(data))) {
+  if (!("mvmr_format" %in% class(data))) {
     stop(
-      'The class of the data object must be "mr_format", please resave the object with the output of e.g. object <- mr_format(object).'
+      'The class of the data object must be "mvmr_format", please resave the object with the output of e.g. object <- mr_format(object).'
     )
   }
 
   # converting dataset to a list
   datam <- list(
-    n = nrow(data),
-    xbeta = data[, 2] / data[, 5],
-    ybeta = data[, 3] / data[, 5],
+    n = nrow(data$beta.exposure),
+    d = ncol(data$beta.exposure),
+    xbeta = data$beta.exposure / data$se.outcome,
+    ybeta = data$beta.outcome / data$se.outcome,
     prior = prior
   )
 
-  ivwfit <- rstan::sampling(
-    object = stanmodels$mrivw,
+  mvivwfit <- rstan::sampling(
+    object = stanmodels$mvmrivw,
     data = datam,
     pars = c("estimate"),
     chains = n.chains,
@@ -65,6 +71,6 @@ mr_ivw_stan <- function(data,
   )
 
 
-  return(ivwfit)
+  return(mvivwfit)
 
 }

@@ -34,3 +34,14 @@ vignettes/*.pdf
 # Temporary files created by R markdown
 *.utf8.md
 *.knit.md
+
+*.bash_history
+*.config
+*.local
+*.rstudio
+
+*.o
+*.so
+*.dll
+
+.DS_Store

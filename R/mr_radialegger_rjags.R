@@ -52,6 +52,11 @@ mr_radialegger_rjags <- function(object,
                                  rho = 0.5,
                                  ...) {
 
+  # convert MRInput object to mr_format
+  if ("MRInput" %in% class(object)) {
+    object <- mrinput_mr_format(object)
+  }
+
   # check class of object
   if (!("mr_format" %in% class(object))) {
     stop('The class of the data object must be "mr_format", please resave the object with the output of e.g. object <- mr_format(object).')
@@ -144,11 +149,15 @@ mr_radialegger_rjags <- function(object,
       paste0("model {",Likelihood,"\n\n", Priors,"\n\n }")
   }
 
+  # setting direction
+
+  ybet <- sign(object[,2]) * object[,3]
+  xbet <- abs(object[,2])
 
   # ratio estimates and weights
 
-  bj <- object[, 3] / object[, 5]
-  wj <- object[, 2] / object[, 5]
+  bj <- ybet / object[, 5]
+  wj <- xbet / object[, 5]
 
 
   if (!is.null(seed)) {

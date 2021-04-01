@@ -1,19 +1,19 @@
-#' Bayesian inverse variance weighted model with a choice of prior distributions fitted using Stan
+#' Bayesian implementation of the MVMR-Egger model with choice of prior distributions fitted using RStan.
 #'
-#' Bayesian inverse variance weighted model with a choice of prior distributions fitted using Stan.
+#' Bayesian implementation of the MVMR-Egger model with choice of prior distributions fitted using RStan.
 #'
-#' @param data A data of class [`mr_format`].
+#' @param data A data of class [`mvmr_format`].
 #' @param prior An integer for selecting the prior distributions;
 #'
 #' * `1` selects a non-informative set of priors;
 #' * `2` selects weakly informative priors;
 #' * `3` selects a pseudo-horseshoe prior on the causal effect;
-#' * `4` selects joint prior of the intercept and causal effect estimate.
 #' @param n.chains Numeric indicating the number of chains used in the HMC estimation in rstan, the default is `3` chains.
 #' @param n.burn Numeric indicating the burn-in period of the Bayesian HMC estimation. The default is `1000` samples.
 #' @param n.iter Numeric indicating the number of iterations in the Bayesian HMC estimation. The default is `5000` iterations.
 #' @param rho Numeric indicating the correlation coefficient input into the joint prior distribution. The default is `0.5`.
 #' @param seed Numeric indicating the random number seed. The default is `12345`.
+#' @param orientate Numeric value to indicate the oriented exposure.
 #' @param ... Additional arguments passed through to [`rstan::sampling()`].
 #'
 #' @return An object of class [`stanfit`].
@@ -26,50 +26,68 @@
 #' @examples
 #' \donttest{
 #' # Note we recommend setting n.burn and n.iter to larger values
-#' egger_fit <- mr_egger_stan(bmi_insulin, n.burn = 500, n.iter = 1000)
-#' print(egger_fit)
+#'
+#' dat <- mvmr_format(rsid = dodata$rsid,
+#'          xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
+#'          ybeta = dodata$chdbeta,
+#'          xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
+#'          yse = dodata$chdse)
+#' mvegger_fit <- mvmr_egger_stan(dat, n.burn = 500, n.iter = 1000)
+#' print(mvegger_fit)
 #' }
 
-mr_egger_stan <- function(data,
+mvmr_egger_stan <- function(data,
                         prior = 1,
                         n.chains = 3,
                         n.burn = 1000,
                         n.iter = 5000,
                         seed = 12345,
                         rho = 0.5,
+                        orientate = 1,
                         ...) {
 
   # convert MRInput object to mr_format
-  if ("MRInput" %in% class(data)) {
-    data <- mrinput_mr_format(data)
-  }
+  # if ("MRInput" %in% class(data)) {
+  #   data <- mrinput_mr_format(data)
+  # }
 
   # check class of object
-  if (!("mr_format" %in% class(data))) {
+  if (!("mvmr_format" %in% class(data))) {
     stop(
-      'The class of the data object must be "mr_format", please resave the object with the output of e.g. object <- mr_format(object).'
+      'The class of the data object must be "mvmr_format", please resave the object with the output of e.g. object <- mr_format(object).'
     )
+  }
+
+  # orientation setup
+
+  if (orientate %in% 1:dim(data$beta.exposure)[2]) {
+    orientAte = orientate
+  } else {
+    orientAte = 1
   }
 
   pars <- c("intercept","estimate","sigma")
 
   ## setting directional change
 
-  ybet <- sign(data[,2]) * data[,3]
-  xbet <- abs(data[,2])
+  orient <- sign(data$beta.exposure)[,orientAte]
+  ybet <- orient * data$beta.outcome
+  xbet <- orient * data$beta.exposure
+
 
   # converting dataset to a list
   datam <- list(
-    n = nrow(data),
-    xbeta = xbet/data[, 5],
-    ybeta = ybet/data[, 5],
-    weights = 1/data[, 5],
+    n = nrow(data$beta.exposure),
+    d = ncol(data$beta.exposure),
+    xbeta = xbet/data$se.outcome,
+    ybeta = ybet/data$se.outcome,
+    weights = 1/data$se.outcome,
     prior = prior, rho = rho
   )
 
 
-  eggerfit <- rstan::sampling(
-    object = stanmodels$mregger,
+  mveggerfit <- rstan::sampling(
+    object = stanmodels$mvmregger,
     data = datam,
     pars = pars,
     chains = n.chains,
@@ -80,6 +98,6 @@ mr_egger_stan <- function(data,
     ...
   )
 
-  return(eggerfit)
+  return(mveggerfit)
 
 }

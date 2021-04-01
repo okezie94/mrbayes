@@ -1,0 +1,37 @@
+#' Dataset from Do et al., Nat Gen, 2013 containing summary level data on associations of genotypes with lipid traits and the risk of coronary heart diseases
+#'
+#' A summary-level dataset, from Do et al. (2013) \doi{10.1038/ng.2795},
+#' containing 185 single nucleodtide polymorphisms (SNPs) which have genotype-phenotype associations and standard errors for
+#' LDL-C, HDL-C, Triglycerides, and genotype-outcome associations for coronary heart disease
+#' with their respective standard errors.
+#'
+#' dodata.
+#'
+#' @format A data frame with 185 rows and 21 columns with the following variables:
+#' \describe{
+#'       \item{rsid}{RSID number}
+#'       \item{a1}{Allele 1}
+#'       \item{a2}{Allele 2}
+#'       \item{chr}{Chromosome}
+#'       \item{pos}{Genomic position}
+#'       \item{ldlcbeta}{The genotype-low-density lipoprotein cholestrol associations}
+#'       \item{hdlcbeta}{The genotype-high-density lipoprotein cholestrol associations}
+#'       \item{tgbeta}{The genotype-triglyceride associations}
+#'       \item{chdbeta}{The genotype-coronary heart disease associations, on the log odds ratio scale}
+#'       \item{ldlcp2}{P-value for genotype-LDL-C associations}
+#'       \item{hdlcp2}{P-value for genotype-HDL-C associations}
+#'       \item{tgp2}{P-value for genotype-triglyceride associations}
+#'       \item{chdp2}{P-value for genotype-coronary heart disease associations}
+#'       \item{ldlcz}{Z-score for genotype-LDL-C associations}
+#'       \item{ldlcse}{The standard errors of the genotype-low-density lipoprotein cholestrol associations}
+#'       \item{hdlcz}{Z-score for genotype-HDL-C associations}
+#'       \item{hdlcse}{The standard errors of the genotype-high-density lipoprotein cholestrol associations}
+#'       \item{tgz}{Z-score for genotype-triglyceride associations}
+#'       \item{tgse}{The standard errors of the genotype-triglyceride cholestrol associations}
+#'       \item{chdz}{Z-score for genotype-coronary heart disease associations}
+#'       \item{chdse}{The standard errors of the genotype-coronary heart disease associations}
+#'
+#'  }
+#' @references Do, R. et al., Common variants associated with plasma triglycerides and risk for coronary artery disease. Nature Genetics, 2013, 45, 1345-1352, \doi{10.1038/ng.2795}.
+#'
+"dodata"

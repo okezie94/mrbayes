@@ -1,8 +1,8 @@
-#' Bayesian inverse variance weighted model with a choice of prior distributions fitted using JAGS.
+#' Bayesian multivariate inverse variance weighted model with a choice of prior distributions fitted using JAGS.
 #'
-#' Bayesian inverse variance weighted model with a choice of prior distributions fitted using JAGS.
+#' Bayesian multivariate inverse variance weighted model with a choice of prior distributions fitted using JAGS.
 #'
-#' @param object A data object of class [`mr_format`].
+#' @param object A data object of class [`mvmr_format`].
 #' @param prior A character string for selecting the prior distributions;
 #'
 #' * `"default"` selects a non-informative set of priors;
@@ -16,7 +16,7 @@
 #' @param ... Additional arguments passed through to [`rjags::jags.model()`].
 #'
 #' @export
-#' @return An object of class `ivwjags` containing the following components:
+#' @return An object of class `mvivwjags` containing the following components:
 #' \describe{
 #' \item{CausalEffect}{The mean of the simulated causal effects}
 #' \item{StandardError}{Standard deviation of the simulated causal effects}
@@ -28,16 +28,23 @@
 #' @references Burgess, S., Butterworth, A., Thompson S.G. Mendelian randomization analysis with multiple genetic variants using summarized data. Genetic Epidemiology, 2013, 37, 7, 658-665 \doi{10.1002/gepi.21758}.
 #'
 #' @examples
-#' fit <- mr_ivw_rjags(bmi_insulin)
+#'
+#' dat <- mvmr_format(rsid = dodata$rsid,
+#'          xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
+#'          ybeta = dodata$chdbeta,
+#'          xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
+#'          yse = dodata$chdse)
+#'
+#' fit <- mvmr_ivw_rjags(dat)
 #' print(fit)
 #' summary(fit)
 #' plot(fit$samples)
 #' # 90% credible interval
 #' fitdf <- do.call(rbind.data.frame, fit$samples)
-#' cri90 <- quantile(fitdf$Estimate, probs = c(0.05,0.95))
+#' cri90 <- sapply(fitdf, quantile, probs = c(0.05, 0.95))
 #' print(cri90)
 #'
-mr_ivw_rjags <- function(object,
+mvmr_ivw_rjags <- function(object,
                          prior = "default",
                          betaprior = "",
                          n.chains = 3,
@@ -46,20 +53,20 @@ mr_ivw_rjags <- function(object,
                          seed = NULL,
                          ...) {
 
-  # convert MRInput object to mr_format
-  if ("MRInput" %in% class(object)) {
-    object <- mrinput_mr_format(object)
-  }
+  # convert MRInput object to mvmr_format
+  # if ("MRInput" %in% class(object)) {
+  #   object <- mrinput_mvmr_format(object)
+  # }
 
   # check class of object
-  if (!("mr_format" %in% class(object))) {
-    stop('The class of the data object must be "mr_format", please resave the object with the output of e.g. object <- mr_format(object).')
+  if (!("mvmr_format" %in% class(object))) {
+    stop('The class of the data object must be "mvmr_format", please resave the object with the output of e.g. object <- mvmr_format(object).')
     }
 
   Likelihood <-
     "for (i in 1:N){
       by[i] ~ dnorm(by.hat[i], tau[i])
-      by.hat[i] <- Estimate * bx[i]
+      by.hat[i] <- inprod(Estimate[], bx[i,])
       tau[i] <- pow(byse[i], -2)
     }"
 
@@ -67,26 +74,32 @@ mr_ivw_rjags <- function(object,
   if (prior == "default" & betaprior == "") {
     #Setting up the model string
 
-    Priors <- "Estimate ~ dnorm(0, 1E-3)"
+    Priors <- "for (j in 1:K) {
+  Estimate[j] ~ dnorm(0,1E-3)
+  }"
     ivw_model_string <- paste0("model {", Likelihood, "\n\n", Priors, "\n\n}")
 
 
 } else if (prior == "weak" & betaprior == "") {
     #Setting up the model string
-    Priors<- "Estimate ~ dnorm(0, 1E-6)"
+    Priors<- "for (j in 1:K) {
+    Estimate[j] ~ dnorm(0, 1E-6)
+    }"
 
     ivw_model_string <- paste0("model {", Likelihood, "\n\n", Priors, "\n\n}")
 
 } else if (prior == "pseudo" & betaprior == "") {
 
     #Setting up the model string
-  Priors<- "Estimate ~ dt(0, 1, 1)"
+  Priors<- "for (j in 1:K) {
+  Estimate[j] ~ dt(0, 1, 1)
+  }"
   ivw_model_string <- paste0("model {", Likelihood, "\n\n", Priors, "\n\n}")
 }
 
 if (betaprior != "") {
 
-  Priors<- paste0("Estimate ~ ",betaprior)
+  Priors<- paste0("for (j in 1:K) {Estimate[j] ~ ",betaprior,"}")
   ivw_model_string <- paste0("model {", Likelihood,"\n\n", Priors, "\n\n }")
 
 }
@@ -107,10 +120,11 @@ if (betaprior != "") {
 ivw_model <- rjags::jags.model(
   textConnection(ivw_model_string),
   data = list(
-    N = nrow(object),
-    by = object[, 3],
-    bx = object[, 2],
-    byse = object[, 5]
+    N = length(object$beta.outcome),
+    K = ncol(object$beta.exposure),
+    by = object$beta.outcome,
+    bx = as.matrix(object$beta.exposure),
+    byse = object$se.outcome
   ),
   n.chains = n.chains,
   inits = initsopt,
@@ -142,29 +156,29 @@ nburn <- n.burn
 
 nchain <- n.chains
 
-nsnps <- nrow(object)
+nsnps <- length(object$beta.outcome)
 
 mcmciter <- n.iter + n.burn
 
 # Outputs from the model
 
 #Causal Estimate
-causal.est <- p$statistics[1]
+causal.est <- p$statistics[,1]
 
 #standard deviation
-standard.dev <- p$statistics[2]
+standard.dev <- p$statistics[,2]
 
 #lower Credible Interval for estimates
-lower.credible_interval <- p$quantiles[1]
+lower.credible_interval <- p$quantiles[,1]
 
 #Median Interval for estimates
-Median_interval <- p$quantiles[3]
+Median_interval <- p$quantiles[,3]
 
 #higher Credible Interval for estimates
-Higher.credible_interval <- p$quantiles[5]
+Higher.credible_interval <- p$quantiles[,5]
 
 credible_interval <-
-  c(lower.credible_interval,
+  cbind(lower.credible_interval,
     Median_interval,
     Higher.credible_interval)
 
@@ -184,20 +198,20 @@ out$Prior <- Priors
 out$model <- ivw_model_string
 out$nsnps<- nsnps
 
-class(out) <- "ivwjags"
+class(out) <- "mvivwjags"
 return(out)
 
 }
 
 #Function for output of results
 #' @export
-print.ivwjags <- function(x, ...) {
+print.mvivwjags <- function(x, ...) {
   outt <-
-    matrix(c(x$CausalEffect, x$StandardError, x$CredibleInterval),
-           nrow = 1,
+    matrix(cbind(x$CausalEffect, x$StandardError, x$CredibleInterval),
+           nrow = length(x$CausalEffect),
            ncol = 5,
-           byrow = TRUE,
-           dimnames = list("Causal Effect", c("Estimate", "SD", "2.5%", "50%", "97.5%"))
+           byrow = F,
+           dimnames =list(paste0("Causal Effect",1:length(x$CausalEffect)), c("Estimate", "SD", "2.5%", "50%", "97.5%"))
     )
   print(outt, ...)
   invisible(x)
@@ -205,15 +219,15 @@ print.ivwjags <- function(x, ...) {
 
 # Generating a summary of the results
 #' @export
-summary.ivwjags <- function(object, ...) {
+summary.mvivwjags <- function(object, ...) {
   out <- object
   out1 <-
     matrix(
-      c(out$CausalEffect, out$StandardError, out$CredibleInterval),
-      nrow = 1,
+      cbind(out$CausalEffect, out$StandardError, out$CredibleInterval),
+      nrow = length(out$CausalEffect),
       ncol = 5,
-      byrow = TRUE,
-      dimnames = list("Causal Effect", c("Estimate", "SD", "2.5%", "50%", "97.5%"))
+      byrow = F,
+      dimnames =list(paste0("Causal Effect",1:length(out$CausalEffect)), c("Estimate", "SD", "2.5%", "50%", "97.5%"))
     )
 
   cat("Prior : \n\n", out$Prior, "\n\n")
@@ -236,3 +250,4 @@ summary.ivwjags <- function(object, ...) {
   print(out1, ...)
 
 }
+
