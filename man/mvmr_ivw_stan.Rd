@@ -41,6 +41,7 @@ An object of class \code{\link{stanfit}}.
 Bayesian multivariate inverse variance weighted model with a choice of prior distributions fitted using RStan.
 }
 \examples{
+\donttest{
 dat <- mvmr_format(rsid = dodata$rsid,
           xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
           ybeta = dodata$chdbeta,
@@ -49,6 +50,7 @@ dat <- mvmr_format(rsid = dodata$rsid,
 mvivw_fit <- mvmr_ivw_stan(dat)
 print(mvivw_fit)
 rstan::traceplot(mvivw_fit)
+}
 }
 \references{
 Burgess, S., Butterworth, A., Thompson S.G. Mendelian randomization analysis with multiple genetic variants using summarized data. Genetic Epidemiology, 2013, 37, 7, 658-665 \doi{10.1002/gepi.21758}.

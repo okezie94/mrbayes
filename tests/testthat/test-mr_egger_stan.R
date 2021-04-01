@@ -17,6 +17,7 @@ test_that("Dataset is formatted",
 
 test_that("MR-Egger using default prior method",
           {
+            skip_on_cran()
             dat <- mr_format(rsid = dodata$rsid,
                              xbeta = dodata$ldlcbeta,
                              ybeta = dodata$chdbeta,
@@ -35,6 +36,7 @@ test_that("MR-Egger using default prior method",
 
 test_that("MR-Egger using weak prior method",
           {
+            skip_on_cran()
             dat <- mr_format(rsid = dodata$rsid,
                              xbeta = dodata$ldlcbeta,
                              ybeta = dodata$chdbeta,
@@ -53,6 +55,7 @@ test_that("MR-Egger using weak prior method",
 
 test_that("MR-Egger using pseudo prior method",
           {
+            skip_on_cran()
             dat <- mr_format(rsid = dodata$rsid,
                              xbeta = dodata$ldlcbeta,
                              ybeta = dodata$chdbeta,
@@ -71,6 +74,7 @@ test_that("MR-Egger using pseudo prior method",
 
 test_that("MR-Egger using joint prior method",
           {
+            skip_on_cran()
             dat <- mr_format(rsid = dodata$rsid,
                              xbeta = dodata$ldlcbeta,
                              ybeta = dodata$chdbeta,

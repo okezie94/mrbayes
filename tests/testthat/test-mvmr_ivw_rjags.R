@@ -13,6 +13,7 @@ test_that("Dataset is formatted",
 
 test_that("IVW using default prior method",
           {
+            skip_on_cran()
             dat <- mvmr_format(rsid = dodata$rsid,
                                xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
                                ybeta = dodata$chdbeta,
@@ -42,6 +43,7 @@ test_that("IVW using default prior method",
 
 test_that("IVW using weak prior method",
           {
+            skip_on_cran()
             dat <- mvmr_format(rsid = dodata$rsid,
                                xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
                                ybeta = dodata$chdbeta,
@@ -72,6 +74,7 @@ test_that("IVW using weak prior method",
 
 test_that("IVW using pseudo prior method",
           {
+            skip_on_cran()
             dat <- mvmr_format(rsid = dodata$rsid,
                                xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
                                ybeta = dodata$chdbeta,
@@ -103,6 +106,7 @@ test_that("IVW using pseudo prior method",
 
 test_that("IVW using beta prior method",
           {
+            skip_on_cran()
             dat <- mvmr_format(rsid = dodata$rsid,
                                xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
                                ybeta = dodata$chdbeta,

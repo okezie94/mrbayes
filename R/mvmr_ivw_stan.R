@@ -20,6 +20,7 @@
 #' @references Stan Development Team (2020). "RStan: the R interface to Stan." R package version 2.19.3, <https://mc-stan.org/>.
 #'
 #' @examples
+#' \donttest{
 #' dat <- mvmr_format(rsid = dodata$rsid,
 #'           xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
 #'           ybeta = dodata$chdbeta,
@@ -28,6 +29,7 @@
 #' mvivw_fit <- mvmr_ivw_stan(dat)
 #' print(mvivw_fit)
 #' rstan::traceplot(mvivw_fit)
+#' }
 #' @export
 mvmr_ivw_stan <- function(data,
                         prior = 1,
