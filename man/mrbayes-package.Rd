@@ -6,7 +6,8 @@
 \alias{mrbayes}
 \title{mrbayes: Bayesian implementation of the IVW and MR-Egger models for two-sample Mendelian randomization analyses}
 \description{
-Bayesian implementation of the IVW and MR-Egger models for two-sample Mendelian randomization analyses.
+Bayesian implementation of the IVW and MR-Egger models and their radial and
+multivariate versions for two-sample Mendelian randomization analyses.
 }
 \references{
 Stan Development Team (2019). RStan: the R interface to Stan. R package version 2.19.2. \url{https://mc-stan.org}
