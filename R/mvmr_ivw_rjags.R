@@ -41,7 +41,7 @@
 #' plot(fit$samples)
 #' # 90% credible interval
 #' fitdf <- do.call(rbind.data.frame, fit$samples)
-#' cri90 <- quantile(fitdf$Estimate, probs = c(0.05,0.95))
+#' cri90 <- sapply(fitdf, quantile, probs = c(0.05, 0.95))
 #' print(cri90)
 #'
 mvmr_ivw_rjags <- function(object,
