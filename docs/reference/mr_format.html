@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mrbayes</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
       </span>
     </div>
 
@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -94,7 +94,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/okezie94/mrbayes/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -120,7 +120,7 @@
     <p>Organises the summary level data for use in the Bayesian MR functions</p>
     </div>
 
-    <pre class="usage"><span class='fu'>mr_format</span>(<span class='no'>rsid</span>, <span class='no'>xbeta</span>, <span class='no'>ybeta</span>, <span class='no'>xse</span>, <span class='no'>yse</span>)</pre>
+    <pre class="usage"><span class='fu'>mr_format</span><span class='op'>(</span><span class='va'>rsid</span>, <span class='va'>xbeta</span>, <span class='va'>ybeta</span>, <span class='va'>xse</span>, <span class='va'>yse</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -152,13 +152,14 @@
     <p>A formatted data frame for analysis of class <code>mr_format</code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>bmi_insulin</span>)
-<span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'>mr_format</span>(<span class='kw'>rsid</span> <span class='kw'>=</span> <span class='no'>bmi_insulin</span>[,<span class='st'>"rsid"</span>],
-          <span class='kw'>xbeta</span> <span class='kw'>=</span> <span class='no'>bmi_insulin</span>[,<span class='st'>"beta.exposure"</span>],
-          <span class='kw'>ybeta</span> <span class='kw'>=</span> <span class='no'>bmi_insulin</span>[,<span class='st'>"beta.outcome"</span>],
-          <span class='kw'>xse</span> <span class='kw'>=</span> <span class='no'>bmi_insulin</span>[,<span class='st'>"se.exposure"</span>],
-          <span class='kw'>yse</span> <span class='kw'>=</span> <span class='no'>bmi_insulin</span>[,<span class='st'>"se.outcome"</span>])
-<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>dat</span>)</div><div class='output co'>#&gt; [1] "data.frame" "mr_format" </div><div class='input'>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>bmi_insulin</span><span class='op'>)</span>
+<span class='va'>dat</span> <span class='op'>&lt;-</span> <span class='fu'>mr_format</span><span class='op'>(</span>rsid <span class='op'>=</span> <span class='va'>bmi_insulin</span><span class='op'>[</span>,<span class='st'>"rsid"</span><span class='op'>]</span>,
+          xbeta <span class='op'>=</span> <span class='va'>bmi_insulin</span><span class='op'>[</span>,<span class='st'>"beta.exposure"</span><span class='op'>]</span>,
+          ybeta <span class='op'>=</span> <span class='va'>bmi_insulin</span><span class='op'>[</span>,<span class='st'>"beta.outcome"</span><span class='op'>]</span>,
+          xse <span class='op'>=</span> <span class='va'>bmi_insulin</span><span class='op'>[</span>,<span class='st'>"se.exposure"</span><span class='op'>]</span>,
+          yse <span class='op'>=</span> <span class='va'>bmi_insulin</span><span class='op'>[</span>,<span class='st'>"se.outcome"</span><span class='op'>]</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>dat</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "data.frame" "mr_format" </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -175,7 +176,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

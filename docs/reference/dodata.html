@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Changelog • mrbayes</title>
+<title>Dataset from Do et al., Nat Gen, 2013 containing summary level data on associations of genotypes with lipid traits and the risk of coronary heart diseases — dodata • mrbayes</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,12 @@
 
 
 
-<meta property="og:title" content="Changelog" />
+<meta property="og:title" content="Dataset from Do et al., Nat Gen, 2013 containing summary level data on associations of genotypes with lipid traits and the risk of coronary heart diseases — dodata" />
+<meta property="og:description" content="A summary-level dataset, from Do et al. (2013) doi: 10.1038/ng.2795
+,
+containing 185 single nucleodtide polymorphisms (SNPs) which have genotype-phenotype associations and standard errors for
+LDL-C, HDL-C, Triglycerides, and genotype-outcome associations for coronary heart disease
+with their respective standard errors." />
 
 
 
@@ -58,7 +63,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-news">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -110,44 +115,64 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1 data-toc-skip>Changelog <small></small></h1>
-      <small>Source: <a href='https://github.com/okezie94/mrbayes/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
+    <h1>Dataset from Do et al., Nat Gen, 2013 containing summary level data on associations of genotypes with lipid traits and the risk of coronary heart diseases</h1>
+    <small class="dont-index">Source: <a href='https://github.com/okezie94/mrbayes/blob/master/R/dodata.R'><code>R/dodata.R</code></a></small>
+    <div class="hidden name"><code>dodata.Rd</code></div>
     </div>
 
-    <div id="mrbayes-0-3-0" class="section level1">
-<h1 class="page-header" data-toc-text="0.3.0">
-<a href="#mrbayes-0-3-0" class="anchor"></a>mrbayes 0.3.0<small> 2021-04-01 </small>
-</h1>
-<ul>
-<li>Additional functions for multivariate IVW and MR-Egger using JAGS and rstan</li>
-</ul>
-</div>
-    <div id="mrbayes-0-2-0" class="section level1">
-<h1 class="page-header" data-toc-text="0.2.0">
-<a href="#mrbayes-0-2-0" class="anchor"></a>mrbayes 0.2.0<small> 2020-05-28 </small>
-</h1>
-<ul>
-<li>IVW implemented using rstan.</li>
-<li>MR-Egger implemented using rstan.</li>
-<li>Radial MR-Egger implemented using rstan.</li>
-</ul>
-</div>
-    <div id="mrbayes-0-1-0" class="section level1">
-<h1 class="page-header" data-toc-text="0.1.0">
-<a href="#mrbayes-0-1-0" class="anchor"></a>mrbayes 0.1.0<small> 2019-09-04 </small>
-</h1>
-<ul>
-<li>IVW, MR-Egger, and their radial versions implemented using JAGS.</li>
-</ul>
-</div>
-  </div>
+    <div class="ref-description">
+    <p>A summary-level dataset, from Do et al. (2013) doi: <a href='https://doi.org/10.1038/ng.2795'>10.1038/ng.2795</a>
+,
+containing 185 single nucleodtide polymorphisms (SNPs) which have genotype-phenotype associations and standard errors for
+LDL-C, HDL-C, Triglycerides, and genotype-outcome associations for coronary heart disease
+with their respective standard errors.</p>
+    </div>
 
+    <pre class="usage"><span class='va'>dodata</span></pre>
+
+
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+
+    <p>A data frame with 185 rows and 21 columns with the following variables:</p><dl>
+<dt>rsid</dt><dd><p>RSID number</p></dd>
+<dt>a1</dt><dd><p>Allele 1</p></dd>
+<dt>a2</dt><dd><p>Allele 2</p></dd>
+<dt>chr</dt><dd><p>Chromosome</p></dd>
+<dt>pos</dt><dd><p>Genomic position</p></dd>
+<dt>ldlcbeta</dt><dd><p>The genotype-low-density lipoprotein cholestrol associations</p></dd>
+<dt>hdlcbeta</dt><dd><p>The genotype-high-density lipoprotein cholestrol associations</p></dd>
+<dt>tgbeta</dt><dd><p>The genotype-triglyceride associations</p></dd>
+<dt>chdbeta</dt><dd><p>The genotype-coronary heart disease associations, on the log odds ratio scale</p></dd>
+<dt>ldlcp2</dt><dd><p>P-value for genotype-LDL-C associations</p></dd>
+<dt>hdlcp2</dt><dd><p>P-value for genotype-HDL-C associations</p></dd>
+<dt>tgp2</dt><dd><p>P-value for genotype-triglyceride associations</p></dd>
+<dt>chdp2</dt><dd><p>P-value for genotype-coronary heart disease associations</p></dd>
+<dt>ldlcz</dt><dd><p>Z-score for genotype-LDL-C associations</p></dd>
+<dt>ldlcse</dt><dd><p>The standard errors of the genotype-low-density lipoprotein cholestrol associations</p></dd>
+<dt>hdlcz</dt><dd><p>Z-score for genotype-HDL-C associations</p></dd>
+<dt>hdlcse</dt><dd><p>The standard errors of the genotype-high-density lipoprotein cholestrol associations</p></dd>
+<dt>tgz</dt><dd><p>Z-score for genotype-triglyceride associations</p></dd>
+<dt>tgse</dt><dd><p>The standard errors of the genotype-triglyceride cholestrol associations</p></dd>
+<dt>chdz</dt><dd><p>Z-score for genotype-coronary heart disease associations</p></dd>
+<dt>chdse</dt><dd><p>The standard errors of the genotype-coronary heart disease associations</p></dd>
+
+
+</dl>
+
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>dodata.</p>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Do, R. et al., Common variants associated with plasma triglycerides and risk for coronary artery disease. Nature Genetics, 2013, 45, 1345-1352, doi: <a href='https://doi.org/10.1038/ng.2795'>10.1038/ng.2795</a>
+.</p>
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
-
 </div>
 
 

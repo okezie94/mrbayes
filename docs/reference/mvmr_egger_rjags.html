@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Bayesian radial MR-Egger model with a choice of prior distributions fitted using JAGS. — mr_radialegger_rjags • mrbayes</title>
+<title>Bayesian implementation of the MVMR-Egger model with choice of prior distributions fitted using JAGS. — mvmr_egger_rjags • mrbayes</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Bayesian radial MR-Egger model with a choice of prior distributions fitted using JAGS. — mr_radialegger_rjags" />
-<meta property="og:description" content="Bayesian radial MR-Egger model with a choice of prior distributions fitted using JAGS." />
+<meta property="og:title" content="Bayesian implementation of the MVMR-Egger model with choice of prior distributions fitted using JAGS. — mvmr_egger_rjags" />
+<meta property="og:description" content="Bayesian implementation of the MVMR-Egger model with choice of prior distributions fitted using JAGS." />
 
 
 
@@ -111,20 +111,21 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Bayesian radial MR-Egger model with a choice of prior distributions fitted using JAGS.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/okezie94/mrbayes/blob/master/R/mr_radialegger_rjags.R'><code>R/mr_radialegger_rjags.R</code></a></small>
-    <div class="hidden name"><code>mr_radialegger_rjags.Rd</code></div>
+    <h1>Bayesian implementation of the MVMR-Egger model with choice of prior distributions fitted using JAGS.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/okezie94/mrbayes/blob/master/R/mvmr_egger_rjags.R'><code>R/mvmr_egger_rjags.R</code></a></small>
+    <div class="hidden name"><code>mvmr_egger_rjags.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Bayesian radial MR-Egger model with a choice of prior distributions fitted using JAGS.</p>
+    <p>Bayesian implementation of the MVMR-Egger model with choice of prior distributions fitted using JAGS.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>mr_radialegger_rjags</span><span class='op'>(</span>
+    <pre class="usage"><span class='fu'>mvmr_egger_rjags</span><span class='op'>(</span>
   <span class='va'>object</span>,
   prior <span class='op'>=</span> <span class='st'>"default"</span>,
   betaprior <span class='op'>=</span> <span class='st'>""</span>,
   sigmaprior <span class='op'>=</span> <span class='st'>""</span>,
+  orientate <span class='op'>=</span> <span class='fl'>1</span>,
   n.chains <span class='op'>=</span> <span class='fl'>3</span>,
   n.burn <span class='op'>=</span> <span class='fl'>1000</span>,
   n.iter <span class='op'>=</span> <span class='fl'>5000</span>,
@@ -138,7 +139,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>object</th>
-      <td><p>A data object of class <code><a href='mr_format.html'>mr_format</a></code>.</p></td>
+      <td><p>A data object of class <code><a href='mvmr_format.html'>mvmr_format</a></code>.</p></td>
     </tr>
     <tr>
       <th>prior</th>
@@ -146,7 +147,6 @@
 <li><p><code>"default"</code> selects a non-informative set of priors;</p></li>
 <li><p><code>"weak"</code> selects weakly informative priors;</p></li>
 <li><p><code>"pseudo"</code> selects a pseudo-horseshoe prior on the causal effect;</p></li>
-<li><p><code>"joint"</code> selects a joint prior on the intercept and slope.</p></li>
 </ul></td>
     </tr>
     <tr>
@@ -156,6 +156,10 @@
     <tr>
       <th>sigmaprior</th>
       <td><p>A character string in JAGS syntax to allow a user defined prior for the residual standard deviation.</p></td>
+    </tr>
+    <tr>
+      <th>orientate</th>
+      <td><p>Numeric value to indicate the oriented exposure</p></td>
     </tr>
     <tr>
       <th>n.chains</th>
@@ -175,7 +179,7 @@
     </tr>
     <tr>
       <th>rho</th>
-      <td><p>Numeric indicating the correlation coefficient input into the joint prior distribution. The default is <code>0.5</code>.</p></td>
+      <td><p>Numeric indicating the correlation coefficient input into the joint prior distribution. The default value is <code>0.5</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -185,29 +189,38 @@
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An object of class <code>radialeggerjags</code> containing the following components:</p><dl>
+    <p>An object of class <code>mveggerjags</code> containing the following components:</p><dl>
 <dt>AvgPleio</dt><dd><p>The mean of the simulated pleiotropic effect</p></dd>
 <dt>CausalEffect</dt><dd><p>The mean of the simulated causal effect</p></dd>
 <dt>StandardError</dt><dd><p>Standard deviation of the simulated causal effect</p></dd>
-<dt>sigma</dt><dd><p>The mean of the simaulted residual standard deviation</p></dd>
+<dt>sigma</dt><dd><p>The value of the residual standard deviation</p></dd>
 <dt>CredibleInterval</dt><dd><p>The credible interval for the causal effect, which includes the lower (2.5%), median (50%) and upper intervals (97.5%)</p></dd>
 <dt>samples</dt><dd><p>Output of the Bayesian MCMC samples</p></dd>
-<dt>Prior</dt><dd><p>The specified priors</p></dd>
+<dt>Priors</dt><dd><p>The specified priors</p></dd>
 
 </dl>
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Bowden, J., et al., Improving the visualization, interpretation and analysis of two-sample summary data Mendelian randomization via the Radial plot and Radial regression. International Journal of Epidemiology, 2018. 47(4): p. 1264-1278. doi: <a href='https://doi.org/10.1093/ije/dyy101'>10.1093/ije/dyy101</a>
-.</p>
+    <p>Bowden et. al., Mendelian randomization with invalid instruments: effect estimation and bias detection through Egger regression. International Journal of Epidemiology 2015. 44(2): p. 512-525. doi: <a href='https://doi.org/10.1093/ije/dyv080'>10.1093/ije/dyv080</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>fit</span> <span class='op'>&lt;-</span> <span class='fu'>mr_radialegger_rjags</span><span class='op'>(</span><span class='va'>bmi_insulin</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: The mean of the sigma parameter, the residual standard deviation, is less than 1, we recommend refitting the model with sigma constrained to be &gt;= 1.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>fit</span><span class='op'>)</span>
+    <pre class="examples"><div class='input'>
+<span class='va'>dat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='mvmr_format.html'>mvmr_format</a></span><span class='op'>(</span>rsid <span class='op'>=</span> <span class='va'>dodata</span><span class='op'>$</span><span class='va'>rsid</span>,
+         xbeta <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span><span class='op'>(</span><span class='va'>dodata</span><span class='op'>$</span><span class='va'>ldlcbeta</span>,<span class='va'>dodata</span><span class='op'>$</span><span class='va'>hdlcbeta</span>,<span class='va'>dodata</span><span class='op'>$</span><span class='va'>tgbeta</span><span class='op'>)</span>,
+         ybeta <span class='op'>=</span> <span class='va'>dodata</span><span class='op'>$</span><span class='va'>chdbeta</span>,
+         xse <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span><span class='op'>(</span><span class='va'>dodata</span><span class='op'>$</span><span class='va'>ldlcse</span>,<span class='va'>dodata</span><span class='op'>$</span><span class='va'>hdlcse</span>,<span class='va'>dodata</span><span class='op'>$</span><span class='va'>tgse</span><span class='op'>)</span>,
+         yse <span class='op'>=</span> <span class='va'>dodata</span><span class='op'>$</span><span class='va'>chdse</span><span class='op'>)</span>
+
+<span class='va'>fit</span> <span class='op'>&lt;-</span> <span class='fu'>mvmr_egger_rjags</span><span class='op'>(</span><span class='va'>dat</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>fit</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; Prior : 
 #&gt; 
 #&gt;  Pleiotropy ~ dnorm(0, 1E-3) 
-#&gt;  Estimate ~ dnorm(0, 1E-3) 
+#&gt; 
+#&gt;     for (j in 1:K) {
+#&gt;     Estimate[j] ~ dnorm(0,1E-3)
+#&gt;     } 
 #&gt;  sigma ~ dunif(.0001, 10) 
 #&gt; 
 #&gt; Estimation results: 
@@ -216,19 +229,22 @@
 #&gt;  Burn in = 1000 
 #&gt;  Sample size by chain = 5000 
 #&gt;  Number of Chains = 3 
-#&gt;  Number of SNPs = 14 
+#&gt;  Number of SNPs = 185 
 #&gt;  
-#&gt; Inflating Parameter: 0.02703667 
+#&gt; Inflating Parameter: 1.458268 
 #&gt; 
-#&gt;                Estimate       SD       2.5%        50%     97.5%
-#&gt; Avg Pleio     -27.04500 10.91672 -48.124939 -27.074495 -6.013754
-#&gt; Causal Effect   5.70265  2.09430   1.647255   5.710937  9.744019</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>fit</span><span class='op'>$</span><span class='va'>samples</span><span class='op'>)</span>
-</div><div class='img'><img src='mr_radialegger_rjags-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># 90% credible interval</span>
+#&gt;                   Estimate          SD        2.5%          50%        97.5%
+#&gt; Avg Pleio      -0.00609279 0.002461125 -0.01090099 -0.006065802 -0.001278095
+#&gt; Causal Effect1  0.53077882 0.070343331  0.39271722  0.530262131  0.670515395
+#&gt; Causal Effect2 -0.10309434 0.060781120 -0.22159381 -0.103438082  0.016067171
+#&gt; Causal Effect3  0.32595666 0.075948908  0.17673437  0.326204767  0.474313691</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>fit</span><span class='op'>$</span><span class='va'>samples</span><span class='op'>)</span>
+</div><div class='img'><img src='mvmr_egger_rjags-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='mvmr_egger_rjags-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># 90% credible interval</span>
 <span class='va'>fitdf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/do.call.html'>do.call</a></span><span class='op'>(</span><span class='va'>rbind.data.frame</span>, <span class='va'>fit</span><span class='op'>$</span><span class='va'>samples</span><span class='op'>)</span>
-<span class='va'>cri90</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span><span class='op'>(</span><span class='va'>fitdf</span><span class='op'>$</span><span class='va'>Estimate</span>, probs <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.05</span>,<span class='fl'>0.95</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>cri90</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='va'>fitdf</span>, <span class='va'>quantile</span>, probs <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.05</span>, <span class='fl'>0.95</span><span class='op'>)</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>cri90</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;       5%      95% 
-#&gt; 2.298152 9.086336 </div><div class='input'>
+</div><div class='output co'>#&gt;     Estimate[1]  Estimate[2] Estimate[3]   Pleiotropy    sigma
+#&gt; 5%    0.4148689 -0.202443357   0.2014416 -0.010141372 1.334896
+#&gt; 95%   0.6470653 -0.004052485   0.4511938 -0.002073575 1.591838</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

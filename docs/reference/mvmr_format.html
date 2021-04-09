@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Bayesian inverse variance weighted model with a choice of prior distributions fitted using RStan. — mr_ivw_stan • mrbayes</title>
+<title>Organises the summary level data for use in the Bayesian MR functions — mvmr_format • mrbayes</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Bayesian inverse variance weighted model with a choice of prior distributions fitted using RStan. — mr_ivw_stan" />
-<meta property="og:description" content="Bayesian inverse variance weighted model with a choice of prior distributions fitted using RStan." />
+<meta property="og:title" content="Organises the summary level data for use in the Bayesian MR functions — mvmr_format" />
+<meta property="og:description" content="Organises the summary level data for use in the Bayesian MR functions" />
 
 
 
@@ -111,90 +111,56 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Bayesian inverse variance weighted model with a choice of prior distributions fitted using RStan.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/okezie94/mrbayes/blob/master/R/mr_ivw_stan.R'><code>R/mr_ivw_stan.R</code></a></small>
-    <div class="hidden name"><code>mr_ivw_stan.Rd</code></div>
+    <h1>Organises the summary level data for use in the Bayesian MR functions</h1>
+    <small class="dont-index">Source: <a href='https://github.com/okezie94/mrbayes/blob/master/R/mvmr_format.R'><code>R/mvmr_format.R</code></a></small>
+    <div class="hidden name"><code>mvmr_format.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Bayesian inverse variance weighted model with a choice of prior distributions fitted using RStan.</p>
+    <p>Organises the summary level data for use in the Bayesian MR functions</p>
     </div>
 
-    <pre class="usage"><span class='fu'>mr_ivw_stan</span><span class='op'>(</span>
-  <span class='va'>data</span>,
-  prior <span class='op'>=</span> <span class='fl'>1</span>,
-  n.chains <span class='op'>=</span> <span class='fl'>3</span>,
-  n.burn <span class='op'>=</span> <span class='fl'>1000</span>,
-  n.iter <span class='op'>=</span> <span class='fl'>5000</span>,
-  seed <span class='op'>=</span> <span class='fl'>12345</span>,
-  <span class='va'>...</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>mvmr_format</span><span class='op'>(</span><span class='va'>rsid</span>, <span class='va'>xbeta</span>, <span class='va'>ybeta</span>, <span class='va'>xse</span>, <span class='va'>yse</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>A data of class <code><a href='mr_format.html'>mr_format</a></code>.</p></td>
+      <th>rsid</th>
+      <td><p>A vector of genetic variants used for analysis, if unspecified a vector is automatically generated.</p></td>
     </tr>
     <tr>
-      <th>prior</th>
-      <td><p>An integer for selecting the prior distributions;</p><ul>
-<li><p><code>1</code> selects a non-informative set of priors;</p></li>
-<li><p><code>2</code> selects weakly informative priors;</p></li>
-<li><p><code>3</code> selects a pseudo-horseshoe prior on the causal effect.</p></li>
-</ul></td>
+      <th>xbeta</th>
+      <td><p>A matrix of multiple instrument-phenotypes associations.</p></td>
     </tr>
     <tr>
-      <th>n.chains</th>
-      <td><p>Numeric indicating the number of chains used in the HMC estimation in rstan, the default is <code>3</code> chains.</p></td>
+      <th>ybeta</th>
+      <td><p>A numeric vector of the instrument-outcome associations.</p></td>
     </tr>
     <tr>
-      <th>n.burn</th>
-      <td><p>Numeric indicating the burn-in period of the Bayesian HMC estimation. The default is <code>1000</code> samples.</p></td>
+      <th>xse</th>
+      <td><p>The matrix for corresponding standard errors of the instrument-phenotypes associations <code>xbeta</code>.</p></td>
     </tr>
     <tr>
-      <th>n.iter</th>
-      <td><p>Numeric indicating the number of iterations in the Bayesian MCMC estimation. The default is <code>5000</code> iterations.</p></td>
-    </tr>
-    <tr>
-      <th>seed</th>
-      <td><p>Numeric indicating the random number seed. The default is <code>12345</code>.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Additional arguments passed through to <code><a href='https://mc-stan.org/rstan/reference/stanmodel-method-sampling.html'>rstan::sampling()</a></code>.</p></td>
+      <th>yse</th>
+      <td><p>The standard errors of the instrument-outcome associations <code>ybeta</code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An object of class <code>stanfit</code>.</p>
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p>Burgess, S., Butterworth, A., Thompson S.G. Mendelian randomization analysis with multiple genetic variants using summarized data. Genetic Epidemiology, 2013, 37, 7, 658-665 doi: <a href='https://doi.org/10.1002/gepi.21758'>10.1002/gepi.21758</a>
-.</p>
-<p>Stan Development Team (2020). "RStan: the R interface to Stan." R package version 2.19.3, <a href='https://mc-stan.org/'>https://mc-stan.org/</a>.</p>
+    <p>A formatted data frame for analysis of class <code>mvmr_format</code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>ivw_fit</span> <span class='op'>&lt;-</span> <span class='fu'>mr_ivw_stan</span><span class='op'>(</span><span class='va'>bmi_insulin</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>ivw_fit</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Inference for Stan model: mrivw.
-#&gt; 3 chains, each with iter=5000; warmup=1000; thin=1; 
-#&gt; post-warmup draws per chain=4000, total post-warmup draws=12000.
-#&gt; 
-#&gt;             mean se_mean   sd    2.5%     25%     50%     75%   97.5% n_eff
-#&gt; estimate    0.58    0.00 0.05    0.48    0.54    0.58    0.61    0.68  2739
-#&gt; lp__     -393.05    0.02 0.73 -395.07 -393.22 -392.77 -392.58 -392.53  2318
-#&gt;          Rhat
-#&gt; estimate    1
-#&gt; lp__        1
-#&gt; 
-#&gt; Samples were drawn using NUTS(diag_e) at Fri Apr  9 10:53:59 2021.
-#&gt; For each parameter, n_eff is a crude measure of effective sample size,
-#&gt; and Rhat is the potential scale reduction factor on split chains (at 
-#&gt; convergence, Rhat=1).</div><div class='input'><span class='fu'>rstan</span><span class='fu'>::</span><span class='fu'><a href='https://mc-stan.org/rstan/reference/stanfit-method-traceplot.html'>traceplot</a></span><span class='op'>(</span><span class='va'>ivw_fit</span><span class='op'>)</span>
-</div><div class='img'><img src='mr_ivw_stan-1.png' alt='' width='700' height='433' /></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>dodata</span><span class='op'>)</span>
+<span class='va'>dat</span> <span class='op'>&lt;-</span> <span class='fu'>mvmr_format</span><span class='op'>(</span>rsid <span class='op'>=</span> <span class='va'>dodata</span><span class='op'>$</span><span class='va'>rsid</span>,
+          xbeta <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span><span class='op'>(</span><span class='va'>dodata</span><span class='op'>$</span><span class='va'>ldlcbeta</span>,<span class='va'>dodata</span><span class='op'>$</span><span class='va'>hdlcbeta</span>,<span class='va'>dodata</span><span class='op'>$</span><span class='va'>tgbeta</span><span class='op'>)</span>,
+          ybeta <span class='op'>=</span> <span class='va'>dodata</span><span class='op'>$</span><span class='va'>chdbeta</span>,
+          xse <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span><span class='op'>(</span><span class='va'>dodata</span><span class='op'>$</span><span class='va'>ldlcse</span>,<span class='va'>dodata</span><span class='op'>$</span><span class='va'>hdlcse</span>,<span class='va'>dodata</span><span class='op'>$</span><span class='va'>tgse</span><span class='op'>)</span>,
+          yse <span class='op'>=</span> <span class='va'>dodata</span><span class='op'>$</span><span class='va'>chdse</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>dat</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "list"        "mvmr_format"</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

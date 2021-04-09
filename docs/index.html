@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">mrbayes</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
       </span>
     </div>
 
@@ -42,7 +42,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -56,7 +56,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/okezie94/mrbayes/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -81,10 +81,42 @@
 <h2 class="hasAnchor">
 <a href="#installation-instructions" class="anchor"></a>Installation instructions</h2>
 <p>Install the CRAN version with following code:</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"mrbayes"</span>)</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"mrbayes"</span><span class="op">)</span></code></pre></div>
 <p>Or install the development version from GitHub with:</p>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="co"># install.packages("remotes") # uncomment if remotes not installed</span>
-<span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/remotes/man/install_github.html">install_github</a></span>(<span class="st">"okezie94/mrbayes"</span>)</pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># install.packages("remotes") # uncomment if remotes not installed</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"okezie94/mrbayes"</span><span class="op">)</span></code></pre></div>
+<!--
+## Docker container instructions
+
+* Install and launch Docker desktop
+* To build the Docker container image run from your terminal
+```
+bash dockerbuild.sh
+```
+* To run the Docker container run from your terminal
+```
+bash dockerrun.sh
+```
+* Then in a brower go to `http://localhost:8787/`
+  * username: rstudio
+  * password: pass
+* Once in RStudio in the Files pane navigate to the mrbayes folder and click the `.Rproj` file to open the repo as a project
+* To compile the binary files run
+```r
+pkgbuild::compile_dll(force = TRUE)
+```
+* Edit the files and recompile the binary files as needed
+* To stop the container get its id with
+```
+docker ps
+```
+* And then run
+```
+docker stop ####
+```
+-->
 </div>
 <div id="package-website" class="section level2">
 <h2 class="hasAnchor">
@@ -129,7 +161,7 @@
   <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://travis-ci.org/okezie94/mrbayes"><img src="https://travis-ci.org/okezie94/mrbayes.svg?branch=master" alt="Build Status"></a></li>
+<li><a href="https://github.com/okezie94/mrbayes/actions?workflow=R-CMD-check"><img src="https://github.com/okezie94/mrbayes/workflows/R-CMD-check/badge.svg" alt="Build Status"></a></li>
 <li><a href="https://codecov.io/github/okezie94/mrbayes?branch=master"><img src="https://codecov.io/gh/okezie94/mrbayes/branch/master/graph/badge.svg" alt="Coverage status"></a></li>
 <li><a href="https://cran.r-project.org/package=mrbayes"><img src="https://www.r-pkg.org/badges/version/mrbayes" alt="CRAN status"></a></li>
 <li><a href="https://CRAN.R-project.org/package=mrbayes"><img src="http://cranlogs.r-pkg.org/badges/grand-total/mrbayes?color=blue" alt="RStudio_CRAN_mirror_downloads_badge"></a></li>
@@ -144,7 +176,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

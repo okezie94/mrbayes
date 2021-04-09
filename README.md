@@ -21,7 +21,7 @@ Or install the development version from GitHub with:
 # install.packages("remotes") # uncomment if remotes not installed
 remotes::install_github("okezie94/mrbayes")
 ```
-
+<!--
 ## Docker container instructions
 
 * Install and launch Docker desktop
@@ -50,6 +50,7 @@ docker ps
 ```
 docker stop ####
 ```
+-->
 
 ## Package website
 

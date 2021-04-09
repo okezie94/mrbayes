@@ -1,3 +1,7 @@
+# mrbayes 0.3.0
+
+* Additional functions for multivariate IVW and MR-Egger using JAGS and rstan
+
 # mrbayes 0.2.0
 
 * IVW implemented using rstan.
