@@ -50,6 +50,13 @@ mr_egger_rjags <- function(object,
                            seed = NULL,
                            rho = 0.5,
                            ...) {
+  # Check for rjags
+
+  my_fun <- function(a, b) {
+    if (!requireNamespace("rjags", quietly = TRUE)) {
+      stop("Package \"rjags\" needed for this function to work. Please install it.",
+           call. = FALSE)
+    }}
 
   # convert MRInput object to mr_format
   if ("MRInput" %in% class(object)) {

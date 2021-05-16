@@ -45,6 +45,13 @@ mr_ivw_rjags <- function(object,
                          n.iter = 5000,
                          seed = NULL,
                          ...) {
+  # Check for rjags
+
+  my_fun <- function(a, b) {
+    if (!requireNamespace("rjags", quietly = TRUE)) {
+      stop("Package \"rjags\" needed for this function to work. Please install it.",
+           call. = FALSE)
+    }}
 
   # convert MRInput object to mr_format
   if ("MRInput" %in% class(object)) {
