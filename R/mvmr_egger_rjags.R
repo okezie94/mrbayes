@@ -69,6 +69,9 @@ mvmr_egger_rjags <- function(object,
     stop('The class of the data object must be "mvmr_format", please resave the object with the output of e.g. object <- mvmr_format(object).')
   }
 
+  # check if rjags is installed
+  rjags_check()
+
   # orientation setup
 
   if (orientate %in% 1:dim(object$beta.exposure)[2]) {
