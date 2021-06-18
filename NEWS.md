@@ -1,3 +1,7 @@
+# mrbayes 0.4.0
+
+* Additional checks for installation of JAGS.
+
 # mrbayes 0.3.0
 
 * Additional functions for multivariate IVW and MR-Egger using JAGS and rstan
