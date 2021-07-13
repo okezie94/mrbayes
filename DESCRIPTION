@@ -4,7 +4,7 @@ Title: Bayesian Summary Data Models for Mendelian Randomization Studies
 Version: 0.4.0
 Authors@R: c(
   person("Okezie", "Uche-Ikonne",
-    email = "o.uche-ikonne@lancaster.ac.uk",
+    email = "okezieikonne@gmail.com",
     role = c("aut", "cre"),
     comment = c(ORCID = "0000-0002-8461-8099")),
   person("Frank", "Dondelinger",
