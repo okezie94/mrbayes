@@ -217,18 +217,18 @@
 #&gt;  Number of Chains = 3 
 #&gt;  Number of SNPs = 14 
 #&gt;  
-#&gt; Inflating Parameter: 7.660589 
+#&gt; Inflating Parameter: 7.672231 
 #&gt; 
-#&gt;                  Estimate         SD       2.5%         50%      97.5%
-#&gt; Avg Pleio     -0.05196171 0.03942658 -0.1289331 -0.05231944 0.02682026
-#&gt; Causal Effect  3.61768873 2.33701035 -1.0731513  3.63843632 8.20623988</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>fit</span><span class='op'>$</span><span class='va'>samples</span><span class='op'>)</span>
+#&gt;                  Estimate         SD       2.5%         50%    97.5%
+#&gt; Avg Pleio     -0.05619543 0.03939417 -0.1357047 -0.05526047 0.018654
+#&gt; Causal Effect  3.86611317 2.33926051 -0.5725709  3.81195073 8.631884</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>fit</span><span class='op'>$</span><span class='va'>samples</span><span class='op'>)</span>
 </div><div class='img'><img src='mr_egger_rjags-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># 90% credible interval</span>
 <span class='va'>fitdf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/do.call.html'>do.call</a></span><span class='op'>(</span><span class='va'>rbind.data.frame</span>, <span class='va'>fit</span><span class='op'>$</span><span class='va'>samples</span><span class='op'>)</span>
 <span class='va'>cri90</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='va'>fitdf</span>, <span class='va'>quantile</span>, probs <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.05</span>,<span class='fl'>0.95</span><span class='op'>)</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>cri90</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;       Estimate  Pleiotropy    sigma
-#&gt; 5%  -0.1792073 -0.11569200 5.734289
-#&gt; 95%  7.4218976  0.01246609 9.633421</div><div class='input'>
+</div><div class='output co'>#&gt;      Estimate  Pleiotropy    sigma
+#&gt; 5%  0.1302676 -0.12295204 5.734001
+#&gt; 95% 7.8377801  0.00677638 9.621631</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

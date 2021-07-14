@@ -57,4 +57,4 @@ docker stop ####
 The helpfiles are shown on the package website at: <https://okezie94.github.io/mrbayes/>.
 
 ## Authors
-Okezie Uche-Ikonne (maintainer, o.uche-ikonne@lancaster.ac.uk), Frank Dondelinger, and Tom Palmer
+Okezie Uche-Ikonne (maintainer, okezieikonne@gmail.com), Frank Dondelinger, and Tom Palmer

@@ -231,20 +231,20 @@
 #&gt;  Number of Chains = 3 
 #&gt;  Number of SNPs = 185 
 #&gt;  
-#&gt; Inflating Parameter: 1.45968 
+#&gt; Inflating Parameter: 1.459851 
 #&gt; 
 #&gt;                    Estimate          SD        2.5%          50%        97.5%
-#&gt; Avg Pleio      -0.006167735 0.002496245 -0.01110647 -0.006170901 -0.001269413
-#&gt; Causal Effect1  0.532725619 0.071523525  0.39280518  0.532666841  0.673981350
-#&gt; Causal Effect2 -0.103263329 0.060913546 -0.22358858 -0.103015394  0.015643811
-#&gt; Causal Effect3  0.325888150 0.074886625  0.17832360  0.325450253  0.472542882</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>fit</span><span class='op'>$</span><span class='va'>samples</span><span class='op'>)</span>
+#&gt; Avg Pleio      -0.006101017 0.002482833 -0.01099225 -0.006098663 -0.001271318
+#&gt; Causal Effect1  0.530930185 0.071002015  0.39248889  0.531046529  0.670587859
+#&gt; Causal Effect2 -0.104661427 0.061001758 -0.22463990 -0.105072686  0.014792940
+#&gt; Causal Effect3  0.324715531 0.076026197  0.17307021  0.324821271  0.472645377</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>fit</span><span class='op'>$</span><span class='va'>samples</span><span class='op'>)</span>
 </div><div class='img'><img src='mvmr_egger_rjags-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='mvmr_egger_rjags-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># 90% credible interval</span>
 <span class='va'>fitdf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/do.call.html'>do.call</a></span><span class='op'>(</span><span class='va'>rbind.data.frame</span>, <span class='va'>fit</span><span class='op'>$</span><span class='va'>samples</span><span class='op'>)</span>
 <span class='va'>cri90</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='va'>fitdf</span>, <span class='va'>quantile</span>, probs <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.05</span>, <span class='fl'>0.95</span><span class='op'>)</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>cri90</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;     Estimate[1]  Estimate[2] Estimate[3]  Pleiotropy    sigma
-#&gt; 5%    0.4164559 -0.204315641   0.2023774 -0.01029179 1.336600
-#&gt; 95%   0.6518421 -0.002752996   0.4482055 -0.00211349 1.596517</div><div class='input'>
+</div><div class='output co'>#&gt;     Estimate[1]  Estimate[2] Estimate[3]   Pleiotropy   sigma
+#&gt; 5%    0.4144180 -0.203788414   0.1995066 -0.010141358 1.33846
+#&gt; 95%   0.6482998 -0.003751364   0.4492681 -0.001984779 1.59077</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

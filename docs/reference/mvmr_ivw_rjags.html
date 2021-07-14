@@ -199,9 +199,9 @@
 <span class='va'>fit</span> <span class='op'>&lt;-</span> <span class='fu'>mvmr_ivw_rjags</span><span class='op'>(</span><span class='va'>dat</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>fit</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;                  Estimate         SD       2.5%        50%       97.5%
-#&gt; Causal Effect1  0.4235435 0.03833398  0.3480415  0.4227309  0.49865823
-#&gt; Causal Effect2 -0.1169782 0.04181752 -0.1981469 -0.1173052 -0.03462821
-#&gt; Causal Effect3  0.2811994 0.05047440  0.1822146  0.2812256  0.37993370</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>fit</span><span class='op'>)</span>
+#&gt; Causal Effect1  0.4232723 0.03914886  0.3459150  0.4233467  0.49908939
+#&gt; Causal Effect2 -0.1172211 0.04203179 -0.1994502 -0.1169862 -0.03433152
+#&gt; Causal Effect3  0.2811153 0.05050145  0.1810075  0.2811732  0.38009656</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>fit</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; Prior : 
 #&gt; 
 #&gt;  for (j in 1:K) {
@@ -217,16 +217,16 @@
 #&gt;  Number of SNPs = 185 
 #&gt;  
 #&gt;                  Estimate         SD       2.5%        50%       97.5%
-#&gt; Causal Effect1  0.4235435 0.03833398  0.3480415  0.4227309  0.49865823
-#&gt; Causal Effect2 -0.1169782 0.04181752 -0.1981469 -0.1173052 -0.03462821
-#&gt; Causal Effect3  0.2811994 0.05047440  0.1822146  0.2812256  0.37993370</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>fit</span><span class='op'>$</span><span class='va'>samples</span><span class='op'>)</span>
+#&gt; Causal Effect1  0.4232723 0.03914886  0.3459150  0.4233467  0.49908939
+#&gt; Causal Effect2 -0.1172211 0.04203179 -0.1994502 -0.1169862 -0.03433152
+#&gt; Causal Effect3  0.2811153 0.05050145  0.1810075  0.2811732  0.38009656</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>fit</span><span class='op'>$</span><span class='va'>samples</span><span class='op'>)</span>
 </div><div class='img'><img src='mvmr_ivw_rjags-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># 90% credible interval</span>
 <span class='va'>fitdf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/do.call.html'>do.call</a></span><span class='op'>(</span><span class='va'>rbind.data.frame</span>, <span class='va'>fit</span><span class='op'>$</span><span class='va'>samples</span><span class='op'>)</span>
 <span class='va'>cri90</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='va'>fitdf</span>, <span class='va'>quantile</span>, probs <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.05</span>, <span class='fl'>0.95</span><span class='op'>)</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>cri90</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;     Estimate[1] Estimate[2] Estimate[3]
-#&gt; 5%    0.3603980 -0.18460940   0.1987942
-#&gt; 95%   0.4867569 -0.04715342   0.3640513</div><div class='input'>
+#&gt; 5%    0.3588254 -0.18632018   0.1971619
+#&gt; 95%   0.4870257 -0.04834638   0.3642175</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

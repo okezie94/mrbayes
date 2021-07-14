@@ -191,8 +191,8 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='va'>fit</span> <span class='op'>&lt;-</span> <span class='fu'>mr_ivw_rjags</span><span class='op'>(</span><span class='va'>bmi_insulin</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>fit</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;                Estimate         SD     2.5%       50%     97.5%
-#&gt; Causal Effect 0.5794281 0.05103016 0.479759 0.5788983 0.6787408</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>fit</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;                Estimate         SD      2.5%       50%     97.5%
+#&gt; Causal Effect 0.5800907 0.05125881 0.4794435 0.5799617 0.6815042</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>fit</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; Prior : 
 #&gt; 
 #&gt;  Estimate ~ dnorm(0, 1E-3) 
@@ -205,14 +205,14 @@
 #&gt;  Number of Chains = 3 
 #&gt;  Number of SNPs = 14 
 #&gt;  
-#&gt;                Estimate         SD     2.5%       50%     97.5%
-#&gt; Causal Effect 0.5794281 0.05103016 0.479759 0.5788983 0.6787408</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>fit</span><span class='op'>$</span><span class='va'>samples</span><span class='op'>)</span>
+#&gt;                Estimate         SD      2.5%       50%     97.5%
+#&gt; Causal Effect 0.5800907 0.05125881 0.4794435 0.5799617 0.6815042</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>fit</span><span class='op'>$</span><span class='va'>samples</span><span class='op'>)</span>
 </div><div class='img'><img src='mr_ivw_rjags-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># 90% credible interval</span>
 <span class='va'>fitdf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/do.call.html'>do.call</a></span><span class='op'>(</span><span class='va'>rbind.data.frame</span>, <span class='va'>fit</span><span class='op'>$</span><span class='va'>samples</span><span class='op'>)</span>
 <span class='va'>cri90</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span><span class='op'>(</span><span class='va'>fitdf</span><span class='op'>$</span><span class='va'>Estimate</span>, probs <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.05</span>,<span class='fl'>0.95</span><span class='op'>)</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>cri90</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;        5%       95% 
-#&gt; 0.4953779 0.6637107 </div><div class='input'>
+#&gt; 0.4951878 0.6635904 </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
