@@ -1,0 +1,39 @@
+cff-version: 1.2.0
+message: "If you use this software, please use the information in the preferred-citation metadata."
+authors:
+- family-names: "Uche-Ikonne"
+  given-names: "Okezie"
+  orcid: "https://orcid.org/0000-0002-8461-8099"
+- family-names: "Dondelinger"
+  given-names: "Frank"
+  orcid: "https://orcid.org/0000-0003-1816-6300"
+- family-names: "Palmer"
+  given-names: "Tom"
+  orcid: "https://orcid.org/0000-0003-4655-4511"
+title: "mrbayes: R package implementing Bayesian estimation of IVW and MR-Egger models."
+type: software
+version: 0.4.0
+date-released: 2021-07-13
+repository-code: "https://github.com/okezie94/mrbayes"
+url: "https://okezie94.github.io/mrbayes/"
+preferred-citation:
+  authors:
+    - family-names: "Uche-Ikonne"
+      given-names: "Okezie"
+      orcid: "https://orcid.org/0000-0002-8461-8099"
+    - family-names: "Dondelinger"
+      given-names: "Frank"
+      orcid: "https://orcid.org/0000-0003-1816-6300"
+    - family-names: "Palmer"
+      given-names: "Tom"
+      orcid: "https://orcid.org/0000-0003-4655-4511"
+  title: "Software Application Profile: Bayesian estimation of inverse variance weighted and MR-Egger models for two-sample Mendelian randomization studies - mrbayes"
+  type: article
+  journal: "International Journal of Epidemiology"
+  volume: 50
+  issue: 1
+  start: 43
+  end: 49
+  year: 2021
+  url: https://doi.org/10.1093/ije/dyaa191
+  doi: 10.1093/ije/dyaa191
