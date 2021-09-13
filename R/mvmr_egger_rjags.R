@@ -33,7 +33,7 @@
 #' @references Bowden et. al., Mendelian randomization with invalid instruments: effect estimation and bias detection through Egger regression. International Journal of Epidemiology 2015. 44(2): p. 512-525. \doi{10.1093/ije/dyv080}
 #' @examples
 #'
-#' dat <- mvmr_format(rsid = dodata$rsid,
+#' \donttest{dat <- mvmr_format(rsid = dodata$rsid,
 #'          xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
 #'          ybeta = dodata$chdbeta,
 #'          xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
@@ -45,7 +45,7 @@
 #' # 90% credible interval
 #' fitdf <- do.call(rbind.data.frame, fit$samples)
 #' cri90 <- sapply(fitdf, quantile, probs = c(0.05, 0.95))
-#' print(cri90)
+#' print(cri90)}
 #'
 mvmr_egger_rjags <- function(object,
                            prior = "default",

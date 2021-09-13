@@ -29,7 +29,7 @@
 #'
 #' @examples
 #'
-#' dat <- mvmr_format(rsid = dodata$rsid,
+#' \donttest{dat <- mvmr_format(rsid = dodata$rsid,
 #'          xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
 #'          ybeta = dodata$chdbeta,
 #'          xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
@@ -42,7 +42,7 @@
 #' # 90% credible interval
 #' fitdf <- do.call(rbind.data.frame, fit$samples)
 #' cri90 <- sapply(fitdf, quantile, probs = c(0.05, 0.95))
-#' print(cri90)
+#' print(cri90)}
 #'
 mvmr_ivw_rjags <- function(object,
                          prior = "default",
