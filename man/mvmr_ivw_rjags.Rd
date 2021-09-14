@@ -52,7 +52,7 @@ Bayesian multivariate inverse variance weighted model with a choice of prior dis
 }
 \examples{
 
-\donttest{dat <- mvmr_format(rsid = dodata$rsid,
+\dontrun{dat <- mvmr_format(rsid = dodata$rsid,
          xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
          ybeta = dodata$chdbeta,
          xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
