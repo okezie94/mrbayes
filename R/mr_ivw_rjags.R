@@ -28,6 +28,7 @@
 #' @references Burgess, S., Butterworth, A., Thompson S.G. Mendelian randomization analysis with multiple genetic variants using summarized data. Genetic Epidemiology, 2013, 37, 7, 658-665 \doi{10.1002/gepi.21758}.
 #'
 #' @examples
+#' \dontrun{
 #' fit <- mr_ivw_rjags(bmi_insulin)
 #' print(fit)
 #' summary(fit)
@@ -36,6 +37,7 @@
 #' fitdf <- do.call(rbind.data.frame, fit$samples)
 #' cri90 <- quantile(fitdf$Estimate, probs = c(0.05,0.95))
 #' print(cri90)
+#' }
 #'
 mr_ivw_rjags <- function(object,
                          prior = "default",

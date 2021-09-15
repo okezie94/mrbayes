@@ -1,7 +1,7 @@
 Package: mrbayes
 Type: Package
 Title: Bayesian Summary Data Models for Mendelian Randomization Studies
-Version: 0.4.0
+Version: 0.5.0
 Authors@R: c(
   person("Okezie", "Uche-Ikonne",
     email = "okezieikonne@gmail.com",
@@ -45,7 +45,7 @@ Suggests: testthat,
   MendelianRandomization
 URL: https://github.com/okezie94/mrbayes
 BugReports: https://github.com/okezie94/mrbayes/issues
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Roxygen: list(markdown = TRUE)
 SystemRequirements: GNU make
 Biarch: true

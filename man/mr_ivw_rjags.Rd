@@ -51,6 +51,7 @@ An object of class \code{ivwjags} containing the following components:
 Bayesian inverse variance weighted model with a choice of prior distributions fitted using JAGS.
 }
 \examples{
+\dontrun{
 fit <- mr_ivw_rjags(bmi_insulin)
 print(fit)
 summary(fit)
@@ -59,6 +60,7 @@ plot(fit$samples)
 fitdf <- do.call(rbind.data.frame, fit$samples)
 cri90 <- quantile(fitdf$Estimate, probs = c(0.05,0.95))
 print(cri90)
+}
 
 }
 \references{

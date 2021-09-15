@@ -52,6 +52,7 @@ Bayesian multivariate inverse variance weighted model with a choice of prior dis
 }
 \examples{
 
+\dontrun{
 dat <- mvmr_format(rsid = dodata$rsid,
          xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
          ybeta = dodata$chdbeta,
@@ -66,6 +67,7 @@ plot(fit$samples)
 fitdf <- do.call(rbind.data.frame, fit$samples)
 cri90 <- sapply(fitdf, quantile, probs = c(0.05, 0.95))
 print(cri90)
+}
 
 }
 \references{
