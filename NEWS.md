@@ -1,7 +1,6 @@
 # mrbayes 0.5.0
 
-* The examples for all rjags functions are no longer run during R CMD check 
-because JAGS does not compile on the aarch64 (Apple M1 processor) architecture.
+* The examples in the helpfiles for all functions and in the testthat test files now check whether the relevant Bayesian software package is installed (i.e. rstan or rjags). This is because JAGS does not compile on the aarch64 (Apple M1 processor) architecture.
 
 # mrbayes 0.4.0
 
