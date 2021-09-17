@@ -29,7 +29,7 @@
 #'
 #' @examples
 #'
-#' \dontrun{
+#' if (requireNamespace("rjags", quietly = TRUE)) {
 #' dat <- mvmr_format(rsid = dodata$rsid,
 #'          xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
 #'          ybeta = dodata$chdbeta,
