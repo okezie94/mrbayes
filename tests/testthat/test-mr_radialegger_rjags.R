@@ -15,6 +15,7 @@ test_that("Dataset is formatted",
 test_that("Radial-Egger using default prior method",
           {
             skip_on_cran()
+            skip_if_not_installed("rjags")
             dat <- mr_format(rsid = dodata$rsid,
                              xbeta = dodata$ldlcbeta,
                              ybeta = dodata$chdbeta,
@@ -38,6 +39,7 @@ test_that("Radial-Egger using default prior method",
 test_that("Radial-Egger using weak prior method",
           {
             skip_on_cran()
+            skip_if_not_installed("rjags")
             dat <- mr_format(rsid = dodata$rsid,
                              xbeta = dodata$ldlcbeta,
                              ybeta = dodata$chdbeta,
@@ -62,6 +64,7 @@ test_that("Radial-Egger using weak prior method",
 test_that("Radial-Egger using pseudo prior method",
           {
             skip_on_cran()
+            skip_if_not_installed("rjags")
             dat <- mr_format(rsid = dodata$rsid,
                              xbeta = dodata$ldlcbeta,
                              ybeta = dodata$chdbeta,
@@ -86,6 +89,7 @@ test_that("Radial-Egger using pseudo prior method",
 test_that("Radial-Egger using joint prior method",
           {
             skip_on_cran()
+            skip_if_not_installed("rjags")
             dat <- mr_format(rsid = dodata$rsid,
                              xbeta = dodata$ldlcbeta,
                              ybeta = dodata$chdbeta,
@@ -111,6 +115,7 @@ test_that("Radial-Egger using joint prior method",
 test_that("Radial-Egger using betaprior and sigmaprior method",
           {
             skip_on_cran()
+            skip_if_not_installed("rjags")
             dat <- mr_format(rsid = dodata$rsid,
                              xbeta = dodata$ldlcbeta,
                              ybeta = dodata$chdbeta,
