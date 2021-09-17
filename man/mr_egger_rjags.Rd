@@ -60,7 +60,7 @@ An object of class \code{eggerjags} containing the following components:
 Bayesian implementation of the MR-Egger multivariate model with choice of prior distributions fitted using JAGS.
 }
 \examples{
-\dontrun{
+if (requireNamespace("rjags", quietly = TRUE)) {
 fit <- mr_egger_rjags(bmi_insulin)
 summary(fit)
 plot(fit$samples)
