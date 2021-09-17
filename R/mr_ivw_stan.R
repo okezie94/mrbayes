@@ -34,6 +34,9 @@ mr_ivw_stan <- function(data,
                         seed = 12345,
                         ...) {
 
+  # check for rstan
+  rstan_check()
+
   # convert MRInput object to mr_format
   if ("MRInput" %in% class(data)) {
     data <- mrinput_mr_format(data)
