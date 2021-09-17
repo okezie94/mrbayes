@@ -21,6 +21,7 @@
 #'
 #' @examples
 #' \donttest{
+#' if (requireNamespace("rstan", quietly = TRUE)) {
 #' dat <- mvmr_format(rsid = dodata$rsid,
 #'           xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
 #'           ybeta = dodata$chdbeta,
@@ -30,6 +31,7 @@
 #' print(mvivw_fit)
 #' rstan::traceplot(mvivw_fit)
 #' }
+#' }
 #' @export
 mvmr_ivw_stan <- function(data,
                         prior = 1,
@@ -38,6 +40,9 @@ mvmr_ivw_stan <- function(data,
                         n.iter = 5000,
                         seed = 12345,
                         ...) {
+
+  # check for rstan
+  rstan_check()
 
   # convert MRInput object to mr_format
   # if ("MRInput" %in% class(data)) {

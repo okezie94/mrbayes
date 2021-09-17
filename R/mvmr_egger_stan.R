@@ -25,6 +25,7 @@
 #'
 #' @examples
 #' \donttest{
+#' if (requireNamespace("rstan", quietly = TRUE)) {
 #' # Note we recommend setting n.burn and n.iter to larger values
 #'
 #' dat <- mvmr_format(rsid = dodata$rsid,
@@ -35,7 +36,7 @@
 #' mvegger_fit <- mvmr_egger_stan(dat, n.burn = 500, n.iter = 1000)
 #' print(mvegger_fit)
 #' }
-
+#' }
 mvmr_egger_stan <- function(data,
                         prior = 1,
                         n.chains = 3,
@@ -45,6 +46,9 @@ mvmr_egger_stan <- function(data,
                         rho = 0.5,
                         orientate = 1,
                         ...) {
+
+  # check for rstan
+  rstan_check()
 
   # convert MRInput object to mr_format
   # if ("MRInput" %in% class(data)) {

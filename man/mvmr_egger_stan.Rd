@@ -48,6 +48,7 @@ Bayesian implementation of the MVMR-Egger model with choice of prior distributio
 }
 \examples{
 \donttest{
+if (requireNamespace("rstan", quietly = TRUE)) {
 # Note we recommend setting n.burn and n.iter to larger values
 
 dat <- mvmr_format(rsid = dodata$rsid,
@@ -57,6 +58,7 @@ dat <- mvmr_format(rsid = dodata$rsid,
          yse = dodata$chdse)
 mvegger_fit <- mvmr_egger_stan(dat, n.burn = 500, n.iter = 1000)
 print(mvegger_fit)
+}
 }
 }
 \references{

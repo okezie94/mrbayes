@@ -25,11 +25,12 @@
 #'
 #' @examples
 #' \donttest{
+#' if (requireNamespace("rstan", quietly = TRUE)) {
 #' # Note we recommend setting n.burn and n.iter to larger values
 #' egger_fit <- mr_egger_stan(bmi_insulin, n.burn = 500, n.iter = 1000)
 #' print(egger_fit)
 #' }
-
+#' }
 mr_egger_stan <- function(data,
                         prior = 1,
                         n.chains = 3,
@@ -38,6 +39,9 @@ mr_egger_stan <- function(data,
                         seed = 12345,
                         rho = 0.5,
                         ...) {
+
+  # check for rstan
+  rstan_check()
 
   # convert MRInput object to mr_format
   if ("MRInput" %in% class(data)) {

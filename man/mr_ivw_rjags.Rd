@@ -51,7 +51,7 @@ An object of class \code{ivwjags} containing the following components:
 Bayesian inverse variance weighted model with a choice of prior distributions fitted using JAGS.
 }
 \examples{
-\dontrun{
+if (requireNamespace("rjags", quietly = TRUE)) {
 fit <- mr_ivw_rjags(bmi_insulin)
 print(fit)
 summary(fit)
