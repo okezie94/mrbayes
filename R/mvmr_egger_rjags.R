@@ -34,6 +34,7 @@
 #' @examples
 #'
 #' \dontrun{
+#' if (requireNamespace("rjags", quietly = TRUE)) {
 #' dat <- mvmr_format(rsid = dodata$rsid,
 #'          xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
 #'          ybeta = dodata$chdbeta,
@@ -48,7 +49,7 @@
 #' cri90 <- sapply(fitdf, quantile, probs = c(0.05, 0.95))
 #' print(cri90)
 #' }
-#'
+#' }
 mvmr_egger_rjags <- function(object,
                            prior = "default",
                            betaprior = "",

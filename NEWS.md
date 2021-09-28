@@ -1,3 +1,7 @@
+# mrbayes 0.5.1
+
+* The mvmr_egger_rjags helpfile example is now only run if the rjags package is installed.
+
 # mrbayes 0.5.0
 
 * The examples in the helpfiles for all functions and in the testthat test files now check whether the relevant Bayesian software package is installed (i.e. rstan or rjags). This is because JAGS does not compile on the aarch64 (Apple M1 processor) architecture.
