@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mrbayes</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
       </span>
     </div>
 
@@ -189,23 +189,16 @@
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An object of class <code>mveggerjags</code> containing the following components:</p><dl>
-<dt>AvgPleio</dt><dd><p>The mean of the simulated pleiotropic effect</p></dd>
-<dt>CausalEffect</dt><dd><p>The mean of the simulated causal effect</p></dd>
-<dt>StandardError</dt><dd><p>Standard deviation of the simulated causal effect</p></dd>
-<dt>sigma</dt><dd><p>The value of the residual standard deviation</p></dd>
-<dt>CredibleInterval</dt><dd><p>The credible interval for the causal effect, which includes the lower (2.5%), median (50%) and upper intervals (97.5%)</p></dd>
-<dt>samples</dt><dd><p>Output of the Bayesian MCMC samples</p></dd>
-<dt>Priors</dt><dd><p>The specified priors</p></dd>
-
-</dl>
-
+    <p>An object of class <code>mveggerjags</code> containing the following components:
+if (requireNamespace("rjags", quietly = TRUE))</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Bowden et. al., Mendelian randomization with invalid instruments: effect estimation and bias detection through Egger regression. International Journal of Epidemiology 2015. 44(2): p. 512-525. doi: <a href='https://doi.org/10.1093/ije/dyv080'>10.1093/ije/dyv080</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span><span class='op'>(</span><span class='st'>"rjags"</span>, quietly <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='va'>dat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='mvmr_format.html'>mvmr_format</a></span><span class='op'>(</span>rsid <span class='op'>=</span> <span class='va'>dodata</span><span class='op'>$</span><span class='va'>rsid</span>,
          xbeta <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span><span class='op'>(</span><span class='va'>dodata</span><span class='op'>$</span><span class='va'>ldlcbeta</span>,<span class='va'>dodata</span><span class='op'>$</span><span class='va'>hdlcbeta</span>,<span class='va'>dodata</span><span class='op'>$</span><span class='va'>tgbeta</span><span class='op'>)</span>,
          ybeta <span class='op'>=</span> <span class='va'>dodata</span><span class='op'>$</span><span class='va'>chdbeta</span>,
@@ -214,37 +207,13 @@
 
 <span class='va'>fit</span> <span class='op'>&lt;-</span> <span class='fu'>mvmr_egger_rjags</span><span class='op'>(</span><span class='va'>dat</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>fit</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Prior : 
-#&gt; 
-#&gt;  Pleiotropy ~ dnorm(0, 1E-3) 
-#&gt; 
-#&gt;     for (j in 1:K) {
-#&gt;     Estimate[j] ~ dnorm(0,1E-3)
-#&gt;     } 
-#&gt;  sigma ~ dunif(.0001, 10) 
-#&gt; 
-#&gt; Estimation results: 
-#&gt;  
-#&gt;  MCMC iterations = 6000 
-#&gt;  Burn in = 1000 
-#&gt;  Sample size by chain = 5000 
-#&gt;  Number of Chains = 3 
-#&gt;  Number of SNPs = 185 
-#&gt;  
-#&gt; Inflating Parameter: 1.459851 
-#&gt; 
-#&gt;                    Estimate          SD        2.5%          50%        97.5%
-#&gt; Avg Pleio      -0.006101017 0.002482833 -0.01099225 -0.006098663 -0.001271318
-#&gt; Causal Effect1  0.530930185 0.071002015  0.39248889  0.531046529  0.670587859
-#&gt; Causal Effect2 -0.104661427 0.061001758 -0.22463990 -0.105072686  0.014792940
-#&gt; Causal Effect3  0.324715531 0.076026197  0.17307021  0.324821271  0.472645377</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>fit</span><span class='op'>$</span><span class='va'>samples</span><span class='op'>)</span>
-</div><div class='img'><img src='mvmr_egger_rjags-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='mvmr_egger_rjags-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># 90% credible interval</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>fit</span><span class='op'>$</span><span class='va'>samples</span><span class='op'>)</span>
+<span class='co'># 90% credible interval</span>
 <span class='va'>fitdf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/do.call.html'>do.call</a></span><span class='op'>(</span><span class='va'>rbind.data.frame</span>, <span class='va'>fit</span><span class='op'>$</span><span class='va'>samples</span><span class='op'>)</span>
 <span class='va'>cri90</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='va'>fitdf</span>, <span class='va'>quantile</span>, probs <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.05</span>, <span class='fl'>0.95</span><span class='op'>)</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>cri90</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;     Estimate[1]  Estimate[2] Estimate[3]   Pleiotropy   sigma
-#&gt; 5%    0.4144180 -0.203788414   0.1995066 -0.010141358 1.33846
-#&gt; 95%   0.6482998 -0.003751364   0.4492681 -0.001984779 1.59077</div><div class='input'>
+<span class='op'>}</span>
+<span class='op'>}</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

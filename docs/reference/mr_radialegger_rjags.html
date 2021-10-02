@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mrbayes</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
       </span>
     </div>
 
@@ -202,9 +202,16 @@
 .</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>fit</span> <span class='op'>&lt;-</span> <span class='fu'>mr_radialegger_rjags</span><span class='op'>(</span><span class='va'>bmi_insulin</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: The mean of the sigma parameter, the residual standard deviation, is less than 1, we recommend refitting the model with sigma constrained to be &gt;= 1.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>fit</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Prior : 
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span><span class='op'>(</span><span class='st'>"rjags"</span>, quietly <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='va'>fit</span> <span class='op'>&lt;-</span> <span class='fu'>mr_radialegger_rjags</span><span class='op'>(</span><span class='va'>bmi_insulin</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>fit</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>fit</span><span class='op'>$</span><span class='va'>samples</span><span class='op'>)</span>
+<span class='co'># 90% credible interval</span>
+<span class='va'>fitdf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/do.call.html'>do.call</a></span><span class='op'>(</span><span class='va'>rbind.data.frame</span>, <span class='va'>fit</span><span class='op'>$</span><span class='va'>samples</span><span class='op'>)</span>
+<span class='va'>cri90</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span><span class='op'>(</span><span class='va'>fitdf</span><span class='op'>$</span><span class='va'>Estimate</span>, probs <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.05</span>,<span class='fl'>0.95</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>cri90</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: The mean of the sigma parameter, the residual standard deviation, is less than 1, we recommend refitting the model with sigma constrained to be &gt;= 1.</span></div><div class='output co'>#&gt; Prior : 
 #&gt; 
 #&gt;  Pleiotropy ~ dnorm(0, 1E-3) 
 #&gt;  Estimate ~ dnorm(0, 1E-3) 
@@ -218,17 +225,12 @@
 #&gt;  Number of Chains = 3 
 #&gt;  Number of SNPs = 14 
 #&gt;  
-#&gt; Inflating Parameter: 0.0266331 
+#&gt; Inflating Parameter: 0.02643065 
 #&gt; 
-#&gt;                 Estimate        SD       2.5%        50%     97.5%
-#&gt; Avg Pleio     -27.612979 12.153140 -51.368232 -27.722382 -3.819269
-#&gt; Causal Effect   5.809541  2.321952   1.268551   5.830932 10.312175</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>fit</span><span class='op'>$</span><span class='va'>samples</span><span class='op'>)</span>
-</div><div class='img'><img src='mr_radialegger_rjags-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># 90% credible interval</span>
-<span class='va'>fitdf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/do.call.html'>do.call</a></span><span class='op'>(</span><span class='va'>rbind.data.frame</span>, <span class='va'>fit</span><span class='op'>$</span><span class='va'>samples</span><span class='op'>)</span>
-<span class='va'>cri90</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span><span class='op'>(</span><span class='va'>fitdf</span><span class='op'>$</span><span class='va'>Estimate</span>, probs <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.05</span>,<span class='fl'>0.95</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>cri90</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;       5%      95% 
-#&gt; 1.990488 9.550353 </div><div class='input'>
+#&gt;                 Estimate        SD        2.5%        50%    97.5%
+#&gt; Avg Pleio     -25.558753 13.092640 -48.9488463 -26.553281 1.540601
+#&gt; Causal Effect   5.415101  2.507983   0.2415634   5.597979 9.902502</div><div class='img'><img src='mr_radialegger_rjags-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt;       5%      95% 
+#&gt; 1.255774 9.261134 </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

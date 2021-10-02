@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mrbayes</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
       </span>
     </div>
 
@@ -136,21 +136,17 @@
     <p>Object of class <code>mr_format</code>, the mrbayes format</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>dat</span> <span class='op'>&lt;-</span> <span class='fu'>MendelianRandomization</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/MendelianRandomization/man/mr_input.html'>mr_input</a></span><span class='op'>(</span>bx <span class='op'>=</span> <span class='va'>bmi_insulin</span><span class='op'>$</span><span class='va'>beta.exposure</span>,
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span><span class='op'>(</span><span class='st'>"MendelianRandomization"</span>, quietly <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='va'>dat</span> <span class='op'>&lt;-</span> <span class='fu'>MendelianRandomization</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/MendelianRandomization/man/mr_input.html'>mr_input</a></span><span class='op'>(</span>bx <span class='op'>=</span> <span class='va'>bmi_insulin</span><span class='op'>$</span><span class='va'>beta.exposure</span>,
                                         bxse <span class='op'>=</span> <span class='va'>bmi_insulin</span><span class='op'>$</span><span class='va'>se.exposure</span>,
                                         by <span class='op'>=</span> <span class='va'>bmi_insulin</span><span class='op'>$</span><span class='va'>beta.outcome</span>,
                                         byse <span class='op'>=</span> <span class='va'>bmi_insulin</span><span class='op'>$</span><span class='va'>se.outcome</span>,
                                         snps <span class='op'>=</span> <span class='va'>bmi_insulin</span><span class='op'>$</span><span class='va'>rsid</span><span class='op'>)</span>
 <span class='va'>dat</span> <span class='op'>&lt;-</span> <span class='fu'>mrinput_mr_format</span><span class='op'>(</span><span class='va'>dat</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>dat</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;         rsid beta.exposure beta.outcome se.exposure se.outcome
-#&gt; 1 rs10195252      0.015888      -0.0143    0.002551     0.0030
-#&gt; 2  rs1167800      0.015637       0.0187    0.002624     0.0032
-#&gt; 3  rs1421085      0.019976       0.0803    0.002511     0.0030
-#&gt; 4  rs1530559      0.014476       0.0151    0.002620     0.0034
-#&gt; 5  rs2745353      0.014340       0.0023    0.002457     0.0029
-#&gt; 6  rs2820436      0.015332      -0.0092    0.002610     0.0032</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>dat</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "data.frame" "mr_format" </div></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>dat</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: undefined subclass "numericVector" of class "Mnumeric"; definition not updated</span></div><div class='output co'>#&gt; [1] "data.frame" "mr_format" </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
