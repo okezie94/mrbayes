@@ -1,4 +1,3 @@
-#' @importFrom plyr mutate dlply
 tsmr_mrformat <- function(dat){
   dat <- plyr::dlply(dat,c("exposure","outcome"),
                      function(x)
