@@ -44,7 +44,7 @@ Suggests: testthat,
   MendelianRandomization
 URL: https://github.com/okezie94/mrbayes, https://okezie94.github.io/mrbayes/
 BugReports: https://github.com/okezie94/mrbayes/issues
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)
 SystemRequirements: GNU make
 Biarch: true
