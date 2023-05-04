@@ -1,3 +1,7 @@
+# mrbayes 0.5.2
+
+* The NAMESPACE now imports fewer functions from other packages
+
 # mrbayes 0.5.1
 
 * The mvmr_egger_rjags helpfile example is now only run if the rjags package is installed.
