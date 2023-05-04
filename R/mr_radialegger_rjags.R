@@ -42,7 +42,6 @@
 #' cri90 <- quantile(fitdf$Estimate, probs = c(0.05,0.95))
 #' print(cri90)
 #' }
-#'
 mr_radialegger_rjags <- function(object,
                                  prior = "default",
                                  betaprior = "",

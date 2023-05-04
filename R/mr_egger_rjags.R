@@ -41,7 +41,6 @@
 #' cri90 <- sapply(fitdf, quantile, probs = c(0.05,0.95))
 #' print(cri90)
 #' }
-#'
 mr_egger_rjags <- function(object,
                            prior = "default",
                            betaprior = "",

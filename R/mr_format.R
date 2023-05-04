@@ -17,7 +17,6 @@
 #'           xse = bmi_insulin[,"se.exposure"],
 #'           yse = bmi_insulin[,"se.outcome"])
 #' class(dat)
-#'
 mr_format <- function(rsid, xbeta, ybeta, xse, yse) {
   if (missing(rsid)) {
     rsid <- 1:length(ybeta)

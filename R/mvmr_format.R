@@ -17,8 +17,6 @@
 #'           xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
 #'           yse = dodata$chdse)
 #' class(dat)
-#'
-
 mvmr_format <- function(rsid, xbeta, ybeta, xse, yse) {
   if (missing(rsid)) {
     rsid <- 1:length(ybeta)
