@@ -31,5 +31,4 @@ dat <- mr_format(rsid = bmi_insulin[,"rsid"],
           xse = bmi_insulin[,"se.exposure"],
           yse = bmi_insulin[,"se.outcome"])
 class(dat)
-
 }

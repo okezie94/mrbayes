@@ -62,7 +62,6 @@ if (requireNamespace("rjags", quietly = TRUE)) {
 Bayesian implementation of the MVMR-Egger model with choice of prior distributions fitted using JAGS.
 }
 \examples{
-
 \dontrun{
 if (requireNamespace("rjags", quietly = TRUE)) {
 dat <- mvmr_format(rsid = dodata$rsid,

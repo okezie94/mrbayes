@@ -31,5 +31,4 @@ dat <- mvmr_format(rsid = dodata$rsid,
           xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
           yse = dodata$chdse)
 class(dat)
-
 }
