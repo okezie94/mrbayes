@@ -20,7 +20,7 @@
 #' \describe{
 #' \item{CausalEffect}{The mean of the simulated causal effects}
 #' \item{StandardError}{Standard deviation of the simulated causal effects}
-#' \item{CredibleInterval}{The credible interval for the causal effect, which indicates the lower(2.5%), median (50%) and upper intervals (97.5%)}
+#' \item{CredibleInterval}{The credible interval for the causal effect, which indicates the lower (2.5%), median (50%) and upper intervals (97.5%)}
 #' \item{samples}{Output of the Bayesian MCMC samples with the different chains}
 #' \item{Priors}{The specified priors}
 #' }
