@@ -8,11 +8,11 @@
 
 # mrbayes 0.5.1
 
-* The mvmr_egger_rjags helpfile example is now only run if the rjags package is installed.
+* The `mvmr_egger_rjags()` helpfile example is now only run if the **rjags** package is installed.
 
 # mrbayes 0.5.0
 
-* The examples in the helpfiles for all functions and in the testthat test files now check whether the relevant Bayesian software package is installed (i.e. rstan or rjags). This is because JAGS does not compile on the aarch64 (Apple M1 processor) architecture.
+* The examples in the helpfiles for all functions and in the **testthat** test files now check whether the relevant Bayesian software package is installed (i.e. **rstan** or **rjags**). This is because JAGS does not compile on the aarch64 (Apple M1 processor) architecture.
 
 # mrbayes 0.4.0
 
@@ -20,13 +20,13 @@
 
 # mrbayes 0.3.0
 
-* Additional functions for multivariate IVW and MR-Egger using JAGS and rstan
+* Additional functions for multivariate IVW and MR-Egger using JAGS and **rstan**
 
 # mrbayes 0.2.0
 
-* IVW implemented using rstan.
-* MR-Egger implemented using rstan.
-* Radial MR-Egger implemented using rstan.
+* IVW implemented using **rstan**.
+* MR-Egger implemented using **rstan**.
+* Radial MR-Egger implemented using **rstan**.
 
 # mrbayes 0.1.0
 
