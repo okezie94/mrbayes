@@ -12,7 +12,7 @@
 #'   bx = bmi_insulin$beta.exposure,
 #'   bxse = bmi_insulin$se.exposure,
 #'   by = bmi_insulin$beta.outcome,
-#'.  byse = bmi_insulin$se.outcome,
+#'   byse = bmi_insulin$se.outcome,
 #'   snps = bmi_insulin$rsid
 #' )
 #' dat <- mrinput_mr_format(dat)
