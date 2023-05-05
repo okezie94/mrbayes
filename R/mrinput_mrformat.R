@@ -7,7 +7,7 @@
 #' @export
 #' @return Object of class `mr_format`, the mrbayes format
 #' @examples
-#' if (require("MendelianRandomization")) {
+#' if (require("MendelianRandomization", quietly = TRUE)) {
 #' dat <- MendelianRandomization::mr_input(
 #'   bx = bmi_insulin$beta.exposure,
 #'   bxse = bmi_insulin$se.exposure,

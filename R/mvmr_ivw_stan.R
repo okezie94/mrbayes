@@ -21,7 +21,7 @@
 #'
 #' @examples
 #' \donttest{
-#' if (require("rstan")) {
+#' if (require("rstan", quietly = TRUE)) {
 #' dat <- mvmr_format(
 #'   rsid = dodata$rsid,
 #'   xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
