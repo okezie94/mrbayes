@@ -63,12 +63,14 @@ Bayesian implementation of the MVMR-Egger model with choice of prior distributio
 }
 \examples{
 \dontrun{
-if (requireNamespace("rjags", quietly = TRUE)) {
-dat <- mvmr_format(rsid = dodata$rsid,
-         xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
-         ybeta = dodata$chdbeta,
-         xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
-         yse = dodata$chdse)
+if (require("rjags")) {
+dat <- mvmr_format(
+  rsid = dodata$rsid,
+  xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
+  ybeta = dodata$chdbeta,
+  xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
+  yse = dodata$chdse
+)
 
 fit <- mvmr_egger_rjags(dat)
 summary(fit)

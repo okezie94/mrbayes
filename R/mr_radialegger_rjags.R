@@ -33,14 +33,14 @@
 #' @references Bowden, J., et al., Improving the visualization, interpretation and analysis of two-sample summary data Mendelian randomization via the Radial plot and Radial regression. International Journal of Epidemiology, 2018. 47(4): p. 1264-1278. \doi{10.1093/ije/dyy101}.
 #'
 #' @examples
-#' if (requireNamespace("rjags", quietly = TRUE)) {
-#' fit <- mr_radialegger_rjags(bmi_insulin)
-#' summary(fit)
-#' plot(fit$samples)
-#' # 90% credible interval
-#' fitdf <- do.call(rbind.data.frame, fit$samples)
-#' cri90 <- quantile(fitdf$Estimate, probs = c(0.05,0.95))
-#' print(cri90)
+#' if (require("rjags")) {
+#'   fit <- mr_radialegger_rjags(bmi_insulin)
+#'   summary(fit)
+#'   plot(fit$samples)
+#'   # 90% credible interval
+#'   fitdf <- do.call(rbind.data.frame, fit$samples)
+#'   cri90 <- quantile(fitdf$Estimate, probs = c(0.05,0.95))
+#'   print(cri90)
 #' }
 mr_radialegger_rjags <- function(object,
                                  prior = "default",

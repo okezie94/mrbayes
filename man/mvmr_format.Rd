@@ -25,10 +25,12 @@ Organises the summary level data for use in the Bayesian MR functions
 }
 \examples{
 data(dodata)
-dat <- mvmr_format(rsid = dodata$rsid,
-          xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
-          ybeta = dodata$chdbeta,
-          xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
-          yse = dodata$chdse)
+dat <- mvmr_format(
+  rsid = dodata$rsid,
+  xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
+  ybeta = dodata$chdbeta,
+  xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
+  yse = dodata$chdse
+)
 class(dat)
 }

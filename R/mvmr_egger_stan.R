@@ -25,14 +25,15 @@
 #'
 #' @examples
 #' \donttest{
-#' if (requireNamespace("rstan", quietly = TRUE)) {
+#' if (require("rstan")) {
 #' # Note we recommend setting n.burn and n.iter to larger values
-#'
-#' dat <- mvmr_format(rsid = dodata$rsid,
-#'          xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
-#'          ybeta = dodata$chdbeta,
-#'          xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
-#'          yse = dodata$chdse)
+#' dat <- mvmr_format(
+#'   rsid = dodata$rsid,
+#'   xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
+#'   ybeta = dodata$chdbeta,
+#'   xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
+#'   yse = dodata$chdse
+#' )
 #' mvegger_fit <- mvmr_egger_stan(dat, n.burn = 500, n.iter = 1000)
 #' print(mvegger_fit)
 #' }

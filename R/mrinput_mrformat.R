@@ -7,12 +7,14 @@
 #' @export
 #' @return Object of class `mr_format`, the mrbayes format
 #' @examples
-#' if (requireNamespace("MendelianRandomization", quietly = TRUE)) {
-#' dat <- MendelianRandomization::mr_input(bx = bmi_insulin$beta.exposure,
-#'                                         bxse = bmi_insulin$se.exposure,
-#'                                         by = bmi_insulin$beta.outcome,
-#'                                         byse = bmi_insulin$se.outcome,
-#'                                         snps = bmi_insulin$rsid)
+#' if (require("MendelianRandomization")) {
+#' dat <- MendelianRandomization::mr_input(
+#'   bx = bmi_insulin$beta.exposure,
+#'   bxse = bmi_insulin$se.exposure,
+#'   by = bmi_insulin$beta.outcome,
+#'.  byse = bmi_insulin$se.outcome,
+#'   snps = bmi_insulin$rsid
+#' )
 #' dat <- mrinput_mr_format(dat)
 #' head(dat)
 #' class(dat)

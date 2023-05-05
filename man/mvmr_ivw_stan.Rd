@@ -42,12 +42,14 @@ Bayesian multivariate inverse variance weighted model with a choice of prior dis
 }
 \examples{
 \donttest{
-if (requireNamespace("rstan", quietly = TRUE)) {
-dat <- mvmr_format(rsid = dodata$rsid,
-          xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
-          ybeta = dodata$chdbeta,
-          xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
-          yse = dodata$chdse)
+if (require("rstan")) {
+dat <- mvmr_format(
+  rsid = dodata$rsid,
+  xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
+  ybeta = dodata$chdbeta,
+  xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
+  yse = dodata$chdse
+)
 mvivw_fit <- mvmr_ivw_stan(dat)
 print(mvivw_fit)
 rstan::traceplot(mvivw_fit)

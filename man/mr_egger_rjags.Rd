@@ -60,14 +60,14 @@ An object of class \code{eggerjags} containing the following components:
 Bayesian implementation of the MR-Egger multivariate model with choice of prior distributions fitted using JAGS.
 }
 \examples{
-if (requireNamespace("rjags", quietly = TRUE)) {
-fit <- mr_egger_rjags(bmi_insulin)
-summary(fit)
-plot(fit$samples)
-# 90\% credible interval
-fitdf <- do.call(rbind.data.frame, fit$samples)
-cri90 <- sapply(fitdf, quantile, probs = c(0.05,0.95))
-print(cri90)
+if (require("rjags")) {
+  fit <- mr_egger_rjags(bmi_insulin)
+  summary(fit)
+  plot(fit$samples)
+  # 90\% credible interval
+  fitdf <- do.call(rbind.data.frame, fit$samples)
+  cri90 <- sapply(fitdf, quantile, probs = c(0.05,0.95))
+  print(cri90)
 }
 }
 \references{

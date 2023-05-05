@@ -41,10 +41,10 @@ An object of class \code{\link{stanfit}}.
 Bayesian inverse variance weighted model with a choice of prior distributions fitted using RStan.
 }
 \examples{
-if (requireNamespace("rstan", quietly = TRUE)) {
-ivw_fit <- mr_ivw_stan(bmi_insulin)
-print(ivw_fit)
-rstan::traceplot(ivw_fit)
+if (require("rstan")) {
+  ivw_fit <- mr_ivw_stan(bmi_insulin)
+  print(ivw_fit)
+  rstan::traceplot(ivw_fit)
 }
 }
 \references{

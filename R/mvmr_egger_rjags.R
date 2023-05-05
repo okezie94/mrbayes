@@ -33,12 +33,14 @@
 #' @references Bowden et. al., Mendelian randomization with invalid instruments: effect estimation and bias detection through Egger regression. International Journal of Epidemiology 2015. 44(2): p. 512-525. \doi{10.1093/ije/dyv080}
 #' @examples
 #' \dontrun{
-#' if (requireNamespace("rjags", quietly = TRUE)) {
-#' dat <- mvmr_format(rsid = dodata$rsid,
-#'          xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
-#'          ybeta = dodata$chdbeta,
-#'          xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
-#'          yse = dodata$chdse)
+#' if (require("rjags")) {
+#' dat <- mvmr_format(
+#'   rsid = dodata$rsid,
+#'   xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
+#'   ybeta = dodata$chdbeta,
+#'   xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
+#'   yse = dodata$chdse
+#' )
 #'
 #' fit <- mvmr_egger_rjags(dat)
 #' summary(fit)
