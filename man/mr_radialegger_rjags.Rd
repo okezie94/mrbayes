@@ -60,7 +60,7 @@ An object of class \code{radialeggerjags} containing the following components:
 Bayesian radial MR-Egger model with a choice of prior distributions fitted using JAGS.
 }
 \examples{
-if (require("rjags")) {
+if (require("rjags", quietly = TRUE)) {
   fit <- mr_radialegger_rjags(bmi_insulin)
   summary(fit)
   plot(fit$samples)

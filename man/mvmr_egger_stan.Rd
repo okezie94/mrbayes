@@ -48,7 +48,7 @@ Bayesian implementation of the MVMR-Egger model with choice of prior distributio
 }
 \examples{
 \donttest{
-if (require("rstan")) {
+if (require("rstan", quietly = TRUE)) {
 # Note we recommend setting n.burn and n.iter to larger values
 dat <- mvmr_format(
   rsid = dodata$rsid,

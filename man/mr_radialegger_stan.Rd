@@ -46,7 +46,7 @@ Bayesian inverse variance weighted model with a choice of prior distributions fi
 }
 \examples{
 \donttest{
-if (require("rstan")) {
+if (require("rstan", quietly = TRUE)) {
   # Note we recommend setting n.burn and n.iter to larger values
   radegger_fit <- mr_radialegger_stan(bmi_insulin, n.burn = 500, n.iter = 1000)
   print(radegger_fit)
