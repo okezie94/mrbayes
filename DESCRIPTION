@@ -7,7 +7,7 @@ Authors@R: c(
            comment = c(ORCID = "0000-0002-8461-8099")),
     person("Frank", "Dondelinger", , "f.dondelinger@lancaster.ac.uk", role = "aut",
            comment = c(ORCID = "0000-0003-1816-6300")),
-    person("Tom", "Palmer", , "tom.palmer@bristol.ac.uk", role = "aut",
+    person("Tom", "Palmer", , "remlapmot@hotmail.com", role = "aut",
            comment = c(ORCID = "0000-0003-4655-4511"))
   )
 Description: Bayesian estimation of inverse variance weighted (IVW),
