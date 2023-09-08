@@ -1,10 +1,10 @@
 # mrbayes 0.5.2
 
-* The NAMESPACE now imports fewer functions from other packages
+* The `NAMESPACE` now imports fewer functions from other packages.
 
-* The number of dependency packages has been reduced
+* The number of dependency packages has been reduced.
 
-* Added a `CITATION` file
+* Added a `CITATION` file.
 
 # mrbayes 0.5.1
 
