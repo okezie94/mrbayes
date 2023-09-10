@@ -3,11 +3,11 @@ Package: mrbayes
 Title: Bayesian Summary Data Models for Mendelian Randomization Studies
 Version: 0.5.2
 Authors@R: c(
-    person("Okezie", "Uche-Ikonne", , "okezieikonne@gmail.com", role = c("aut", "cre"),
+    person("Okezie", "Uche-Ikonne", , "okezieikonne@gmail.com", role = "aut",
            comment = c(ORCID = "0000-0002-8461-8099")),
     person("Frank", "Dondelinger", , "f.dondelinger@lancaster.ac.uk", role = "aut",
            comment = c(ORCID = "0000-0003-1816-6300")),
-    person("Tom", "Palmer", , "remlapmot@hotmail.com", role = "aut",
+    person("Tom", "Palmer", , "remlapmot@hotmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-4655-4511"))
   )
 Description: Bayesian estimation of inverse variance weighted (IVW),
