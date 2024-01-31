@@ -40,10 +40,9 @@ Suggests: testthat,
   bayesmeta,
   utils,
   kableExtra,
-  roxygen2,
   bookdown,
   MendelianRandomization
-URL: https://github.com/okezie94/mrbayes
+URL: https://github.com/okezie94/mrbayes, https://okezie94.github.io/mrbayes/
 BugReports: https://github.com/okezie94/mrbayes/issues
 RoxygenNote: 7.1.2
 Roxygen: list(markdown = TRUE)
