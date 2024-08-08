@@ -21,3 +21,4 @@ dockerrun.sh
 ^.*/[.].*$
 ^\.DS_Store$
 ^CITATION\.cff$
+^\.github$
