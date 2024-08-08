@@ -30,4 +30,5 @@ remotes::install_github("okezie94/mrbayes")
 The helpfiles are shown on the package website at: <https://okezie94.github.io/mrbayes/>.
 
 ## Authors
+
 Okezie Uche-Ikonne (maintainer, okezieikonne@gmail.com), Frank Dondelinger, and Tom Palmer
