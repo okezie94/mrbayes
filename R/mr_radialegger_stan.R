@@ -22,13 +22,11 @@
 #' @references Bowden, J., et al., Improving the visualization, interpretation and analysis of two-sample summary data Mendelian randomization via the Radial plot and Radial regression. International Journal of Epidemiology, 2018. 47(4): p. 1264-1278. \doi{10.1093/ije/dyy101}.
 #' @references Stan Development Team (2020). "RStan: the R interface to Stan." R package version 2.19.3, <https://mc-stan.org/>.
 #'
-#' @examples
+#' @examplesIf requireNamespace("rstan", quietly = TRUE)
 #' \donttest{
-#' if (require("rstan", quietly = TRUE)) {
 #'   # Note we recommend setting n.burn and n.iter to larger values
 #'   radegger_fit <- mr_radialegger_stan(bmi_insulin, n.burn = 500, n.iter = 1000)
 #'   print(radegger_fit)
-#' }
 #' }
 mr_radialegger_stan <- function(data,
                           prior = 1,

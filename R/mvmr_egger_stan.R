@@ -23,9 +23,8 @@
 #'
 #' @export
 #'
-#' @examples
+#' @examplesIf requireNamespace("rstan", quietly = TRUE)
 #' \donttest{
-#' if (require("rstan", quietly = TRUE)) {
 #' # Note we recommend setting n.burn and n.iter to larger values
 #' dat <- mvmr_format(
 #'   rsid = dodata$rsid,
@@ -36,7 +35,6 @@
 #' )
 #' mvegger_fit <- mvmr_egger_stan(dat, n.burn = 500, n.iter = 1000)
 #' print(mvegger_fit)
-#' }
 #' }
 mvmr_egger_stan <- function(data,
                         prior = 1,
