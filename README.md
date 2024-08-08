@@ -13,6 +13,7 @@ Bayesian implementation of IVW and MR-Egger models.
 ## Installation instructions
  
 Install the CRAN version with following code:
+
 ``` r
 install.packages("mrbayes")
 ``` 
