@@ -62,8 +62,8 @@ An object of class \code{mveggerjags} containing the following components:
 Bayesian implementation of the MVMR-Egger model with choice of prior distributions fitted using JAGS.
 }
 \examples{
+\dontshow{if (requireNamespace("rjags", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
-if (require("rjags", quietly = TRUE)) {
 dat <- mvmr_format(
   rsid = dodata$rsid,
   xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
@@ -80,7 +80,7 @@ fitdf <- do.call(rbind.data.frame, fit$samples)
 cri90 <- sapply(fitdf, quantile, probs = c(0.05, 0.95))
 print(cri90)
 }
-}
+\dontshow{\}) # examplesIf}
 }
 \references{
 Bowden et. al., Mendelian randomization with invalid instruments: effect estimation and bias detection through Egger regression. International Journal of Epidemiology 2015. 44(2): p. 512-525. \doi{10.1093/ije/dyv080}

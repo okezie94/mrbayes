@@ -41,11 +41,11 @@ An object of class \code{\link[rstan:stanfit-class]{rstan::stanfit}}.
 Bayesian inverse variance weighted model with a choice of prior distributions fitted using RStan.
 }
 \examples{
-if (require("rstan", quietly = TRUE)) {
+\dontshow{if (requireNamespace("rstan", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
   ivw_fit <- mr_ivw_stan(bmi_insulin)
   print(ivw_fit)
   rstan::traceplot(ivw_fit)
-}
+\dontshow{\}) # examplesIf}
 }
 \references{
 Burgess, S., Butterworth, A., Thompson S.G. Mendelian randomization analysis with multiple genetic variants using summarized data. Genetic Epidemiology, 2013, 37, 7, 658-665 \doi{10.1002/gepi.21758}.

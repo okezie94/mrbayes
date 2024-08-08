@@ -51,7 +51,7 @@ An object of class \code{ivwjags} containing the following components:
 Bayesian inverse variance weighted model with a choice of prior distributions fitted using JAGS.
 }
 \examples{
-if (require("rjags", quietly = TRUE)) {
+\dontshow{if (requireNamespace("rjags", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
   fit <- mr_ivw_rjags(bmi_insulin)
   print(fit)
   summary(fit)
@@ -60,7 +60,7 @@ if (require("rjags", quietly = TRUE)) {
   fitdf <- do.call(rbind.data.frame, fit$samples)
   cri90 <- quantile(fitdf$Estimate, probs = c(0.05,0.95))
   print(cri90)
-}
+\dontshow{\}) # examplesIf}
 }
 \references{
 Burgess, S., Butterworth, A., Thompson S.G. Mendelian randomization analysis with multiple genetic variants using summarized data. Genetic Epidemiology, 2013, 37, 7, 658-665 \doi{10.1002/gepi.21758}.
