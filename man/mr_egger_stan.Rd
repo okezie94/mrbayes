@@ -39,7 +39,7 @@ mr_egger_stan(
 \item{...}{Additional arguments passed through to \code{\link[rstan:stanmodel-method-sampling]{rstan::sampling()}}.}
 }
 \value{
-An object of class \code{\link{stanfit}}.
+An object of class \code{\link[rstan:stanfit-class]{rstan::stanfit}}.
 }
 \description{
 Bayesian inverse variance weighted model with a choice of prior distributions fitted using Stan.

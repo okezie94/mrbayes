@@ -41,7 +41,7 @@ mvmr_egger_stan(
 \item{...}{Additional arguments passed through to \code{\link[rstan:stanmodel-method-sampling]{rstan::sampling()}}.}
 }
 \value{
-An object of class \code{\link{stanfit}}.
+An object of class \code{\link[rstan:stanfit-class]{rstan::stanfit}}.
 }
 \description{
 Bayesian implementation of the MVMR-Egger model with choice of prior distributions fitted using RStan.
