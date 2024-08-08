@@ -4,7 +4,6 @@
 #' multivariate versions for two-sample Mendelian randomization analyses.
 #'
 #' @name mrbayes-package
-#' @docType package
 #' @aliases mrbayes
 #' @useDynLib mrbayes, .registration = TRUE
 #' @import methods
@@ -12,7 +11,7 @@
 #'
 #' @references
 #' Stan Development Team (2019). RStan: the R interface to Stan. R package version 2.19.2. \url{https://mc-stan.org}
-NULL
+"_PACKAGE"
 
 # To suppress R CMD check NOTE about {package} not imported from
 # https://r-pkgs.org/dependencies-in-practice.html#how-to-not-use-a-package-in-imports
