@@ -12,3 +12,22 @@ multivariate versions for two-sample Mendelian randomization analyses.
 \references{
 Stan Development Team (2019). RStan: the R interface to Stan. R package version 2.19.2. \url{https://mc-stan.org}
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/okezie94/mrbayes}
+  \item \url{https://okezie94.github.io/mrbayes/}
+  \item Report bugs at \url{https://github.com/okezie94/mrbayes/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Tom Palmer \email{remlapmot@hotmail.com} (\href{https://orcid.org/0000-0003-4655-4511}{ORCID})
+
+Authors:
+\itemize{
+  \item Okezie Uche-Ikonne \email{okezieikonne@gmail.com} (\href{https://orcid.org/0000-0002-8461-8099}{ORCID})
+  \item Frank Dondelinger \email{f.dondelinger@lancaster.ac.uk} (\href{https://orcid.org/0000-0003-1816-6300}{ORCID})
+}
+
+}

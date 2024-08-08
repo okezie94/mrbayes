@@ -48,7 +48,7 @@ mvmr_egger_rjags(
 }
 \value{
 An object of class \code{mveggerjags} containing the following components:
-if (requireNamespace("rjags", quietly = TRUE)) {
+\describe{
 \item{AvgPleio}{The mean of the simulated pleiotropic effect}
 \item{CausalEffect}{The mean of the simulated causal effect}
 \item{StandardError}{Standard deviation of the simulated causal effect}
