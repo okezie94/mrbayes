@@ -48,7 +48,7 @@ Bayesian implementation of the MVMR-Egger model with choice of prior distributio
 }
 \examples{
 \dontshow{if (requireNamespace("rstan", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-\donttest{
+\dontrun{
 # Note we recommend setting n.burn and n.iter to larger values
 dat <- mvmr_format(
   rsid = dodata$rsid,

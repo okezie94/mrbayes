@@ -42,7 +42,7 @@ Bayesian multivariate inverse variance weighted model with a choice of prior dis
 }
 \examples{
 \dontshow{if (requireNamespace("rstan", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-\donttest{
+\dontrun{
 dat <- mvmr_format(
   rsid = dodata$rsid,
   xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
