@@ -18,7 +18,13 @@ Install the CRAN version with following code:
 install.packages("mrbayes")
 ``` 
 
-Or install the development version from GitHub with:
+Or install the development version from r-universe with
+
+```r
+install.packages("mrbayes", repos = c("https://mrcieu.r-universe.dev", "https://cloud.r-project.org"))
+```
+
+or from GitHub with:
  
 ``` r
 # install.packages("remotes") # uncomment if remotes not installed
