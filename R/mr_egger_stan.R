@@ -23,14 +23,10 @@
 #'
 #' @export
 #'
-#' @examples
-#' \donttest{
-#' if (require("rstan", quietly = TRUE)) {
-#'   # Note we recommend setting n.burn and n.iter to larger values
-#'   egger_fit <- mr_egger_stan(bmi_insulin, n.burn = 500, n.iter = 1000)
-#'   print(egger_fit)
-#' }
-#' }
+#' @examplesIf requireNamespace("rstan", quietly = TRUE)
+#' # Note we recommend setting n.burn and n.iter to larger values
+#' egger_fit <- mr_egger_stan(bmi_insulin, n.burn = 500, n.iter = 1000)
+#' print(egger_fit)
 mr_egger_stan <- function(data,
                         prior = 1,
                         n.chains = 3,
