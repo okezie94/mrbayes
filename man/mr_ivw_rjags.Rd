@@ -52,14 +52,14 @@ Bayesian inverse variance weighted model with a choice of prior distributions fi
 }
 \examples{
 \dontshow{if (requireNamespace("rjags", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-  fit <- mr_ivw_rjags(bmi_insulin)
-  print(fit)
-  summary(fit)
-  plot(fit$samples)
-  # 90\% credible interval
-  fitdf <- do.call(rbind.data.frame, fit$samples)
-  cri90 <- quantile(fitdf$Estimate, probs = c(0.05,0.95))
-  print(cri90)
+fit <- mr_ivw_rjags(bmi_insulin)
+print(fit)
+summary(fit)
+plot(fit$samples)
+# 90\% credible interval
+fitdf <- do.call(rbind.data.frame, fit$samples)
+cri90 <- quantile(fitdf$Estimate, probs = c(0.05, 0.95))
+print(cri90)
 \dontshow{\}) # examplesIf}
 }
 \references{

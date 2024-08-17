@@ -61,13 +61,13 @@ Bayesian radial MR-Egger model with a choice of prior distributions fitted using
 }
 \examples{
 \dontshow{if (requireNamespace("rjags", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-  fit <- mr_radialegger_rjags(bmi_insulin)
-  summary(fit)
-  plot(fit$samples)
-  # 90\% credible interval
-  fitdf <- do.call(rbind.data.frame, fit$samples)
-  cri90 <- quantile(fitdf$Estimate, probs = c(0.05,0.95))
-  print(cri90)
+fit <- mr_radialegger_rjags(bmi_insulin)
+summary(fit)
+plot(fit$samples)
+# 90\% credible interval
+fitdf <- do.call(rbind.data.frame, fit$samples)
+cri90 <- quantile(fitdf$Estimate, probs = c(0.05, 0.95))
+print(cri90)
 \dontshow{\}) # examplesIf}
 }
 \references{

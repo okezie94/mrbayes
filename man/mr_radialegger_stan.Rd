@@ -46,11 +46,9 @@ Bayesian inverse variance weighted model with a choice of prior distributions fi
 }
 \examples{
 \dontshow{if (requireNamespace("rstan", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-\donttest{
-  # Note we recommend setting n.burn and n.iter to larger values
-  radegger_fit <- mr_radialegger_stan(bmi_insulin, n.burn = 500, n.iter = 1000)
-  print(radegger_fit)
-}
+# Note we recommend setting n.burn and n.iter to larger values
+radegger_fit <- mr_radialegger_stan(bmi_insulin, n.burn = 500, n.iter = 1000)
+print(radegger_fit)
 \dontshow{\}) # examplesIf}
 }
 \references{

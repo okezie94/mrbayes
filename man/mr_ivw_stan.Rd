@@ -42,9 +42,9 @@ Bayesian inverse variance weighted model with a choice of prior distributions fi
 }
 \examples{
 \dontshow{if (requireNamespace("rstan", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-  ivw_fit <- mr_ivw_stan(bmi_insulin)
-  print(ivw_fit)
-  rstan::traceplot(ivw_fit)
+ivw_fit <- mr_ivw_stan(bmi_insulin)
+print(ivw_fit)
+rstan::traceplot(ivw_fit)
 \dontshow{\}) # examplesIf}
 }
 \references{
