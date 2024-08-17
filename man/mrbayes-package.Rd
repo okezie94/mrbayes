@@ -17,6 +17,7 @@ Useful links:
 \itemize{
   \item \url{https://github.com/okezie94/mrbayes}
   \item \url{https://okezie94.github.io/mrbayes/}
+  \item \url{https://mrcieu.r-universe.dev/mrbayes}
   \item Report bugs at \url{https://github.com/okezie94/mrbayes/issues}
 }
 
