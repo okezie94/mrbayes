@@ -20,7 +20,7 @@
 #' @references Stan Development Team (2020). "RStan: the R interface to Stan." R package version 2.19.3, <https://mc-stan.org/>.
 #'
 #' @examplesIf requireNamespace("rstan", quietly = TRUE)
-#' \donttest{
+#' \dontrun{
 #' dat <- mvmr_format(
 #'   rsid = dodata$rsid,
 #'   xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
