@@ -52,7 +52,7 @@ jobs:
         if: runner.os == 'Windows'
         run: |
           curl https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/Windows/JAGS-4.3.1.exe/download
-          ./JAGS-4.3.1.exe
+          JAGS-4.3.1.exe
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
