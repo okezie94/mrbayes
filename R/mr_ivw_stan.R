@@ -21,7 +21,7 @@
 #'
 #' @examples
 #' if (requireNamespace("rstan", quietly = TRUE)){
-#' ivw_fit <- mr_ivw_stan(bmi_insulin)
+#' suppressWarnings(ivw_fit <- mr_ivw_stan(bmi_insulin, refresh = 0L))
 #' print(ivw_fit)
 #' rstan::traceplot(ivw_fit)
 #' }
