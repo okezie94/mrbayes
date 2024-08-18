@@ -55,6 +55,11 @@ jobs:
           needs: check
           upgrade: 'TRUE'
 
+      - name: Install rstan and rjags from source on macOS
+        if: runner.os == 'macOS'
+        run: install.packages(c('rstan', 'rjags'), type = 'source')
+        shell: Rscript {0}
+
       - uses: r-lib/actions/check-r-package@v2
         with:
           upload-snapshots: true
