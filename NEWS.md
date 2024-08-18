@@ -6,6 +6,10 @@
 
 * Added a `CITATION` file.
 
+* The datasets are now compressed.
+
+* Maintainer switched to TP.
+
 # mrbayes 0.5.1
 
 * The `mvmr_egger_rjags()` helpfile example is now only run if the **rjags** package is installed.
