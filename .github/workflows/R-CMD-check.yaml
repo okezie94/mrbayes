@@ -51,8 +51,23 @@ jobs:
       - name: Install Windows system dependencies
         if: runner.os == 'Windows'
         run: |
-          curl https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/Windows/JAGS-4.3.1.exe/download
-          JAGS-4.3.1.exe
+          # Install JAGS as per
+          # https://svn.r-project.org/R-dev-web/trunk/WindowsBuilds/winutf8/ucrt3/r_packages/setup_checks.ps1
+          # https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/Windows/JAGS-4.3.1.exe
+          if (-not(Test-Path("C:\Program Files\JAGS\JAGS-4.3.1"))) {
+            cd temp
+            $url = "https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/Windows/JAGS-4.3.1.exe/download"
+            $inst = "..\installers\JAGS-4.3.1.exe"
+
+            if (Test-Path("$inst")) {
+              cp "$inst" jags.exe
+            } elseif (-not(Test-path("jags.exe"))) {
+              # -UserAgent "NativeHost" to work-around issues with redirects with the default
+              Invoke-WebRequest -Uri "$url" -OutFile jags.exe -UseBasicParsing -UserAgent "NativeHost"
+            }
+            Start-Process -Wait -NoNewWindow -FilePath ".\jags.exe" -ArgumentList "/S"
+            cd ..
+          }
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
