@@ -47,8 +47,7 @@ An object of class \code{\link[rstan:stanfit-class]{rstan::stanfit}}.
 Bayesian implementation of the MVMR-Egger model with choice of prior distributions fitted using RStan.
 }
 \examples{
-\dontshow{if (requireNamespace("rstan", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-\dontrun{
+if (requireNamespace("rstan", quietly = TRUE)) {
 # Note we recommend setting n.burn and n.iter to larger values
 dat <- mvmr_format(
   rsid = dodata$rsid,
@@ -60,7 +59,6 @@ dat <- mvmr_format(
 mvegger_fit <- mvmr_egger_stan(dat, n.burn = 500, n.iter = 1000)
 print(mvegger_fit)
 }
-\dontshow{\}) # examplesIf}
 }
 \references{
 Bowden J, Davey Smith G, Burgess S. Mendelian randomization with invalid instruments: effect estimation and bias detection through Egger regression. International Journal of Epidemiology, 2015, 44, 2, 512-525. \doi{10.1093/ije/dyv080}.
