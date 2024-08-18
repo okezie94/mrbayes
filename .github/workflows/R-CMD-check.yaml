@@ -55,6 +55,7 @@ jobs:
           # https://svn.r-project.org/R-dev-web/trunk/WindowsBuilds/winutf8/ucrt3/r_packages/setup_checks.ps1
           # https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/Windows/JAGS-4.3.1.exe
           if (-not(Test-Path("C:\Program Files\JAGS\JAGS-4.3.1"))) {
+            mkdir temp
             cd temp
             $url = "https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/Windows/JAGS-4.3.1.exe/download"
             $inst = "..\installers\JAGS-4.3.1.exe"
