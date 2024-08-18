@@ -23,7 +23,8 @@ test_that("Radial-Egger using default prior method",
                              yse = dodata$chdse)
 
             radialeggerfit <- mr_radialegger_rjags(dat,
-                                                   seed = c(123, 456, 789))
+                                                   seed = c(123, 456, 789),
+                                                   sigmaprior = "1")
             expect_equal(class(radialeggerfit), "radialeggerjags")
             expect_equal(unname(radialeggerfit$CausalEffect), 0.591, tol = 1e-2)
             expect_equal(unname(radialeggerfit$StandardError), 0.078, tol = 1e-2)

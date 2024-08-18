@@ -75,31 +75,28 @@ mr_radialegger_rjags <- function(object,
 
   # Conditional statements for the prior statements
 
-  if (prior == "default" & betaprior == "") {
+  if (prior == "default" && betaprior == "" && sigmaprior == "") {
     #Setting up the model string
     Priors <-"Pleiotropy ~ dnorm(0, 1E-3) \n Estimate ~ dnorm(0, 1E-3) \n sigma ~ dunif(.0001, 10)"
 
     radialegger_model_string <-
       paste0("model {", Likelihood, "\n\n", Priors, "\n\n}")
 
-  } else if (prior == "weak" & betaprior == "") {
+  } else if (prior == "weak" && betaprior == "" && sigmaprior == "") {
     #Setting up the model string
 
     Priors <- "Pleiotropy ~ dnorm(0, 1E-6) \n Estimate ~ dnorm(0, 1E-6) \n sigma ~ dunif(.0001, 10)"
 
-
     radialegger_model_string <-
       paste0("model {", Likelihood, "\n\n", Priors, "\n\n}")
 
-  } else if (prior == "pseudo" & betaprior == "") {
+  } else if (prior == "pseudo" && betaprior == "" && sigmaprior == "") {
     #Setting up the model string
     Priors <-"Pleiotropy ~ dnorm(0,1E-3) \n Estimate ~ dt(0, 1, 1) \n invpsi ~ dgamma(1E-3, 1E-3) \n sigma <- 1/invpsi"
 
     radialegger_model_string <-
       paste0("model {", Likelihood, "\n\n", Priors, "\n\n}")
-  }
-
-  else if (prior == "joint" & betaprior == ""){
+  } else if (prior == "joint" && betaprior == "" && sigmaprior == ""){
     #setting up model string
 
     # covariance matrix
@@ -127,16 +124,14 @@ mr_radialegger_rjags <- function(object,
     radialegger_model_string <-
       paste0("model {", Likelihood,"\n\n",Priors,"\n\n}")
 
-  }
-
-  else if (betaprior != ""  & sigmaprior != "") {
+  } else if (betaprior != "" && sigmaprior != "") {
     part1 <-"Pleiotropy ~ dnorm(0, 1E-3) \n Estimate ~ "
     part2 <- "\n sigma ~ "
     Priors <- paste0(part1,betaprior,part2,sigmaprior)
 
     radialegger_model_string <-
       paste0("model {",Likelihood,"\n\n", Priors,"\n\n }")
-  } else if (betaprior != ""  & sigmaprior == "") {
+  } else if (betaprior != "" && sigmaprior == "") {
     part1 <-"Pleiotropy ~ dnorm(0, 1E-3) \n Estimate ~ "
     part2 <- "\n sigma ~ dunif(.0001,10)"
     Priors <- paste0(part1,betaprior,part2)
@@ -144,7 +139,7 @@ mr_radialegger_rjags <- function(object,
     radialegger_model_string <-
       paste0("model {",Likelihood,"\n\n", Priors,"\n\n }")
 
-  } else if (betaprior == ""  & sigmaprior != "") {
+  } else if (betaprior == "" && sigmaprior != "") {
     part1 <-"Pleiotropy ~ dnorm(0, 1E-3) \n Estimate ~ dnorm(0, 1E-6) \n sigma ~"
     Priors <- paste0(part1,sigmaprior)
 
@@ -161,7 +156,6 @@ mr_radialegger_rjags <- function(object,
 
   bj <- ybet / object[, 5]
   wj <- xbet / object[, 5]
-
 
   if (!is.null(seed)) {
     if (length(seed) != n.chains) {
@@ -288,7 +282,7 @@ mr_radialegger_rjags <- function(object,
 
 }
 
-#Function for output of results
+# Function for output of results
 #' @export
 print.radialeggerjags <- function(x, ...) {
   outt <-
@@ -355,9 +349,7 @@ summary.radialeggerjags <- function(object, ...) {
       "\n",
       "\n")
 
-
   cat("Inflating Parameter:", out$sigma, "\n\n")
-
 
   print(out1, ...)
 
