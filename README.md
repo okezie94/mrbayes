@@ -37,4 +37,4 @@ The helpfiles are shown on the package website at: <https://okezie94.github.io/m
 
 ## Authors
 
-Okezie Uche-Ikonne (maintainer, okezieikonne@gmail.com), Frank Dondelinger, and Tom Palmer
+Okezie Uche-Ikonne, Frank Dondelinger, and Tom Palmer
