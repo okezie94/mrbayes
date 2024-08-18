@@ -19,10 +19,12 @@
 #' @references Burgess, S., Butterworth, A., Thompson S.G. Mendelian randomization analysis with multiple genetic variants using summarized data. Genetic Epidemiology, 2013, 37, 7, 658-665 \doi{10.1002/gepi.21758}.
 #' @references Stan Development Team (2020). "RStan: the R interface to Stan." R package version 2.19.3, <https://mc-stan.org/>.
 #'
-#' @examplesIf requireNamespace("rstan", quietly = TRUE)
+#' @examples
+#' if (requireNamespace("rstan", quietly = TRUE)){
 #' ivw_fit <- mr_ivw_stan(bmi_insulin)
 #' print(ivw_fit)
 #' rstan::traceplot(ivw_fit)
+#' }
 #' @export
 mr_ivw_stan <- function(data,
                         prior = 1,

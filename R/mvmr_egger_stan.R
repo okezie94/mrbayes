@@ -23,8 +23,8 @@
 #'
 #' @export
 #'
-#' @examplesIf requireNamespace("rstan", quietly = TRUE)
-#' \dontrun{
+#' @examples
+#' if (requireNamespace("rstan", quietly = TRUE)) {
 #' # Note we recommend setting n.burn and n.iter to larger values
 #' dat <- mvmr_format(
 #'   rsid = dodata$rsid,

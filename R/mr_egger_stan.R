@@ -23,8 +23,8 @@
 #'
 #' @export
 #'
-#' @examplesIf requireNamespace("rstan", quietly = TRUE)
-#' \dontrun{
+#' @examples
+#' if (requireNamespace("rstan", quietly = TRUE)) {
 #' # Note we recommend setting n.burn and n.iter to larger values
 #' egger_fit <- mr_egger_stan(bmi_insulin, n.burn = 500, n.iter = 1000)
 #' print(egger_fit)
