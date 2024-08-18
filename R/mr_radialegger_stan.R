@@ -25,7 +25,9 @@
 #' @examples
 #' if (requireNamespace("rstan", quietly = TRUE)){
 #' # Note we recommend setting n.burn and n.iter to larger values
-#' suppressWarnings(radegger_fit <- mr_radialegger_stan(bmi_insulin, n.burn = 500, n.iter = 1000, refresh = 0L))
+#' suppressWarnings({
+#'   radegger_fit <- mr_radialegger_stan(bmi_insulin, n.burn = 500, n.iter = 1000, refresh = 0L)
+#' })
 #' print(radegger_fit)
 #' }
 mr_radialegger_stan <- function(data,
