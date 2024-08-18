@@ -49,7 +49,7 @@ dat <- mvmr_format(
   xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
   yse = dodata$chdse
 )
-mvivw_fit <- mvmr_ivw_stan(dat)
+suppressWarnings(mvivw_fit <- mvmr_ivw_stan(dat, refresh = 0L))
 print(mvivw_fit)
 rstan::traceplot(mvivw_fit)
 }

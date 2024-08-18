@@ -56,7 +56,7 @@ dat <- mvmr_format(
   xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
   yse = dodata$chdse
 )
-mvegger_fit <- mvmr_egger_stan(dat, n.burn = 500, n.iter = 1000)
+suppressWarnings(mvegger_fit <- mvmr_egger_stan(dat, n.burn = 500, n.iter = 1000, refresh = 0L))
 print(mvegger_fit)
 }
 }
