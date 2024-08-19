@@ -5,9 +5,9 @@ context("Tests for MVMR-Egger function using stan")
 test_that("Dataset is formatted",
           {
             dat <- mvmr_format(rsid = dodata$rsid,
-                             xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
+                             xbeta = cbind(dodata$ldlcbeta, dodata$hdlcbeta, dodata$tgbeta),
                              ybeta = dodata$chdbeta,
-                             xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
+                             xse = cbind(dodata$ldlcse, dodata$hdlcse, dodata$tgse),
                              yse = dodata$chdse)
             expect_s3_class(dat, "mvmr_format")
           })
@@ -17,9 +17,9 @@ test_that("MVMR-Egger using default prior method",
             skip_on_cran()
             skip_if_not_installed("rstan")
             dat <- mvmr_format(rsid = dodata$rsid,
-                               xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
+                               xbeta = cbind(dodata$ldlcbeta, dodata$hdlcbeta, dodata$tgbeta),
                                ybeta = dodata$chdbeta,
-                               xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
+                               xse = cbind(dodata$ldlcse, dodata$hdlcse, dodata$tgse),
                                yse = dodata$chdse)
 
             eggerfit <- mvmr_egger_stan(dat)
@@ -47,9 +47,9 @@ test_that("MVMR-Egger using weak prior method",
               skip_on_cran()
               skip_if_not_installed("rstan")
               dat <- mvmr_format(rsid = dodata$rsid,
-                                 xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
+                                 xbeta = cbind(dodata$ldlcbeta, dodata$hdlcbeta, dodata$tgbeta),
                                  ybeta = dodata$chdbeta,
-                                 xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
+                                 xse = cbind(dodata$ldlcse, dodata$hdlcse, dodata$tgse),
                                  yse = dodata$chdse)
 
               eggerfit1 <- mvmr_egger_stan(dat,
@@ -77,9 +77,9 @@ test_that("MVMR-Egger using pseudo prior method",
             skip_on_cran()
             skip_if_not_installed("rstan")
             dat <- mvmr_format(rsid = dodata$rsid,
-                               xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
+                               xbeta = cbind(dodata$ldlcbeta, dodata$hdlcbeta, dodata$tgbeta),
                                ybeta = dodata$chdbeta,
-                               xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
+                               xse = cbind(dodata$ldlcse, dodata$hdlcse, dodata$tgse),
                                yse = dodata$chdse)
 
             eggerfit1 <- mvmr_egger_stan(dat,
