@@ -47,13 +47,13 @@
 #' print(cri90)
 #' }
 mvmr_ivw_rjags <- function(object,
-                         prior = "default",
-                         betaprior = "",
-                         n.chains = 3,
-                         n.burn = 1000,
-                         n.iter = 5000,
-                         seed = NULL,
-                         ...) {
+                           prior = "default",
+                           betaprior = "",
+                           n.chains = 3,
+                           n.burn = 1000,
+                           n.iter = 5000,
+                           seed = NULL,
+                           ...) {
 
   # convert MRInput object to mvmr_format
   # if ("MRInput" %in% class(object)) {
@@ -76,7 +76,7 @@ mvmr_ivw_rjags <- function(object,
     }"
 
 
-  if (prior == "default" & betaprior == "") {
+  if (prior == "default" && betaprior == "") {
     #Setting up the model string
 
     Priors <- "for (j in 1:K) {
@@ -85,18 +85,18 @@ mvmr_ivw_rjags <- function(object,
     ivw_model_string <- paste0("model {", Likelihood, "\n\n", Priors, "\n\n}")
 
 
-} else if (prior == "weak" & betaprior == "") {
+} else if (prior == "weak" && betaprior == "") {
     #Setting up the model string
-    Priors<- "for (j in 1:K) {
+    Priors <- "for (j in 1:K) {
     Estimate[j] ~ dnorm(0, 1E-6)
     }"
 
     ivw_model_string <- paste0("model {", Likelihood, "\n\n", Priors, "\n\n}")
 
-} else if (prior == "pseudo" & betaprior == "") {
+} else if (prior == "pseudo" && betaprior == "") {
 
     #Setting up the model string
-  Priors<- "for (j in 1:K) {
+  Priors <- "for (j in 1:K) {
   Estimate[j] ~ dt(0, 1, 1)
   }"
   ivw_model_string <- paste0("model {", Likelihood, "\n\n", Priors, "\n\n}")
@@ -104,7 +104,7 @@ mvmr_ivw_rjags <- function(object,
 
 if (betaprior != "") {
 
-  Priors<- paste0("for (j in 1:K) {Estimate[j] ~ ",betaprior,"}")
+  Priors <- paste0("for (j in 1:K) {Estimate[j] ~ ", betaprior, "}")
   ivw_model_string <- paste0("model {", Likelihood,"\n\n", Priors, "\n\n }")
 
 }
@@ -168,19 +168,19 @@ mcmciter <- n.iter + n.burn
 # Outputs from the model
 
 #Causal Estimate
-causal.est <- p$statistics[,1]
+causal.est <- p$statistics[, 1]
 
 #standard deviation
-standard.dev <- p$statistics[,2]
+standard.dev <- p$statistics[, 2]
 
 #lower Credible Interval for estimates
-lower.credible_interval <- p$quantiles[,1]
+lower.credible_interval <- p$quantiles[, 1]
 
 #Median Interval for estimates
-Median_interval <- p$quantiles[,3]
+Median_interval <- p$quantiles[, 3]
 
 #higher Credible Interval for estimates
-Higher.credible_interval <- p$quantiles[,5]
+Higher.credible_interval <- p$quantiles[, 5]
 
 credible_interval <-
   cbind(lower.credible_interval,
@@ -195,13 +195,13 @@ out$CredibleInterval <- credible_interval
 out$samples <- g
 out$priormethod <- prior
 out$betaprior <- betaprior
-out$samplesize<- niter
-out$burnin<- nburn
-out$chains<- nchain
-out$MCMC<- mcmciter
+out$samplesize <- niter
+out$burnin <- nburn
+out$chains <- nchain
+out$MCMC <- mcmciter
 out$Prior <- Priors
 out$model <- ivw_model_string
-out$nsnps<- nsnps
+out$nsnps <- nsnps
 
 class(out) <- "mvivwjags"
 return(out)
@@ -215,8 +215,8 @@ print.mvivwjags <- function(x, ...) {
     matrix(cbind(x$CausalEffect, x$StandardError, x$CredibleInterval),
            nrow = length(x$CausalEffect),
            ncol = 5,
-           byrow = F,
-           dimnames =list(paste0("Causal Effect",1:length(x$CausalEffect)), c("Estimate", "SD", "2.5%", "50%", "97.5%"))
+           byrow = FALSE,
+           dimnames = list(paste0("Causal Effect", seq_along(x$CausalEffect)), c("Estimate", "SD", "2.5%", "50%", "97.5%"))
     )
   print(outt, ...)
   invisible(x)
@@ -231,8 +231,8 @@ summary.mvivwjags <- function(object, ...) {
       cbind(out$CausalEffect, out$StandardError, out$CredibleInterval),
       nrow = length(out$CausalEffect),
       ncol = 5,
-      byrow = F,
-      dimnames =list(paste0("Causal Effect",1:length(out$CausalEffect)), c("Estimate", "SD", "2.5%", "50%", "97.5%"))
+      byrow = FALSE,
+      dimnames = list(paste0("Causal Effect", seq_along(out$CausalEffect)), c("Estimate", "SD", "2.5%", "50%", "97.5%"))
     )
 
   cat("Prior : \n\n", out$Prior, "\n\n")
