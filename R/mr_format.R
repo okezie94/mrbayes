@@ -21,7 +21,7 @@
 #' class(dat)
 mr_format <- function(rsid, xbeta, ybeta, xse, yse) {
   if (missing(rsid)) {
-    rsid <- 1:length(ybeta)
+    rsid <- seq_along(ybeta)
     message("SNP id variable generated equal to row number in data frame")
   }
 
