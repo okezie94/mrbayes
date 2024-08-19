@@ -30,13 +30,13 @@
 #' print(egger_fit)
 #' }
 mr_egger_stan <- function(data,
-                        prior = 1,
-                        n.chains = 3,
-                        n.burn = 1000,
-                        n.iter = 5000,
-                        seed = 12345,
-                        rho = 0.5,
-                        ...) {
+                          prior = 1,
+                          n.chains = 3,
+                          n.burn = 1000,
+                          n.iter = 5000,
+                          seed = 12345,
+                          rho = 0.5,
+                          ...) {
 
   # check for rstan
   rstan_check()
@@ -53,19 +53,19 @@ mr_egger_stan <- function(data,
     )
   }
 
-  pars <- c("intercept","estimate","sigma")
+  pars <- c("intercept", "estimate", "sigma")
 
   ## setting directional change
 
-  ybet <- sign(data[,2]) * data[,3]
-  xbet <- abs(data[,2])
+  ybet <- sign(data[, 2]) * data[, 3]
+  xbet <- abs(data[, 2])
 
   # converting dataset to a list
   datam <- list(
     n = nrow(data),
-    xbeta = xbet/data[, 5],
-    ybeta = ybet/data[, 5],
-    weights = 1/data[, 5],
+    xbeta = xbet / data[, 5],
+    ybeta = ybet / data[, 5],
+    weights = 1 / data[, 5],
     prior = prior, rho = rho
   )
 
