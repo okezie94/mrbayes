@@ -3,9 +3,9 @@ context("Tests for IVW function using JAGS")
 test_that("Dataset is formatted",
           {
             dat <- mvmr_format(rsid = dodata$rsid,
-                               xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
+                               xbeta = cbind(dodata$ldlcbeta, dodata$hdlcbeta, dodata$tgbeta),
                                ybeta = dodata$chdbeta,
-                               xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
+                               xse = cbind(dodata$ldlcse, dodata$hdlcse, dodata$tgse),
                                yse = dodata$chdse)
             expect_s3_class(dat, "mvmr_format")
           })
@@ -16,9 +16,9 @@ test_that("IVW using default prior method",
             skip_on_cran()
             skip_if_not_installed("rjags")
             dat <- mvmr_format(rsid = dodata$rsid,
-                               xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
+                               xbeta = cbind(dodata$ldlcbeta, dodata$hdlcbeta, dodata$tgbeta),
                                ybeta = dodata$chdbeta,
-                               xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
+                               xse = cbind(dodata$ldlcse, dodata$hdlcse, dodata$tgse),
                                yse = dodata$chdse)
 
             ivwfit <- mvmr_ivw_rjags(dat, seed = c(123, 456, 789))
@@ -47,9 +47,9 @@ test_that("IVW using weak prior method",
             skip_on_cran()
             skip_if_not_installed("rjags")
             dat <- mvmr_format(rsid = dodata$rsid,
-                               xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
+                               xbeta = cbind(dodata$ldlcbeta, dodata$hdlcbeta, dodata$tgbeta),
                                ybeta = dodata$chdbeta,
-                               xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
+                               xse = cbind(dodata$ldlcse, dodata$hdlcse, dodata$tgse),
                                yse = dodata$chdse)
 
             ivwfit1 <- mvmr_ivw_rjags(dat, prior = "weak",
@@ -79,9 +79,9 @@ test_that("IVW using pseudo prior method",
             skip_on_cran()
             skip_if_not_installed("rjags")
             dat <- mvmr_format(rsid = dodata$rsid,
-                               xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
+                               xbeta = cbind(dodata$ldlcbeta, dodata$hdlcbeta, dodata$tgbeta),
                                ybeta = dodata$chdbeta,
-                               xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
+                               xse = cbind(dodata$ldlcse, dodata$hdlcse, dodata$tgse),
                                yse = dodata$chdse)
 
 
@@ -112,9 +112,9 @@ test_that("IVW using beta prior method",
             skip_on_cran()
             skip_if_not_installed("rjags")
             dat <- mvmr_format(rsid = dodata$rsid,
-                               xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
+                               xbeta = cbind(dodata$ldlcbeta, dodata$hdlcbeta, dodata$tgbeta),
                                ybeta = dodata$chdbeta,
-                               xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
+                               xse = cbind(dodata$ldlcse, dodata$hdlcse, dodata$tgse),
                                yse = dodata$chdse)
 
             ivwfit3 <- mvmr_ivw_rjags(dat,
@@ -138,4 +138,3 @@ test_that("IVW using beta prior method",
             expect_equal(class(ivwfit3$samples), "mcmc.list")
             expect_equal(ivwfit3$priormethod, "default")
           })
-
