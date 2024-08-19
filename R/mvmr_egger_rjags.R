@@ -98,7 +98,7 @@ mvmr_egger_rjags <- function(object,
 
   # non-informative prior
 
-  if (prior == "default" && betaprior == "") {
+  if (prior == "default" && betaprior == "" && sigmaprior == "") {
 
     #Setting up the model string
     Priors <- "Pleiotropy ~ dnorm(0, 1E-3) \n
@@ -111,7 +111,7 @@ mvmr_egger_rjags <- function(object,
 
     # weakly informative prior
 
-  } else if (prior == "weak" && betaprior == "") {
+  } else if (prior == "weak" && betaprior == "" && sigmaprior == "") {
 
     # Setting up the model string
     Priors <- "Pleiotropy ~ dnorm(0, 1E-6) \n
@@ -123,7 +123,7 @@ mvmr_egger_rjags <- function(object,
 
 
     # pseudo-shrinkage prior
-  } else if (prior == "pseudo" && betaprior == "") {
+  } else if (prior == "pseudo" && betaprior == "" && sigmaprior == "") {
     #Setting up the model string
     Priors <- "Pleiotropy ~ dnorm(0,1E-3) \n
     for (j in 1:K) {
@@ -133,7 +133,7 @@ mvmr_egger_rjags <- function(object,
     egger_model_string <- paste0("model {", Likelihood, "\n\n", Priors, "\n\n}")
 
     # joint prior
-  } else if (prior == "joint" && betaprior == "") {
+  } else if (prior == "joint" && betaprior == "" && sigmaprior == "") {
     #setting up model string
 
     # covariance matrix
