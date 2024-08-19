@@ -127,7 +127,7 @@ test_that("MR-Egger using betaprior and sigmaprior method",
             expect_equal(class(eggerfit4), "eggerjags")
             expect_equal(unname(eggerfit4$CausalEffect), 0.569, tol = 1e-2)
             expect_equal(unname(eggerfit4$StandardError), 0.0775, tol = 1e-2)
-            expect_equal(unname(eggerfit4$CredibleInterval[1]), 0.42 , tol = 1e-2)
+            expect_equal(unname(eggerfit4$CredibleInterval[1]), 0.42, tol = 1e-2)
             expect_equal(unname(eggerfit4$CredibleInterval[2]), 0.569, tol = 1e-2)
             expect_equal(unname(eggerfit4$CredibleInterval[3]), 0.721, tol = 1e-2)
             expect_equal(unname(eggerfit4$AvgPleio), -0.002, tol = 1e-2)
