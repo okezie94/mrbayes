@@ -148,7 +148,7 @@ mr_egger_rjags <- function(object,
     Priors <- paste0(part1, sigmaprior)
 
     egger_model_string <-
-      paste0("model {",Likelihood,"\n\n", Priors,"\n\n }")
+      paste0("model {", Likelihood, "\n\n", Priors, "\n\n }")
 
   }
 
@@ -169,7 +169,7 @@ mr_egger_rjags <- function(object,
     textConnection(egger_model_string),
     data = list(
       N = nrow(object),
-      by = sign(object[,2])*object[, 3],
+      by = sign(object[, 2]) * object[, 3],
       bx = abs(object[, 2]),
       byse = object[, 5]
     ),
