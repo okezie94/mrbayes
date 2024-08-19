@@ -97,4 +97,3 @@ test_that("IVW using beta prior method",
             expect_equal(unname(ivwfit3$CredibleInterval[3]), 0.58, tol = 1e-2)
             expect_equal(class(ivwfit3$samples), "mcmc.list")
           })
-
