@@ -55,11 +55,6 @@ mvmr_ivw_rjags <- function(object,
                            seed = NULL,
                            ...) {
 
-  # convert MRInput object to mvmr_format
-  # if ("MRInput" %in% class(object)) {
-  #   object <- mrinput_mvmr_format(object)
-  # }
-
   # check class of object
   if (!("mvmr_format" %in% class(object))) {
     stop('The class of the data object must be "mvmr_format", please resave the object with the output of e.g. object <- mvmr_format(object).')
