@@ -41,7 +41,7 @@ An object of class \code{\link[rstan:stanfit-class]{rstan::stanfit}}.
 Bayesian multivariate inverse variance weighted model with a choice of prior distributions fitted using RStan.
 }
 \examples{
-if (requireNamespace("rstan", quietly = TRUE)){
+if (requireNamespace("rstan", quietly = TRUE)) {
 dat <- mvmr_format(
   rsid = dodata$rsid,
   xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),

@@ -62,7 +62,7 @@ An object of class \code{mveggerjags} containing the following components:
 Bayesian implementation of the MVMR-Egger model with choice of prior distributions fitted using JAGS.
 }
 \examples{
-if (requireNamespace("rjags", quietly = TRUE)){
+if (requireNamespace("rjags", quietly = TRUE)) {
 \dontrun{
 dat <- mvmr_format(
   rsid = dodata$rsid,
