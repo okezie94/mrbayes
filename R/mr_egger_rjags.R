@@ -76,17 +76,17 @@ mr_egger_rjags <- function(object,
 
   # non-informative prior
 
-  if (prior == "default" & betaprior == "") {
+  if (prior == "default" && betaprior == "") {
 
     #Setting up the model string
-    Priors <-"Pleiotropy ~ dnorm(0, 1E-3) \n Estimate ~ dnorm(0, 1E-3) \n sigma ~ dunif(.0001, 10)"
+    Priors <- "Pleiotropy ~ dnorm(0, 1E-3) \n Estimate ~ dnorm(0, 1E-3) \n sigma ~ dunif(.0001, 10)"
 
     egger_model_string <-
       paste0("model {", Likelihood, "\n\n", Priors, "\n\n}")
 
     # weakly informative prior
 
-  } else if (prior == "weak" & betaprior == "") {
+  } else if (prior == "weak" && betaprior == "") {
 
     # Setting up the model string
     Priors <- "Pleiotropy ~ dnorm(0, 1E-6) \n Estimate ~ dnorm(0, 1E-6) \n sigma ~ dunif(.0001, 10)"
@@ -94,18 +94,16 @@ mr_egger_rjags <- function(object,
 
 
     # pseudo-shrinkage prior
-  } else if (prior == "pseudo" & betaprior == "") {
+  } else if (prior == "pseudo" && betaprior == "") {
     #Setting up the model string
-    Priors <-"Pleiotropy ~ dnorm(0,1E-3) \n Estimate ~ dt(0, 1, 1) \n invpsi ~ dgamma(1E-3, 1E-3)\n sigma <- 1/invpsi"
+    Priors <- "Pleiotropy ~ dnorm(0,1E-3) \n Estimate ~ dt(0, 1, 1) \n invpsi ~ dgamma(1E-3, 1E-3)\n sigma <- 1/invpsi"
     egger_model_string <- paste0("model {", Likelihood, "\n\n", Priors, "\n\n}")
 
     # joint prior
-  }
-  else if (prior == "joint" & betaprior == ""){
-    #setting up model string
+  } else if (prior == "joint" && betaprior == "") {
 
     # covariance matrix
-    vcov_mat<- "
+    vcov_mat <- "
     beta[1:2] ~ dmnorm.vcov(mu[], prec[ , ])\n
     Pleiotropy <- beta[1]
     Estimate <- beta[2]
@@ -122,33 +120,32 @@ mr_egger_rjags <- function(object,
     sigma ~ dunif(.0001, 10)
     rho <- "
 
-    Priors<- paste0(vcov_mat,rho)
+    Priors <- paste0(vcov_mat, rho)
 
     #Priors <- "Pleiotropy ~ dnorm(0, 1E-6) \n Estimate ~ dnorm(0, 1E-6) \n sigma ~ dunif(.0001, 10)"
 
     egger_model_string <-
-      paste0("model {", Likelihood,"\n\n",Priors,"\n\n}")
+      paste0("model {", Likelihood, "\n\n", Priors, "\n\n}")
 
-  }
-    else if (betaprior != ""  & sigmaprior != "") {
-    part1 <-"Pleiotropy ~ dnorm(0, 1E-3) \n Estimate ~ "
+  } else if (betaprior != "" && sigmaprior != "") {
+    part1 <- "Pleiotropy ~ dnorm(0, 1E-3) \n Estimate ~ "
     part2 <- "\n sigma ~ "
-    Priors <- paste0(part1,betaprior,part2,sigmaprior)
+    Priors <- paste0(part1, betaprior, part2, sigmaprior)
 
     egger_model_string <-
-      paste0("model {",Likelihood,"\n\n", Priors,"\n\n }")
+      paste0("model {", Likelihood, "\n\n", Priors, "\n\n }")
 
-  } else if (betaprior != ""  & sigmaprior == "") {
-    part1 <-"Pleiotropy ~ dnorm(0, 1E-3) \n Estimate ~ "
+  } else if (betaprior != "" && sigmaprior == "") {
+    part1 <- "Pleiotropy ~ dnorm(0, 1E-3) \n Estimate ~ "
     part2 <- "\n sigma ~ dunif(.0001,10)"
-    Priors <- paste0(part1,betaprior,part2)
+    Priors <- paste0(part1, betaprior, part2)
 
     egger_model_string <-
-      paste0("model {",Likelihood,"\n\n", Priors,"\n\n }")
+      paste0("model {", Likelihood, "\n\n", Priors, "\n\n }")
 
-  } else if (betaprior == ""  & sigmaprior != "") {
-    part1 <-"Pleiotropy ~ dnorm(0, 1E-3) \n Estimate ~ dnorm(0, 1E-6) \n sigma ~"
-    Priors <- paste0(part1,sigmaprior)
+  } else if (betaprior == "" && sigmaprior != "") {
+    part1 <- "Pleiotropy ~ dnorm(0, 1E-3) \n Estimate ~ dnorm(0, 1E-6) \n sigma ~"
+    Priors <- paste0(part1, sigmaprior)
 
     egger_model_string <-
       paste0("model {",Likelihood,"\n\n", Priors,"\n\n }")
@@ -358,9 +355,7 @@ summary.eggerjags <- function(object, ...) {
       "\n",
       "\n")
 
-
   cat("Inflating Parameter:", out$sigma, "\n\n")
-
 
   print(out1, ...)
 
