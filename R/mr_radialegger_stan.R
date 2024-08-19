@@ -31,13 +31,13 @@
 #' print(radegger_fit)
 #' }
 mr_radialegger_stan <- function(data,
-                          prior = 1,
-                          n.chains = 3,
-                          n.burn = 1000,
-                          n.iter = 5000,
-                          rho = 0.5,
-                          seed = 12345,
-                          ...) {
+                                prior = 1,
+                                n.chains = 3,
+                                n.burn = 1000,
+                                n.iter = 5000,
+                                rho = 0.5,
+                                seed = 12345,
+                                ...) {
 
   # check for rstan
   rstan_check()
@@ -55,12 +55,12 @@ mr_radialegger_stan <- function(data,
     )
   }
 
-  pars <- c("intercept","estimate","sigma")
+  pars <- c("intercept", "estimate", "sigma")
 
   ## setting directional change
 
-  ybet <- sign(data[,2]) * data[,3]
-  xbet <- abs(data[,2])
+  ybet <- sign(data[, 2]) * data[, 3]
+  xbet <- abs(data[, 2])
 
   # converting dataset to a list
   datam <- list(
