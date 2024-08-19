@@ -105,7 +105,7 @@ mvmr_ivw_rjags <- function(object,
 if (betaprior != "") {
 
   Priors <- paste0("for (j in 1:K) {Estimate[j] ~ ", betaprior, "}")
-  ivw_model_string <- paste0("model {", Likelihood,"\n\n", Priors, "\n\n }")
+  ivw_model_string <- paste0("model {", Likelihood, "\n\n", Priors, "\n\n }")
 
 }
 

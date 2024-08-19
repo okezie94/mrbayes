@@ -193,7 +193,7 @@ mvmr_egger_rjags <- function(object,
   } else if (betaprior != "" && sigmaprior == "") {
     part1 <- "Pleiotropy ~ dnorm(0, 1E-3) \n for (j in 1:K) {Estimate[j] ~ "
     part2 <- "\n sigma ~ dunif(.0001,10)"
-    Priors <- paste0(part1,betaprior,"}", part2)
+    Priors <- paste0(part1, betaprior, "}", part2)
 
     egger_model_string <-
       paste0("model {", Likelihood, "\n\n", Priors, "\n\n }")
@@ -351,11 +351,12 @@ mvmr_egger_rjags <- function(object,
 #Function for output of results
 #' @export
 print.mveggerjags <- function(x, ...) {
-  estmat<- matrix(ncol = 5, nrow = length(x$CausalEffect))
+  estmat <- matrix(ncol = 5, nrow = length(x$CausalEffect))
   for (i in 1:3){
     estmat[i, ] <- c(x$CausalEffect[i], x$StandardError[i], x$lower.credible_interval[i],
-                     x$Median_interval[i], x$Higher.credible_interval[i])}
-  pleiomat<- c(x$AvgPleio,x$AvgPleioSD,x$AvgPleioCI)
+                     x$Median_interval[i], x$Higher.credible_interval[i])
+  }
+  pleiomat <- c(x$AvgPleio, x$AvgPleioSD, x$AvgPleioCI)
   outt <-
     matrix(
       rbind(pleiomat,estmat),
@@ -374,11 +375,12 @@ print.mveggerjags <- function(x, ...) {
 #' @export
 summary.mveggerjags <- function(object, ...) {
   out <- object
-  estmat<- matrix(ncol = 5, nrow = length(out$CausalEffect))
+  estmat <- matrix(ncol = 5, nrow = length(out$CausalEffect))
   for (i in 1:3){
-    estmat[i,] <- c(out$CausalEffect[i], out$StandardError[i], out$lower.credible_interval[i],
-                    out$Median_interval[i], out$Higher.credible_interval[i])}
-  pleiomat<- c(out$AvgPleio, out$AvgPleioSD, out$AvgPleioCI)
+    estmat[i, ] <- c(out$CausalEffect[i], out$StandardError[i], out$lower.credible_interval[i],
+                     out$Median_interval[i], out$Higher.credible_interval[i])
+  }
+  pleiomat <- c(out$AvgPleio, out$AvgPleioSD, out$AvgPleioCI)
   out1 <-
     matrix(
       rbind(pleiomat, estmat),

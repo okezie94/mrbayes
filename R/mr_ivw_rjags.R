@@ -177,13 +177,13 @@ out$CredibleInterval <- credible_interval
 out$samples <- g
 out$priormethod <- prior
 out$betaprior <- betaprior
-out$samplesize<- niter
-out$burnin<- nburn
-out$chains<- nchain
-out$MCMC<- mcmciter
+out$samplesize <- niter
+out$burnin <- nburn
+out$chains <- nchain
+out$MCMC <- mcmciter
 out$Prior <- Priors
 out$model <- ivw_model_string
-out$nsnps<- nsnps
+out$nsnps <- nsnps
 
 class(out) <- "ivwjags"
 return(out)

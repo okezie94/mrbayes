@@ -130,14 +130,14 @@ mr_radialegger_rjags <- function(object,
     Priors <- paste0(part1, betaprior, part2, sigmaprior)
 
     radialegger_model_string <-
-      paste0("model {",Likelihood,"\n\n", Priors,"\n\n }")
+      paste0("model {", Likelihood, "\n\n", Priors, "\n\n }")
   } else if (betaprior != "" && sigmaprior == "") {
     part1 <- "Pleiotropy ~ dnorm(0, 1E-3) \n Estimate ~ "
     part2 <- "\n sigma ~ dunif(.0001,10)"
     Priors <- paste0(part1, betaprior, part2)
 
     radialegger_model_string <-
-      paste0("model {", Likelihood, "\n\n", Priors,"\n\n }")
+      paste0("model {", Likelihood, "\n\n", Priors, "\n\n }")
 
   } else if (betaprior == "" && sigmaprior != "") {
     part1 <- "Pleiotropy ~ dnorm(0, 1E-3) \n Estimate ~ dnorm(0, 1E-6) \n sigma ~"
