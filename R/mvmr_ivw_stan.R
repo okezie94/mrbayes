@@ -44,11 +44,6 @@ mvmr_ivw_stan <- function(data,
   # check for rstan
   rstan_check()
 
-  # convert MRInput object to mr_format
-  # if ("MRInput" %in% class(data)) {
-  #   data <- mrinput_mr_format(data)
-  # }
-
   # check class of object
   if (!("mvmr_format" %in% class(data))) {
     stop(
