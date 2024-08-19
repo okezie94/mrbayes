@@ -25,3 +25,4 @@ dockerrun.sh
 ^pkgdown$
 ^\.covrignore$
 ^codecov\.yml$
+^\.lintr$
