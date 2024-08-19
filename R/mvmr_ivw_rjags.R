@@ -135,9 +135,6 @@ ivw_model <- rjags::jags.model(
 update.jags <- utils::getFromNamespace("update.jags", "rjags")
 update.jags(ivw_model, n.iter = n.burn)
 
-
-
-
 # Collect samples
 ivw_samp <- rjags::coda.samples(ivw_model,
                                 variable.names = c("Estimate"),
