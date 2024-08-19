@@ -359,7 +359,7 @@ print.mveggerjags <- function(x, ...) {
   pleiomat <- c(x$AvgPleio, x$AvgPleioSD, x$AvgPleioCI)
   outt <-
     matrix(
-      rbind(pleiomat,estmat),
+      rbind(pleiomat, estmat),
       nrow = 1 + length(x$CausalEffect),
       ncol = 5,
       dimnames = list(

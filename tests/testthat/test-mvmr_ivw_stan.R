@@ -78,7 +78,7 @@ test_that("IVW using pseudo prior method",
             dat <- mvmr_format(rsid = dodata$rsid,
                                xbeta = cbind(dodata$ldlcbeta, dodata$hdlcbeta, dodata$tgbeta),
                                ybeta = dodata$chdbeta,
-                               xse = cbind(dodata$ldlcse, dodata$hdlcse ,dodata$tgse),
+                               xse = cbind(dodata$ldlcse, dodata$hdlcse, dodata$tgse),
                                yse = dodata$chdse)
 
 
