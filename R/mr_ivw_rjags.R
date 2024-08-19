@@ -58,7 +58,7 @@ mr_ivw_rjags <- function(object,
   # check class of object
   if (!("mr_format" %in% class(object))) {
     stop('The class of the data object must be "mr_format", please resave the object with the output of e.g. object <- mr_format(object).')
-    }
+  }
 
   Likelihood <-
     "for (i in 1:N){
@@ -68,32 +68,32 @@ mr_ivw_rjags <- function(object,
     }"
 
 
-  if (prior == "default" & betaprior == "") {
+  if (prior == "default" && betaprior == "") {
     #Setting up the model string
 
     Priors <- "Estimate ~ dnorm(0, 1E-3)"
     ivw_model_string <- paste0("model {", Likelihood, "\n\n", Priors, "\n\n}")
 
 
-} else if (prior == "weak" & betaprior == "") {
+  } else if (prior == "weak" && betaprior == "") {
     #Setting up the model string
-    Priors<- "Estimate ~ dnorm(0, 1E-6)"
+    Priors <- "Estimate ~ dnorm(0, 1E-6)"
 
     ivw_model_string <- paste0("model {", Likelihood, "\n\n", Priors, "\n\n}")
 
-} else if (prior == "pseudo" & betaprior == "") {
+  } else if (prior == "pseudo" && betaprior == "") {
 
     #Setting up the model string
-  Priors<- "Estimate ~ dt(0, 1, 1)"
+  Priors <- "Estimate ~ dt(0, 1, 1)"
   ivw_model_string <- paste0("model {", Likelihood, "\n\n", Priors, "\n\n}")
-}
+  }
 
-if (betaprior != "") {
+  if (betaprior != "") {
 
-  Priors<- paste0("Estimate ~ ",betaprior)
-  ivw_model_string <- paste0("model {", Likelihood,"\n\n", Priors, "\n\n }")
+    Priors <- paste0("Estimate ~ ", betaprior)
+    ivw_model_string <- paste0("model {", Likelihood, "\n\n", Priors, "\n\n }")
 
-}
+  }
 
   if (!is.null(seed)) {
     if (length(seed) != n.chains) {
@@ -108,25 +108,22 @@ if (betaprior != "") {
     initsopt <- NULL
   }
 
-ivw_model <- rjags::jags.model(
-  textConnection(ivw_model_string),
-  data = list(
-    N = nrow(object),
-    by = object[, 3],
-    bx = object[, 2],
-    byse = object[, 5]
-  ),
-  n.chains = n.chains,
-  inits = initsopt,
-  quiet = TRUE,
-  ...
-)
+  ivw_model <- rjags::jags.model(
+    textConnection(ivw_model_string),
+    data = list(
+      N = nrow(object),
+      by = object[, 3],
+      bx = object[, 2],
+      byse = object[, 5]
+    ),
+    n.chains = n.chains,
+    inits = initsopt,
+    quiet = TRUE,
+    ...
+  )
 # Burn-in
 update.jags <- utils::getFromNamespace("update.jags", "rjags")
 update.jags(ivw_model, n.iter = n.burn)
-
-
-
 
 # Collect samples
 ivw_samp <- rjags::coda.samples(ivw_model,
