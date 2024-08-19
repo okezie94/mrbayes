@@ -37,14 +37,14 @@
 #' print(mvegger_fit)
 #' }
 mvmr_egger_stan <- function(data,
-                        prior = 1,
-                        n.chains = 3,
-                        n.burn = 1000,
-                        n.iter = 5000,
-                        seed = 12345,
-                        rho = 0.5,
-                        orientate = 1,
-                        ...) {
+                            prior = 1,
+                            n.chains = 3,
+                            n.burn = 1000,
+                            n.iter = 5000,
+                            seed = 12345,
+                            rho = 0.5,
+                            orientate = 1,
+                            ...) {
 
   # check for rstan
   rstan_check()
@@ -63,17 +63,17 @@ mvmr_egger_stan <- function(data,
 
   # orientation setup
 
-  if (orientate %in% 1:dim(data$beta.exposure)[2]) {
-    orientAte = orientate
+  if (orientate %in% seq_len(dim(data$beta.exposure)[2])) {
+    orientAte <- orientate
   } else {
-    orientAte = 1
+    orientAte <- 1
   }
 
-  pars <- c("intercept","estimate","sigma")
+  pars <- c("intercept", "estimate", "sigma")
 
   ## setting directional change
 
-  orient <- sign(data$beta.exposure)[,orientAte]
+  orient <- sign(data$beta.exposure)[, orientAte]
   ybet <- orient * data$beta.outcome
   xbet <- orient * data$beta.exposure
 
@@ -82,12 +82,11 @@ mvmr_egger_stan <- function(data,
   datam <- list(
     n = nrow(data$beta.exposure),
     d = ncol(data$beta.exposure),
-    xbeta = xbet/data$se.outcome,
-    ybeta = ybet/data$se.outcome,
-    weights = 1/data$se.outcome,
+    xbeta = xbet / data$se.outcome,
+    ybeta = ybet / data$se.outcome,
+    weights = 1 / data$se.outcome,
     prior = prior, rho = rho
   )
-
 
   mveggerfit <- rstan::sampling(
     object = stanmodels$mvmregger,
