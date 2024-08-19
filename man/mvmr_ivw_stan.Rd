@@ -35,23 +35,23 @@ mvmr_ivw_stan(
 \item{...}{Additional arguments passed through to \code{\link[rstan:stanmodel-method-sampling]{rstan::sampling()}}.}
 }
 \value{
-An object of class \code{\link{stanfit}}.
+An object of class \code{\link[rstan:stanfit-class]{rstan::stanfit}}.
 }
 \description{
 Bayesian multivariate inverse variance weighted model with a choice of prior distributions fitted using RStan.
 }
 \examples{
-\donttest{
 if (requireNamespace("rstan", quietly = TRUE)) {
-dat <- mvmr_format(rsid = dodata$rsid,
-          xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
-          ybeta = dodata$chdbeta,
-          xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
-          yse = dodata$chdse)
-mvivw_fit <- mvmr_ivw_stan(dat)
+dat <- mvmr_format(
+  rsid = dodata$rsid,
+  xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
+  ybeta = dodata$chdbeta,
+  xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
+  yse = dodata$chdse
+)
+suppressWarnings(mvivw_fit <- mvmr_ivw_stan(dat, refresh = 0L))
 print(mvivw_fit)
 rstan::traceplot(mvivw_fit)
-}
 }
 }
 \references{

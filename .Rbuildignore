@@ -21,3 +21,8 @@ dockerrun.sh
 ^.*/[.].*$
 ^\.DS_Store$
 ^CITATION\.cff$
+^\.github$
+^pkgdown$
+^\.covrignore$
+^codecov\.yml$
+^\.lintr$

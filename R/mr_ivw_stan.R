@@ -14,14 +14,14 @@
 #' @param seed Numeric indicating the random number seed. The default is `12345`.
 #' @param ... Additional arguments passed through to [`rstan::sampling()`].
 #'
-#' @return An object of class [`stanfit`].
+#' @return An object of class [`rstan::stanfit`].
 #'
 #' @references Burgess, S., Butterworth, A., Thompson S.G. Mendelian randomization analysis with multiple genetic variants using summarized data. Genetic Epidemiology, 2013, 37, 7, 658-665 \doi{10.1002/gepi.21758}.
 #' @references Stan Development Team (2020). "RStan: the R interface to Stan." R package version 2.19.3, <https://mc-stan.org/>.
 #'
 #' @examples
 #' if (requireNamespace("rstan", quietly = TRUE)) {
-#' ivw_fit <- mr_ivw_stan(bmi_insulin)
+#' suppressWarnings(ivw_fit <- mr_ivw_stan(bmi_insulin, refresh = 0L))
 #' print(ivw_fit)
 #' rstan::traceplot(ivw_fit)
 #' }

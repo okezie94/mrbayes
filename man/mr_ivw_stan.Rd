@@ -35,14 +35,14 @@ mr_ivw_stan(
 \item{...}{Additional arguments passed through to \code{\link[rstan:stanmodel-method-sampling]{rstan::sampling()}}.}
 }
 \value{
-An object of class \code{\link{stanfit}}.
+An object of class \code{\link[rstan:stanfit-class]{rstan::stanfit}}.
 }
 \description{
 Bayesian inverse variance weighted model with a choice of prior distributions fitted using RStan.
 }
 \examples{
 if (requireNamespace("rstan", quietly = TRUE)) {
-ivw_fit <- mr_ivw_stan(bmi_insulin)
+suppressWarnings(ivw_fit <- mr_ivw_stan(bmi_insulin, refresh = 0L))
 print(ivw_fit)
 rstan::traceplot(ivw_fit)
 }

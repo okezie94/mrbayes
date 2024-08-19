@@ -5,10 +5,10 @@ context("Tests for MR-Egger function using JAGS")
 test_that("Dataset is formatted",
           {
             dat <- mvmr_format(rsid = dodata$rsid,
-                             xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
-                             ybeta = dodata$chdbeta,
-                             xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
-                             yse = dodata$chdse)
+                               xbeta = cbind(dodata$ldlcbeta, dodata$hdlcbeta, dodata$tgbeta),
+                               ybeta = dodata$chdbeta,
+                               xse = cbind(dodata$ldlcse, dodata$hdlcse, dodata$tgse),
+                               yse = dodata$chdse)
             expect_s3_class(dat, "mvmr_format")
           })
 
@@ -17,13 +17,13 @@ test_that("MR-Egger using default prior method",
             skip_on_cran()
             skip_if_not_installed("rjags")
             dat <- mvmr_format(rsid = dodata$rsid,
-                               xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
+                               xbeta = cbind(dodata$ldlcbeta, dodata$hdlcbeta, dodata$tgbeta),
                                ybeta = dodata$chdbeta,
-                               xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
+                               xse = cbind(dodata$ldlcse, dodata$hdlcse, dodata$tgse),
                                yse = dodata$chdse)
 
             eggerfit <- mvmr_egger_rjags(dat,
-                                       seed = c(123, 456, 789))
+                                         seed = c(123, 456, 789))
             expect_equal(class(eggerfit), "mveggerjags")
             expect_equal(unname(eggerfit$CausalEffect[1]), 0.531, tol = 1e-2)
             expect_equal(unname(eggerfit$CausalEffect[2]), -0.104, tol = 1e-2)
@@ -51,9 +51,9 @@ test_that("MR-Egger using weak prior method",
               skip_on_cran()
               skip_if_not_installed("rjags")
               dat <- mvmr_format(rsid = dodata$rsid,
-                                 xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
+                                 xbeta = cbind(dodata$ldlcbeta, dodata$hdlcbeta, dodata$tgbeta),
                                  ybeta = dodata$chdbeta,
-                                 xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
+                                 xse = cbind(dodata$ldlcse, dodata$hdlcse, dodata$tgse),
                                  yse = dodata$chdse)
 
               eggerfit1 <- mvmr_egger_rjags(dat,
@@ -112,9 +112,9 @@ test_that("MR-Egger using betaprior and sigmaprior method",
             skip_on_cran()
             skip_if_not_installed("rjags")
               dat <- mvmr_format(rsid = dodata$rsid,
-                                 xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
+                                 xbeta = cbind(dodata$ldlcbeta, dodata$hdlcbeta, dodata$tgbeta),
                                  ybeta = dodata$chdbeta,
-                                 xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
+                                 xse = cbind(dodata$ldlcse, dodata$hdlcse, dodata$tgse),
                                  yse = dodata$chdse)
 
               eggerfit3 <- mvmr_egger_rjags(dat,

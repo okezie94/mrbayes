@@ -1,0 +1,16 @@
+bibentry(
+  bibtype = "Article",
+  key = "mrbayes",
+  author = c(
+    person("Okezie", "Uche-Ikonne"),
+    person("Frank", "Dondelinger"),
+    person("Tom", "Palmer")
+  ),
+  title = "{Software Application Profile: Bayesian estimation of inverse variance weighted and MR-Egger models for two-sample Mendelian randomization studies -- mrbayes}",
+  journal = "International Journal of Epidemiology",
+  volume = 50,
+  number = 1,
+  pages = "43--49",
+  year = 2021,
+  doi = "10.1093/ije/dyaa191"
+)

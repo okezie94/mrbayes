@@ -42,7 +42,7 @@ An object of class \code{ivwjags} containing the following components:
 \describe{
 \item{CausalEffect}{The mean of the simulated causal effects}
 \item{StandardError}{Standard deviation of the simulated causal effects}
-\item{CredibleInterval}{The credible interval for the causal effect, which indicates the lower(2.5\%), median (50\%) and upper intervals (97.5\%)}
+\item{CredibleInterval}{The credible interval for the causal effect, which indicates the lower (2.5\%), median (50\%) and upper intervals (97.5\%)}
 \item{samples}{Output of the Bayesian MCMC samples with the different chains}
 \item{Priors}{The specified priors}
 }
@@ -58,10 +58,9 @@ summary(fit)
 plot(fit$samples)
 # 90\% credible interval
 fitdf <- do.call(rbind.data.frame, fit$samples)
-cri90 <- quantile(fitdf$Estimate, probs = c(0.05,0.95))
+cri90 <- quantile(fitdf$Estimate, probs = c(0.05, 0.95))
 print(cri90)
 }
-
 }
 \references{
 Burgess, S., Butterworth, A., Thompson S.G. Mendelian randomization analysis with multiple genetic variants using summarized data. Genetic Epidemiology, 2013, 37, 7, 658-665 \doi{10.1002/gepi.21758}.

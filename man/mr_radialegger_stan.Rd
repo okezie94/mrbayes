@@ -39,18 +39,18 @@ mr_radialegger_stan(
 \item{...}{Additional arguments passed through to \code{\link[rstan:stanmodel-method-sampling]{rstan::sampling()}}.}
 }
 \value{
-An object of class \code{\link{stanfit}}.
+An object of class \code{\link[rstan:stanfit-class]{rstan::stanfit}}.
 }
 \description{
 Bayesian inverse variance weighted model with a choice of prior distributions fitted using RStan
 }
 \examples{
-\donttest{
 if (requireNamespace("rstan", quietly = TRUE)) {
 # Note we recommend setting n.burn and n.iter to larger values
-radegger_fit <- mr_radialegger_stan(bmi_insulin, n.burn = 500, n.iter = 1000)
+suppressWarnings({
+  radegger_fit <- mr_radialegger_stan(bmi_insulin, n.burn = 500, n.iter = 1000, refresh = 0L)
+})
 print(radegger_fit)
-}
 }
 }
 \references{

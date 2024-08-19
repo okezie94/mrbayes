@@ -14,40 +14,35 @@
 #' @param seed Numeric indicating the random number seed. The default is `12345`.
 #' @param ... Additional arguments passed through to [`rstan::sampling()`].
 #'
-#' @return An object of class [`stanfit`].
+#' @return An object of class [`rstan::stanfit`].
 #'
 #' @references Burgess, S., Butterworth, A., Thompson S.G. Mendelian randomization analysis with multiple genetic variants using summarized data. Genetic Epidemiology, 2013, 37, 7, 658-665 \doi{10.1002/gepi.21758}.
 #' @references Stan Development Team (2020). "RStan: the R interface to Stan." R package version 2.19.3, <https://mc-stan.org/>.
 #'
 #' @examples
-#' \donttest{
 #' if (requireNamespace("rstan", quietly = TRUE)) {
-#' dat <- mvmr_format(rsid = dodata$rsid,
-#'           xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
-#'           ybeta = dodata$chdbeta,
-#'           xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
-#'           yse = dodata$chdse)
-#' mvivw_fit <- mvmr_ivw_stan(dat)
+#' dat <- mvmr_format(
+#'   rsid = dodata$rsid,
+#'   xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
+#'   ybeta = dodata$chdbeta,
+#'   xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
+#'   yse = dodata$chdse
+#' )
+#' suppressWarnings(mvivw_fit <- mvmr_ivw_stan(dat, refresh = 0L))
 #' print(mvivw_fit)
 #' rstan::traceplot(mvivw_fit)
 #' }
-#' }
 #' @export
 mvmr_ivw_stan <- function(data,
-                        prior = 1,
-                        n.chains = 3,
-                        n.burn = 1000,
-                        n.iter = 5000,
-                        seed = 12345,
-                        ...) {
+                          prior = 1,
+                          n.chains = 3,
+                          n.burn = 1000,
+                          n.iter = 5000,
+                          seed = 12345,
+                          ...) {
 
   # check for rstan
   rstan_check()
-
-  # convert MRInput object to mr_format
-  # if ("MRInput" %in% class(data)) {
-  #   data <- mrinput_mr_format(data)
-  # }
 
   # check class of object
   if (!("mvmr_format" %in% class(data))) {
@@ -76,7 +71,6 @@ mvmr_ivw_stan <- function(data,
     control = list(adapt_delta = 0.999, max_treedepth = 15),
     ...
   )
-
 
   return(mvivwfit)
 

@@ -16,7 +16,7 @@
 #' @param seed Numeric indicating the random number seed. The default is `12345`.
 #' @param ... Additional arguments passed through to [`rstan::sampling()`].
 #'
-#' @return An object of class [`stanfit`].
+#' @return An object of class [`rstan::stanfit`].
 #'
 #' @references Bowden J, Davey Smith G, Burgess S. Mendelian randomization with invalid instruments: effect estimation and bias detection through Egger regression. International Journal of Epidemiology, 2015, 44, 2, 512-525. \doi{10.1093/ije/dyv080}.
 #' @references Stan Development Team (2020). "RStan: the R interface to Stan." R package version 2.19.3, <https://mc-stan.org/>.
@@ -24,21 +24,19 @@
 #' @export
 #'
 #' @examples
-#' \donttest{
 #' if (requireNamespace("rstan", quietly = TRUE)) {
 #' # Note we recommend setting n.burn and n.iter to larger values
-#' egger_fit <- mr_egger_stan(bmi_insulin, n.burn = 500, n.iter = 1000)
+#' suppressWarnings(egger_fit <- mr_egger_stan(bmi_insulin, n.burn = 500, n.iter = 1000, refresh = 0L))
 #' print(egger_fit)
 #' }
-#' }
 mr_egger_stan <- function(data,
-                        prior = 1,
-                        n.chains = 3,
-                        n.burn = 1000,
-                        n.iter = 5000,
-                        seed = 12345,
-                        rho = 0.5,
-                        ...) {
+                          prior = 1,
+                          n.chains = 3,
+                          n.burn = 1000,
+                          n.iter = 5000,
+                          seed = 12345,
+                          rho = 0.5,
+                          ...) {
 
   # check for rstan
   rstan_check()
@@ -55,19 +53,19 @@ mr_egger_stan <- function(data,
     )
   }
 
-  pars <- c("intercept","estimate","sigma")
+  pars <- c("intercept", "estimate", "sigma")
 
   ## setting directional change
 
-  ybet <- sign(data[,2]) * data[,3]
-  xbet <- abs(data[,2])
+  ybet <- sign(data[, 2]) * data[, 3]
+  xbet <- abs(data[, 2])
 
   # converting dataset to a list
   datam <- list(
     n = nrow(data),
-    xbeta = xbet/data[, 5],
-    ybeta = ybet/data[, 5],
-    weights = 1/data[, 5],
+    xbeta = xbet / data[, 5],
+    ybeta = ybet / data[, 5],
+    weights = 1 / data[, 5],
     prior = prior, rho = rho
   )
 

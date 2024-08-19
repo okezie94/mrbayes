@@ -41,24 +41,23 @@ mvmr_egger_stan(
 \item{...}{Additional arguments passed through to \code{\link[rstan:stanmodel-method-sampling]{rstan::sampling()}}.}
 }
 \value{
-An object of class \code{\link{stanfit}}.
+An object of class \code{\link[rstan:stanfit-class]{rstan::stanfit}}.
 }
 \description{
 Bayesian implementation of the MVMR-Egger model with choice of prior distributions fitted using RStan.
 }
 \examples{
-\donttest{
 if (requireNamespace("rstan", quietly = TRUE)) {
 # Note we recommend setting n.burn and n.iter to larger values
-
-dat <- mvmr_format(rsid = dodata$rsid,
-         xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
-         ybeta = dodata$chdbeta,
-         xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
-         yse = dodata$chdse)
-mvegger_fit <- mvmr_egger_stan(dat, n.burn = 500, n.iter = 1000)
+dat <- mvmr_format(
+  rsid = dodata$rsid,
+  xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
+  ybeta = dodata$chdbeta,
+  xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
+  yse = dodata$chdse
+)
+suppressWarnings(mvegger_fit <- mvmr_egger_stan(dat, n.burn = 500, n.iter = 1000, refresh = 0L))
 print(mvegger_fit)
-}
 }
 }
 \references{

@@ -11,16 +11,17 @@
 #'
 #' @examples
 #' data(bmi_insulin)
-#' dat <- mr_format(rsid = bmi_insulin[,"rsid"],
-#'           xbeta = bmi_insulin[,"beta.exposure"],
-#'           ybeta = bmi_insulin[,"beta.outcome"],
-#'           xse = bmi_insulin[,"se.exposure"],
-#'           yse = bmi_insulin[,"se.outcome"])
+#' dat <- mr_format(
+#'   rsid = bmi_insulin[,"rsid"],
+#'   xbeta = bmi_insulin[,"beta.exposure"],
+#'   ybeta = bmi_insulin[,"beta.outcome"],
+#'   xse = bmi_insulin[,"se.exposure"],
+#'   yse = bmi_insulin[,"se.outcome"]
+#' )
 #' class(dat)
-#'
 mr_format <- function(rsid, xbeta, ybeta, xse, yse) {
   if (missing(rsid)) {
-    rsid <- 1:length(ybeta)
+    rsid <- seq_along(ybeta)
     message("SNP id variable generated equal to row number in data frame")
   }
 

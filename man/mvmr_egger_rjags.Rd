@@ -48,7 +48,7 @@ mvmr_egger_rjags(
 }
 \value{
 An object of class \code{mveggerjags} containing the following components:
-if (requireNamespace("rjags", quietly = TRUE)) {
+\describe{
 \item{AvgPleio}{The mean of the simulated pleiotropic effect}
 \item{CausalEffect}{The mean of the simulated causal effect}
 \item{StandardError}{Standard deviation of the simulated causal effect}
@@ -62,14 +62,15 @@ if (requireNamespace("rjags", quietly = TRUE)) {
 Bayesian implementation of the MVMR-Egger model with choice of prior distributions fitted using JAGS.
 }
 \examples{
-
-\dontrun{
 if (requireNamespace("rjags", quietly = TRUE)) {
-dat <- mvmr_format(rsid = dodata$rsid,
-         xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
-         ybeta = dodata$chdbeta,
-         xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
-         yse = dodata$chdse)
+\dontrun{
+dat <- mvmr_format(
+  rsid = dodata$rsid,
+  xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
+  ybeta = dodata$chdbeta,
+  xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
+  yse = dodata$chdse
+)
 
 fit <- mvmr_egger_rjags(dat)
 summary(fit)

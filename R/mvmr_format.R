@@ -11,17 +11,17 @@
 #'
 #' @examples
 #' data(dodata)
-#' dat <- mvmr_format(rsid = dodata$rsid,
-#'           xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
-#'           ybeta = dodata$chdbeta,
-#'           xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
-#'           yse = dodata$chdse)
+#' dat <- mvmr_format(
+#'   rsid = dodata$rsid,
+#'   xbeta = cbind(dodata$ldlcbeta,dodata$hdlcbeta,dodata$tgbeta),
+#'   ybeta = dodata$chdbeta,
+#'   xse = cbind(dodata$ldlcse,dodata$hdlcse,dodata$tgse),
+#'   yse = dodata$chdse
+#' )
 #' class(dat)
-#'
-
 mvmr_format <- function(rsid, xbeta, ybeta, xse, yse) {
   if (missing(rsid)) {
-    rsid <- 1:length(ybeta)
+    rsid <- seq_along(ybeta)
     message("SNP id variable generated equal to row number in data frame")
   }
 
