@@ -34,12 +34,12 @@
 #' }
 #' @export
 mvmr_ivw_stan <- function(data,
-                        prior = 1,
-                        n.chains = 3,
-                        n.burn = 1000,
-                        n.iter = 5000,
-                        seed = 12345,
-                        ...) {
+                          prior = 1,
+                          n.chains = 3,
+                          n.burn = 1000,
+                          n.iter = 5000,
+                          seed = 12345,
+                          ...) {
 
   # check for rstan
   rstan_check()
@@ -76,7 +76,6 @@ mvmr_ivw_stan <- function(data,
     control = list(adapt_delta = 0.999, max_treedepth = 15),
     ...
   )
-
 
   return(mvivwfit)
 
