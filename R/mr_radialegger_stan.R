@@ -23,7 +23,7 @@
 #' @references Stan Development Team (2020). "RStan: the R interface to Stan." R package version 2.19.3, <https://mc-stan.org/>.
 #'
 #' @examples
-#' if (requireNamespace("rstan", quietly = TRUE)){
+#' if (requireNamespace("rstan", quietly = TRUE)) {
 #' # Note we recommend setting n.burn and n.iter to larger values
 #' suppressWarnings({
 #'   radegger_fit <- mr_radialegger_stan(bmi_insulin, n.burn = 500, n.iter = 1000, refresh = 0L)
