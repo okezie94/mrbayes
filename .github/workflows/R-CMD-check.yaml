@@ -72,7 +72,7 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: any::rcmdcheck
+          extra-packages: any::rcmdcheck, MendelianRandomization=?ignore-before-r=4.4.0
           needs: check
           upgrade: 'TRUE'
 
