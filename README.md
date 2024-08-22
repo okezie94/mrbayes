@@ -4,7 +4,7 @@
 [![R-CMD-check](https://github.com/okezie94/mrbayes/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/okezie94/mrbayes/actions/workflows/R-CMD-check.yaml)
 [![Coverage status](https://codecov.io/gh/okezie94/mrbayes/branch/master/graph/badge.svg)](https://app.codecov.io/github/okezie94/mrbayes?branch=master)
 [![CRAN status](https://www.r-pkg.org/badges/version/mrbayes)](https://cran.r-project.org/package=mrbayes)
-[![RStudio_CRAN_mirror_downloads_badge](http://cranlogs.r-pkg.org/badges/grand-total/mrbayes?color=blue)](https://CRAN.R-project.org/package=mrbayes)
+[![RStudio_CRAN_mirror_downloads_badge](https://cranlogs.r-pkg.org/badges/grand-total/mrbayes?color=blue)](https://CRAN.R-project.org/package=mrbayes)
 <!-- badges: end -->
 
 Bayesian implementation of IVW and MR-Egger models.
