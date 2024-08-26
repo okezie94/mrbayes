@@ -1,5 +1,7 @@
 # mrbayes (development version)
 
+* The minimum version of R is now 4.2.0 due to the requirements of the **DescTools** package.
+
 # mrbayes 0.5.2
 
 * The `NAMESPACE` now imports fewer functions from other packages.
