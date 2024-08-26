@@ -1,7 +1,7 @@
 Type: Package
 Package: mrbayes
 Title: Bayesian Summary Data Models for Mendelian Randomization Studies
-Version: 0.5.2
+Version: 0.5.2.9000
 Authors@R: c(
     person("Okezie", "Uche-Ikonne", , "okezieikonne@gmail.com", role = "aut",
            comment = c(ORCID = "0000-0002-8461-8099")),

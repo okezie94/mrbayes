@@ -1,3 +1,5 @@
+# mrbayes (development version)
+
 # mrbayes 0.5.2
 
 * The `NAMESPACE` now imports fewer functions from other packages.
