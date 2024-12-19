@@ -3,3 +3,7 @@
 
 # ensure sh scripts have lf line endings
 *.sh text eol=lf
+
+# Ensure package shows as R language on GitHub
+*.cc linguist-vendored
+*.h linguist-vendored
