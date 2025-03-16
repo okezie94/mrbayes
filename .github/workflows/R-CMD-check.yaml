@@ -35,7 +35,7 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       R_KEEP_PKG_SOURCE: yes
-      PKG_SYSREQS_DB_UPDATE_TIMEOUT: '60'
+      PKG_SYSREQS_DB_UPDATE_TIMEOUT: 60s
 
     steps:
       - uses: actions/checkout@v4
