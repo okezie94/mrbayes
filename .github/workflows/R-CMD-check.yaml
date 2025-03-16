@@ -35,7 +35,7 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       R_KEEP_PKG_SOURCE: yes
-      PKG_SYSREQS_DB_UPDATE_TIMEOUT: 'Time difference of 1 mins'
+      PKG_SYSREQS_DB_UPDATE_TIMEOUT: '1m'
 
     steps:
       - uses: actions/checkout@v4
