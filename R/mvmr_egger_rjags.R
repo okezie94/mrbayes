@@ -51,21 +51,24 @@
 #' print(cri90)
 #' }
 #' }
-mvmr_egger_rjags <- function(object,
-                             prior = "default",
-                             betaprior = "",
-                             sigmaprior = "",
-                             orientate = 1,
-                             n.chains = 3,
-                             n.burn = 1000,
-                             n.iter = 5000,
-                             seed = NULL,
-                             rho = 0.5,
-                             ...) {
-
+mvmr_egger_rjags <- function(
+  object,
+  prior = "default",
+  betaprior = "",
+  sigmaprior = "",
+  orientate = 1,
+  n.chains = 3,
+  n.burn = 1000,
+  n.iter = 5000,
+  seed = NULL,
+  rho = 0.5,
+  ...
+) {
   # check class of object
   if (!("mvmr_format" %in% class(object))) {
-    stop('The class of the data object must be "mvmr_format", please resave the object with the output of e.g. object <- mvmr_format(object).')
+    stop(
+      'The class of the data object must be "mvmr_format", please resave the object with the output of e.g. object <- mvmr_format(object).'
+    )
   }
 
   # check if rjags is installed
@@ -90,11 +93,9 @@ mvmr_egger_rjags <- function(object,
     tau[i] <- pow(byse[i] * sigma, -2)
     }"
 
-
   # non-informative prior
 
   if (prior == "default" && betaprior == "" && sigmaprior == "") {
-
     #Setting up the model string
     Priors <- "Pleiotropy ~ dnorm(0, 1E-3) \n
     for (j in 1:K) {
@@ -105,9 +106,7 @@ mvmr_egger_rjags <- function(object,
       paste0("model {", Likelihood, "\n\n", Priors, "\n\n}")
 
     # weakly informative prior
-
   } else if (prior == "weak" && betaprior == "" && sigmaprior == "") {
-
     # Setting up the model string
     Priors <- "Pleiotropy ~ dnorm(0, 1E-6) \n
     for (j in 1:K) {
@@ -115,7 +114,6 @@ mvmr_egger_rjags <- function(object,
     } \n
     sigma ~ dunif(.0001, 10)"
     egger_model_string <- paste0("model {", Likelihood, "\n\n", Priors, "\n\n}")
-
 
     # pseudo-shrinkage prior
   } else if (prior == "pseudo" && betaprior == "" && sigmaprior == "") {
@@ -176,7 +174,6 @@ mvmr_egger_rjags <- function(object,
 
     egger_model_string <-
       paste0("model {", Likelihood, "\n\n", Priors, "\n\n}")
-
   } else if (betaprior != "" && sigmaprior != "") {
     part1 <- "Pleiotropy ~ dnorm(0, 1E-3) \n for (j in 1:K) {Estimate[j] ~ "
     part2 <- "\n sigma ~ "
@@ -184,7 +181,6 @@ mvmr_egger_rjags <- function(object,
 
     egger_model_string <-
       paste0("model {", Likelihood, "\n\n", Priors, "\n\n }")
-
   } else if (betaprior != "" && sigmaprior == "") {
     part1 <- "Pleiotropy ~ dnorm(0, 1E-3) \n for (j in 1:K) {Estimate[j] ~ "
     part2 <- "\n sigma ~ dunif(.0001,10)"
@@ -192,7 +188,6 @@ mvmr_egger_rjags <- function(object,
 
     egger_model_string <-
       paste0("model {", Likelihood, "\n\n", Priors, "\n\n }")
-
   } else if (betaprior == "" && sigmaprior != "") {
     part1 <- "Pleiotropy ~ dnorm(0, 1E-3) \n for (j in 1:K) {
     Estimate[j] ~ dnorm(0, 1E-6)} \n sigma ~"
@@ -200,17 +195,21 @@ mvmr_egger_rjags <- function(object,
 
     egger_model_string <-
       paste0("model {", Likelihood, "\n\n", Priors, "\n\n }")
-
   }
 
   if (!is.null(seed)) {
     if (length(seed) != n.chains) {
-      stop('The length of the seed vector must be equal to the number of chains.')
+      stop(
+        'The length of the seed vector must be equal to the number of chains.'
+      )
     }
 
     initsopt <- list()
     for (i in 1:n.chains) {
-      initsopt[[i]] <- list(.RNG.name = "base::Mersenne-Twister", .RNG.seed = seed[i])
+      initsopt[[i]] <- list(
+        .RNG.name = "base::Mersenne-Twister",
+        .RNG.seed = seed[i]
+      )
     }
   } else {
     initsopt <- NULL
@@ -220,7 +219,7 @@ mvmr_egger_rjags <- function(object,
     textConnection(egger_model_string),
     data = list(
       N = length(object$beta.outcome),
-      K =  ncol(object$beta.exposure),
+      K = ncol(object$beta.exposure),
       by = orient * object$beta.outcome,
       bx = orient * object$beta.exposure,
       byse = object$se.outcome
@@ -300,17 +299,20 @@ mvmr_egger_rjags <- function(object,
   Median_interval <- p$quantiles[seq_len(ncol(object$beta.exposure)), 3]
 
   #higher Credible Interval for estimates
-  Higher.credible_interval <- p$quantiles[seq_len(ncol(object$beta.exposure)), 5]
+  Higher.credible_interval <- p$quantiles[
+    seq_len(ncol(object$beta.exposure)),
+    5
+  ]
 
   credible_interval <-
-    c(lower.credible_interval,
-      Median_interval,
-      Higher.credible_interval)
+    c(lower.credible_interval, Median_interval, Higher.credible_interval)
 
   # warning for residual error less than 1
 
   if (sigma < 1) {
-    warning("The mean of the sigma parameter, the residual standard deviation, we recommend refitting the model with sigma constrained to be >= 1.")
+    warning(
+      "The mean of the sigma parameter, the residual standard deviation, we recommend refitting the model with sigma constrained to be >= 1."
+    )
     # sigma ~ #### T(1,) # ;T(1,)
   }
 
@@ -340,16 +342,20 @@ mvmr_egger_rjags <- function(object,
 
   class(out) <- "mveggerjags"
   return(out)
-
 }
 
 #Function for output of results
 #' @export
 print.mveggerjags <- function(x, ...) {
   estmat <- matrix(ncol = 5, nrow = length(x$CausalEffect))
-  for (i in 1:3){
-    estmat[i, ] <- c(x$CausalEffect[i], x$StandardError[i], x$lower.credible_interval[i],
-                     x$Median_interval[i], x$Higher.credible_interval[i])
+  for (i in 1:3) {
+    estmat[i, ] <- c(
+      x$CausalEffect[i],
+      x$StandardError[i],
+      x$lower.credible_interval[i],
+      x$Median_interval[i],
+      x$Higher.credible_interval[i]
+    )
   }
   pleiomat <- c(x$AvgPleio, x$AvgPleioSD, x$AvgPleioCI)
   outt <-
@@ -371,9 +377,14 @@ print.mveggerjags <- function(x, ...) {
 summary.mveggerjags <- function(object, ...) {
   out <- object
   estmat <- matrix(ncol = 5, nrow = length(out$CausalEffect))
-  for (i in 1:3){
-    estmat[i, ] <- c(out$CausalEffect[i], out$StandardError[i], out$lower.credible_interval[i],
-                     out$Median_interval[i], out$Higher.credible_interval[i])
+  for (i in 1:3) {
+    estmat[i, ] <- c(
+      out$CausalEffect[i],
+      out$StandardError[i],
+      out$lower.credible_interval[i],
+      out$Median_interval[i],
+      out$Higher.credible_interval[i]
+    )
   }
   pleiomat <- c(out$AvgPleio, out$AvgPleioSD, out$AvgPleioCI)
   out1 <-
@@ -391,23 +402,17 @@ summary.mveggerjags <- function(object, ...) {
 
   cat("Prior : \n\n", out$Prior, "\n\n")
   cat("Estimation results:", "\n", "\n")
-  cat(DescTools::StrAlign("MCMC iterations = ", "\\r"),
-      out$MCMC,
-      "\n")
+  cat(DescTools::StrAlign("MCMC iterations = ", "\\r"), out$MCMC, "\n")
   cat(DescTools::StrAlign("Burn in = ", "\\r"), out$burnin, "\n")
-  cat(DescTools::StrAlign("Sample size by chain = ", "\\r"),
-      out$samplesize,
-      "\n")
-  cat(DescTools::StrAlign("Number of Chains = ", "\\r"),
-      out$chains,
-      "\n")
-  cat(DescTools::StrAlign("Number of SNPs = ", "\\r"),
-      out$nsnps,
-      "\n",
-      "\n")
+  cat(
+    DescTools::StrAlign("Sample size by chain = ", "\\r"),
+    out$samplesize,
+    "\n"
+  )
+  cat(DescTools::StrAlign("Number of Chains = ", "\\r"), out$chains, "\n")
+  cat(DescTools::StrAlign("Number of SNPs = ", "\\r"), out$nsnps, "\n", "\n")
 
   cat("Inflating Parameter:", out$sigma, "\n\n")
 
   print(out1, ...)
-
 }

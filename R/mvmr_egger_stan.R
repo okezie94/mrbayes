@@ -36,16 +36,17 @@
 #' suppressWarnings(mvegger_fit <- mvmr_egger_stan(dat, n.burn = 500, n.iter = 1000, refresh = 0L))
 #' print(mvegger_fit)
 #' }
-mvmr_egger_stan <- function(data,
-                            prior = 1,
-                            n.chains = 3,
-                            n.burn = 1000,
-                            n.iter = 5000,
-                            seed = 12345,
-                            rho = 0.5,
-                            orientate = 1,
-                            ...) {
-
+mvmr_egger_stan <- function(
+  data,
+  prior = 1,
+  n.chains = 3,
+  n.burn = 1000,
+  n.iter = 5000,
+  seed = 12345,
+  rho = 0.5,
+  orientate = 1,
+  ...
+) {
   # check for rstan
   rstan_check()
 
@@ -77,7 +78,6 @@ mvmr_egger_stan <- function(data,
   ybet <- orient * data$beta.outcome
   xbet <- orient * data$beta.exposure
 
-
   # converting dataset to a list
   datam <- list(
     n = nrow(data$beta.exposure),
@@ -85,7 +85,8 @@ mvmr_egger_stan <- function(data,
     xbeta = xbet / data$se.outcome,
     ybeta = ybet / data$se.outcome,
     weights = 1 / data$se.outcome,
-    prior = prior, rho = rho
+    prior = prior,
+    rho = rho
   )
 
   mveggerfit <- rstan::sampling(
@@ -101,5 +102,4 @@ mvmr_egger_stan <- function(data,
   )
 
   return(mveggerfit)
-
 }

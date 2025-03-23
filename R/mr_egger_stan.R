@@ -29,15 +29,16 @@
 #' suppressWarnings(egger_fit <- mr_egger_stan(bmi_insulin, n.burn = 500, n.iter = 1000, refresh = 0L))
 #' print(egger_fit)
 #' }
-mr_egger_stan <- function(data,
-                          prior = 1,
-                          n.chains = 3,
-                          n.burn = 1000,
-                          n.iter = 5000,
-                          seed = 12345,
-                          rho = 0.5,
-                          ...) {
-
+mr_egger_stan <- function(
+  data,
+  prior = 1,
+  n.chains = 3,
+  n.burn = 1000,
+  n.iter = 5000,
+  seed = 12345,
+  rho = 0.5,
+  ...
+) {
   # check for rstan
   rstan_check()
 
@@ -66,9 +67,9 @@ mr_egger_stan <- function(data,
     xbeta = xbet / data[, 5],
     ybeta = ybet / data[, 5],
     weights = 1 / data[, 5],
-    prior = prior, rho = rho
+    prior = prior,
+    rho = rho
   )
-
 
   eggerfit <- rstan::sampling(
     object = stanmodels$mregger,
@@ -83,5 +84,4 @@ mr_egger_stan <- function(data,
   )
 
   return(eggerfit)
-
 }

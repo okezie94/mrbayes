@@ -46,18 +46,21 @@
 #' cri90 <- sapply(fitdf, quantile, probs = c(0.05, 0.95))
 #' print(cri90)
 #' }
-mvmr_ivw_rjags <- function(object,
-                           prior = "default",
-                           betaprior = "",
-                           n.chains = 3,
-                           n.burn = 1000,
-                           n.iter = 5000,
-                           seed = NULL,
-                           ...) {
-
+mvmr_ivw_rjags <- function(
+  object,
+  prior = "default",
+  betaprior = "",
+  n.chains = 3,
+  n.burn = 1000,
+  n.iter = 5000,
+  seed = NULL,
+  ...
+) {
   # check class of object
   if (!("mvmr_format" %in% class(object))) {
-    stop('The class of the data object must be "mvmr_format", please resave the object with the output of e.g. object <- mvmr_format(object).')
+    stop(
+      'The class of the data object must be "mvmr_format", please resave the object with the output of e.g. object <- mvmr_format(object).'
+    )
   }
 
   # check if rjags is installed
@@ -70,7 +73,6 @@ mvmr_ivw_rjags <- function(object,
       tau[i] <- pow(byse[i], -2)
     }"
 
-
   if (prior == "default" && betaprior == "") {
     #Setting up the model string
 
@@ -78,137 +80,139 @@ mvmr_ivw_rjags <- function(object,
   Estimate[j] ~ dnorm(0,1E-3)
   }"
     ivw_model_string <- paste0("model {", Likelihood, "\n\n", Priors, "\n\n}")
-
-
-} else if (prior == "weak" && betaprior == "") {
+  } else if (prior == "weak" && betaprior == "") {
     #Setting up the model string
     Priors <- "for (j in 1:K) {
     Estimate[j] ~ dnorm(0, 1E-6)
     }"
 
     ivw_model_string <- paste0("model {", Likelihood, "\n\n", Priors, "\n\n}")
-
-} else if (prior == "pseudo" && betaprior == "") {
-
+  } else if (prior == "pseudo" && betaprior == "") {
     #Setting up the model string
-  Priors <- "for (j in 1:K) {
+    Priors <- "for (j in 1:K) {
   Estimate[j] ~ dt(0, 1, 1)
   }"
-  ivw_model_string <- paste0("model {", Likelihood, "\n\n", Priors, "\n\n}")
-}
+    ivw_model_string <- paste0("model {", Likelihood, "\n\n", Priors, "\n\n}")
+  }
 
-if (betaprior != "") {
-
-  Priors <- paste0("for (j in 1:K) {Estimate[j] ~ ", betaprior, "}")
-  ivw_model_string <- paste0("model {", Likelihood, "\n\n", Priors, "\n\n }")
-
-}
+  if (betaprior != "") {
+    Priors <- paste0("for (j in 1:K) {Estimate[j] ~ ", betaprior, "}")
+    ivw_model_string <- paste0("model {", Likelihood, "\n\n", Priors, "\n\n }")
+  }
 
   if (!is.null(seed)) {
     if (length(seed) != n.chains) {
-      stop('The length of the seed vector must be equal to the number of chains.')
+      stop(
+        'The length of the seed vector must be equal to the number of chains.'
+      )
     }
 
     initsopt <- list()
     for (i in 1:n.chains) {
-      initsopt[[i]] <- list(.RNG.name = "base::Mersenne-Twister", .RNG.seed = seed[i])
+      initsopt[[i]] <- list(
+        .RNG.name = "base::Mersenne-Twister",
+        .RNG.seed = seed[i]
+      )
     }
   } else {
     initsopt <- NULL
   }
 
-ivw_model <- rjags::jags.model(
-  textConnection(ivw_model_string),
-  data = list(
-    N = length(object$beta.outcome),
-    K = ncol(object$beta.exposure),
-    by = object$beta.outcome,
-    bx = as.matrix(object$beta.exposure),
-    byse = object$se.outcome
-  ),
-  n.chains = n.chains,
-  inits = initsopt,
-  quiet = TRUE,
-  ...
-)
-# Burn-in
-update.jags <- utils::getFromNamespace("update.jags", "rjags")
-update.jags(ivw_model, n.iter = n.burn)
+  ivw_model <- rjags::jags.model(
+    textConnection(ivw_model_string),
+    data = list(
+      N = length(object$beta.outcome),
+      K = ncol(object$beta.exposure),
+      by = object$beta.outcome,
+      bx = as.matrix(object$beta.exposure),
+      byse = object$se.outcome
+    ),
+    n.chains = n.chains,
+    inits = initsopt,
+    quiet = TRUE,
+    ...
+  )
+  # Burn-in
+  update.jags <- utils::getFromNamespace("update.jags", "rjags")
+  update.jags(ivw_model, n.iter = n.burn)
 
-# Collect samples
-ivw_samp <- rjags::coda.samples(ivw_model,
-                                variable.names = c("Estimate"),
-                                n.iter = n.iter)
+  # Collect samples
+  ivw_samp <- rjags::coda.samples(
+    ivw_model,
+    variable.names = c("Estimate"),
+    n.iter = n.iter
+  )
 
-# model and parameters for sampling
-g <- ivw_samp
+  # model and parameters for sampling
+  g <- ivw_samp
 
-p <- summary(ivw_samp)
+  p <- summary(ivw_samp)
 
-prior <- prior
+  prior <- prior
 
-niter <- n.iter
+  niter <- n.iter
 
-nburn <- n.burn
+  nburn <- n.burn
 
-nchain <- n.chains
+  nchain <- n.chains
 
-nsnps <- length(object$beta.outcome)
+  nsnps <- length(object$beta.outcome)
 
-mcmciter <- n.iter + n.burn
+  mcmciter <- n.iter + n.burn
 
-# Outputs from the model
+  # Outputs from the model
 
-#Causal Estimate
-causal.est <- p$statistics[, 1]
+  #Causal Estimate
+  causal.est <- p$statistics[, 1]
 
-#standard deviation
-standard.dev <- p$statistics[, 2]
+  #standard deviation
+  standard.dev <- p$statistics[, 2]
 
-#lower Credible Interval for estimates
-lower.credible_interval <- p$quantiles[, 1]
+  #lower Credible Interval for estimates
+  lower.credible_interval <- p$quantiles[, 1]
 
-#Median Interval for estimates
-Median_interval <- p$quantiles[, 3]
+  #Median Interval for estimates
+  Median_interval <- p$quantiles[, 3]
 
-#higher Credible Interval for estimates
-Higher.credible_interval <- p$quantiles[, 5]
+  #higher Credible Interval for estimates
+  Higher.credible_interval <- p$quantiles[, 5]
 
-credible_interval <-
-  cbind(lower.credible_interval,
-    Median_interval,
-    Higher.credible_interval)
+  credible_interval <-
+    cbind(lower.credible_interval, Median_interval, Higher.credible_interval)
 
-#Class for the output
-out <- list()
-out$CausalEffect <- causal.est
-out$StandardError <- standard.dev
-out$CredibleInterval <- credible_interval
-out$samples <- g
-out$priormethod <- prior
-out$betaprior <- betaprior
-out$samplesize <- niter
-out$burnin <- nburn
-out$chains <- nchain
-out$MCMC <- mcmciter
-out$Prior <- Priors
-out$model <- ivw_model_string
-out$nsnps <- nsnps
+  #Class for the output
+  out <- list()
+  out$CausalEffect <- causal.est
+  out$StandardError <- standard.dev
+  out$CredibleInterval <- credible_interval
+  out$samples <- g
+  out$priormethod <- prior
+  out$betaprior <- betaprior
+  out$samplesize <- niter
+  out$burnin <- nburn
+  out$chains <- nchain
+  out$MCMC <- mcmciter
+  out$Prior <- Priors
+  out$model <- ivw_model_string
+  out$nsnps <- nsnps
 
-class(out) <- "mvivwjags"
-return(out)
-
+  class(out) <- "mvivwjags"
+  return(out)
 }
 
 #Function for output of results
 #' @export
 print.mvivwjags <- function(x, ...) {
   outt <-
-    matrix(cbind(x$CausalEffect, x$StandardError, x$CredibleInterval),
-           nrow = length(x$CausalEffect),
-           ncol = 5,
-           byrow = FALSE,
-           dimnames = list(paste0("Causal Effect", seq_along(x$CausalEffect)), c("Estimate", "SD", "2.5%", "50%", "97.5%"))
+    matrix(
+      cbind(x$CausalEffect, x$StandardError, x$CredibleInterval),
+      nrow = length(x$CausalEffect),
+      ncol = 5,
+      byrow = FALSE,
+      dimnames = list(
+        paste0("Causal Effect", seq_along(x$CausalEffect)),
+        c("Estimate", "SD", "2.5%", "50%", "97.5%")
+      )
     )
   print(outt, ...)
   invisible(x)
@@ -224,26 +228,23 @@ summary.mvivwjags <- function(object, ...) {
       nrow = length(out$CausalEffect),
       ncol = 5,
       byrow = FALSE,
-      dimnames = list(paste0("Causal Effect", seq_along(out$CausalEffect)), c("Estimate", "SD", "2.5%", "50%", "97.5%"))
+      dimnames = list(
+        paste0("Causal Effect", seq_along(out$CausalEffect)),
+        c("Estimate", "SD", "2.5%", "50%", "97.5%")
+      )
     )
 
   cat("Prior : \n\n", out$Prior, "\n\n")
   cat("Estimation results:", "\n", "\n")
-  cat(DescTools::StrAlign("MCMC iterations = ", "\\r"),
-      out$MCMC,
-      "\n")
+  cat(DescTools::StrAlign("MCMC iterations = ", "\\r"), out$MCMC, "\n")
   cat(DescTools::StrAlign("Burn in = ", "\\r"), out$burnin, "\n")
-  cat(DescTools::StrAlign("Sample size by chain = ", "\\r"),
-      out$samplesize,
-      "\n")
-  cat(DescTools::StrAlign("Number of Chains = ", "\\r"),
-      out$chains,
-      "\n")
-  cat(DescTools::StrAlign("Number of SNPs = ", "\\r"),
-      out$nsnps,
-      "\n",
-      "\n")
+  cat(
+    DescTools::StrAlign("Sample size by chain = ", "\\r"),
+    out$samplesize,
+    "\n"
+  )
+  cat(DescTools::StrAlign("Number of Chains = ", "\\r"), out$chains, "\n")
+  cat(DescTools::StrAlign("Number of SNPs = ", "\\r"), out$nsnps, "\n", "\n")
 
   print(out1, ...)
-
 }
