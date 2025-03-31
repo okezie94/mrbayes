@@ -18,7 +18,7 @@ A data frame with 14 rows and 44 columns:
 bmi_insulin
 }
 \description{
-A two-sample summary level dataset, Richmond et al. (2017) \doi{10.1101/155739}, containing 14 single nucleiodtide polymorphisms (SNPs) which have genotype-phenotype associations (BMI) and genotype-outcome associations (insulin) with their respective standard errors.
+A two-sample summary level dataset, Richmond et al. (2017) \doi{10.1101/155739}, containing 14 single nucleotide polymorphisms (SNPs) which have genotype-phenotype associations (BMI) and genotype-outcome associations (insulin) with their respective standard errors.
 }
 \details{
 bmi_insulin.

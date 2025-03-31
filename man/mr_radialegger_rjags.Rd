@@ -50,7 +50,7 @@ An object of class \code{radialeggerjags} containing the following components:
 \item{AvgPleio}{The mean of the simulated pleiotropic effect}
 \item{CausalEffect}{The mean of the simulated causal effect}
 \item{StandardError}{Standard deviation of the simulated causal effect}
-\item{sigma}{The mean of the simaulted residual standard deviation}
+\item{sigma}{The mean of the simulated residual standard deviation}
 \item{CredibleInterval}{The credible interval for the causal effect, which includes the lower (2.5\%), median (50\%) and upper intervals (97.5\%)}
 \item{samples}{Output of the Bayesian MCMC samples}
 \item{Prior}{The specified priors}
