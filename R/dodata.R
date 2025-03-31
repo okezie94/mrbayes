@@ -1,7 +1,7 @@
 #' Dataset from Do et al., Nat Gen, 2013 containing summary level data on associations of genotypes with lipid traits and the risk of coronary heart diseases
 #'
 #' A summary-level dataset, from Do et al. (2013) \doi{10.1038/ng.2795},
-#' containing 185 single nucleodtide polymorphisms (SNPs) which have genotype-phenotype associations and standard errors for
+#' containing 185 single nucleotide polymorphisms (SNPs) which have genotype-phenotype associations and standard errors for
 #' LDL-C, HDL-C, Triglycerides, and genotype-outcome associations for coronary heart disease
 #' with their respective standard errors.
 #'
