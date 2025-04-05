@@ -2,6 +2,8 @@
 
 context("Tests for Radial MR-Egger function using JAGS")
 
+skip_if(Sys.info()[["sysname"]] == "Emscripten", message = "Skip tests on Emscripten aka WebR.")
+
 test_that("Dataset is formatted",
           {
             dat <- mr_format(rsid = dodata$rsid,

@@ -2,6 +2,8 @@
 
 context("Tests for mr_egger_stan() function")
 
+skip_if(Sys.info()[["sysname"]] == "Emscripten", message = "Skip tests on Emscripten aka WebR.")
+
 # Analysis
 ## MR-Egger stan
 

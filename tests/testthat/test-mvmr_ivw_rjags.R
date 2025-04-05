@@ -1,5 +1,7 @@
 context("Tests for IVW function using JAGS")
 
+skip_if(Sys.info()[["sysname"]] == "Emscripten", message = "Skip tests on Emscripten aka WebR.")
+
 test_that("Dataset is formatted",
           {
             dat <- mvmr_format(rsid = dodata$rsid,
