@@ -30,6 +30,7 @@ jobs:
           - {os: ubuntu-latest,   r: 'release'}
           - {os: ubuntu-latest,   r: 'oldrel-1'}
           - {os: ubuntu-latest,   r: 'oldrel-2'}
+          - {os: ubuntu-latest,   r: 'oldrel-3'}
           - {os: ubuntu-22.04-arm, r: 'release', rspm: 'no' }
 
     env:
