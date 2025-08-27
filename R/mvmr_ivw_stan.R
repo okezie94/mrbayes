@@ -33,14 +33,15 @@
 #' rstan::traceplot(mvivw_fit)
 #' }
 #' @export
-mvmr_ivw_stan <- function(data,
-                          prior = 1,
-                          n.chains = 3,
-                          n.burn = 1000,
-                          n.iter = 5000,
-                          seed = 12345,
-                          ...) {
-
+mvmr_ivw_stan <- function(
+  data,
+  prior = 1,
+  n.chains = 3,
+  n.burn = 1000,
+  n.iter = 5000,
+  seed = 12345,
+  ...
+) {
   # check for rstan
   rstan_check()
 
@@ -73,5 +74,4 @@ mvmr_ivw_stan <- function(data,
   )
 
   return(mvivwfit)
-
 }

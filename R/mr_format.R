@@ -28,13 +28,8 @@ mr_format <- function(rsid, xbeta, ybeta, xse, yse) {
   datm <- data.frame(rsid, xbeta, ybeta, xse, yse)
 
   names(datm) <-
-    c("rsid",
-      "beta.exposure",
-      "beta.outcome",
-      "se.exposure",
-      "se.outcome")
+    c("rsid", "beta.exposure", "beta.outcome", "se.exposure", "se.outcome")
 
   class(datm) <- append(class(datm), "mr_format")
   return(datm)
-
 }

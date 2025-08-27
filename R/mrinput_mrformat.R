@@ -24,10 +24,12 @@ mrinput_mr_format <- function(dat) {
     stop('The class of the input data object must be "MRInput"')
   }
 
-  out <- mr_format(xbeta = dat@betaX,
-                   ybeta = dat@betaY,
-                   xse = dat@betaXse,
-                   yse = dat@betaYse,
-                   rsid = dat@snps)
+  out <- mr_format(
+    xbeta = dat@betaX,
+    ybeta = dat@betaY,
+    xse = dat@betaXse,
+    yse = dat@betaYse,
+    rsid = dat@snps
+  )
   out
 }
