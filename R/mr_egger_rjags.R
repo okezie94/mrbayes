@@ -189,14 +189,6 @@ mr_egger_rjags <- function(
     n.iter = n.iter
   )
 
-  # eggersamp2 <- rjags::coda.samples(
-  #   egger_model,
-  #   variable.names = c("beta", "sigma"),
-  #   n.iter = n.iter
-  # )
-
-  #egger_samp <- if (prior != "joint" & betaprior == ""){eggersamp1} else {eggersamp2}
-
   g <- egger_samp
 
   p <- summary(egger_samp)

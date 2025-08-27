@@ -86,32 +86,6 @@ test_that("MR-Egger using weak prior method", {
   expect_equal(eggerfit1$priormethod, "weak")
 })
 
-
-# test_that("MR-Egger using joint prior method",
-#           {
-#             skip_on_cran()
-#             skip_if_not_installed("rjags")
-#             dat <- mr_format(rsid = dodata$rsid,
-#                              xbeta = dodata$ldlcbeta,
-#                              ybeta = dodata$chdbeta,
-#                              xse = dodata$ldlcse,
-#                              yse = dodata$chdse)
-#             eggerfit3 <-
-#               mr_egger_rjags(dat,
-#                              prior = "joint",
-#                              seed = c(123, 456, 789))
-#             expect_equal(class(eggerfit3), "eggerjags")
-#             expect_equal(unname(eggerfit3$CausalEffect), 0.568, tol = 1e-2)
-#             expect_equal(unname(eggerfit3$StandardError), 0.076, tol = 1e-2)
-#             expect_equal(unname(eggerfit3$CredibleInterval[1]), 0.42, tol = 1e-2)
-#             expect_equal(unname(eggerfit3$CredibleInterval[2]), 0.567, tol = 1e-2)
-#             expect_equal(unname(eggerfit3$CredibleInterval[3]), 0.72, tol = 1e-2)
-#             expect_equal(unname(eggerfit3$AvgPleio), -0.002, tol = 1e-2)
-#             expect_equal(unname(eggerfit3$sigma), 1.59, tol = 1e-2)
-#             expect_equal(class(eggerfit3$samples), "mcmc.list")
-#             expect_equal(eggerfit3$priormethod, "joint")
-#           })
-
 test_that("MR-Egger using betaprior and sigmaprior method", {
   skip_on_cran()
   skip_if_not_installed("rjags")

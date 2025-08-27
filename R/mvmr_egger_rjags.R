@@ -149,28 +149,7 @@ mvmr_egger_rjags <- function(
     sigma ~ dunif(.0001, 10)
     rho <-"
 
-    # vcov_mat<- "
-    # beta[1:2] ~ dmnorm.vcov(mu[], prec[ , ])\n
-    # Pleiotropy <- beta[1]
-    # for (j in 1:K) {
-    # Estimate[j] ~ dnorm(0,1E-3)
-    # }
-    # prec[1,1] <- var1
-    # prec[1,2] <- sd1*sd2*rho
-    # prec[2,1] <- sd1*sd2*rho
-    # prec[2,2] <- var2
-    # mu[1] <- 0
-    # mu[2] <- 0
-    # var1 <- 1e4
-    # sd1 <- sqrt(var1)
-    # var2 <- 1e4
-    # sd2<- sqrt(var2)
-    # sigma ~ dunif(.0001, 10)
-    # rho <- "
-
     Priors <- paste0(vcov_mat, rho)
-
-    #Priors <- "Pleiotropy ~ dnorm(0, 1E-6) \n Estimate ~ dnorm(0, 1E-6) \n sigma ~ dunif(.0001, 10)"
 
     egger_model_string <-
       paste0("model {", Likelihood, "\n\n", Priors, "\n\n}")
@@ -241,14 +220,6 @@ mvmr_egger_rjags <- function(
     n.iter = n.iter
   )
 
-  # eggersamp2 <- rjags::coda.samples(
-  #   egger_model,
-  #   variable.names = c("beta", "sigma"),
-  #   n.iter = n.iter
-  # )
-
-  #egger_samp <- if (prior != "joint" & betaprior == ""){eggersamp1} else {eggersamp2}
-
   g <- egger_samp
 
   p <- summary(egger_samp)
@@ -313,7 +284,6 @@ mvmr_egger_rjags <- function(
     warning(
       "The mean of the sigma parameter, the residual standard deviation, we recommend refitting the model with sigma constrained to be >= 1."
     )
-    # sigma ~ #### T(1,) # ;T(1,)
   }
 
   #Class for the output

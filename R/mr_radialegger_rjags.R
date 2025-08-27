@@ -121,8 +121,6 @@ mr_radialegger_rjags <- function(
 
     Priors <- paste0(vcov_mat, rho)
 
-    #Priors <- "Pleiotropy ~ dnorm(0, 1E-6) \n Estimate ~ dnorm(0, 1E-6) \n sigma ~ dunif(.0001, 10)"
-
     radialegger_model_string <-
       paste0("model {", Likelihood, "\n\n", Priors, "\n\n}")
   } else if (betaprior != "" && sigmaprior != "") {
