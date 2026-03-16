@@ -20,6 +20,7 @@
 #' @references Stan Development Team (2020). "RStan: the R interface to Stan." R package version 2.19.3, <https://mc-stan.org/>.
 #'
 #' @examples
+#' \donttest{
 #' if (requireNamespace("rstan", quietly = TRUE)) {
 #' dat <- mvmr_format(
 #'   rsid = dodata$rsid,
@@ -31,6 +32,7 @@
 #' suppressWarnings(mvivw_fit <- mvmr_ivw_stan(dat, refresh = 0L))
 #' print(mvivw_fit)
 #' rstan::traceplot(mvivw_fit)
+#' }
 #' }
 #' @export
 mvmr_ivw_stan <- function(
