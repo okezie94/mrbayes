@@ -47,6 +47,7 @@ An object of class \code{\link[rstan:stanfit-class]{rstan::stanfit}}.
 Bayesian implementation of the MVMR-Egger model with choice of prior distributions fitted using RStan.
 }
 \examples{
+\donttest{
 if (requireNamespace("rstan", quietly = TRUE)) {
 # Note we recommend setting n.burn and n.iter to larger values
 dat <- mvmr_format(
@@ -58,6 +59,7 @@ dat <- mvmr_format(
 )
 suppressWarnings(mvegger_fit <- mvmr_egger_stan(dat, n.burn = 500, n.iter = 1000, refresh = 0L))
 print(mvegger_fit)
+}
 }
 }
 \references{

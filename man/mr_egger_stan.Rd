@@ -45,10 +45,12 @@ An object of class \code{\link[rstan:stanfit-class]{rstan::stanfit}}.
 Bayesian inverse variance weighted model with a choice of prior distributions fitted using Stan.
 }
 \examples{
+\donttest{
 if (requireNamespace("rstan", quietly = TRUE)) {
 # Note we recommend setting n.burn and n.iter to larger values
 suppressWarnings(egger_fit <- mr_egger_stan(bmi_insulin, n.burn = 500, n.iter = 1000, refresh = 0L))
 print(egger_fit)
+}
 }
 }
 \references{
