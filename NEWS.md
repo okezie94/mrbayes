@@ -1,6 +1,7 @@
 # mrbayes (development version)
 
 * The minimum version of R is now 4.2.0 due to the requirements of the **DescTools** package.
+* Fixes for segfault on macOS ARM runners on r-universe.
 
 # mrbayes 0.5.2
 
