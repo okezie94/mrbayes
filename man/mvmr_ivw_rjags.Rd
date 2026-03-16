@@ -51,6 +51,7 @@ An object of class \code{mvivwjags} containing the following components:
 Bayesian multivariate inverse variance weighted model with a choice of prior distributions fitted using JAGS.
 }
 \examples{
+\donttest{
 if (requireNamespace("rjags", quietly = TRUE)) {
 dat <- mvmr_format(
   rsid = dodata$rsid,
@@ -68,6 +69,7 @@ plot(fit$samples)
 fitdf <- do.call(rbind.data.frame, fit$samples)
 cri90 <- sapply(fitdf, quantile, probs = c(0.05, 0.95))
 print(cri90)
+}
 }
 }
 \references{

@@ -60,6 +60,7 @@ An object of class \code{radialeggerjags} containing the following components:
 Bayesian radial MR-Egger model with a choice of prior distributions fitted using JAGS.
 }
 \examples{
+\donttest{
 if (requireNamespace("rjags", quietly = TRUE)) {
 fit <- mr_radialegger_rjags(bmi_insulin)
 summary(fit)
@@ -68,6 +69,7 @@ plot(fit$samples)
 fitdf <- do.call(rbind.data.frame, fit$samples)
 cri90 <- quantile(fitdf$Estimate, probs = c(0.05, 0.95))
 print(cri90)
+}
 }
 }
 \references{
