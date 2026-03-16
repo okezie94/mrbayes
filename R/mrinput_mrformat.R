@@ -7,6 +7,7 @@
 #' @export
 #' @return Object of class `mr_format`, the mrbayes format
 #' @examples
+#' \donttest{
 #' if (requireNamespace("MendelianRandomization", quietly = TRUE)) {
 #' dat <- MendelianRandomization::mr_input(
 #'   bx = bmi_insulin$beta.exposure,
@@ -18,6 +19,7 @@
 #' dat <- mrinput_mr_format(dat)
 #' head(dat)
 #' class(dat)
+#' }
 #' }
 mrinput_mr_format <- function(dat) {
   if (!("MRInput" %in% class(dat))) {
