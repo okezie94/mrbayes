@@ -84,6 +84,10 @@ jobs:
           needs: check
           upgrade: 'TRUE'
 
+      - name: Set macOS OpenMP env var to prevent duplicate libomp crash
+        if: runner.os == 'macOS'
+        run: echo "KMP_DUPLICATE_LIB_OK=TRUE" >> $GITHUB_ENV
+
       - name: Install rstan and rjags from source on macOS
         if: runner.os == 'macOS'
         run: install.packages(c('rstan', 'rjags'), type = 'source')
