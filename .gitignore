@@ -48,3 +48,4 @@ vignettes/*.pdf
 src/Makevars
 
 .DS_Store
+.positai
