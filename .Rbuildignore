@@ -26,3 +26,5 @@ dockerrun.sh
 ^\.covrignore$
 ^codecov\.yml$
 ^\.lintr$
+^\.positai$
+^\.claude$
