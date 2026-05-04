@@ -27,6 +27,7 @@ Useful links:
 
 Authors:
 \itemize{
+  \item Tom Palmer \email{remlapmot@hotmail.com} (\href{https://orcid.org/0000-0003-4655-4511}{ORCID})
   \item Okezie Uche-Ikonne \email{okezieikonne@gmail.com} (\href{https://orcid.org/0000-0002-8461-8099}{ORCID})
   \item Frank Dondelinger \email{f.dondelinger@lancaster.ac.uk} (\href{https://orcid.org/0000-0003-1816-6300}{ORCID})
 }

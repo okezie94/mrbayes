@@ -38,10 +38,10 @@ mvmr_egger_stan(
 
 \item{orientate}{Numeric value to indicate the oriented exposure.}
 
-\item{...}{Additional arguments passed through to \code{\link[rstan:stanmodel-method-sampling]{rstan::sampling()}}.}
+\item{...}{Additional arguments passed through to \code{\link[rstan:sampling]{rstan::sampling()}}.}
 }
 \value{
-An object of class \code{\link[rstan:stanfit-class]{rstan::stanfit}}.
+An object of class \code{\link[rstan:stanfit]{rstan::stanfit}}.
 }
 \description{
 Bayesian implementation of the MVMR-Egger model with choice of prior distributions fitted using RStan.
