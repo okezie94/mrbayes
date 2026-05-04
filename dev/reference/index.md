@@ -1,0 +1,54 @@
+# Package index
+
+## All functions
+
+- [`bmi_insulin`](https://okezie94.github.io/mrbayes/dev/reference/bmi_insulin.md)
+  : Dataset from Richmond et. al 2017 investigating the association of
+  BMI on insulin resistance
+- [`dodata`](https://okezie94.github.io/mrbayes/dev/reference/dodata.md)
+  : Dataset from Do et al., Nat Gen, 2013 containing summary level data
+  on associations of genotypes with lipid traits and the risk of
+  coronary heart diseases
+- [`mr_egger_rjags()`](https://okezie94.github.io/mrbayes/dev/reference/mr_egger_rjags.md)
+  : Bayesian implementation of the MR-Egger multivariate model with
+  choice of prior distributions fitted using JAGS.
+- [`mr_egger_stan()`](https://okezie94.github.io/mrbayes/dev/reference/mr_egger_stan.md)
+  : Bayesian inverse variance weighted model with a choice of prior
+  distributions fitted using Stan
+- [`mr_format()`](https://okezie94.github.io/mrbayes/dev/reference/mr_format.md)
+  : Organises the summary level data for use in the Bayesian MR
+  functions
+- [`mr_ivw_rjags()`](https://okezie94.github.io/mrbayes/dev/reference/mr_ivw_rjags.md)
+  : Bayesian inverse variance weighted model with a choice of prior
+  distributions fitted using JAGS.
+- [`mr_ivw_stan()`](https://okezie94.github.io/mrbayes/dev/reference/mr_ivw_stan.md)
+  : Bayesian inverse variance weighted model with a choice of prior
+  distributions fitted using RStan.
+- [`mr_radialegger_rjags()`](https://okezie94.github.io/mrbayes/dev/reference/mr_radialegger_rjags.md)
+  : Bayesian radial MR-Egger model with a choice of prior distributions
+  fitted using JAGS.
+- [`mr_radialegger_stan()`](https://okezie94.github.io/mrbayes/dev/reference/mr_radialegger_stan.md)
+  : Bayesian inverse variance weighted model with a choice of prior
+  distributions fitted using RStan.
+- [`mrbayes-package`](https://okezie94.github.io/mrbayes/dev/reference/mrbayes-package.md)
+  [`mrbayes`](https://okezie94.github.io/mrbayes/dev/reference/mrbayes-package.md)
+  : mrbayes: Bayesian implementation of the IVW and MR-Egger models for
+  two-sample Mendelian randomization analyses
+- [`mrinput_mr_format()`](https://okezie94.github.io/mrbayes/dev/reference/mrinput_mr_format.md)
+  : Convert an object of class MRInput from the MendelianRandomization
+  package to the mrbayes mr_format class
+- [`mvmr_egger_rjags()`](https://okezie94.github.io/mrbayes/dev/reference/mvmr_egger_rjags.md)
+  : Bayesian implementation of the MVMR-Egger model with choice of prior
+  distributions fitted using JAGS.
+- [`mvmr_egger_stan()`](https://okezie94.github.io/mrbayes/dev/reference/mvmr_egger_stan.md)
+  : Bayesian implementation of the MVMR-Egger model with choice of prior
+  distributions fitted using RStan.
+- [`mvmr_format()`](https://okezie94.github.io/mrbayes/dev/reference/mvmr_format.md)
+  : Organises the summary level data for use in the Bayesian MR
+  functions
+- [`mvmr_ivw_rjags()`](https://okezie94.github.io/mrbayes/dev/reference/mvmr_ivw_rjags.md)
+  : Bayesian multivariate inverse variance weighted model with a choice
+  of prior distributions fitted using JAGS.
+- [`mvmr_ivw_stan()`](https://okezie94.github.io/mrbayes/dev/reference/mvmr_ivw_stan.md)
+  : Bayesian multivariate inverse variance weighted model with a choice
+  of prior distributions fitted using RStan.
