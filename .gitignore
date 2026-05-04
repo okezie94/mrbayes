@@ -49,3 +49,5 @@ src/Makevars
 
 .DS_Store
 .positai
+
+*.tmp
