@@ -71,8 +71,8 @@ jobs:
             if (Test-Path("$inst")) {
               cp "$inst" jags.exe
             } elseif (-not(Test-path("jags.exe"))) {
-              # -UserAgent "NativeHost" to work-around issues with redirects with the default
-              Invoke-WebRequest -Uri "$url" -OutFile jags.exe -UseBasicParsing -UserAgent "NativeHost"
+              # -A "NativeHost" to work-around issues with redirects with the default
+              curl.exe -L -A "NativeHost" -o jags.exe "$url"
             }
             Start-Process -Wait -NoNewWindow -FilePath ".\jags.exe" -ArgumentList "/S"
             cd ..
