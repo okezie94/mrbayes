@@ -51,11 +51,21 @@ jobs:
 
       - name: Install macOS system dependencies
         if: runner.os == 'macOS'
-        run: brew install jags
+        run: brew install jags gettext
 
       - name: Set macOS OpenMP env var to prevent duplicate libomp crash
         if: runner.os == 'macOS'
         run: echo "KMP_DUPLICATE_LIB_OK=TRUE" >> $GITHUB_ENV
+
+      - name: Install data.table from source on macOS if no binary available
+        if: runner.os == 'macOS'
+        run: |
+          HAS_BINARY=$(Rscript -e "pkgs <- tryCatch(available.packages(type='binary'), error=function(e) matrix(NA,0,0)); cat(if ('data.table' %in% rownames(pkgs)) 'yes' else 'no')")
+          if [ "$HAS_BINARY" = "no" ]; then
+            mkdir -p ~/.R
+            echo "CPPFLAGS = -I$(brew --prefix gettext)/include" >> ~/.R/Makevars
+            Rscript -e "install.packages('data.table', type='source')"
+          fi
 
       - name: Install Windows system dependencies
         if: runner.os == 'Windows'
