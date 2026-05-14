@@ -27,7 +27,7 @@
 #'       \item{hdlcz}{Z-score for genotype-HDL-C associations}
 #'       \item{hdlcse}{The standard errors of the genotype-high-density lipoprotein cholesterol associations}
 #'       \item{tgz}{Z-score for genotype-triglyceride associations}
-#'       \item{tgse}{The standard errors of the genotype-triglyceride cholesterol associations}
+#'       \item{tgse}{The standard errors of the genotype-triglyceride associations}
 #'       \item{chdz}{Z-score for genotype-coronary heart disease associations}
 #'       \item{chdse}{The standard errors of the genotype-coronary heart disease associations}
 #'
