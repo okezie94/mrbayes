@@ -3,7 +3,7 @@
 \docType{data}
 \name{bmi_insulin}
 \alias{bmi_insulin}
-\title{Dataset from Richmond et. al 2017 investigating the association of BMI on insulin resistance}
+\title{Dataset from Richmond et al. 2017 investigating the association of BMI on insulin resistance}
 \format{
 A data frame with 14 rows and 44 columns:
 \describe{
