@@ -104,11 +104,6 @@ jobs:
         run: install.packages(c('rstan', 'rjags'), type = 'source')
         shell: Rscript {0}
 
-      - name: Fix configure permissions on Windows
-        if: runner.os == 'Windows'
-        shell: bash
-        run: chmod +x configure
-
       - uses: r-lib/actions/check-r-package@v2
         with:
           upload-snapshots: true
