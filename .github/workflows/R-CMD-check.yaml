@@ -51,7 +51,7 @@ jobs:
 
       - name: Install macOS system dependencies
         if: runner.os == 'macOS'
-        run: brew install jags gettext
+        run: brew install jags
 
       - name: Set macOS OpenMP env var to prevent duplicate libomp crash
         if: runner.os == 'macOS'
