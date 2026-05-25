@@ -54,14 +54,17 @@ jobs:
         shell: bash
         run: |
           mkdir -p ~/.R
-          echo "MAKEFLAGS = -j4" >> ~/.R/Makevars
+          NCPUS=$(nproc 2>/dev/null || sysctl -n hw.logicalcpu)
+          echo "Detected ${NCPUS} processors"
+          echo "MAKEFLAGS = -j${NCPUS}" >> ~/.R/Makevars
 
       - name: Set parallel compilation flags (Windows)
         if: runner.os == 'Windows'
         shell: pwsh
         run: |
           New-Item -Path "$HOME\.R" -ItemType Directory -Force
-          Add-Content -Path "$HOME\.R\Makevars.win" -Value "MAKEFLAGS = -j4"
+          Write-Output "Detected $env:NUMBER_OF_PROCESSORS processors"
+          Add-Content -Path "$HOME\.R\Makevars.win" -Value "MAKEFLAGS = -j$env:NUMBER_OF_PROCESSORS"
 
       - name: Install macOS system dependencies
         if: runner.os == 'macOS'
