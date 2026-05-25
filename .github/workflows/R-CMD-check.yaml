@@ -56,7 +56,7 @@ jobs:
           mkdir -p ~/.R
           NCPUS=$(nproc 2>/dev/null || sysctl -n hw.logicalcpu)
           echo "Detected ${NCPUS} processors"
-          echo "MAKEFLAGS = -j${NCPUS}" >> ~/.R/Makevars
+          echo "MAKEFLAGS = -j${NCPUS}" >> ~/.Renviron
 
       - name: Set parallel compilation flags (Windows)
         if: runner.os == 'Windows'
@@ -64,7 +64,7 @@ jobs:
         run: |
           New-Item -Path "$HOME\.R" -ItemType Directory -Force
           Write-Output "Detected $env:NUMBER_OF_PROCESSORS processors"
-          Add-Content -Path "$HOME\.R\Makevars.win" -Value "MAKEFLAGS = -j$env:NUMBER_OF_PROCESSORS"
+          Add-Content -Path "$HOME\.Renviron" -Value "MAKEFLAGS = -j$env:NUMBER_OF_PROCESSORS"
 
       - name: Install macOS system dependencies
         if: runner.os == 'macOS'

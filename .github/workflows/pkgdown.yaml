@@ -36,7 +36,7 @@ jobs:
         shell: bash
         run: |
           mkdir -p ~/.R
-          echo "MAKEFLAGS = -j$(nproc 2>/dev/null || sysctl -n hw.logicalcpu)" >> ~/.R/Makevars
+          echo "MAKEFLAGS = -j$(nproc 2>/dev/null || sysctl -n hw.logicalcpu)" >> ~/.Renviron
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
