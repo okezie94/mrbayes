@@ -1,4 +1,4 @@
-for j in 1 2 3 4 6; do
+for j in 1 2 3 4 6 8 10; do
   ccache -C >/dev/null
   echo "=== -j$j ==="
   SECONDS=0
