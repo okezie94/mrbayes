@@ -55,14 +55,67 @@ jobs:
         run: |
           NCPUS=$(nproc 2>/dev/null || sysctl -n hw.logicalcpu)
           echo "Detected ${NCPUS} processors"
-          echo "MAKEFLAGS = -j${NCPUS}" >> ~/.Renviron
+          echo "MAKEFLAGS=-j${NCPUS}" >> ~/.Renviron
 
       - name: Set parallel compilation flags (Windows)
         if: runner.os == 'Windows'
         shell: pwsh
         run: |
           Write-Output "Detected $env:NUMBER_OF_PROCESSORS processors"
-          Add-Content -Path "$HOME\.Renviron" -Value "MAKEFLAGS = -j$env:NUMBER_OF_PROCESSORS"
+          Add-Content -Path "$HOME\.Renviron" -Value "MAKEFLAGS=-j$env:NUMBER_OF_PROCESSORS"
+
+      # ccache speeds up Stan model compilation dramatically on warm cache.
+      # Note: ccache on Windows with Rtools is less reliable than on Linux/macOS;
+      # hit rates may be lower but it generally still helps.
+      - name: Setup ccache
+        uses: hendrikvanantwerpen/setup-ccache-action@v1
+        with:
+          key: ${{ matrix.config.os }}-R-${{ matrix.config.r }}-${{ hashFiles('inst/stan/**/*.stan', 'DESCRIPTION') }}
+          restore-keys: |
+            ${{ matrix.config.os }}-R-${{ matrix.config.r }}-
+          max-size: "2G"
+
+      - name: Configure R to use ccache (Linux and macOS)
+        if: runner.os != 'Windows'
+        shell: bash
+        run: |
+          mkdir -p ~/.R
+          # On macOS, R uses clang; on Linux, gcc. ccache wraps both.
+          if [ "$RUNNER_OS" = "macOS" ]; then
+            cat >> ~/.R/Makevars <<EOF
+          CC = ccache clang
+          CXX = ccache clang++
+          CXX14 = ccache clang++
+          CXX17 = ccache clang++
+          CXX20 = ccache clang++
+          EOF
+          else
+            cat >> ~/.R/Makevars <<EOF
+          CC = ccache gcc
+          CXX = ccache g++
+          CXX14 = ccache g++
+          CXX17 = ccache g++
+          CXX20 = ccache g++
+          EOF
+          fi
+          echo "--- ~/.R/Makevars ---"
+          cat ~/.R/Makevars
+
+      - name: Configure R to use ccache (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path "$HOME\.R" | Out-Null
+          $makevars = @"
+          CC = ccache gcc
+          CXX = ccache g++
+          CXX14 = ccache g++
+          CXX17 = ccache g++
+          CXX20 = ccache g++
+          "@
+          $makevars | Out-File -FilePath "$HOME\.R\Makevars.win" -Encoding ASCII -Append
+          Write-Output "--- ~/.R/Makevars.win ---"
+          Get-Content "$HOME\.R\Makevars.win"
 
       - name: Install macOS system dependencies
         if: runner.os == 'macOS'
@@ -77,7 +130,6 @@ jobs:
         run: |
           HAS_BINARY=$(Rscript -e "pkgs <- tryCatch(available.packages(type='binary'), error=function(e) matrix(NA,0,0)); cat(if ('data.table' %in% rownames(pkgs)) 'yes' else 'no')")
           if [ "$HAS_BINARY" = "no" ]; then
-            mkdir -p ~/.R
             echo "CPPFLAGS = -I$(brew --prefix gettext)/include" >> ~/.R/Makevars
             Rscript -e "install.packages('data.table', type='source')"
           fi
@@ -106,8 +158,8 @@ jobs:
 
       - name: Set pak options
         shell: bash
-        run: echo 'options(pkg.sysreqs_db_update_timeout = as.difftime(59, units = "secs"))' >> ~/.Rprofile 
-      
+        run: echo 'options(pkg.sysreqs_db_update_timeout = as.difftime(59, units = "secs"))' >> ~/.Rprofile
+
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: any::rcmdcheck, MendelianRandomization=?ignore-before-r=4.4.0
@@ -119,8 +171,17 @@ jobs:
         run: install.packages(c('rstan', 'rjags'), type = 'source')
         shell: Rscript {0}
 
+      - name: Show ccache stats before check
+        shell: bash
+        run: ccache -s
+
       - uses: r-lib/actions/check-r-package@v2
         with:
           upload-snapshots: true
           build_args: 'c("--no-manual","--compact-vignettes=gs+qpdf")'
           error-on: '"error"'
+
+      - name: Show ccache stats after check
+        if: always()
+        shell: bash
+        run: ccache -s
