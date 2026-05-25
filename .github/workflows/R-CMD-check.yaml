@@ -65,14 +65,17 @@ jobs:
           Add-Content -Path "$HOME\.Renviron" -Value "MAKEFLAGS=-j$env:NUMBER_OF_PROCESSORS"
 
       # ccache speeds up Stan model compilation dramatically on warm cache.
-      # Note: ccache on Windows with Rtools is less reliable than on Linux/macOS;
-      # hit rates may be lower but it generally still helps.
+      # Note: Windows support via ccache-action is documented as "probably works"
+      # rather than fully stable; if it causes issues, scope this step to non-Windows.
       - name: Setup ccache
         uses: hendrikmuhs/ccache-action@v1.2.23
         with:
-          key: ${{ matrix.config.os }}-R-${{ matrix.config.r }}-${{ hashFiles('inst/stan/**/*.stan', 'DESCRIPTION') }}
+          # Key invalidates when Stan models or DESCRIPTION change.
+          # Older caches partially seed new ones via restore-keys.
+          key: ccache-${{ matrix.config.os }}-R-${{ matrix.config.r }}-${{ hashFiles('inst/stan/**/*.stan', 'DESCRIPTION') }}
           restore-keys: |
-            ${{ matrix.config.os }}-R-${{ matrix.config.r }}-
+            ccache-${{ matrix.config.os }}-R-${{ matrix.config.r }}-
+            ccache-${{ matrix.config.os }}-R-
           max-size: "2G"
 
       - name: Configure R to use ccache (Linux and macOS)
@@ -80,9 +83,8 @@ jobs:
         shell: bash
         run: |
           mkdir -p ~/.R
-          # On macOS, R uses clang; on Linux, gcc. ccache wraps both.
           if [ "$RUNNER_OS" = "macOS" ]; then
-            cat >> ~/.R/Makevars <<EOF
+            cat >> ~/.R/Makevars <<'EOF'
           CC = ccache clang
           CXX = ccache clang++
           CXX14 = ccache clang++
@@ -90,7 +92,7 @@ jobs:
           CXX20 = ccache clang++
           EOF
           else
-            cat >> ~/.R/Makevars <<EOF
+            cat >> ~/.R/Makevars <<'EOF'
           CC = ccache gcc
           CXX = ccache g++
           CXX14 = ccache g++
@@ -113,7 +115,7 @@ jobs:
           CXX17 = ccache g++
           CXX20 = ccache g++
           "@
-          $makevars | Out-File -FilePath "$HOME\.R\Makevars.win" -Encoding ASCII -Append
+          Add-Content -Path "$HOME\.R\Makevars.win" -Value $makevars
           Write-Output "--- ~/.R/Makevars.win ---"
           Get-Content "$HOME\.R\Makevars.win"
 
