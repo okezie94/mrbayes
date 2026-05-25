@@ -49,6 +49,20 @@ jobs:
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: ${{ matrix.config.rspm || 'true' }}
 
+      - name: Set parallel compilation flags (Linux and macOS)
+        if: runner.os != 'Windows'
+        shell: bash
+        run: |
+          mkdir -p ~/.R
+          echo "MAKEFLAGS = -j4" >> ~/.R/Makevars
+
+      - name: Set parallel compilation flags (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          New-Item -Path "$HOME\.R" -ItemType Directory -Force
+          Add-Content -Path "$HOME\.R\Makevars.win" -Value "MAKEFLAGS = -j4"
+
       - name: Install macOS system dependencies
         if: runner.os == 'macOS'
         run: brew install jags
