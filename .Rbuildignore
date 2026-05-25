@@ -28,3 +28,4 @@ dockerrun.sh
 ^\.lintr$
 ^\.positai$
 ^\.claude$
+^test\.sh$
