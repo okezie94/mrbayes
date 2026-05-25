@@ -134,6 +134,14 @@ jobs:
             Rscript -e "install.packages('data.table', type='source')"
           fi
 
+      - name: Cache JAGS install (Windows)
+        if: runner.os == 'Windows'
+        id: cache-jags-windows
+        uses: actions/cache@v5
+        with:
+          path: C:\Program Files\JAGS\JAGS-4.3.1
+          key: jags-windows-4.3.1
+
       - name: Install Windows system dependencies
         if: runner.os == 'Windows'
         run: |
@@ -166,8 +174,28 @@ jobs:
           needs: check
           upgrade: 'TRUE'
 
-      - name: Install rstan and rjags from source on macOS
+      - name: Get R library path (macOS)
         if: runner.os == 'macOS'
+        id: r-libpath-macos
+        shell: bash
+        run: |
+          LIBPATH=$(Rscript -e 'cat(.libPaths()[1])')
+          echo "Detected R library path: $LIBPATH"
+          echo "libpath=$LIBPATH" >> $GITHUB_OUTPUT
+
+      - name: Cache rstan and rjags (macOS)
+        if: runner.os == 'macOS'
+        id: cache-rstan-rjags
+        uses: actions/cache@v5
+        with:
+          path: |
+            ${{ steps.r-libpath-macos.outputs.libpath }}/rstan
+            ${{ steps.r-libpath-macos.outputs.libpath }}/rjags
+            ${{ steps.r-libpath-macos.outputs.libpath }}/StanHeaders
+          key: rstan-rjags-${{ matrix.config.os }}-R-${{ matrix.config.r }}-v1
+
+      - name: Install rstan and rjags from source on macOS
+        if: runner.os == 'macOS' && steps.cache-rstan-rjags.outputs.cache-hit != 'true'
         run: install.packages(c('rstan', 'rjags'), type = 'source')
         shell: Rscript {0}
 
