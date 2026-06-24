@@ -19,8 +19,8 @@ URL: https://github.com/okezie94/mrbayes,
     https://okezie94.github.io/mrbayes/,
     https://mrcieu.r-universe.dev/mrbayes
 BugReports: https://github.com/okezie94/mrbayes/issues
-Depends: 
-    R (>= 4.2.0)
+Depends:
+    R (>= 4.3.0)
 Imports:
     DescTools,
     methods,
