@@ -4,7 +4,7 @@
 #'
 #' bmi_insulin.
 #'
-#' @format A data frame with 14 rows and 44 columns:
+#' @format A data frame with 14 rows and 5 columns:
 #' \describe{
 #'     \item{rsid}{SNP RSID number}
 #'     \item{beta.exposure}{The genotype-BMI associations}
