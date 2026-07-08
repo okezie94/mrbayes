@@ -57,7 +57,7 @@ model {
 
     // Non-informative prior
     if (prior == 1){
-      intercept ~ normal(0,10);
+      intercept ~ normal(0,100);
       estimate ~ normal(0,100);
       sigma ~ uniform(1,10);
 
