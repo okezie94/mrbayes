@@ -1,4 +1,4 @@
-# mrbayes (development version)
+# mrbayes 0.5.3
 
 * The minimum version of R is now 4.3.0. This is required by the **distributional** package (a transitive dependency via **rstan** → **loo** → **posterior**), which uses `chooseOpsMethod()` (introduced in R 4.3.0).
 * Fixes for segfault on macOS ARM runners on r-universe.
