@@ -209,7 +209,7 @@ public:
       current_statement__ = 32;
       stan::math::check_greater_or_equal(function__, "prior", prior, 1);
       current_statement__ = 32;
-      stan::math::check_less_or_equal(function__, "prior", prior, 4);
+      stan::math::check_less_or_equal(function__, "prior", prior, 3);
       current_statement__ = 33;
       stan::math::validate_non_negative_index("estimate", "d", d);
     } catch (const std::exception& e) {

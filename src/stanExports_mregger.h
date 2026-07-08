@@ -56,7 +56,7 @@ static constexpr std::array<const char*, 49> locations_array__ =
   " (in 'mregger', line 63, column 6 to column 64)",
   " (in 'mregger', line 58, column 24 to line 64, column 5)",
   " (in 'mregger', line 58, column 9 to line 81, column 5)",
-  " (in 'mregger', line 51, column 6 to column 31)",
+  " (in 'mregger', line 51, column 6 to column 32)",
   " (in 'mregger', line 52, column 6 to column 31)",
   " (in 'mregger', line 53, column 6 to column 28)",
   " (in 'mregger', line 55, column 6 to column 64)",
@@ -311,7 +311,7 @@ public:
         current_statement__ = 33;
         if (stan::math::logical_eq(prior, 1)) {
           current_statement__ = 28;
-          lp_accum__.add(stan::math::normal_lpdf<propto__>(intercept, 0, 10));
+          lp_accum__.add(stan::math::normal_lpdf<propto__>(intercept, 0, 100));
           current_statement__ = 29;
           lp_accum__.add(stan::math::normal_lpdf<propto__>(estimate, 0, 100));
           current_statement__ = 30;
