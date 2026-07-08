@@ -244,13 +244,13 @@ mvmr_egger_rjags <- function(
   #Average Pleiotropic effect
   avg.pleio <- p$statistics[ncol(object$beta.exposure) + 1, 1]
 
-  #Standard dev for AVg Pleio
+  #Standard dev for Avg Pleio
   avg.pleiostd <- p$statistics[ncol(object$beta.exposure) + 1, 2]
 
   #lower credible interval
   avg.pleioLI <- p$quantiles[ncol(object$beta.exposure) + 1, 1]
 
-  #mdeian credible interval
+  #median credible interval
   avg.pleioM <- p$quantiles[ncol(object$beta.exposure) + 1, 3]
 
   #Upper credible interval

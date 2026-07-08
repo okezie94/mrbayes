@@ -220,13 +220,13 @@ mr_radialegger_rjags <- function(
   #Average Pleiotropic effect
   avg.pleio <- p$statistics[2, 1]
 
-  #Standard dev for AVg Pleio
+  #Standard dev for Avg Pleio
   avg.pleiostd <- p$statistics[2, 2]
 
   #lower credible interval
   avg.pleioLI <- p$quantiles[2, 1]
 
-  #mdeian credible interval
+  #median credible interval
   avg.pleioM <- p$quantiles[2, 3]
 
   #Upper credible interval
