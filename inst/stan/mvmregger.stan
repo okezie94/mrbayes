@@ -19,7 +19,7 @@ data {
     matrix[n,d] xbeta; // instrument exposure associations
     vector[n] weights; // indicating weights
     real<lower=-1,upper=1> rho;  // correlation to fit
-    int<lower=1, upper=4> prior; // option for choice of prior distribution
+    int<lower=1, upper=3> prior; // option for choice of prior distribution
 }
 
 
