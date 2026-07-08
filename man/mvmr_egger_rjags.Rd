@@ -26,6 +26,7 @@ mvmr_egger_rjags(
 \item \code{"default"} selects a non-informative set of priors;
 \item \code{"weak"} selects weakly informative priors;
 \item \code{"pseudo"} selects a pseudo-horseshoe prior on the causal effect;
+\item \code{"joint"} selects a joint prior on the intercept and slopes.
 }}
 
 \item{betaprior}{A character string in JAGS syntax to allow a user defined prior for the causal effect.}

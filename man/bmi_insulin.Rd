@@ -5,7 +5,7 @@
 \alias{bmi_insulin}
 \title{Dataset from Richmond et al. 2017 investigating the association of BMI on insulin resistance}
 \format{
-A data frame with 14 rows and 44 columns:
+A data frame with 14 rows and 5 columns:
 \describe{
 \item{rsid}{SNP RSID number}
 \item{beta.exposure}{The genotype-BMI associations}
