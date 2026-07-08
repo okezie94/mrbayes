@@ -67,15 +67,15 @@ mvmr_egger_rjags <- function(
   rho = 0.5,
   ...
 ) {
+  # check if rjags is installed
+  rjags_check()
+
   # check class of object
   if (!("mvmr_format" %in% class(object))) {
     stop(
       'The class of the data object must be "mvmr_format", please resave the object with the output of e.g. object <- mvmr_format(object).'
     )
   }
-
-  # check if rjags is installed
-  rjags_check()
 
   # orientation setup
 
