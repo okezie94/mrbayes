@@ -140,8 +140,6 @@ mr_ivw_rjags <- function(
 
   p <- summary(ivw_samp)
 
-  prior <- prior
-
   niter <- n.iter
 
   nburn <- n.burn

@@ -227,8 +227,6 @@ mvmr_egger_rjags <- function(
 
   p <- summary(egger_samp)
 
-  prior <- prior
-
   niter <- n.iter
 
   nburn <- n.burn

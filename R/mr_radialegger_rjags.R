@@ -203,8 +203,6 @@ mr_radialegger_rjags <- function(
 
   p <- summary(radialegger_samp)
 
-  prior <- prior
-
   niter <- n.iter
 
   nburn <- n.burn
