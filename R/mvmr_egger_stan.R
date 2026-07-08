@@ -55,7 +55,7 @@ mvmr_egger_stan <- function(
   # check class of object
   if (!("mvmr_format" %in% class(data))) {
     stop(
-      'The class of the data object must be "mvmr_format", please resave the object with the output of e.g. object <- mr_format(object).'
+      'The class of the data object must be "mvmr_format", please resave the object with the output of e.g. object <- mvmr_format(object).'
     )
   }
 
