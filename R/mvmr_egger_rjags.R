@@ -285,7 +285,7 @@ mvmr_egger_rjags <- function(
 
   if (sigma < 1) {
     warning(
-      "The mean of the sigma parameter, the residual standard deviation, we recommend refitting the model with sigma constrained to be >= 1."
+      "The mean of the sigma parameter, the residual standard deviation, is less than 1, we recommend refitting the model with sigma constrained to be >= 1."
     )
   }
 
