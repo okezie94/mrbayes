@@ -320,7 +320,7 @@ mvmr_egger_rjags <- function(
 #' @export
 print.mveggerjags <- function(x, ...) {
   estmat <- matrix(ncol = 5, nrow = length(x$CausalEffect))
-  for (i in 1:3) {
+  for (i in seq_along(x$CausalEffect)) {
     estmat[i, ] <- c(
       x$CausalEffect[i],
       x$StandardError[i],
@@ -349,7 +349,7 @@ print.mveggerjags <- function(x, ...) {
 summary.mveggerjags <- function(object, ...) {
   out <- object
   estmat <- matrix(ncol = 5, nrow = length(out$CausalEffect))
-  for (i in 1:3) {
+  for (i in seq_along(out$CausalEffect)) {
     estmat[i, ] <- c(
       out$CausalEffect[i],
       out$StandardError[i],
