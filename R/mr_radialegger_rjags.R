@@ -75,9 +75,10 @@ mr_radialegger_rjags <- function(
 
   Likelihood <-
     "for (i in 1:N){
-    by[i] ~ dnorm(by.hat[i], sigma)
+    by[i] ~ dnorm(by.hat[i], tau)
     by.hat[i] <- Pleiotropy + Estimate * bx[i]
-    }"
+    }
+    tau <- pow(sigma, -2)"
 
   # Conditional statements for the prior statements
 
