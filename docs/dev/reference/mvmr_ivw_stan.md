@@ -104,7 +104,7 @@ rstan::traceplot(mvivw_fit)
 #> estimate[3]    1
 #> lp__           1
 #> 
-#> Samples were drawn using NUTS(diag_e) at Mon May  4 11:32:34 2026.
+#> Samples were drawn using NUTS(diag_e) at Wed Sep 30 10:15:31 2026.
 #> For each parameter, n_eff is a crude measure of effective sample size,
 #> and Rhat is the potential scale reduction factor on split chains (at 
 #> convergence, Rhat=1).

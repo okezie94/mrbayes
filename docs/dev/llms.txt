@@ -4,31 +4,25 @@ Bayesian implementation of IVW and MR-Egger models.
 
 ## Installation instructions
 
-Install the CRAN version with following code:
+Install the CRAN version with the following code:
 
-``` r
-
-install.packages("mrbayes")
-```
+\
+[`install.packages`](https://rdrr.io/r/utils/install.packages.html)`(``"mrbayes"``)`
 
 Or install the development version from r-universe with
 
-``` r
-
-install.packages("mrbayes", repos = c("https://mrcieu.r-universe.dev", "https://cloud.r-project.org"))
-```
+\
+[`install.packages`](https://rdrr.io/r/utils/install.packages.html)`(``"mrbayes"``, repos ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``"https://mrcieu.r-universe.dev"``, ``"https://cloud.r-project.org"``)``)`
 
 or from GitHub with:
 
-``` r
+\
+`# install.packages("remotes") # uncomment if remotes not installed`\
+`remotes``::`[`install_github`](https://remotes.r-lib.org/reference/install_github.html)`(``"okezie94/mrbayes"``)`
 
-# install.packages("remotes") # uncomment if remotes not installed
-remotes::install_github("okezie94/mrbayes")
-```
+### Installing JAGS to use the JAGS functions
 
-### Installing JAGS to use the JAGs functions
-
-Using the functions which use JAGS require that the JAGS software is
+The functions which use JAGS require that the JAGS software is
 installed.
 
 On macOS the easiest way to install JAGS is through Homebrew with
@@ -40,16 +34,14 @@ brew install jags
 
 Alternatively, JAGS installation files for Windows and macOS are
 available from
-<https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/>, and
+<https://sourceforge.net/projects/mcmc-jags/files/JAGS/5.x/>, and
 further info can be found on the JAGS website
 <https://mcmc-jags.sourceforge.io/>.
 
 In R you can then install **rjags** from source
 
-``` r
-
-install.packages("rjags", type = "source")
-```
+\
+[`install.packages`](https://rdrr.io/r/utils/install.packages.html)`(``"rjags"``, type ``=`` ``"source"``)`
 
 ## Package website
 
@@ -65,7 +57,7 @@ Okezie Uche-Ikonne, Frank Dondelinger, and Tom Palmer
 ## All functions
 
 - [`bmi_insulin`](https://okezie94.github.io/mrbayes/dev/reference/bmi_insulin.md)
-  : Dataset from Richmond et. al 2017 investigating the association of
+  : Dataset from Richmond et al. 2017 investigating the association of
   BMI on insulin resistance
 - [`dodata`](https://okezie94.github.io/mrbayes/dev/reference/dodata.md)
   : Dataset from Do et al., Nat Gen, 2013 containing summary level data

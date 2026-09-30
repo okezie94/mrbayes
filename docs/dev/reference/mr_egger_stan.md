@@ -95,12 +95,12 @@ print(egger_fit)
 #> post-warmup draws per chain=500, total post-warmup draws=1500.
 #> 
 #>             mean se_mean   sd   2.5%    25%    50%    75%  97.5% n_eff Rhat
-#> intercept  -0.06    0.00 0.04  -0.15  -0.08  -0.06  -0.04   0.01   195 1.01
-#> estimate    4.12    0.16 2.35  -0.16   2.54   3.89   5.53   9.69   210 1.01
-#> sigma       7.74    0.08 1.18   5.57   6.84   7.75   8.64   9.80   218 1.02
-#> lp__      -35.48    0.08 1.18 -38.47 -35.98 -35.18 -34.63 -34.10   197 1.03
+#> intercept  -0.05    0.00 0.03  -0.12  -0.07  -0.05  -0.03   0.01   303 1.01
+#> estimate    3.64    0.12 2.02  -0.32   2.23   3.72   4.98   7.34   280 1.01
+#> sigma       7.61    0.06 1.19   5.43   6.72   7.56   8.56   9.75   339 1.01
+#> lp__      -35.30    0.05 0.97 -37.73 -35.81 -35.08 -34.58 -34.10   451 1.01
 #> 
-#> Samples were drawn using NUTS(diag_e) at Mon May  4 11:32:30 2026.
+#> Samples were drawn using NUTS(diag_e) at Wed Sep 30 10:15:25 2026.
 #> For each parameter, n_eff is a crude measure of effective sample size,
 #> and Rhat is the potential scale reduction factor on split chains (at 
 #> convergence, Rhat=1).

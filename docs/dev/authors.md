@@ -22,13 +22,13 @@ models for two-sample Mendelian randomization studies – mrbayes.”
 *International Journal of Epidemiology*, **50**(1), 43–49.
 [doi:10.1093/ije/dyaa191](https://doi.org/10.1093/ije/dyaa191).
 
-    @Article{mrbayes,
-      author = {Okezie Uche-Ikonne and Frank Dondelinger and Tom Palmer},
-      title = {{Software Application Profile: Bayesian estimation of inverse variance weighted and MR-Egger models for two-sample Mendelian randomization studies -- mrbayes}},
-      journal = {International Journal of Epidemiology},
-      volume = {50},
-      number = {1},
-      pages = {43--49},
-      year = {2021},
-      doi = {10.1093/ije/dyaa191},
-    }
+@Article{mrbayes,\
+  author = {Okezie Uche-Ikonne and Frank Dondelinger and Tom Palmer},\
+  title = {{Software Application Profile: Bayesian estimation of inverse variance weighted and MR-Egger models for two-sample Mendelian randomization studies -- mrbayes}},\
+  journal = {International Journal of Epidemiology},\
+  volume = {50},\
+  number = {1},\
+  pages = {43--49},\
+  year = {2021},\
+  doi = {10.1093/ije/dyaa191},\
+}

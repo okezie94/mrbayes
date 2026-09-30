@@ -94,8 +94,7 @@ A data frame with 185 rows and 21 columns with the following variables:
 
 - tgse:
 
-  The standard errors of the genotype-triglyceride cholesterol
-  associations
+  The standard errors of the genotype-triglyceride associations
 
 - chdz:
 

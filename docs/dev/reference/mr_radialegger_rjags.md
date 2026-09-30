@@ -134,7 +134,6 @@ fitdf <- do.call(rbind.data.frame, fit$samples)
 cri90 <- quantile(fitdf$Estimate, probs = c(0.05, 0.95))
 print(cri90)
 }
-#> Warning: The mean of the sigma parameter, the residual standard deviation, is less than 1, we recommend refitting the model with sigma constrained to be >= 1.
 #> Prior : 
 #> 
 #>  Pleiotropy ~ dnorm(0, 1E-3) 
@@ -149,13 +148,13 @@ print(cri90)
 #>  Number of Chains = 3 
 #>  Number of SNPs = 14 
 #>  
-#> Inflating Parameter: 0.02664997 
+#> Inflating Parameter: 7.046732 
 #> 
-#>                 Estimate        SD        2.5%        50%     97.5%
-#> Avg Pleio     -26.197885 12.752291 -52.5982074 -25.917080 -1.851962
-#> Causal Effect   5.537095  2.441484   0.8610107   5.505149 10.611762
+#>                 Estimate        SD        2.5%        50%      97.5%
+#> Avg Pleio     -26.356997 12.807720 -51.0540487 -26.191873 -0.1080907
+#> Causal Effect   5.568413  2.453024   0.5033589   5.542637 10.3077900
 
 #>       5%      95% 
-#> 1.597026 9.733885 
+#> 1.486974 9.591277 
 # }
 ```

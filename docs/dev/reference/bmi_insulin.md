@@ -1,4 +1,4 @@
-# Dataset from Richmond et. al 2017 investigating the association of BMI on insulin resistance
+# Dataset from Richmond et al. 2017 investigating the association of BMI on insulin resistance
 
 A two-sample summary level dataset, Richmond et al. (2017)
 [doi:10.1101/155739](https://doi.org/10.1101/155739) , containing 14
@@ -14,7 +14,7 @@ bmi_insulin
 
 ## Format
 
-A data frame with 14 rows and 44 columns:
+A data frame with 14 rows and 5 columns:
 
 - rsid:
 

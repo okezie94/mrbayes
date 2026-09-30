@@ -99,19 +99,19 @@ jobs:
         id: cache-jags-windows
         uses: actions/cache@v6
         with:
-          path: C:\Program Files\JAGS\JAGS-4.3.1
-          key: jags-windows-4.3.1
+          path: C:\Program Files\JAGS\JAGS-5.0.0
+          key: jags-windows-5.0.0
 
       - name: Install Windows system dependencies
         if: runner.os == 'Windows'
         run: |
           # Install JAGS based on CRAN script
           # https://svn.r-project.org/R-dev-web/trunk/WindowsBuilds/winutf8/ucrt3/r_packages/setup_checks.ps1
-          if (-not(Test-Path("C:\Program Files\JAGS\JAGS-4.3.1"))) {
+          if (-not(Test-Path("C:\Program Files\JAGS\JAGS-5.0.0"))) {
             mkdir temp
             cd temp
-            $url = "https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/Windows/JAGS-4.3.1.exe/download"
-            $inst = "..\installers\JAGS-4.3.1.exe"
+            $url = "https://sourceforge.net/projects/mcmc-jags/files/JAGS/5.x/Windows/Rtools45/JAGS-5.0.0.exe/download"
+            $inst = "..\installers\JAGS-5.0.0.exe"
 
             if (Test-Path("$inst")) {
               cp "$inst" jags.exe
