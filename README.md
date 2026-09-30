@@ -43,7 +43,7 @@ brew install pkg-config
 brew install jags
 ```
 
-Alternatively, JAGS installation files for Windows and macOS are available from <https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/>, and further info can be found on the JAGS website <https://mcmc-jags.sourceforge.io/>.
+Alternatively, JAGS installation files for Windows and macOS are available from <https://sourceforge.net/projects/mcmc-jags/files/JAGS/5.x/>, and further info can be found on the JAGS website <https://mcmc-jags.sourceforge.io/>.
 
 In R you can then install **rjags** from source
 
