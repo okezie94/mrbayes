@@ -103,7 +103,7 @@ print(radegger_fit)
 #> sigma       7.03    0.07  1.29   4.87   6.04   6.91   7.93   9.59   325 1.02
 #> lp__      -33.88    0.05  1.10 -36.56 -34.50 -33.67 -33.03 -32.47   425 1.00
 #> 
-#> Samples were drawn using NUTS(diag_e) at Mon May  4 11:32:32 2026.
+#> Samples were drawn using NUTS(diag_e) at Wed Sep 30 10:15:28 2026.
 #> For each parameter, n_eff is a crude measure of effective sample size,
 #> and Rhat is the potential scale reduction factor on split chains (at 
 #> convergence, Rhat=1).

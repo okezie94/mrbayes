@@ -111,8 +111,8 @@ fitdf <- do.call(rbind.data.frame, fit$samples)
 cri90 <- quantile(fitdf$Estimate, probs = c(0.05, 0.95))
 print(cri90)
 }
-#>                Estimate        SD     2.5%       50%     97.5%
-#> Causal Effect 0.5793659 0.0509007 0.478432 0.5794962 0.6789618
+#>                Estimate         SD      2.5%       50%     97.5%
+#> Causal Effect 0.5795058 0.05046345 0.4804673 0.5794878 0.6778599
 #> Prior : 
 #> 
 #>  Estimate ~ dnorm(0, 1E-3) 
@@ -125,10 +125,10 @@ print(cri90)
 #>  Number of Chains = 3 
 #>  Number of SNPs = 14 
 #>  
-#>                Estimate        SD     2.5%       50%     97.5%
-#> Causal Effect 0.5793659 0.0509007 0.478432 0.5794962 0.6789618
+#>                Estimate         SD      2.5%       50%     97.5%
+#> Causal Effect 0.5795058 0.05046345 0.4804673 0.5794878 0.6778599
 
 #>        5%       95% 
-#> 0.4950446 0.6627057 
+#> 0.4956538 0.6631235 
 # }
 ```

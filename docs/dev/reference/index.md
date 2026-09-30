@@ -3,7 +3,7 @@
 ## All functions
 
 - [`bmi_insulin`](https://okezie94.github.io/mrbayes/dev/reference/bmi_insulin.md)
-  : Dataset from Richmond et. al 2017 investigating the association of
+  : Dataset from Richmond et al. 2017 investigating the association of
   BMI on insulin resistance
 - [`dodata`](https://okezie94.github.io/mrbayes/dev/reference/dodata.md)
   : Dataset from Do et al., Nat Gen, 2013 containing summary level data

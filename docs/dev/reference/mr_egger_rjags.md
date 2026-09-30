@@ -114,7 +114,7 @@ An object of class `eggerjags` containing the following components:
 
 ## References
 
-Bowden et. al., Mendelian randomization with invalid instruments: effect
+Bowden et al., Mendelian randomization with invalid instruments: effect
 estimation and bias detection through Egger regression. International
 Journal of Epidemiology 2015. 44(2): p. 512-525.
 [doi:10.1093/ije/dyv080](https://doi.org/10.1093/ije/dyv080)
@@ -146,14 +146,14 @@ print(cri90)
 #>  Number of Chains = 3 
 #>  Number of SNPs = 14 
 #>  
-#> Inflating Parameter: 7.67337 
+#> Inflating Parameter: 7.632241 
 #> 
 #>                  Estimate         SD       2.5%         50%      97.5%
-#> Avg Pleio     -0.04824786 0.03890971 -0.1240748 -0.04868692 0.02811223
-#> Causal Effect  3.38970988 2.30605496 -1.0990773  3.41862406 7.88200208
+#> Avg Pleio     -0.05692441 0.03588787 -0.1316922 -0.05594422 0.01203757
+#> Causal Effect  3.90398475 2.12575622 -0.1793115  3.84566752 8.33668160
 
-#>       Estimate Pleiotropy    sigma
-#> 5%  -0.2932739 -0.1100341 5.700862
-#> 95%  7.0699476  0.0141014 9.637718
+#>      Estimate    Pleiotropy    sigma
+#> 5%  0.5396699 -0.1171576682 5.713836
+#> 95% 7.5024118 -0.0002204509 9.641032
 # }
 ```

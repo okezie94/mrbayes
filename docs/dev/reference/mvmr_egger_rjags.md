@@ -38,6 +38,8 @@ mvmr_egger_rjags(
 
   - `"pseudo"` selects a pseudo-horseshoe prior on the causal effect;
 
+  - `"joint"` selects a joint prior on the intercept and slopes.
+
 - betaprior:
 
   A character string in JAGS syntax to allow a user defined prior for
@@ -117,7 +119,7 @@ An object of class `mveggerjags` containing the following components:
 
 ## References
 
-Bowden et. al., Mendelian randomization with invalid instruments: effect
+Bowden et al., Mendelian randomization with invalid instruments: effect
 estimation and bias detection through Egger regression. International
 Journal of Epidemiology 2015. 44(2): p. 512-525.
 [doi:10.1093/ije/dyv080](https://doi.org/10.1093/ije/dyv080)
