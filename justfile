@@ -8,3 +8,5 @@ dev:
     Rscript -e "pak::local_install_dev_deps()"
 site:
     Rscript -e "pkgdown::build_site()"
+build: docs
+    Rscript -e "devtools::build()"
