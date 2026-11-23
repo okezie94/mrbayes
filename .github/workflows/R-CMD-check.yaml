@@ -75,9 +75,16 @@ jobs:
             ccache-${{ matrix.config.os }}-R-
           max-size: "2G"
 
-      - name: Install macOS system dependencies
+      - name: Install JAGS (macOS)
         if: runner.os == 'macOS'
-        run: brew install jags
+        run: |
+          # The JAGS 5 installer puts JAGS under /opt/jags; rjags >= 5 finds it
+          # via /opt/jags/lib/pkgconfig-5 and the bundled pkgconf-lite.
+          curl -fsSL -A "NativeHost" -o "$RUNNER_TEMP/JAGS.pkg" "https://sourceforge.net/projects/mcmc-jags/files/JAGS/5.x/macOS/JAGS-5.0.2-universal.pkg/download"
+          sudo installer -pkg "$RUNNER_TEMP/JAGS.pkg" -target /
+          rm "$RUNNER_TEMP/JAGS.pkg"
+          echo "Installed JAGS version:"
+          PKG_CONFIG_PATH=/opt/jags/lib/pkgconfig-5 /opt/jags/versions/pkgconf-lite/current/bin/pkg-config --modversion jags
 
       - name: Set macOS OpenMP env var to prevent duplicate libomp crash
         if: runner.os == 'macOS'
@@ -97,19 +104,19 @@ jobs:
         id: cache-jags-windows
         uses: actions/cache@v6
         with:
-          path: C:\Program Files\JAGS\JAGS-5.0.0
-          key: jags-windows-5.0.0
+          path: C:\Program Files\JAGS\JAGS-5.0.2
+          key: jags-windows-5.0.2
 
       - name: Install Windows system dependencies
         if: runner.os == 'Windows'
         run: |
           # Install JAGS based on CRAN script
           # https://svn.r-project.org/R-dev-web/trunk/WindowsBuilds/winutf8/ucrt3/r_packages/setup_checks.ps1
-          if (-not(Test-Path("C:\Program Files\JAGS\JAGS-5.0.0"))) {
+          if (-not(Test-Path("C:\Program Files\JAGS\JAGS-5.0.2"))) {
             mkdir temp
             cd temp
-            $url = "https://sourceforge.net/projects/mcmc-jags/files/JAGS/5.x/Windows/Rtools45/JAGS-5.0.0.exe/download"
-            $inst = "..\installers\JAGS-5.0.0.exe"
+            $url = "https://sourceforge.net/projects/mcmc-jags/files/JAGS/5.x/Windows/Rtools45/JAGS-5.0.2.exe/download"
+            $inst = "..\installers\JAGS-5.0.2.exe"
 
             if (Test-Path("$inst")) {
               cp "$inst" jags.exe
@@ -201,7 +208,7 @@ jobs:
             ${{ steps.r-libpath-macos.outputs.libpath }}/rstan
             ${{ steps.r-libpath-macos.outputs.libpath }}/rjags
             ${{ steps.r-libpath-macos.outputs.libpath }}/StanHeaders
-          key: rstan-rjags-${{ matrix.config.os }}-R-${{ matrix.config.r }}-v1
+          key: rstan-rjags-${{ matrix.config.os }}-R-${{ matrix.config.r }}-v2
 
       - name: Install rstan and rjags from source on macOS
         if: runner.os == 'macOS' && steps.cache-rstan-rjags.outputs.cache-hit != 'true'
