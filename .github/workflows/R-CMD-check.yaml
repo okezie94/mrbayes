@@ -129,6 +129,47 @@ jobs:
             Remove-Item -LiteralPath "temp" -Force -Recurse
           }
 
+      # JAGS 5 is not yet in the Ubuntu archives (they ship 4.3.2), and rjags >= 5
+      # requires JAGS 5, so build it from source and cache the install.
+      - name: Cache JAGS install (Linux)
+        if: runner.os == 'Linux'
+        id: cache-jags-linux
+        uses: actions/cache@v6
+        with:
+          path: ~/jags-5.0.2
+          key: jags-linux-${{ matrix.config.os }}-5.0.2
+
+      - name: Install JAGS build and runtime dependencies (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gfortran liblapack-dev libblas-dev
+
+      - name: Build JAGS from source (Linux)
+        if: runner.os == 'Linux' && steps.cache-jags-linux.outputs.cache-hit != 'true'
+        run: |
+          cd "$RUNNER_TEMP"
+          curl -fsSL -A "NativeHost" -o JAGS-5.0.2.tar.gz "https://sourceforge.net/projects/mcmc-jags/files/JAGS/5.x/Source/JAGS-5.0.2.tar.gz/download"
+          tar xzf JAGS-5.0.2.tar.gz
+          cd JAGS-5.0.2
+          ./configure --prefix="$HOME/jags-5.0.2"
+          make -j"$(nproc)"
+          make install
+          cd ..
+          rm -rf JAGS-5.0.2 JAGS-5.0.2.tar.gz
+
+      - name: Register JAGS with pkg-config and the dynamic linker (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          JAGS_PREFIX="$HOME/jags-5.0.2"
+          # Put our JAGS 5 ahead of any JAGS 4 that pak installs from apt as a system requirement
+          echo "PKG_CONFIG_PATH=$JAGS_PREFIX/lib/pkgconfig" >> "$GITHUB_ENV"
+          echo "$JAGS_PREFIX/bin" >> "$GITHUB_PATH"
+          echo "$JAGS_PREFIX/lib" | sudo tee /etc/ld.so.conf.d/jags.conf
+          sudo ldconfig
+          echo "Installed JAGS version:"
+          PKG_CONFIG_PATH="$JAGS_PREFIX/lib/pkgconfig" pkg-config --modversion jags
+
       - name: Set pak options
         shell: bash
         run: echo 'options(pkg.sysreqs_db_update_timeout = as.difftime(59, units = "secs"))' >> ~/.Rprofile
